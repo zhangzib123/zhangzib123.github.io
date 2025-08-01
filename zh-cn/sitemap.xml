@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://zhangzib123.github.io/</loc>
-    <lastmod>2025-07-31T18:22:48+08:00</lastmod>
+    <lastmod>2025-08-01T17:13:06+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -15,22 +15,8 @@
                 href="https://zhangzib123.github.io/"
                 />
   </url><url>
-    <loc>https://zhangzib123.github.io/p/aicorehub-%E4%B8%A4%E7%BA%A7%E7%94%A8%E6%88%B7%E4%BD%93%E7%B3%BB%E8%AE%BE%E8%AE%A1/</loc>
-    <lastmod>2025-07-31T18:22:48+08:00</lastmod>
-  </url><url>
-    <loc>https://zhangzib123.github.io/post/</loc>
-    <lastmod>2025-07-31T18:22:48+08:00</lastmod>
-  </url><url>
-    <loc>https://zhangzib123.github.io/p/abc/</loc>
-    <lastmod>2025-07-31T15:22:48+08:00</lastmod>
-  </url><url>
-    <loc>https://zhangzib123.github.io/archives/</loc>
-    <lastmod>2019-05-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zhangzib123.github.io/page/</loc>
-    <lastmod>2019-05-28T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://zhangzib123.github.io/categories/</loc>
+    <lastmod>2025-08-01T17:13:06+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -42,11 +28,11 @@
                 href="https://zhangzib123.github.io/categories/"
                 />
   </url><url>
-    <loc>https://zhangzib123.github.io/links/</loc>
-  </url><url>
-    <loc>https://zhangzib123.github.io/search/</loc>
+    <loc>https://zhangzib123.github.io/post/</loc>
+    <lastmod>2025-08-01T17:13:06+08:00</lastmod>
   </url><url>
     <loc>https://zhangzib123.github.io/tags/</loc>
+    <lastmod>2025-08-01T17:13:06+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -57,6 +43,46 @@
                 hreflang="zh-cn"
                 href="https://zhangzib123.github.io/tags/"
                 />
+  </url><url>
+    <loc>https://zhangzib123.github.io/categories/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2025-08-01T17:13:06+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/categories/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%88%96%E6%90%AD%E5%BB%BA%E6%9C%89%E6%95%88%E5%AE%9E%E8%B7%B5/</loc>
+    <lastmod>2025-08-01T17:13:06+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/p/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%88%96%E6%90%AD%E5%BB%BA%E6%9C%89%E6%95%88%E5%AE%9E%E8%B7%B5/</loc>
+    <lastmod>2025-08-01T17:13:06+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2025-08-01T17:13:06+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/tags/%E5%8D%8F%E8%B0%83%E8%80%85-%E5%B7%A5%E4%BD%9C%E8%80%85%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2025-08-01T17:13:06+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/tags/%E6%89%A7%E8%A1%8C%E8%80%85-%E8%AF%84%E5%88%A4%E8%80%85%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2025-08-01T17:13:06+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/tags/%E6%99%BA%E8%83%BD%E4%BD%93%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2025-08-01T17:13:06+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/categories/%E6%99%BA%E8%83%BD%E4%BD%93%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2025-08-01T17:13:06+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/p/aicorehub-%E4%B8%A4%E7%BA%A7%E7%94%A8%E6%88%B7%E4%BD%93%E7%B3%BB%E8%AE%BE%E8%AE%A1/</loc>
+    <lastmod>2025-07-31T18:22:48+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/p/abc/</loc>
+    <lastmod>2025-07-31T15:22:48+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/archives/</loc>
+    <lastmod>2019-05-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/page/</loc>
+    <lastmod>2019-05-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/links/</loc>
+  </url><url>
+    <loc>https://zhangzib123.github.io/search/</loc>
   </url><url>
     <loc>https://zhangzib123.github.io/categories/test/</loc>
   </url><url>
