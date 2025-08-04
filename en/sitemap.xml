@@ -132,6 +132,32 @@
                 href="https://zhangzib123.github.io/en/tags/%E8%A1%8C%E4%B8%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83/"
                 />
   </url><url>
+    <loc>https://zhangzib123.github.io/en/archives/</loc>
+    <lastmod>2019-05-28T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhangzib123.github.io/archives/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhangzib123.github.io/en/archives/"
+                />
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/page/</loc>
+    <lastmod>2019-05-28T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhangzib123.github.io/page/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhangzib123.github.io/en/page/"
+                />
+  </url><url>
     <loc>https://zhangzib123.github.io/en/about/</loc>
     <xhtml:link
                 rel="alternate"
@@ -144,16 +170,28 @@
                 href="https://zhangzib123.github.io/en/about/"
                 />
   </url><url>
-    <loc>https://zhangzib123.github.io/en/page/</loc>
+    <loc>https://zhangzib123.github.io/en/links/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://zhangzib123.github.io/page/"
+                href="https://zhangzib123.github.io/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zhangzib123.github.io/en/page/"
+                href="https://zhangzib123.github.io/en/links/"
+                />
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/search/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhangzib123.github.io/search/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhangzib123.github.io/en/search/"
                 />
   </url>
 </urlset>
