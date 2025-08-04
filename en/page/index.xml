@@ -5,33 +5,130 @@
         <link>https://zhangzib123.github.io/en/page/</link>
         <description>Recent content in Pages on ZibiaoZhang&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en</language>
-        <lastBuildDate>Fri, 09 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://zhangzib123.github.io/en/page/index.xml" rel="self" type="application/rss+xml" /><item>
+        <language>en</language><atom:link href="https://zhangzib123.github.io/en/page/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>About</title>
         <link>https://zhangzib123.github.io/en/about/</link>
-        <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         <guid>https://zhangzib123.github.io/en/about/</guid>
-        <description>&lt;p&gt;Written in Go, Hugo is an open source static site generator available under the &lt;a class=&#34;link&#34; href=&#34;https://github.com/gohugoio/hugo/blob/master/LICENSE&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Apache License 2.0.&lt;/a&gt; Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.&lt;/p&gt;
-&lt;p&gt;Hugo makes use of a variety of open source projects including:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/yuin/goldmark&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/yuin/goldmark&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/alecthomas/chroma&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/alecthomas/chroma&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/muesli/smartcrop&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/muesli/smartcrop&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/spf13/cobra&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/spf13/cobra&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/spf13/viper&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/spf13/viper&lt;/a&gt;&lt;/li&gt;
+        <description>&lt;h1 id=&#34;zibiao-zhang&#34;&gt;ZiBiao Zhang
+&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;Chief Executive Officer&lt;/strong&gt;&lt;br&gt;
+Zhengzhou Shuneng Software Technology Co., Ltd. | China&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Honors &amp;amp; Awards&lt;/strong&gt;&lt;br&gt;
+🏆 Henan Provincial Science and Technology Progress Award (Second Class, First Rank)&lt;br&gt;
+&lt;em&gt;(Awarded by Henan Provincial People&amp;rsquo;s Government)&lt;/em&gt;&lt;br&gt;
+🌟 Zhengzhou Outstanding Contribution Talent Award&lt;br&gt;
+&lt;em&gt;(Awarded by Zhengzhou Municipal People&amp;rsquo;s Government)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Technical Credentials&lt;/strong&gt;:&lt;br&gt;
+⋅ M.S. Software Engineering | Senior Engineer&lt;br&gt;
+⋅ AI Solutions Architect | R&amp;amp;D Executive&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Contact&lt;/strong&gt;&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;mailto:zhzb@ciglobal.cn&#34; &gt;zhzb@ciglobal.cn&lt;/a&gt; | WeChat: zhangzibcn | &lt;a class=&#34;link&#34; href=&#34;https://zhangzib123.github.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Personal Blog&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;proficiencies&#34;&gt;Proficiencies
+&lt;/h2&gt;&lt;h3 id=&#34;technical-expertise&#34;&gt;Technical Expertise
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Natural Language Processing Systems&lt;/li&gt;
+&lt;li&gt;Large Language Model Development&lt;/li&gt;
+&lt;li&gt;Agentic AI Frameworks&lt;/li&gt;
+&lt;li&gt;Software Architecture Design&lt;/li&gt;
+&lt;li&gt;MLOps &amp;amp; AI Deployment&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Hugo is ideal for blogs, corporate websites, creative portfolios, online magazines, single page applications or even a website with thousands of pages.&lt;/p&gt;
-&lt;p&gt;Hugo is for people who want to hand code their own website without worrying about setting up complicated runtimes, dependencies and databases.&lt;/p&gt;
-&lt;p&gt;Websites built with Hugo are extremely fast, secure and can be deployed anywhere including, AWS, GitHub Pages, Heroku, Netlify and any other hosting provider.&lt;/p&gt;
-&lt;p&gt;Learn more and contribute on &lt;a class=&#34;link&#34; href=&#34;https://github.com/gohugoio&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;rd-leadership&#34;&gt;R&amp;amp;D Leadership
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Strategic AI Roadmapping&lt;/li&gt;
+&lt;li&gt;Cross-functional R&amp;amp;D Execution&lt;/li&gt;
+&lt;li&gt;Technical Team Leadership&lt;/li&gt;
+&lt;li&gt;Enterprise AI Infrastructure Planning&lt;/li&gt;
+&lt;li&gt;Innovation Management&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;executive-project-portfolio-led--directed&#34;&gt;Executive Project Portfolio (Led &amp;amp; Directed)
+&lt;/h2&gt;&lt;h3 id=&#34;technological-overview&#34;&gt;Technological Overview
+&lt;/h3&gt;&lt;p&gt;This portfolio demonstrates expertise in &lt;strong&gt;internet information intelligence systems&lt;/strong&gt; and &lt;strong&gt;AI-Driven Knowledge Intelligence&lt;/strong&gt; with core capabilities spanning:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Real-time multi-source data capture&lt;/strong&gt;: Web/social media scraping, multilingual processing, heterogeneous data fusion&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Large-scale analytics&lt;/strong&gt;: Distributed processing of tera-scale datasets, machine learning/statistical modeling&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Advanced NLP pipelines&lt;/strong&gt;: Cross-language entity recognition, sentiment analysis, policy semantic parsing&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Knowledge intelligence&lt;/strong&gt;: Domain-specific knowledge graphs (defense/audit/energy), intelligent reasoning engines&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Decision systems&lt;/strong&gt;: Predictive analytics, multi-dimensional visualization, SaaS-based delivery&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;All solutions employ &lt;strong&gt;modular AI architectures&lt;/strong&gt; validated across government security, SOE reform, and industrial transformation applications, with proven ROI in 10+ mission-critical deployments.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;project-portfolio&#34;&gt;Project Portfolio
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;#&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Project Name&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Key Solutions&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Business Impact&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;1&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Foreign Affairs Security Intelligence System&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋅ Multilingual real-time threat detection engine&lt;br&gt;⋅ Consular risk prediction models&lt;br&gt;⋅ Cross-border security data fusion&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋅ 40% faster incident response&lt;br&gt;⋅ Adopted by 12 diplomatic departments&lt;br&gt;⋅ Doubled consular protection capacity&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;2&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;SOE Decision Support Platform&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋅ Multidimensional SOE evaluation algorithms&lt;br&gt;⋅ Leadership speech policy analysis engine&lt;br&gt;⋅ Dynamic expert knowledge graphs&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋅ Serves 97 central enterprises&lt;br&gt;⋅ 30% reduction in research time&lt;br&gt;⋅ 55% higher decision accuracy for SASAC&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;3&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Central Enterprise Opinion Management Platform&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋅ End-to-end public opinion monitoring architecture&lt;br&gt;⋅ Information propagation path analysis&lt;br&gt;⋅ Visual early-warning center&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋅ Covers 21 key industries&lt;br&gt;⋅ Enhanced SASAC oversight efficiency&lt;br&gt;⋅ 3x faster critical intelligence discovery&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;4&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Defense-Grade Information Sentinel System&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋅ Real-time sensitive data tracking system&lt;br&gt;⋅ Behavioral anomaly detection framework&lt;br&gt;⋅ Defense knowledge inference engine&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋅ MIL-STD-882E compliant&lt;br&gt;⋅ Prevented 200+ security breaches&lt;br&gt;⋅ 35% higher regulatory efficiency&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;5&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Belt &amp;amp; Road Opportunity Intelligence System&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋅ Cross-border project risk modeling&lt;br&gt;⋅ Investment heatmap spatial analysis&lt;br&gt;⋅ Policy compliance verification&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋅ Identified $2B+ business opportunities&lt;br&gt;⋅ Serves 8 national governments&lt;br&gt;⋅ 40% lower project execution risks&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;6&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Fortune 500 Enterprise Intelligence Platform (F500-EIP)&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋅ Market dominance analytics model&lt;br&gt;⋅ Supply chain risk monitoring&lt;br&gt;⋅ Negative sentiment early-warning&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋅ Protected 23% market share&lt;br&gt;⋅ Early detection of 15+ threats&lt;br&gt;⋅ 90% higher intelligence accuracy&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;7&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Building Materials Industry Sentinel&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋅ Industry stability monitoring framework&lt;br&gt;⋅ Reputation risk alert system&lt;br&gt;⋅ Opinion transmission dynamics modeling&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋅ 50% reduction in reputation damage&lt;br&gt;⋅ Critical response time window provision&lt;br&gt;⋅ 3x data integration efficiency&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;8&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Steel Industry Intelligence Hub&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋅ Global green manufacturing tracker&lt;br&gt;⋅ Patent analysis engine&lt;br&gt;⋅ Market competitiveness assessment&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋅ Enabled sustainable decision-making&lt;br&gt;⋅ Enhanced corporate competitiveness&lt;br&gt;⋅ Industry&amp;rsquo;s largest intelligence database&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;9&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Machinery Industry Big Data Platform&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋅ 28 association database integration&lt;br&gt;⋅ SaaS-based service architecture&lt;br&gt;⋅ Enterprise-grade data governance&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋅ 5x higher data processing capacity&lt;br&gt;⋅ Doubled public service delivery efficiency&lt;br&gt;⋅ Enabled federation collaboration&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;10&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;National Audit Knowledge Engine&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋅ 270K-regulation semantic engine&lt;br&gt;⋅ Audit issue intelligent matching&lt;br&gt;⋅ Case-based reasoning system&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋅ 70% faster issue resolution&lt;br&gt;⋅ Adopted by National Audit Office&lt;br&gt;⋅ Supports 18,000+ audit scenarios&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
 </description>
         </item>
         
