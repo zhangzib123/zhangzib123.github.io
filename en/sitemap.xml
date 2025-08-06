@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://zhangzib123.github.io/en/tags/audit-knowledge-large-model/</loc>
+    <lastmod>2025-08-06T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://zhangzib123.github.io/en/categories/</loc>
     <lastmod>2025-08-06T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -14,6 +17,9 @@
                 hreflang="en"
                 href="https://zhangzib123.github.io/en/categories/"
                 />
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/industry-large-model-fine-tuning/</loc>
+    <lastmod>2025-08-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zhangzib123.github.io/en/tags/large-model-technical-route/</loc>
     <lastmod>2025-08-06T00:00:00+00:00</lastmod>
@@ -69,6 +75,25 @@
     <loc>https://zhangzib123.github.io/en/tags/technical-route-selection-strategy/</loc>
     <lastmod>2025-08-06T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/vertical-domain-large-model-building/</loc>
+    <lastmod>2025-08-06T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/categories/vertical-domain-large-model-construction/</loc>
+    <lastmod>2025-08-06T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/p/when-audit-knowledge-meets-ai-large-models-forging-an-audit-brain-with-200000-professional-training-sessions/</loc>
+    <lastmod>2025-08-06T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhangzib123.github.io/p/%E5%BD%93%E5%AE%A1%E8%AE%A1%E7%9F%A5%E8%AF%86%E9%81%87%E4%B8%8Aai%E5%A4%A7%E6%A8%A1%E5%9E%8B20%E4%B8%87%E6%9D%A1%E4%B8%93%E4%B8%9A%E8%AE%AD%E7%BB%83%E7%82%BC%E5%B0%B1%E5%AE%A1%E8%AE%A1%E5%A4%A7%E8%84%91/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhangzib123.github.io/en/p/when-audit-knowledge-meets-ai-large-models-forging-an-audit-brain-with-200000-professional-training-sessions/"
+                />
+  </url><url>
     <loc>https://zhangzib123.github.io/en/</loc>
     <lastmod>2025-08-06T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -82,82 +107,108 @@
                 href="https://zhangzib123.github.io/en/"
                 />
   </url><url>
-    <loc>https://zhangzib123.github.io/en/tags/%E5%9B%BD%E4%BC%81%E7%9F%A5%E8%AF%86%E9%A2%86%E5%9F%9F%E5%A4%A7%E6%A8%A1%E5%9E%8B/</loc>
-    <lastmod>2025-08-04T11:13:06+08:00</lastmod>
+    <loc>https://zhangzib123.github.io/en/tags/%E5%8D%8F%E8%B0%83%E8%80%85-%E5%B7%A5%E4%BD%9C%E8%80%85%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2025-08-01T17:13:06+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://zhangzib123.github.io/tags/%E5%9B%BD%E4%BC%81%E7%9F%A5%E8%AF%86%E9%A2%86%E5%9F%9F%E5%A4%A7%E6%A8%A1%E5%9E%8B/"
+                href="https://zhangzib123.github.io/tags/%E5%8D%8F%E8%B0%83%E8%80%85-%E5%B7%A5%E4%BD%9C%E8%80%85%E6%A8%A1%E5%BC%8F/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zhangzib123.github.io/en/tags/%E5%9B%BD%E4%BC%81%E7%9F%A5%E8%AF%86%E9%A2%86%E5%9F%9F%E5%A4%A7%E6%A8%A1%E5%9E%8B/"
+                href="https://zhangzib123.github.io/en/tags/%E5%8D%8F%E8%B0%83%E8%80%85-%E5%B7%A5%E4%BD%9C%E8%80%85%E6%A8%A1%E5%BC%8F/"
                 />
   </url><url>
-    <loc>https://zhangzib123.github.io/en/categories/%E5%9E%82%E7%9B%B4%E9%A2%86%E5%9F%9F%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BB%BA%E8%AE%BE/</loc>
-    <lastmod>2025-08-04T11:13:06+08:00</lastmod>
+    <loc>https://zhangzib123.github.io/en/categories/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2025-08-01T17:13:06+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://zhangzib123.github.io/categories/%E5%9E%82%E7%9B%B4%E9%A2%86%E5%9F%9F%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BB%BA%E8%AE%BE/"
+                href="https://zhangzib123.github.io/categories/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zhangzib123.github.io/en/categories/%E5%9E%82%E7%9B%B4%E9%A2%86%E5%9F%9F%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BB%BA%E8%AE%BE/"
+                href="https://zhangzib123.github.io/en/categories/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/"
                 />
   </url><url>
-    <loc>https://zhangzib123.github.io/en/tags/%E5%9E%82%E7%9B%B4%E9%A2%86%E5%9F%9F%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BB%BA%E8%AE%BE/</loc>
-    <lastmod>2025-08-04T11:13:06+08:00</lastmod>
+    <loc>https://zhangzib123.github.io/en/categories/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%88%96%E6%90%AD%E5%BB%BA%E6%9C%89%E6%95%88%E5%AE%9E%E8%B7%B5/</loc>
+    <lastmod>2025-08-01T17:13:06+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://zhangzib123.github.io/tags/%E5%9E%82%E7%9B%B4%E9%A2%86%E5%9F%9F%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BB%BA%E8%AE%BE/"
+                href="https://zhangzib123.github.io/categories/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%88%96%E6%90%AD%E5%BB%BA%E6%9C%89%E6%95%88%E5%AE%9E%E8%B7%B5/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zhangzib123.github.io/en/tags/%E5%9E%82%E7%9B%B4%E9%A2%86%E5%9F%9F%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BB%BA%E8%AE%BE/"
+                href="https://zhangzib123.github.io/en/categories/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%88%96%E6%90%AD%E5%BB%BA%E6%9C%89%E6%95%88%E5%AE%9E%E8%B7%B5/"
                 />
   </url><url>
-    <loc>https://zhangzib123.github.io/en/p/%E5%9E%82%E7%9B%B4%E9%A2%86%E5%9F%9F%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BB%BA%E8%AE%BE%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2025-08-04T11:13:06+08:00</lastmod>
+    <loc>https://zhangzib123.github.io/en/p/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%88%96%E6%90%AD%E5%BB%BA%E6%9C%89%E6%95%88%E5%AE%9E%E8%B7%B5/</loc>
+    <lastmod>2025-08-01T17:13:06+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://zhangzib123.github.io/p/%E5%9E%82%E7%9B%B4%E9%A2%86%E5%9F%9F%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BB%BA%E8%AE%BE%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/"
+                href="https://zhangzib123.github.io/p/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%88%96%E6%90%AD%E5%BB%BA%E6%9C%89%E6%95%88%E5%AE%9E%E8%B7%B5/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zhangzib123.github.io/en/p/%E5%9E%82%E7%9B%B4%E9%A2%86%E5%9F%9F%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BB%BA%E8%AE%BE%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/"
+                href="https://zhangzib123.github.io/en/p/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%88%96%E6%90%AD%E5%BB%BA%E6%9C%89%E6%95%88%E5%AE%9E%E8%B7%B5/"
                 />
   </url><url>
-    <loc>https://zhangzib123.github.io/en/tags/%E5%9E%82%E7%9B%B4%E9%A2%86%E5%9F%9F%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%A2%84%E8%AE%AD%E7%BB%83/</loc>
-    <lastmod>2025-08-04T11:13:06+08:00</lastmod>
+    <loc>https://zhangzib123.github.io/en/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2025-08-01T17:13:06+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://zhangzib123.github.io/tags/%E5%9E%82%E7%9B%B4%E9%A2%86%E5%9F%9F%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%A2%84%E8%AE%AD%E7%BB%83/"
+                href="https://zhangzib123.github.io/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zhangzib123.github.io/en/tags/%E5%9E%82%E7%9B%B4%E9%A2%86%E5%9F%9F%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%A2%84%E8%AE%AD%E7%BB%83/"
+                href="https://zhangzib123.github.io/en/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F/"
                 />
   </url><url>
-    <loc>https://zhangzib123.github.io/en/tags/%E8%A1%8C%E4%B8%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83/</loc>
-    <lastmod>2025-08-04T11:13:06+08:00</lastmod>
+    <loc>https://zhangzib123.github.io/en/tags/%E6%89%A7%E8%A1%8C%E8%80%85-%E8%AF%84%E5%88%A4%E8%80%85%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2025-08-01T17:13:06+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://zhangzib123.github.io/tags/%E8%A1%8C%E4%B8%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83/"
+                href="https://zhangzib123.github.io/tags/%E6%89%A7%E8%A1%8C%E8%80%85-%E8%AF%84%E5%88%A4%E8%80%85%E6%A8%A1%E5%BC%8F/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zhangzib123.github.io/en/tags/%E8%A1%8C%E4%B8%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83/"
+                href="https://zhangzib123.github.io/en/tags/%E6%89%A7%E8%A1%8C%E8%80%85-%E8%AF%84%E5%88%A4%E8%80%85%E6%A8%A1%E5%BC%8F/"
+                />
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/%E6%99%BA%E8%83%BD%E4%BD%93%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2025-08-01T17:13:06+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhangzib123.github.io/tags/%E6%99%BA%E8%83%BD%E4%BD%93%E5%BC%80%E5%8F%91/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhangzib123.github.io/en/tags/%E6%99%BA%E8%83%BD%E4%BD%93%E5%BC%80%E5%8F%91/"
+                />
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/categories/%E6%99%BA%E8%83%BD%E4%BD%93%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2025-08-01T17:13:06+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhangzib123.github.io/categories/%E6%99%BA%E8%83%BD%E4%BD%93%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhangzib123.github.io/en/categories/%E6%99%BA%E8%83%BD%E4%BD%93%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F/"
                 />
   </url><url>
     <loc>https://zhangzib123.github.io/en/archives/</loc>
