@@ -507,29 +507,17 @@
 </div><blockquote>
 <p>标注一个“境外国家”需精确切分实体边界，耗时约3-5分钟/句。</p></blockquote>
 <h3 id="2-模型构建流程">2. 模型构建流程
-</h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">graph LR
-</span></span><span class="line"><span class="cl">A[人工标注] --&gt; B(特征工程) 
-</span></span><span class="line"><span class="cl">B --&gt; C{模型选型}
-</span></span><span class="line"><span class="cl">C --&gt; D[BiLSTM-CRF]
-</span></span><span class="line"><span class="cl">C --&gt; E[BERT+CRF]
-</span></span><span class="line"><span class="cl">D --&gt; F[模型训练]
-</span></span><span class="line"><span class="cl">E --&gt; F
-</span></span><span class="line"><span class="cl">F --&gt; G[部署服务]
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="3-核心瓶颈">3. 核心瓶颈
+</h3><p><img src="https://raw.githubusercontent.com/iceberg2024/public/main/images/image-20250806183206426.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250806183206426"
+	
+	
+></p>
+<h3 id="3-核心瓶颈">3. 核心瓶颈
 </h3><ul>
 <li><strong>成本高</strong>：标注1万条数据≈10人周，成本超20万元</li>
 <li><strong>泛化差</strong>：行业术语变动（如“换流阀设备”）需重新标注</li>
@@ -688,27 +676,17 @@
 <hr>
 <h2 id="六如何选择技术路线">六、如何选择技术路线？
 </h2><h3 id="推荐策略混合架构">推荐策略：<strong>混合架构</strong>
-</h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">graph LR
-</span></span><span class="line"><span class="cl">A[输入文本] --&gt; B{要素复杂度}
-</span></span><span class="line"><span class="cl">B --&gt;|基础要素| C[传统模型]
-</span></span><span class="line"><span class="cl">B --&gt;|扩展/隐含要素| D[大模型API]
-</span></span><span class="line"><span class="cl">C --&gt; E[结果融合]
-</span></span><span class="line"><span class="cl">D --&gt; E
-</span></span><span class="line"><span class="cl">E --&gt; F[结构化输出]
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="场景化建议">场景化建议：
+</h3><p><img src="https://raw.githubusercontent.com/iceberg2024/public/main/images/image-20250806183229990.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250806183229990"
+	
+	
+></p>
+<h3 id="场景化建议">场景化建议：
 </h3><ol>
 <li><strong>高精度刚需场景</strong>（合同解析）
 <ul>

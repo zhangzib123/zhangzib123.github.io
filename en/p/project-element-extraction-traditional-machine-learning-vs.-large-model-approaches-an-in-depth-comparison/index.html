@@ -486,29 +486,17 @@
 </div><blockquote>
 <p>Annotating a &ldquo;Foreign Country&rdquo; requires precise segmentation of entity boundaries, taking approximately 3-5 minutes per sentence.</p></blockquote>
 <h3 id="2-model-construction-process">2. Model Construction Process
-</h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">graph LR
-</span></span><span class="line"><span class="cl">A[Manual Annotation] --&gt; B(Feature Engineering) 
-</span></span><span class="line"><span class="cl">B --&gt; C{Model Selection}
-</span></span><span class="line"><span class="cl">C --&gt; D[BiLSTM-CRF]
-</span></span><span class="line"><span class="cl">C --&gt; E[BERT+CRF]
-</span></span><span class="line"><span class="cl">D --&gt; F[Model Training]
-</span></span><span class="line"><span class="cl">E --&gt; F
-</span></span><span class="line"><span class="cl">F --&gt; G[Deployment Service]
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="3-core-bottlenecks">3. Core Bottlenecks
+</h3><p><img src="https://raw.githubusercontent.com/iceberg2024/public/main/images/image-20250806183055572.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250806183055572"
+	
+	
+></p>
+<h3 id="3-core-bottlenecks">3. Core Bottlenecks
 </h3><ul>
 <li><strong>High Cost</strong>: Annotating 10,000 data points ≈ 10 person-weeks, cost exceeding CNY 200,000.</li>
 <li><strong>Poor Generalization</strong>: Changes in industry terminology (e.g., &ldquo;converter valve equipment&rdquo;) require re-annotation.</li>
@@ -666,27 +654,17 @@ It is incorrect for the traditional method to assign this amount to &ldquo;Plann
 <hr>
 <h2 id="vi-how-to-choose-the-technical-route">VI. How to Choose the Technical Route?
 </h2><h3 id="recommended-strategy-hybrid-architecture">Recommended Strategy: <strong>Hybrid Architecture</strong>
-</h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">graph LR
-</span></span><span class="line"><span class="cl">A[Input Text] --&gt; B{Element Complexity}
-</span></span><span class="line"><span class="cl">B --&gt;|Basic Elements| C[Traditional Model]
-</span></span><span class="line"><span class="cl">B --&gt;|Extended/Implicit Elements| D[Large Model API]
-</span></span><span class="line"><span class="cl">C --&gt; E[Result Fusion]
-</span></span><span class="line"><span class="cl">D --&gt; E
-</span></span><span class="line"><span class="cl">E --&gt; F[Structured Output]
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="scenario-specific-advice">Scenario-Specific Advice:
+</h3><p><img src="https://raw.githubusercontent.com/iceberg2024/public/main/images/image-20250806183123287.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250806183123287"
+	
+	
+></p>
+<h3 id="scenario-specific-advice">Scenario-Specific Advice:
 </h3><ol>
 <li><strong>High-Precision Critical Scenarios</strong> (Contract Parsing)
 <ul>

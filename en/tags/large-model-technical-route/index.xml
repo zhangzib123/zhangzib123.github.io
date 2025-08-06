@@ -82,29 +82,17 @@
 &lt;/div&gt;&lt;blockquote&gt;
 &lt;p&gt;Annotating a &amp;ldquo;Foreign Country&amp;rdquo; requires precise segmentation of entity boundaries, taking approximately 3-5 minutes per sentence.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h3 id=&#34;2-model-construction-process&#34;&gt;2. Model Construction Process
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;graph LR
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;A[Manual Annotation] --&amp;gt; B(Feature Engineering) 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;B --&amp;gt; C{Model Selection}
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;C --&amp;gt; D[BiLSTM-CRF]
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;C --&amp;gt; E[BERT+CRF]
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;D --&amp;gt; F[Model Training]
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;E --&amp;gt; F
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;F --&amp;gt; G[Deployment Service]
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;3-core-bottlenecks&#34;&gt;3. Core Bottlenecks
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/iceberg2024/public/main/images/image-20250806183055572.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250806183055572&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;3-core-bottlenecks&#34;&gt;3. Core Bottlenecks
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;High Cost&lt;/strong&gt;: Annotating 10,000 data points ≈ 10 person-weeks, cost exceeding CNY 200,000.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Poor Generalization&lt;/strong&gt;: Changes in industry terminology (e.g., &amp;ldquo;converter valve equipment&amp;rdquo;) require re-annotation.&lt;/li&gt;
@@ -262,27 +250,17 @@ It is incorrect for the traditional method to assign this amount to &amp;ldquo;P
 &lt;hr&gt;
 &lt;h2 id=&#34;vi-how-to-choose-the-technical-route&#34;&gt;VI. How to Choose the Technical Route?
 &lt;/h2&gt;&lt;h3 id=&#34;recommended-strategy-hybrid-architecture&#34;&gt;Recommended Strategy: &lt;strong&gt;Hybrid Architecture&lt;/strong&gt;
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;graph LR
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;A[Input Text] --&amp;gt; B{Element Complexity}
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;B --&amp;gt;|Basic Elements| C[Traditional Model]
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;B --&amp;gt;|Extended/Implicit Elements| D[Large Model API]
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;C --&amp;gt; E[Result Fusion]
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;D --&amp;gt; E
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;E --&amp;gt; F[Structured Output]
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;scenario-specific-advice&#34;&gt;Scenario-Specific Advice:
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/iceberg2024/public/main/images/image-20250806183123287.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250806183123287&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;scenario-specific-advice&#34;&gt;Scenario-Specific Advice:
 &lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;High-Precision Critical Scenarios&lt;/strong&gt; (Contract Parsing)
 &lt;ul&gt;
