@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="在工程投资、国际贸易等领域的海量信息中，**精准抽取项目核心要素**（如项目名称、投资金额、执行机构等）是企业决策的关键支撑。传统方法依赖监督学习，而大模型的出现正颠覆这一领域。本文通过我公司承揽的真实业务场景、数据标注成本、技术实现路径及案例对比，深度解析两种技术路线的差异与选择策略。">
+<title>项目要素抽取：传统机器学习 vs 大模型方法深度对比</title>
+
+<link rel='canonical' href='https://zhangzib123.github.io/p/%E9%A1%B9%E7%9B%AE%E8%A6%81%E7%B4%A0%E6%8A%BD%E5%8F%96%E4%BC%A0%E7%BB%9F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-vs-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%96%B9%E6%B3%95%E6%B7%B1%E5%BA%A6%E5%AF%B9%E6%AF%94/'>
+
+<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="项目要素抽取：传统机器学习 vs 大模型方法深度对比">
+<meta property='og:description' content="在工程投资、国际贸易等领域的海量信息中，**精准抽取项目核心要素**（如项目名称、投资金额、执行机构等）是企业决策的关键支撑。传统方法依赖监督学习，而大模型的出现正颠覆这一领域。本文通过我公司承揽的真实业务场景、数据标注成本、技术实现路径及案例对比，深度解析两种技术路线的差异与选择策略。">
+<meta property='og:url' content='https://zhangzib123.github.io/p/%E9%A1%B9%E7%9B%AE%E8%A6%81%E7%B4%A0%E6%8A%BD%E5%8F%96%E4%BC%A0%E7%BB%9F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-vs-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%96%B9%E6%B3%95%E6%B7%B1%E5%BA%A6%E5%AF%B9%E6%AF%94/'>
+<meta property='og:site_name' content='张子彪的博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='结构化要素抽取' /><meta property='article:tag' content='机器学习路线' /><meta property='article:tag' content='大模型技术路线' /><meta property='article:tag' content='技术路线选择策略' /><meta property='article:published_time' content='2025-08-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-08-06T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="项目要素抽取：传统机器学习 vs 大模型方法深度对比">
+<meta name="twitter:description" content="在工程投资、国际贸易等领域的海量信息中，**精准抽取项目核心要素**（如项目名称、投资金额、执行机构等）是企业决策的关键支撑。传统方法依赖监督学习，而大模型的出现正颠覆这一领域。本文通过我公司承揽的真实业务场景、数据标注成本、技术实现路径及案例对比，深度解析两种技术路线的差异与选择策略。">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_f509edb42ecc0ebd.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">张子彪的博客</a></h1>
+            <h2 class="site-description">欢迎来到我的博客</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://zhangzib123.github.io/'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友情链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://zhangzib123.github.io/" selected>中文</option>
+                                
+                                    <option value="https://zhangzib123.github.io/en/" >English</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#一业务需求项目要素抽取的核心挑战">一、业务需求：项目要素抽取的核心挑战</a>
+      <ol>
+        <li><a href="#目标要素体系">目标要素体系</a></li>
+        <li><a href="#文本类型复杂性">文本类型复杂性</a></li>
+      </ol>
+    </li>
+    <li><a href="#二传统监督学习方法高成本精准模型">二、传统监督学习方法：高成本精准模型</a>
+      <ol>
+        <li><a href="#1-数据标注人力密集型工作-实际标注的样本量">1. 数据标注：人力密集型工作 (实际标注的样本量)</a></li>
+        <li><a href="#2-模型构建流程">2. 模型构建流程</a></li>
+        <li><a href="#3-核心瓶颈">3. 核心瓶颈</a></li>
+      </ol>
+    </li>
+    <li><a href="#三大模型方法prompt驱动的零样本抽取">三、大模型方法：Prompt驱动的零样本抽取</a>
+      <ol>
+        <li><a href="#1-技术范式变革">1. 技术范式变革</a></li>
+        <li><a href="#2-核心优势">2. 核心优势</a></li>
+      </ol>
+    </li>
+    <li><a href="#四实战案例对比传统vs大模型">四、实战案例对比：传统VS大模型</a>
+      <ol>
+        <li><a href="#案例1印尼315mw水电站项目">案例1：印尼315MW水电站项目</a>
+          <ol>
+            <li><a href="#签约印度尼西亚苏拉威西315mw水电站项目epc合同">签约！印度尼西亚苏拉威西315MW水电站项目EPC合同</a></li>
+          </ol>
+        </li>
+        <li><a href="#案例2智利kilo高压直流项目">案例2：智利KILO高压直流项目</a>
+          <ol>
+            <li><a href="#南网国际贸易公司签订智利kilo高压直流输电epc项目换流站主设备采购合同">南网国际贸易公司签订智利KILO高压直流输电EPC项目换流站主设备采购合同</a></li>
+          </ol>
+        </li>
+        <li><a href="#案例3阿根廷锂矿项目">案例3：阿根廷锂矿项目</a>
+          <ol>
+            <li><a href="#阿根廷百年盐湖项目c233标段启动建设">阿根廷百年盐湖项目C233标段启动建设</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#五方法论对比全景图">五、方法论对比全景图</a></li>
+    <li><a href="#六如何选择技术路线">六、如何选择技术路线？</a>
+      <ol>
+        <li><a href="#推荐策略混合架构">推荐策略：<strong>混合架构</strong></a></li>
+        <li><a href="#场景化建议">场景化建议：</a></li>
+      </ol>
+    </li>
+    <li><a href="#七未来演进方向">七、未来演进方向</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E5%9F%BA%E4%BA%8E%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%BB%93%E6%9E%84%E5%8C%96%E8%A6%81%E7%B4%A0%E6%8A%BD%E5%8F%96/" >
+                基于大模型的结构化要素抽取
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E9%A1%B9%E7%9B%AE%E8%A6%81%E7%B4%A0%E6%8A%BD%E5%8F%96%E4%BC%A0%E7%BB%9F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-vs-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%96%B9%E6%B3%95%E6%B7%B1%E5%BA%A6%E5%AF%B9%E6%AF%94/">项目要素抽取：传统机器学习 vs 大模型方法深度对比</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            在工程投资、国际贸易等领域的海量信息中，**精准抽取项目核心要素**（如项目名称、投资金额、执行机构等）是企业决策的关键支撑。传统方法依赖监督学习，而大模型的出现正颠覆这一领域。本文通过我公司承揽的真实业务场景、数据标注成本、技术实现路径及案例对比，深度解析两种技术路线的差异与选择策略。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Aug 06, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 7 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="https://zhangzib123.github.io/en/p/project-element-extraction-traditional-machine-learning-vs.-large-model-approaches-an-in-depth-comparison/" class="link">English</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <hr>
+<h1 id="项目要素抽取传统机器学习-vs-大模型方法深度对比">项目要素抽取：传统机器学习 vs 大模型方法深度对比
+</h1><p><strong>——依据我公司开展的真实业务场景，从标注成本、泛化能力到实战效果的全方位解析</strong></p>
+<h2 id="一业务需求项目要素抽取的核心挑战">一、业务需求：项目要素抽取的核心挑战
+</h2><h3 id="目标要素体系">目标要素体系
+</h3><p>根据业务文档，需从三类文本中抽取结构化数据：</p>
+<ol>
+<li><strong>基础要素</strong>（10类）
+<ul>
+<li>项目名称、区域、执行机构、企业、行业</li>
+<li>投资金额、产能、周期、状态、境外国家</li>
+</ul>
+</li>
+<li><strong>扩展要素</strong>（20+类）
+<ul>
+<li>融资主体、贸易方式、技术标准、建设周期等</li>
+<li>覆盖全生命周期（签约→建设→投产→融资）</li>
+</ul>
+</li>
+</ol>
+<h3 id="文本类型复杂性">文本类型复杂性
+</h3><ul>
+<li>工程资讯（如“315MW水电站EPC合同”）</li>
+<li>贸易公告（如“高压直流设备采购”）</li>
+<li>矿产开发（如“盐湖锂矿建设项目”）<br>
+<strong>难点</strong>：专业术语密集、句式结构多变、要素分布零散</li>
+</ul>
+<hr>
+<h2 id="二传统监督学习方法高成本精准模型">二、传统监督学习方法：高成本精准模型
+</h2><h3 id="1-数据标注人力密集型工作-实际标注的样本量">1. 数据标注：人力密集型工作 (实际标注的样本量)
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>分类</th>
+          <th>标注样本量</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>基建项目</td>
+          <td>7,013</td>
+      </tr>
+      <tr>
+          <td>投资项目</td>
+          <td>7,678</td>
+      </tr>
+      <tr>
+          <td>经贸供需</td>
+          <td>9,386</td>
+      </tr>
+      <tr>
+          <td>招商引资</td>
+          <td>6,381</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>标注示例</strong>：</p>
+<p>BIOE序列标注：(B-起始, I-中间, E-结束)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">圭 亚 那 自 然 资 源 部  
+</span></span><span class="line"><span class="cl">B-COU I-COU E-COU O O O O  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>标注一个“境外国家”需精确切分实体边界，耗时约3-5分钟/句。</p></blockquote>
+<h3 id="2-模型构建流程">2. 模型构建流程
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">graph LR
+</span></span><span class="line"><span class="cl">A[人工标注] --&gt; B(特征工程) 
+</span></span><span class="line"><span class="cl">B --&gt; C{模型选型}
+</span></span><span class="line"><span class="cl">C --&gt; D[BiLSTM-CRF]
+</span></span><span class="line"><span class="cl">C --&gt; E[BERT+CRF]
+</span></span><span class="line"><span class="cl">D --&gt; F[模型训练]
+</span></span><span class="line"><span class="cl">E --&gt; F
+</span></span><span class="line"><span class="cl">F --&gt; G[部署服务]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3-核心瓶颈">3. 核心瓶颈
+</h3><ul>
+<li><strong>成本高</strong>：标注1万条数据≈10人周，成本超20万元</li>
+<li><strong>泛化差</strong>：行业术语变动（如“换流阀设备”）需重新标注</li>
+<li><strong>扩展难</strong>：新增要素（如“融资用途”）需全流程迭代</li>
+</ul>
+<hr>
+<h2 id="三大模型方法prompt驱动的零样本抽取">三、大模型方法：Prompt驱动的零样本抽取
+</h2><h3 id="1-技术范式变革">1. 技术范式变革
+</h3><p><strong>传统方法</strong>：<code>文本 → 模型 → 要素</code><br>
+<strong>大模型方法</strong>：<code>文本 + Prompt → LLM → 结构化JSON</code></p>
+<h3 id="2-核心优势">2. 核心优势
+</h3><ul>
+<li><strong>零样本启动</strong>：无需标注直接抽取新要素</li>
+<li><strong>语义理解强</strong>：解析“培养水电产业工人”→ 项目意义</li>
+<li><strong>多任务兼容</strong>：同时支持要素抽取+关系提取（如“业主-承建方”）</li>
+</ul>
+<hr>
+<h2 id="四实战案例对比传统vs大模型">四、实战案例对比：传统VS大模型
+</h2><h3 id="案例1印尼315mw水电站项目">案例1：印尼315MW水电站项目
+</h3><h4 id="签约印度尼西亚苏拉威西315mw水电站项目epc合同">签约！印度尼西亚苏拉威西315MW水电站项目EPC合同
+</h4><p>5月16日，中国能建国际集团、葛洲坝国际公司、广西院组成的联营体与印尼满德利集团就印尼苏拉威西315MW水电站项目达成合作共识，并与业主项目公司签署项目EPC合同，实现了印尼清洁能源市场滚动发展，助力印尼碳中和目标加快实现。</p>
+<p>该项目位于印尼苏拉威西岛北部，拟安装7台轴流式发电机组，其中4台调峰机组、3台径流机组，总装机约315MW，主要建筑物包括混凝土重力坝、泄洪建筑物、引水建筑物和厂房等。项目建成后将为苏拉威西提供稳定的清洁能源，缓解电力紧缺的问题，赋能印尼苏拉威西岛的工业园区转型，同时培养一批水电产业工人，为中印尼高质量共建“一带一路”和“区域综合经济走廊”，深化双边产能合作树立标杆。</p>
+<p>中国能建国际集团东南亚区域总部，中国能建印尼代表处、葛洲坝集团印尼代表处、广西院印尼代表处相关人员参加签约仪式。</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>要素类型</strong></th>
+          <th><strong>传统方法结果</strong></th>
+          <th><strong>大模型结果</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>项目名称</td>
+          <td>✅ 印尼苏拉威西315MW水电站项目</td>
+          <td>✅ 印尼苏拉威西315MW水电站项目</td>
+      </tr>
+      <tr>
+          <td>国家</td>
+          <td>✅印度尼西亚</td>
+          <td>✅ 印度尼西亚</td>
+      </tr>
+      <tr>
+          <td>承建单位</td>
+          <td>❌ 未抽取</td>
+          <td>✅ 中国能建国际集团+葛洲坝+广西院</td>
+      </tr>
+      <tr>
+          <td>项目产能</td>
+          <td>❌ 未抽取</td>
+          <td>✅ 拟安装7台轴流式发电机组，其中4台调峰机组、3台径流机组，总装机约315MW</td>
+      </tr>
+  </tbody>
+</table></div>
+<blockquote>
+<p>大模型能深入理解其内在逻辑，通过语义理解，抽取出隐含的要素，如“承建单位”，“项目产能”。</p></blockquote>
+<h3 id="案例2智利kilo高压直流项目">案例2：智利KILO高压直流项目
+</h3><h4 id="南网国际贸易公司签订智利kilo高压直流输电epc项目换流站主设备采购合同">南网国际贸易公司签订智利KILO高压直流输电EPC项目换流站主设备采购合同
+</h4><p>5月5日，南方电网国际贸易（广州）有限责任公司（以下简称“贸易公司”）与西电电力系统有限公司、西电变压器有限责任公司共同签订智利KILO高压直流输电EPC项目换流站主要设备采购合同，合同金额超十亿元人民币。南网国际公司副总经理龚天森主持签约仪式。智利KILO项目是南网国际公司作为联营体牵头方承担的智利首个高压直流输电项目，其中换流站主要设备采购供货工作由贸易公司承接。作为南方电网公司的国际贸易平台，贸易公司主动与智利KILO换流站EPC项目部、南网科研院、南网供应链集团等单位紧密合作，根据智利业主方的合同技术规范要求，不断优化设备采购方案，缩短响应时间，通过南网供应链采购平台采购21台换流变设备和一批换流阀及阀厅设备、水冷成套设备，如期完成智利KILO项目换流站主要设备采购这一重大里程碑节点工作。一直以来，贸易公司坚持以“加快构建新发展格局，着力推动高质量发展”为指引，谋划南网国际公司贸易板块的高质量发展，通过聚焦服务主责主业，力求为海外项目提供及时、专业及高效的一站式设备物资采购供应服务，为带动中国企业先进的标准、技术、装备、品牌“走出去”作出应有贡献。 </p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>关键差异点</strong></th>
+          <th>传统方法</th>
+          <th>大模型</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>签订金额</td>
+          <td>❌ 将该金额赋给“计划投资金额”（合同金额不应与计划投资金额混淆）</td>
+          <td>✅超十亿元人民币</td>
+      </tr>
+      <tr>
+          <td>签订日期</td>
+          <td>❌ 未识别</td>
+          <td>✅2023年5月5日</td>
+      </tr>
+      <tr>
+          <td>项目类型</td>
+          <td>❌ 未识别</td>
+          <td>✅ 设备采购合同</td>
+      </tr>
+  </tbody>
+</table></div>
+<blockquote>
+<p>大模型的抽取的准确率、召回率更高。能够更准确地识别和抽取关键信息，如合同金额、签订日期和项目类型等。<br>
+传统方法将该金额赋给“计划投资金额”是不正确的。合同金额并不等同于计划投资金额，合同金额是指具体采购或签订合同的金额。</p></blockquote>
+<h3 id="案例3阿根廷锂矿项目">案例3：阿根廷锂矿项目
+</h3><h4 id="阿根廷百年盐湖项目c233标段启动建设">阿根廷百年盐湖项目C233标段启动建设
+</h4><p>日前，由电建国际签约并委托水电十局实施的阿根廷百年盐湖锂矿C233安装标段项目启动建设。法国埃赫曼集团南美子公司、拉法建设公司、水电十局有关代表出席仪式。</p>
+<p>C233安装标段是继C201标、C217标、2200标、2300标之后水电十局承建的第五个标段，位于有“南美锂三角”之称的阿根廷西北部萨尔塔省境内的安第斯山脉Ratones盐湖，海拔约4100米，距离萨尔塔市约370公里。项目工期300天，建设内容主要包括钢结构厂房、机械设备及管道的安装。阿根廷百年盐湖锂矿各标段的顺利推进为水电十局矿山业务在碳达峰、碳中和背景下加速转型升级积累了宝贵经验。</p>
+<p>阿根廷锂资源总储量约1.8亿吨，其中探明储量为1亿吨，是全球第三大锂金属储量国。近年来随着全球新能源汽车行业迅速发展，下游锂电池行业需求大幅增加。中阿双方签署共建“一带一路”合作谅解备忘录等合作文件以来，锂产业合作正逐步成为中阿新能源合作的一大亮点。该项目的签约是中国电建深耕阿根廷市场、聚焦该国重点行业发展和不断巩固品牌优势的结果，助力中阿共建 &ldquo;一带一路&quot;不断迈上新台阶。</p>
+<p><strong>大模型深度理解能力</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;详细地址&#34;</span><span class="p">:</span> <span class="s2">&#34;项目位于海拔约4100米的安第斯山脉Ratones盐湖&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;项目背景&#34;</span><span class="p">:</span> <span class="s2">&#34;阿根廷锂资源总储量约1.8亿吨，是全球第三大锂金属储量国，近年来随着全球新能源汽车行业迅速发展，下游锂电池行业需求大幅增加，阿根廷锂产业合作正逐步成为中阿新能源合作的一大亮点。&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;项目意义&#34;</span><span class="p">:</span> <span class="s2">&#34;该项目的签约是中国电建深耕阿根廷市场、聚焦该国重点行业发展和不断巩固品牌优势的结果，助力中阿共建&#34;</span><span class="err">-带一路</span><span class="s2">&#34;不断迈上新台阶。&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>相比传统模型依赖于预定义的短标签进行数据标注，大模型具备更强的语义理解和上下文捕捉能力，能够准确抽取出“项目背景”“项目意义”等需要长文本理解的非结构化信息。</p>
+<hr></blockquote>
+<h2 id="五方法论对比全景图">五、方法论对比全景图
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>维度</strong></th>
+          <th><strong>传统监督学习</strong></th>
+          <th><strong>大模型方法</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>数据依赖</td>
+          <td>强依赖千级标注样本</td>
+          <td>零样本/少样本启动</td>
+      </tr>
+      <tr>
+          <td>部署成本</td>
+          <td>标注+训练+调优≥3周</td>
+          <td>API调用即时生效</td>
+      </tr>
+      <tr>
+          <td>要素扩展性</td>
+          <td>新增要素需重新标注训练</td>
+          <td>修改Prompt即可扩展</td>
+      </tr>
+      <tr>
+          <td>细粒度解析</td>
+          <td>✅ 实体边界精准</td>
+          <td>⚠️ 偶见过度生成</td>
+      </tr>
+      <tr>
+          <td>隐含信息挖掘</td>
+          <td>❌ 受限</td>
+          <td>✅ 深度关联背景/意义</td>
+      </tr>
+      <tr>
+          <td>行业迁移成本</td>
+          <td>高（需新标注）</td>
+          <td>低（通用知识迁移）</td>
+      </tr>
+  </tbody>
+</table></div>
+<hr>
+<h2 id="六如何选择技术路线">六、如何选择技术路线？
+</h2><h3 id="推荐策略混合架构">推荐策略：<strong>混合架构</strong>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">graph LR
+</span></span><span class="line"><span class="cl">A[输入文本] --&gt; B{要素复杂度}
+</span></span><span class="line"><span class="cl">B --&gt;|基础要素| C[传统模型]
+</span></span><span class="line"><span class="cl">B --&gt;|扩展/隐含要素| D[大模型API]
+</span></span><span class="line"><span class="cl">C --&gt; E[结果融合]
+</span></span><span class="line"><span class="cl">D --&gt; E
+</span></span><span class="line"><span class="cl">E --&gt; F[结构化输出]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="场景化建议">场景化建议：
+</h3><ol>
+<li><strong>高精度刚需场景</strong>（合同解析）
+<ul>
+<li>传统模型保障核心要素95%+准确率</li>
+<li>大模型补全背景信息</li>
+</ul>
+</li>
+<li><strong>快速响应需求</strong>（新兴行业监测）
+<ul>
+<li>大模型零样本抽取，48小时内上线</li>
+</ul>
+</li>
+<li><strong>成本敏感场景</strong>
+<ul>
+<li>传统模型处理80%高频要素</li>
+<li>大模型处理长尾需求</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="七未来演进方向">七、未来演进方向
+</h2><ol>
+<li><strong>大模型蒸馏</strong>
+<ul>
+<li>将DeepSeek-R1等知识蒸馏为轻量级专用模型，兼顾效果与成本</li>
+</ul>
+</li>
+<li><strong>动态Prompt优化</strong>
+<ul>
+<li>根据文本类型自动切换Prompt模板（工程/贸易/矿产）</li>
+</ul>
+</li>
+<li><strong>纠错反馈机制</strong>
+<ul>
+<li>人工修正结果反向训练传统模型，形成闭环</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><strong>关键结论</strong>：大模型不是替代传统方法，而是将其从“标注泥潭”中解放，转向<strong>人机协同的智能增强范式</strong>。</p></blockquote>
+<hr>
+<p><strong>注</strong>：本文基于真实项目文档分析。技术对比结论经BERT/BiLSTM-CRF与GPT-4实测验证。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E7%BB%93%E6%9E%84%E5%8C%96%E8%A6%81%E7%B4%A0%E6%8A%BD%E5%8F%96/">结构化要素抽取</a>
+        
+            <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">机器学习路线</a>
+        
+            <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8A%80%E6%9C%AF%E8%B7%AF%E7%BA%BF/">大模型技术路线</a>
+        
+            <a href="/tags/%E6%8A%80%E6%9C%AF%E8%B7%AF%E7%BA%BF%E9%80%89%E6%8B%A9%E7%AD%96%E7%95%A5/">技术路线选择策略</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2025 张子彪的博客
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

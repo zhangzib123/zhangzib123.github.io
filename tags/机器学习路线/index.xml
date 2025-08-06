@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>机器学习路线 on 张子彪的博客</title>
+        <link>https://zhangzib123.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</link>
+        <description>Recent content in 机器学习路线 on 张子彪的博客</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Wed, 06 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://zhangzib123.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>项目要素抽取：传统机器学习 vs 大模型方法深度对比</title>
+        <link>https://zhangzib123.github.io/p/%E9%A1%B9%E7%9B%AE%E8%A6%81%E7%B4%A0%E6%8A%BD%E5%8F%96%E4%BC%A0%E7%BB%9F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-vs-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%96%B9%E6%B3%95%E6%B7%B1%E5%BA%A6%E5%AF%B9%E6%AF%94/</link>
+        <pubDate>Wed, 06 Aug 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhangzib123.github.io/p/%E9%A1%B9%E7%9B%AE%E8%A6%81%E7%B4%A0%E6%8A%BD%E5%8F%96%E4%BC%A0%E7%BB%9F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-vs-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%96%B9%E6%B3%95%E6%B7%B1%E5%BA%A6%E5%AF%B9%E6%AF%94/</guid>
+        <description>&lt;hr&gt;
+&lt;h1 id=&#34;项目要素抽取传统机器学习-vs-大模型方法深度对比&#34;&gt;项目要素抽取：传统机器学习 vs 大模型方法深度对比
+&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;——依据我公司开展的真实业务场景，从标注成本、泛化能力到实战效果的全方位解析&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;一业务需求项目要素抽取的核心挑战&#34;&gt;一、业务需求：项目要素抽取的核心挑战
+&lt;/h2&gt;&lt;h3 id=&#34;目标要素体系&#34;&gt;目标要素体系
+&lt;/h3&gt;&lt;p&gt;根据业务文档，需从三类文本中抽取结构化数据：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;基础要素&lt;/strong&gt;（10类）
+&lt;ul&gt;
+&lt;li&gt;项目名称、区域、执行机构、企业、行业&lt;/li&gt;
+&lt;li&gt;投资金额、产能、周期、状态、境外国家&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;扩展要素&lt;/strong&gt;（20+类）
+&lt;ul&gt;
+&lt;li&gt;融资主体、贸易方式、技术标准、建设周期等&lt;/li&gt;
+&lt;li&gt;覆盖全生命周期（签约→建设→投产→融资）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;文本类型复杂性&#34;&gt;文本类型复杂性
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;工程资讯（如“315MW水电站EPC合同”）&lt;/li&gt;
+&lt;li&gt;贸易公告（如“高压直流设备采购”）&lt;/li&gt;
+&lt;li&gt;矿产开发（如“盐湖锂矿建设项目”）&lt;br&gt;
+&lt;strong&gt;难点&lt;/strong&gt;：专业术语密集、句式结构多变、要素分布零散&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;二传统监督学习方法高成本精准模型&#34;&gt;二、传统监督学习方法：高成本精准模型
+&lt;/h2&gt;&lt;h3 id=&#34;1-数据标注人力密集型工作-实际标注的样本量&#34;&gt;1. 数据标注：人力密集型工作 (实际标注的样本量)
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;分类&lt;/th&gt;
+          &lt;th&gt;标注样本量&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;基建项目&lt;/td&gt;
+          &lt;td&gt;7,013&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;投资项目&lt;/td&gt;
+          &lt;td&gt;7,678&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;经贸供需&lt;/td&gt;
+          &lt;td&gt;9,386&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;招商引资&lt;/td&gt;
+          &lt;td&gt;6,381&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;标注示例&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;BIOE序列标注：(B-起始, I-中间, E-结束)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-plaintext&#34; data-lang=&#34;plaintext&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;圭 亚 那 自 然 资 源 部  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;B-COU I-COU E-COU O O O O  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;标注一个“境外国家”需精确切分实体边界，耗时约3-5分钟/句。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h3 id=&#34;2-模型构建流程&#34;&gt;2. 模型构建流程
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;graph LR
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;A[人工标注] --&amp;gt; B(特征工程) 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;B --&amp;gt; C{模型选型}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;C --&amp;gt; D[BiLSTM-CRF]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;C --&amp;gt; E[BERT+CRF]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;D --&amp;gt; F[模型训练]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;E --&amp;gt; F
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;F --&amp;gt; G[部署服务]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;3-核心瓶颈&#34;&gt;3. 核心瓶颈
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;成本高&lt;/strong&gt;：标注1万条数据≈10人周，成本超20万元&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;泛化差&lt;/strong&gt;：行业术语变动（如“换流阀设备”）需重新标注&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;扩展难&lt;/strong&gt;：新增要素（如“融资用途”）需全流程迭代&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;三大模型方法prompt驱动的零样本抽取&#34;&gt;三、大模型方法：Prompt驱动的零样本抽取
+&lt;/h2&gt;&lt;h3 id=&#34;1-技术范式变革&#34;&gt;1. 技术范式变革
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;传统方法&lt;/strong&gt;：&lt;code&gt;文本 → 模型 → 要素&lt;/code&gt;&lt;br&gt;
+&lt;strong&gt;大模型方法&lt;/strong&gt;：&lt;code&gt;文本 + Prompt → LLM → 结构化JSON&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;2-核心优势&#34;&gt;2. 核心优势
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;零样本启动&lt;/strong&gt;：无需标注直接抽取新要素&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;语义理解强&lt;/strong&gt;：解析“培养水电产业工人”→ 项目意义&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;多任务兼容&lt;/strong&gt;：同时支持要素抽取+关系提取（如“业主-承建方”）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;四实战案例对比传统vs大模型&#34;&gt;四、实战案例对比：传统VS大模型
+&lt;/h2&gt;&lt;h3 id=&#34;案例1印尼315mw水电站项目&#34;&gt;案例1：印尼315MW水电站项目
+&lt;/h3&gt;&lt;h4 id=&#34;签约印度尼西亚苏拉威西315mw水电站项目epc合同&#34;&gt;签约！印度尼西亚苏拉威西315MW水电站项目EPC合同
+&lt;/h4&gt;&lt;p&gt;5月16日，中国能建国际集团、葛洲坝国际公司、广西院组成的联营体与印尼满德利集团就印尼苏拉威西315MW水电站项目达成合作共识，并与业主项目公司签署项目EPC合同，实现了印尼清洁能源市场滚动发展，助力印尼碳中和目标加快实现。&lt;/p&gt;
+&lt;p&gt;该项目位于印尼苏拉威西岛北部，拟安装7台轴流式发电机组，其中4台调峰机组、3台径流机组，总装机约315MW，主要建筑物包括混凝土重力坝、泄洪建筑物、引水建筑物和厂房等。项目建成后将为苏拉威西提供稳定的清洁能源，缓解电力紧缺的问题，赋能印尼苏拉威西岛的工业园区转型，同时培养一批水电产业工人，为中印尼高质量共建“一带一路”和“区域综合经济走廊”，深化双边产能合作树立标杆。&lt;/p&gt;
+&lt;p&gt;中国能建国际集团东南亚区域总部，中国能建印尼代表处、葛洲坝集团印尼代表处、广西院印尼代表处相关人员参加签约仪式。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;strong&gt;要素类型&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;传统方法结果&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;大模型结果&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;项目名称&lt;/td&gt;
+          &lt;td&gt;✅ 印尼苏拉威西315MW水电站项目&lt;/td&gt;
+          &lt;td&gt;✅ 印尼苏拉威西315MW水电站项目&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;国家&lt;/td&gt;
+          &lt;td&gt;✅印度尼西亚&lt;/td&gt;
+          &lt;td&gt;✅ 印度尼西亚&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;承建单位&lt;/td&gt;
+          &lt;td&gt;❌ 未抽取&lt;/td&gt;
+          &lt;td&gt;✅ 中国能建国际集团+葛洲坝+广西院&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;项目产能&lt;/td&gt;
+          &lt;td&gt;❌ 未抽取&lt;/td&gt;
+          &lt;td&gt;✅ 拟安装7台轴流式发电机组，其中4台调峰机组、3台径流机组，总装机约315MW&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;大模型能深入理解其内在逻辑，通过语义理解，抽取出隐含的要素，如“承建单位”，“项目产能”。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h3 id=&#34;案例2智利kilo高压直流项目&#34;&gt;案例2：智利KILO高压直流项目
+&lt;/h3&gt;&lt;h4 id=&#34;南网国际贸易公司签订智利kilo高压直流输电epc项目换流站主设备采购合同&#34;&gt;南网国际贸易公司签订智利KILO高压直流输电EPC项目换流站主设备采购合同
+&lt;/h4&gt;&lt;p&gt;5月5日，南方电网国际贸易（广州）有限责任公司（以下简称“贸易公司”）与西电电力系统有限公司、西电变压器有限责任公司共同签订智利KILO高压直流输电EPC项目换流站主要设备采购合同，合同金额超十亿元人民币。南网国际公司副总经理龚天森主持签约仪式。智利KILO项目是南网国际公司作为联营体牵头方承担的智利首个高压直流输电项目，其中换流站主要设备采购供货工作由贸易公司承接。作为南方电网公司的国际贸易平台，贸易公司主动与智利KILO换流站EPC项目部、南网科研院、南网供应链集团等单位紧密合作，根据智利业主方的合同技术规范要求，不断优化设备采购方案，缩短响应时间，通过南网供应链采购平台采购21台换流变设备和一批换流阀及阀厅设备、水冷成套设备，如期完成智利KILO项目换流站主要设备采购这一重大里程碑节点工作。一直以来，贸易公司坚持以“加快构建新发展格局，着力推动高质量发展”为指引，谋划南网国际公司贸易板块的高质量发展，通过聚焦服务主责主业，力求为海外项目提供及时、专业及高效的一站式设备物资采购供应服务，为带动中国企业先进的标准、技术、装备、品牌“走出去”作出应有贡献。 &lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;strong&gt;关键差异点&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;传统方法&lt;/th&gt;
+          &lt;th&gt;大模型&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;签订金额&lt;/td&gt;
+          &lt;td&gt;❌ 将该金额赋给“计划投资金额”（合同金额不应与计划投资金额混淆）&lt;/td&gt;
+          &lt;td&gt;✅超十亿元人民币&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;签订日期&lt;/td&gt;
+          &lt;td&gt;❌ 未识别&lt;/td&gt;
+          &lt;td&gt;✅2023年5月5日&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;项目类型&lt;/td&gt;
+          &lt;td&gt;❌ 未识别&lt;/td&gt;
+          &lt;td&gt;✅ 设备采购合同&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;大模型的抽取的准确率、召回率更高。能够更准确地识别和抽取关键信息，如合同金额、签订日期和项目类型等。&lt;br&gt;
+传统方法将该金额赋给“计划投资金额”是不正确的。合同金额并不等同于计划投资金额，合同金额是指具体采购或签订合同的金额。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h3 id=&#34;案例3阿根廷锂矿项目&#34;&gt;案例3：阿根廷锂矿项目
+&lt;/h3&gt;&lt;h4 id=&#34;阿根廷百年盐湖项目c233标段启动建设&#34;&gt;阿根廷百年盐湖项目C233标段启动建设
+&lt;/h4&gt;&lt;p&gt;日前，由电建国际签约并委托水电十局实施的阿根廷百年盐湖锂矿C233安装标段项目启动建设。法国埃赫曼集团南美子公司、拉法建设公司、水电十局有关代表出席仪式。&lt;/p&gt;
+&lt;p&gt;C233安装标段是继C201标、C217标、2200标、2300标之后水电十局承建的第五个标段，位于有“南美锂三角”之称的阿根廷西北部萨尔塔省境内的安第斯山脉Ratones盐湖，海拔约4100米，距离萨尔塔市约370公里。项目工期300天，建设内容主要包括钢结构厂房、机械设备及管道的安装。阿根廷百年盐湖锂矿各标段的顺利推进为水电十局矿山业务在碳达峰、碳中和背景下加速转型升级积累了宝贵经验。&lt;/p&gt;
+&lt;p&gt;阿根廷锂资源总储量约1.8亿吨，其中探明储量为1亿吨，是全球第三大锂金属储量国。近年来随着全球新能源汽车行业迅速发展，下游锂电池行业需求大幅增加。中阿双方签署共建“一带一路”合作谅解备忘录等合作文件以来，锂产业合作正逐步成为中阿新能源合作的一大亮点。该项目的签约是中国电建深耕阿根廷市场、聚焦该国重点行业发展和不断巩固品牌优势的结果，助力中阿共建 &amp;ldquo;一带一路&amp;quot;不断迈上新台阶。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;大模型深度理解能力&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;详细地址&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;项目位于海拔约4100米的安第斯山脉Ratones盐湖&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;项目背景&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;阿根廷锂资源总储量约1.8亿吨，是全球第三大锂金属储量国，近年来随着全球新能源汽车行业迅速发展，下游锂电池行业需求大幅增加，阿根廷锂产业合作正逐步成为中阿新能源合作的一大亮点。&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;项目意义&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;该项目的签约是中国电建深耕阿根廷市场、聚焦该国重点行业发展和不断巩固品牌优势的结果，助力中阿共建&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;-带一路&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;不断迈上新台阶。&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;相比传统模型依赖于预定义的短标签进行数据标注，大模型具备更强的语义理解和上下文捕捉能力，能够准确抽取出“项目背景”“项目意义”等需要长文本理解的非结构化信息。&lt;/p&gt;
+&lt;hr&gt;&lt;/blockquote&gt;
+&lt;h2 id=&#34;五方法论对比全景图&#34;&gt;五、方法论对比全景图
+&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;strong&gt;维度&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;传统监督学习&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;大模型方法&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;数据依赖&lt;/td&gt;
+          &lt;td&gt;强依赖千级标注样本&lt;/td&gt;
+          &lt;td&gt;零样本/少样本启动&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;部署成本&lt;/td&gt;
+          &lt;td&gt;标注+训练+调优≥3周&lt;/td&gt;
+          &lt;td&gt;API调用即时生效&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;要素扩展性&lt;/td&gt;
+          &lt;td&gt;新增要素需重新标注训练&lt;/td&gt;
+          &lt;td&gt;修改Prompt即可扩展&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;细粒度解析&lt;/td&gt;
+          &lt;td&gt;✅ 实体边界精准&lt;/td&gt;
+          &lt;td&gt;⚠️ 偶见过度生成&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;隐含信息挖掘&lt;/td&gt;
+          &lt;td&gt;❌ 受限&lt;/td&gt;
+          &lt;td&gt;✅ 深度关联背景/意义&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;行业迁移成本&lt;/td&gt;
+          &lt;td&gt;高（需新标注）&lt;/td&gt;
+          &lt;td&gt;低（通用知识迁移）&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;六如何选择技术路线&#34;&gt;六、如何选择技术路线？
+&lt;/h2&gt;&lt;h3 id=&#34;推荐策略混合架构&#34;&gt;推荐策略：&lt;strong&gt;混合架构&lt;/strong&gt;
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;graph LR
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;A[输入文本] --&amp;gt; B{要素复杂度}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;B --&amp;gt;|基础要素| C[传统模型]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;B --&amp;gt;|扩展/隐含要素| D[大模型API]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;C --&amp;gt; E[结果融合]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;D --&amp;gt; E
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;E --&amp;gt; F[结构化输出]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;场景化建议&#34;&gt;场景化建议：
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;高精度刚需场景&lt;/strong&gt;（合同解析）
+&lt;ul&gt;
+&lt;li&gt;传统模型保障核心要素95%+准确率&lt;/li&gt;
+&lt;li&gt;大模型补全背景信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;快速响应需求&lt;/strong&gt;（新兴行业监测）
+&lt;ul&gt;
+&lt;li&gt;大模型零样本抽取，48小时内上线&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;成本敏感场景&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;传统模型处理80%高频要素&lt;/li&gt;
+&lt;li&gt;大模型处理长尾需求&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;七未来演进方向&#34;&gt;七、未来演进方向
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;大模型蒸馏&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;将DeepSeek-R1等知识蒸馏为轻量级专用模型，兼顾效果与成本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;动态Prompt优化&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;根据文本类型自动切换Prompt模板（工程/贸易/矿产）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;纠错反馈机制&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;人工修正结果反向训练传统模型，形成闭环&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;关键结论&lt;/strong&gt;：大模型不是替代传统方法，而是将其从“标注泥潭”中解放，转向&lt;strong&gt;人机协同的智能增强范式&lt;/strong&gt;。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;注&lt;/strong&gt;：本文基于真实项目文档分析。技术对比结论经BERT/BiLSTM-CRF与GPT-4实测验证。&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

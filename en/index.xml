@@ -6,7 +6,340 @@
         <description>Recent content on ZibiaoZhang&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Mon, 04 Aug 2025 11:13:06 +0800</lastBuildDate><atom:link href="https://zhangzib123.github.io/en/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 06 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://zhangzib123.github.io/en/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Project Element Extraction: Traditional Machine Learning vs. Large Model Approaches - An In-depth Comparison</title>
+        <link>https://zhangzib123.github.io/en/p/project-element-extraction-traditional-machine-learning-vs.-large-model-approaches-an-in-depth-comparison/</link>
+        <pubDate>Wed, 06 Aug 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhangzib123.github.io/en/p/project-element-extraction-traditional-machine-learning-vs.-large-model-approaches-an-in-depth-comparison/</guid>
+        <description>&lt;h1 id=&#34;project-element-extraction-traditional-machine-learning-vs-large-model-approaches---an-in-depth-comparison&#34;&gt;Project Element Extraction: Traditional Machine Learning vs. Large Model Approaches - An In-depth Comparison
+&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;——A Comprehensive Analysis Based on Real Business Scenarios from Our Company, Covering Annotation Costs, Generalization Capabilities, to Practical Results&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;i-business-demand-core-challenges-in-project-element-extraction&#34;&gt;I. Business Demand: Core Challenges in Project Element Extraction
+&lt;/h2&gt;&lt;h3 id=&#34;target-element-system&#34;&gt;Target Element System
+&lt;/h3&gt;&lt;p&gt;According to business documentation, structured data needs to be extracted from three types of texts:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Basic Elements&lt;/strong&gt; (10 categories)
+&lt;ul&gt;
+&lt;li&gt;Project Name, Region, Executing Agency, Enterprise, Industry&lt;/li&gt;
+&lt;li&gt;Investment Amount, Production Capacity, Cycle, Status, Foreign Country&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Extended Elements&lt;/strong&gt; (20+ categories)
+&lt;ul&gt;
+&lt;li&gt;Financing Entity, Trade Method, Technical Standards, Construction Cycle, etc.&lt;/li&gt;
+&lt;li&gt;Covering the entire lifecycle (Signing → Construction → Commissioning → Financing)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;text-type-complexity&#34;&gt;Text Type Complexity
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Engineering News (e.g., &amp;ldquo;315MW Hydropower Station EPC Contract&amp;rdquo;)&lt;/li&gt;
+&lt;li&gt;Trade Announcements (e.g., &amp;ldquo;High-Voltage DC Equipment Procurement&amp;rdquo;)&lt;/li&gt;
+&lt;li&gt;Mineral Development (e.g., &amp;ldquo;Salt Lake Lithium Mine Construction Project&amp;rdquo;)&lt;br&gt;
+&lt;strong&gt;Challenges&lt;/strong&gt;: Dense professional terminology, variable sentence structures, scattered element distribution.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ii-traditional-supervised-learning-approach-high-cost-precision-models&#34;&gt;II. Traditional Supervised Learning Approach: High-Cost Precision Models
+&lt;/h2&gt;&lt;h3 id=&#34;1-data-annotation-labor-intensive-work-actual-annotation-sample-size&#34;&gt;1. Data Annotation: Labor-Intensive Work (Actual Annotation Sample Size)
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Category&lt;/th&gt;
+          &lt;th&gt;Annotation Sample Size&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Infrastructure Projects&lt;/td&gt;
+          &lt;td&gt;7,013&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Investment Projects&lt;/td&gt;
+          &lt;td&gt;7,678&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Trade Supply &amp;amp; Demand&lt;/td&gt;
+          &lt;td&gt;9,386&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Investment Promotion&lt;/td&gt;
+          &lt;td&gt;6,381&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Annotation Example&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;BIOE Sequence Labeling: (B-Beginning, I-Inside, E-End)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-plaintext&#34; data-lang=&#34;plaintext&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;圭 亚 那 自 然 资 源 部  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;B-COU I-COU E-COU O O O O  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;Annotating a &amp;ldquo;Foreign Country&amp;rdquo; requires precise segmentation of entity boundaries, taking approximately 3-5 minutes per sentence.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h3 id=&#34;2-model-construction-process&#34;&gt;2. Model Construction Process
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;graph LR
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;A[Manual Annotation] --&amp;gt; B(Feature Engineering) 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;B --&amp;gt; C{Model Selection}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;C --&amp;gt; D[BiLSTM-CRF]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;C --&amp;gt; E[BERT+CRF]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;D --&amp;gt; F[Model Training]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;E --&amp;gt; F
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;F --&amp;gt; G[Deployment Service]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;3-core-bottlenecks&#34;&gt;3. Core Bottlenecks
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;High Cost&lt;/strong&gt;: Annotating 10,000 data points ≈ 10 person-weeks, cost exceeding CNY 200,000.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Poor Generalization&lt;/strong&gt;: Changes in industry terminology (e.g., &amp;ldquo;converter valve equipment&amp;rdquo;) require re-annotation.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Difficult to Extend&lt;/strong&gt;: Adding new elements (e.g., &amp;ldquo;financing purpose&amp;rdquo;) requires a full process iteration.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;iii-large-model-approach-prompt-driven-zero-shot-extraction&#34;&gt;III. Large Model Approach: Prompt-Driven Zero-Shot Extraction
+&lt;/h2&gt;&lt;h3 id=&#34;1-paradigm-shift-in-technology&#34;&gt;1. Paradigm Shift in Technology
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Traditional Method&lt;/strong&gt;: &lt;code&gt;Text → Model → Elements&lt;/code&gt;
+&lt;strong&gt;Large Model Method&lt;/strong&gt;: &lt;code&gt;Text + Prompt → LLM → Structured JSON&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;2-core-advantages&#34;&gt;2. Core Advantages
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Zero-Shot Startup&lt;/strong&gt;: Extract new elements without annotation.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Strong Semantic Understanding&lt;/strong&gt;: Parses &amp;ldquo;training hydropower industry workers&amp;rdquo; → Project Significance.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multi-Task Compatibility&lt;/strong&gt;: Simultaneously supports element extraction + relationship extraction (e.g., &amp;ldquo;Owner-Contractor&amp;rdquo;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;iv-practical-case-comparison-traditional-vs-large-model&#34;&gt;IV. Practical Case Comparison: Traditional vs. Large Model
+&lt;/h2&gt;&lt;h3 id=&#34;case-1-indonesia-315mw-hydropower-project&#34;&gt;Case 1: Indonesia 315MW Hydropower Project
+&lt;/h3&gt;&lt;h4 id=&#34;signed-epc-contract-for-the-315mw-hydropower-project-in-sulawesi-indonesia&#34;&gt;Signed! EPC Contract for the 315MW Hydropower Project in Sulawesi, Indonesia
+&lt;/h4&gt;&lt;p&gt;On May 16, a consortium formed by PowerChina International Group, CGGC International, and Guangxi Hydroelectric Investigation &amp;amp; Design Institute reached a cooperation consensus with Indonesia&amp;rsquo;s Mandiri Group on the Sulawesi 315MW Hydropower Project in Indonesia and signed the project EPC contract with the owner&amp;rsquo;s project company. This achievement drives the rolling development of Indonesia&amp;rsquo;s clean energy market and accelerates Indonesia&amp;rsquo;s progress towards its carbon neutrality goals.&lt;/p&gt;
+&lt;p&gt;The project is located in northern Sulawesi Island, Indonesia. It plans to install 7 axial-flow generating units, including 4 peak-shaving units and 3 run-of-river units, with a total installed capacity of approximately 315MW. The main structures include a concrete gravity dam, flood discharge structures, water diversion structures, and a powerhouse. Upon completion, the project will provide Sulawesi with stable clean energy, alleviate power shortages, empower the transformation of industrial parks on Sulawesi Island, Indonesia, and simultaneously train a group of hydropower industry workers. It sets a benchmark for high-quality co-construction of the &amp;ldquo;Belt and Road&amp;rdquo; and the &amp;ldquo;Regional Comprehensive Economic Corridor&amp;rdquo; between China and Indonesia, deepening bilateral production capacity cooperation.&lt;/p&gt;
+&lt;p&gt;Representatives from PowerChina International Group&amp;rsquo;s Southeast Asia Regional Headquarters, PowerChina Indonesia Representative Office, CGGC Group Indonesia Representative Office, and Guangxi Hydroelectric Investigation &amp;amp; Design Institute Indonesia Representative Office attended the signing ceremony.&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Element Type&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Traditional Method Result&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Large Model Result&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Project Name&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;✅ Sulawesi 315MW Hydropower Project, Indonesia&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;✅ Sulawesi 315MW Hydropower Project, Indonesia&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Country&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;✅ Indonesia&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;✅ Indonesia&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Contractor&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;❌ Not Extracted&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;✅ PowerChina International Group + CGGC + Guangxi Design Institute&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Project Capacity&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;❌ Not Extracted&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;✅ Plans to install 7 axial-flow generating units, including 4 peak-shaving units and 3 run-of-river units, total installed capacity approx. 315MW&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The large model can deeply understand its internal logic. Through semantic understanding, it extracts implied elements such as &amp;ldquo;Contractor&amp;rdquo; and &amp;ldquo;Project Capacity&amp;rdquo;.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h3 id=&#34;case-2-chile-kilo-high-voltage-dc-project&#34;&gt;Case 2: Chile KILO High-Voltage DC Project
+&lt;/h3&gt;&lt;h4 id=&#34;csg-international-trade-company-signs-contract-for-main-equipment-procurement-of-converter-station-for-chile-kilo-hvdc-transmission-epc-project&#34;&gt;CSG International Trade Company Signs Contract for Main Equipment Procurement of Converter Station for Chile KILO HVDC Transmission EPC Project
+&lt;/h4&gt;&lt;p&gt;On May 5, Southern Power Grid International Trade (Guangzhou) Co., Ltd. (hereinafter referred to as &amp;ldquo;Trade Company&amp;rdquo;) signed the main equipment procurement contract for the converter station of the Chile KILO High-Voltage Direct Current (HVDC) Transmission EPC Project with XD Power System Co., Ltd. and XD Transformer Co., Ltd. The contract value exceeds CNY 1 billion. Gong Tiansen, Deputy General Manager of CSG International Company, presided over the signing ceremony. The Chile KILO project is the first HVDC transmission project in Chile undertaken by CSG International Company as the consortium leader. The procurement and supply of main equipment for the converter station were undertaken by the Trade Company. As the international trade platform of China Southern Power Grid Company, the Trade Company actively cooperated closely with the Chile KILO Converter Station EPC Project Department, CSG Research Institute, CSG Supply Chain Group, and other units. Based on the contract technical specifications of the Chilean owner, they continuously optimized the equipment procurement plan, shortened response times, and procured 21 converter transformers and a batch of converter valves and valve hall equipment, as well as water cooling systems through the CSG Supply Chain Procurement Platform, completing this major milestone task for the main equipment procurement of the Chile KILO project converter station on schedule. The Trade Company has always adhered to the guidance of &amp;ldquo;accelerating the construction of a new development pattern and striving to promote high-quality development,&amp;rdquo; planning the high-quality development of the trade sector of CSG International Company. By focusing on serving its core responsibilities and main businesses, it strives to provide timely, professional, and efficient one-stop equipment and material procurement and supply services for overseas projects, making due contributions to promoting the &amp;ldquo;going global&amp;rdquo; of advanced Chinese standards, technologies, equipment, and brands.&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Key Difference&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Traditional Method&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Large Model&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Contract Amount&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;❌ Assigned value to &amp;ldquo;Planned Investment Amount&amp;rdquo; (Contract amount should not be confused with planned investment amount)&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;✅ Exceeds CNY 1 billion&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Signing Date&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;❌ Not Identified&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;✅ May 5, 2023&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Project Type&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;❌ Not Identified&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;✅ Equipment Procurement Contract&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The large model achieves higher accuracy and recall rates in extraction. It can more accurately identify and extract key information such as contract amount, signing date, and project type.
+It is incorrect for the traditional method to assign this amount to &amp;ldquo;Planned Investment Amount.&amp;rdquo; The contract amount is not equivalent to the planned investment amount; the contract amount refers to the specific amount for procurement or contract signing.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h3 id=&#34;case-3-argentina-lithium-project&#34;&gt;Case 3: Argentina Lithium Project
+&lt;/h3&gt;&lt;h4 id=&#34;construction-commences-on-c233-section-of-argentinas-centenario-salt-lake-project&#34;&gt;Construction Commences on C233 Section of Argentina&amp;rsquo;s Centenario Salt Lake Project
+&lt;/h4&gt;&lt;p&gt;Recently, construction commenced on the C233 Installation Section of the Argentina Centenario Salt Lake Lithium Mine project, signed by PowerChina International and entrusted to Sinohydro Bureau 10 for implementation. Representatives from Eramet Group&amp;rsquo;s South American subsidiary, Lafa Construction Company, and Sinohydro Bureau 10 attended the ceremony.&lt;/p&gt;
+&lt;p&gt;The C233 installation section is the fifth section undertaken by Sinohydro Bureau 10, following Sections C201, C217, 2200, and 2300. It is located in the Ratones Salt Lake in the Andes Mountains within the Salta province in northwest Argentina, known as the &amp;ldquo;South American Lithium Triangle,&amp;rdquo; at an altitude of approximately 4,100 meters and about 370 kilometers from Salta City. The project duration is 300 days, and the main construction content includes the installation of steel structure workshops, mechanical equipment, and pipelines. The smooth progress of the various sections of the Argentina Centenario Salt Lake Lithium Mine project has accumulated valuable experience for Sinohydro Bureau 10&amp;rsquo;s mining business to accelerate transformation and upgrading under the background of carbon peak and carbon neutrality.&lt;/p&gt;
+&lt;p&gt;Argentina&amp;rsquo;s total lithium resource reserves are approximately 1.8 billion tons, of which proven reserves are 1 billion tons, making it the world&amp;rsquo;s third-largest lithium metal reserve country. In recent years, with the rapid development of the global new energy vehicle industry, downstream lithium battery industry demand has increased significantly. Since China and Argentina signed cooperation documents such as the Memorandum of Understanding on Co-constructing the &amp;ldquo;Belt and Road,&amp;rdquo; lithium industry cooperation has gradually become a highlight of China-Argentina new energy cooperation. The signing of this project is the result of PowerChina&amp;rsquo;s deep cultivation of the Argentine market, focusing on the development of the country&amp;rsquo;s key industries, and continuously consolidating brand advantages. It helps elevate China-Argentina co-construction of the &amp;ldquo;Belt and Road&amp;rdquo; to new levels.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Large Model Deep Understanding Capability&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;json&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;s2&#34;&gt;&amp;#34;Detailed Address&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Project located in the Ratones Salt Lake, Andes Mountains, at an altitude of approximately 4,100 meters&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;s2&#34;&gt;&amp;#34;Project Background&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Argentina&amp;#39;s total lithium resource reserves are approximately 1.8 billion tons, making it the world&amp;#39;s third-largest lithium metal reserve country. In recent years, with the rapid development of the global new energy vehicle industry, downstream lithium battery industry demand has increased significantly. Lithium industry cooperation has gradually become a highlight of China-Argentina new energy cooperation.&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;s2&#34;&gt;&amp;#34;Project Significance&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;The signing of this project is the result of PowerChina&amp;#39;s deep cultivation of the Argentine market, focusing on the development of the country&amp;#39;s key industries, and continuously consolidating brand advantages. It helps elevate China-Argentina co-construction of the &amp;#39;Belt and Road&amp;#39; to new levels.&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;Compared to traditional models relying on predefined short labels for data annotation, large models possess stronger semantic understanding and contextual capture capabilities, enabling accurate extraction of unstructured information requiring long-text comprehension, such as &amp;ldquo;Project Background&amp;rdquo; and &amp;ldquo;Project Significance.&amp;rdquo;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 id=&#34;v-methodology-comparison-panorama&#34;&gt;V. Methodology Comparison Panorama
+&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Dimension&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Traditional Supervised Learning&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Large Model Approach&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Data Dependency&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Strongly dependent on thousands of annotated samples&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Zero-shot/Few-shot startup&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Deployment Cost&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Annotation + Training + Tuning ≥ 3 weeks&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;API call, immediate effect&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Element Extensibility&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Adding new elements requires re-annotation &amp;amp; training&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Modify Prompt to extend&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Fine-Grained Parsing&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;✅ Precise entity boundaries&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⚠️ Occasional over-generation&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Implicit Information Mining&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;❌ Limited&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;✅ Deep association of background/significance&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Industry Migration Cost&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;High (Requires new annotation)&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Low (Generic knowledge transfer)&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;vi-how-to-choose-the-technical-route&#34;&gt;VI. How to Choose the Technical Route?
+&lt;/h2&gt;&lt;h3 id=&#34;recommended-strategy-hybrid-architecture&#34;&gt;Recommended Strategy: &lt;strong&gt;Hybrid Architecture&lt;/strong&gt;
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;graph LR
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;A[Input Text] --&amp;gt; B{Element Complexity}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;B --&amp;gt;|Basic Elements| C[Traditional Model]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;B --&amp;gt;|Extended/Implicit Elements| D[Large Model API]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;C --&amp;gt; E[Result Fusion]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;D --&amp;gt; E
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;E --&amp;gt; F[Structured Output]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;scenario-specific-advice&#34;&gt;Scenario-Specific Advice:
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;High-Precision Critical Scenarios&lt;/strong&gt; (Contract Parsing)
+&lt;ul&gt;
+&lt;li&gt;Traditional model guarantees 95%+ accuracy for core elements.&lt;/li&gt;
+&lt;li&gt;Large model supplements background information.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rapid Response Needs&lt;/strong&gt; (Emerging Industry Monitoring)
+&lt;ul&gt;
+&lt;li&gt;Large model enables zero-shot extraction, deployment within 48 hours.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cost-Sensitive Scenarios&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Traditional model handles 80% of high-frequency elements.&lt;/li&gt;
+&lt;li&gt;Large model handles long-tail demands.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;vii-future-evolution-directions&#34;&gt;VII. Future Evolution Directions
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Large Model Distillation&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Distill knowledge from models like DeepSeek-R1 into lightweight specialized models, balancing effectiveness and cost.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dynamic Prompt Optimization&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Automatically switch Prompt templates based on text type (Engineering/Trade/Mining).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Error Correction Feedback Mechanism&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Use manual correction results to inversely train traditional models, forming a closed loop.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Key Conclusion&lt;/strong&gt;: Large models are not replacing traditional methods but liberating them from the &amp;ldquo;annotation quagmire,&amp;rdquo; shifting towards an &lt;strong&gt;intelligence-augmented paradigm of human-machine collaboration&lt;/strong&gt;.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: This article is based on analysis of real project documents. Technical comparison conclusions were validated through actual testing of BERT/BiLSTM-CRF and GPT-4.
+[file content end]&lt;/p&gt;
+&lt;p&gt;Here is an actual project interface screenshot.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/iceberg2024/public/main/images/image-20250806163502776.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250806163502776&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>垂直领域大模型建设经验总结</title>
         <link>https://zhangzib123.github.io/en/p/%E5%9E%82%E7%9B%B4%E9%A2%86%E5%9F%9F%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BB%BA%E8%AE%BE%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/</link>
         <pubDate>Mon, 04 Aug 2025 11:13:06 +0800</pubDate>

@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="In vast information fields like engineering investment and international trade, **accurately extracting core project elements** (e.g., project name, investment amount, executing agency) is crucial for corporate decision-making. Traditional methods rely on supervised learning, while the advent of large models is revolutionizing this domain. Based on real business scenarios undertaken by our company, data annotation costs, technical implementation paths, and case comparisons, this article provides a deep analysis of the differences and selection strategies between these two technical routes.">
+<title>Project Element Extraction: Traditional Machine Learning vs. Large Model Approaches - An In-depth Comparison</title>
+
+<link rel='canonical' href='https://zhangzib123.github.io/en/p/project-element-extraction-traditional-machine-learning-vs.-large-model-approaches-an-in-depth-comparison/'>
+
+<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="Project Element Extraction: Traditional Machine Learning vs. Large Model Approaches - An In-depth Comparison">
+<meta property='og:description' content="In vast information fields like engineering investment and international trade, **accurately extracting core project elements** (e.g., project name, investment amount, executing agency) is crucial for corporate decision-making. Traditional methods rely on supervised learning, while the advent of large models is revolutionizing this domain. Based on real business scenarios undertaken by our company, data annotation costs, technical implementation paths, and case comparisons, this article provides a deep analysis of the differences and selection strategies between these two technical routes.">
+<meta property='og:url' content='https://zhangzib123.github.io/en/p/project-element-extraction-traditional-machine-learning-vs.-large-model-approaches-an-in-depth-comparison/'>
+<meta property='og:site_name' content='ZibiaoZhang&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Structured Element Extraction' /><meta property='article:tag' content='Machine Learning Approach' /><meta property='article:tag' content='Large Model Technical Route' /><meta property='article:tag' content='Technical Route Selection Strategy' /><meta property='article:published_time' content='2025-08-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-08-06T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="Project Element Extraction: Traditional Machine Learning vs. Large Model Approaches - An In-depth Comparison">
+<meta name="twitter:description" content="In vast information fields like engineering investment and international trade, **accurately extracting core project elements** (e.g., project name, investment amount, executing agency) is crucial for corporate decision-making. Traditional methods rely on supervised learning, while the advent of large models is revolutionizing this domain. Based on real business scenarios undertaken by our company, data annotation costs, technical implementation paths, and case comparisons, this article provides a deep analysis of the differences and selection strategies between these two technical routes.">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/en/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_f509edb42ecc0ebd.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/en">ZibiaoZhang&#39;s Blog</a></h1>
+            <h2 class="site-description">Welcome to my blog</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://zhangzib123.github.io/'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/en/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://zhangzib123.github.io/" >中文</option>
+                                
+                                    <option value="https://zhangzib123.github.io/en/" selected>English</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#i-business-demand-core-challenges-in-project-element-extraction">I. Business Demand: Core Challenges in Project Element Extraction</a>
+      <ol>
+        <li><a href="#target-element-system">Target Element System</a></li>
+        <li><a href="#text-type-complexity">Text Type Complexity</a></li>
+      </ol>
+    </li>
+    <li><a href="#ii-traditional-supervised-learning-approach-high-cost-precision-models">II. Traditional Supervised Learning Approach: High-Cost Precision Models</a>
+      <ol>
+        <li><a href="#1-data-annotation-labor-intensive-work-actual-annotation-sample-size">1. Data Annotation: Labor-Intensive Work (Actual Annotation Sample Size)</a></li>
+        <li><a href="#2-model-construction-process">2. Model Construction Process</a></li>
+        <li><a href="#3-core-bottlenecks">3. Core Bottlenecks</a></li>
+      </ol>
+    </li>
+    <li><a href="#iii-large-model-approach-prompt-driven-zero-shot-extraction">III. Large Model Approach: Prompt-Driven Zero-Shot Extraction</a>
+      <ol>
+        <li><a href="#1-paradigm-shift-in-technology">1. Paradigm Shift in Technology</a></li>
+        <li><a href="#2-core-advantages">2. Core Advantages</a></li>
+      </ol>
+    </li>
+    <li><a href="#iv-practical-case-comparison-traditional-vs-large-model">IV. Practical Case Comparison: Traditional vs. Large Model</a>
+      <ol>
+        <li><a href="#case-1-indonesia-315mw-hydropower-project">Case 1: Indonesia 315MW Hydropower Project</a>
+          <ol>
+            <li><a href="#signed-epc-contract-for-the-315mw-hydropower-project-in-sulawesi-indonesia">Signed! EPC Contract for the 315MW Hydropower Project in Sulawesi, Indonesia</a></li>
+          </ol>
+        </li>
+        <li><a href="#case-2-chile-kilo-high-voltage-dc-project">Case 2: Chile KILO High-Voltage DC Project</a>
+          <ol>
+            <li><a href="#csg-international-trade-company-signs-contract-for-main-equipment-procurement-of-converter-station-for-chile-kilo-hvdc-transmission-epc-project">CSG International Trade Company Signs Contract for Main Equipment Procurement of Converter Station for Chile KILO HVDC Transmission EPC Project</a></li>
+          </ol>
+        </li>
+        <li><a href="#case-3-argentina-lithium-project">Case 3: Argentina Lithium Project</a>
+          <ol>
+            <li><a href="#construction-commences-on-c233-section-of-argentinas-centenario-salt-lake-project">Construction Commences on C233 Section of Argentina&rsquo;s Centenario Salt Lake Project</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#v-methodology-comparison-panorama">V. Methodology Comparison Panorama</a></li>
+    <li><a href="#vi-how-to-choose-the-technical-route">VI. How to Choose the Technical Route?</a>
+      <ol>
+        <li><a href="#recommended-strategy-hybrid-architecture">Recommended Strategy: <strong>Hybrid Architecture</strong></a></li>
+        <li><a href="#scenario-specific-advice">Scenario-Specific Advice:</a></li>
+      </ol>
+    </li>
+    <li><a href="#vii-future-evolution-directions">VII. Future Evolution Directions</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/en/categories/large-model-based-structured-element-extraction/" >
+                Large Model-Based Structured Element Extraction
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/en/p/project-element-extraction-traditional-machine-learning-vs.-large-model-approaches-an-in-depth-comparison/">Project Element Extraction: Traditional Machine Learning vs. Large Model Approaches - An In-depth Comparison</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            In vast information fields like engineering investment and international trade, **accurately extracting core project elements** (e.g., project name, investment amount, executing agency) is crucial for corporate decision-making. Traditional methods rely on supervised learning, while the advent of large models is revolutionizing this domain. Based on real business scenarios undertaken by our company, data annotation costs, technical implementation paths, and case comparisons, this article provides a deep analysis of the differences and selection strategies between these two technical routes.
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Aug 06, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="https://zhangzib123.github.io/p/%E9%A1%B9%E7%9B%AE%E8%A6%81%E7%B4%A0%E6%8A%BD%E5%8F%96%E4%BC%A0%E7%BB%9F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-vs-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%96%B9%E6%B3%95%E6%B7%B1%E5%BA%A6%E5%AF%B9%E6%AF%94/" class="link">中文</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="project-element-extraction-traditional-machine-learning-vs-large-model-approaches---an-in-depth-comparison">Project Element Extraction: Traditional Machine Learning vs. Large Model Approaches - An In-depth Comparison
+</h1><p><strong>——A Comprehensive Analysis Based on Real Business Scenarios from Our Company, Covering Annotation Costs, Generalization Capabilities, to Practical Results</strong></p>
+<h2 id="i-business-demand-core-challenges-in-project-element-extraction">I. Business Demand: Core Challenges in Project Element Extraction
+</h2><h3 id="target-element-system">Target Element System
+</h3><p>According to business documentation, structured data needs to be extracted from three types of texts:</p>
+<ol>
+<li><strong>Basic Elements</strong> (10 categories)
+<ul>
+<li>Project Name, Region, Executing Agency, Enterprise, Industry</li>
+<li>Investment Amount, Production Capacity, Cycle, Status, Foreign Country</li>
+</ul>
+</li>
+<li><strong>Extended Elements</strong> (20+ categories)
+<ul>
+<li>Financing Entity, Trade Method, Technical Standards, Construction Cycle, etc.</li>
+<li>Covering the entire lifecycle (Signing → Construction → Commissioning → Financing)</li>
+</ul>
+</li>
+</ol>
+<h3 id="text-type-complexity">Text Type Complexity
+</h3><ul>
+<li>Engineering News (e.g., &ldquo;315MW Hydropower Station EPC Contract&rdquo;)</li>
+<li>Trade Announcements (e.g., &ldquo;High-Voltage DC Equipment Procurement&rdquo;)</li>
+<li>Mineral Development (e.g., &ldquo;Salt Lake Lithium Mine Construction Project&rdquo;)<br>
+<strong>Challenges</strong>: Dense professional terminology, variable sentence structures, scattered element distribution.</li>
+</ul>
+<hr>
+<h2 id="ii-traditional-supervised-learning-approach-high-cost-precision-models">II. Traditional Supervised Learning Approach: High-Cost Precision Models
+</h2><h3 id="1-data-annotation-labor-intensive-work-actual-annotation-sample-size">1. Data Annotation: Labor-Intensive Work (Actual Annotation Sample Size)
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Category</th>
+          <th>Annotation Sample Size</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Infrastructure Projects</td>
+          <td>7,013</td>
+      </tr>
+      <tr>
+          <td>Investment Projects</td>
+          <td>7,678</td>
+      </tr>
+      <tr>
+          <td>Trade Supply &amp; Demand</td>
+          <td>9,386</td>
+      </tr>
+      <tr>
+          <td>Investment Promotion</td>
+          <td>6,381</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>Annotation Example</strong>:</p>
+<p>BIOE Sequence Labeling: (B-Beginning, I-Inside, E-End)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">圭 亚 那 自 然 资 源 部  
+</span></span><span class="line"><span class="cl">B-COU I-COU E-COU O O O O  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>Annotating a &ldquo;Foreign Country&rdquo; requires precise segmentation of entity boundaries, taking approximately 3-5 minutes per sentence.</p></blockquote>
+<h3 id="2-model-construction-process">2. Model Construction Process
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">graph LR
+</span></span><span class="line"><span class="cl">A[Manual Annotation] --&gt; B(Feature Engineering) 
+</span></span><span class="line"><span class="cl">B --&gt; C{Model Selection}
+</span></span><span class="line"><span class="cl">C --&gt; D[BiLSTM-CRF]
+</span></span><span class="line"><span class="cl">C --&gt; E[BERT+CRF]
+</span></span><span class="line"><span class="cl">D --&gt; F[Model Training]
+</span></span><span class="line"><span class="cl">E --&gt; F
+</span></span><span class="line"><span class="cl">F --&gt; G[Deployment Service]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3-core-bottlenecks">3. Core Bottlenecks
+</h3><ul>
+<li><strong>High Cost</strong>: Annotating 10,000 data points ≈ 10 person-weeks, cost exceeding CNY 200,000.</li>
+<li><strong>Poor Generalization</strong>: Changes in industry terminology (e.g., &ldquo;converter valve equipment&rdquo;) require re-annotation.</li>
+<li><strong>Difficult to Extend</strong>: Adding new elements (e.g., &ldquo;financing purpose&rdquo;) requires a full process iteration.</li>
+</ul>
+<h2 id="iii-large-model-approach-prompt-driven-zero-shot-extraction">III. Large Model Approach: Prompt-Driven Zero-Shot Extraction
+</h2><h3 id="1-paradigm-shift-in-technology">1. Paradigm Shift in Technology
+</h3><p><strong>Traditional Method</strong>: <code>Text → Model → Elements</code>
+<strong>Large Model Method</strong>: <code>Text + Prompt → LLM → Structured JSON</code></p>
+<h3 id="2-core-advantages">2. Core Advantages
+</h3><ul>
+<li><strong>Zero-Shot Startup</strong>: Extract new elements without annotation.</li>
+<li><strong>Strong Semantic Understanding</strong>: Parses &ldquo;training hydropower industry workers&rdquo; → Project Significance.</li>
+<li><strong>Multi-Task Compatibility</strong>: Simultaneously supports element extraction + relationship extraction (e.g., &ldquo;Owner-Contractor&rdquo;).</li>
+</ul>
+<hr>
+<h2 id="iv-practical-case-comparison-traditional-vs-large-model">IV. Practical Case Comparison: Traditional vs. Large Model
+</h2><h3 id="case-1-indonesia-315mw-hydropower-project">Case 1: Indonesia 315MW Hydropower Project
+</h3><h4 id="signed-epc-contract-for-the-315mw-hydropower-project-in-sulawesi-indonesia">Signed! EPC Contract for the 315MW Hydropower Project in Sulawesi, Indonesia
+</h4><p>On May 16, a consortium formed by PowerChina International Group, CGGC International, and Guangxi Hydroelectric Investigation &amp; Design Institute reached a cooperation consensus with Indonesia&rsquo;s Mandiri Group on the Sulawesi 315MW Hydropower Project in Indonesia and signed the project EPC contract with the owner&rsquo;s project company. This achievement drives the rolling development of Indonesia&rsquo;s clean energy market and accelerates Indonesia&rsquo;s progress towards its carbon neutrality goals.</p>
+<p>The project is located in northern Sulawesi Island, Indonesia. It plans to install 7 axial-flow generating units, including 4 peak-shaving units and 3 run-of-river units, with a total installed capacity of approximately 315MW. The main structures include a concrete gravity dam, flood discharge structures, water diversion structures, and a powerhouse. Upon completion, the project will provide Sulawesi with stable clean energy, alleviate power shortages, empower the transformation of industrial parks on Sulawesi Island, Indonesia, and simultaneously train a group of hydropower industry workers. It sets a benchmark for high-quality co-construction of the &ldquo;Belt and Road&rdquo; and the &ldquo;Regional Comprehensive Economic Corridor&rdquo; between China and Indonesia, deepening bilateral production capacity cooperation.</p>
+<p>Representatives from PowerChina International Group&rsquo;s Southeast Asia Regional Headquarters, PowerChina Indonesia Representative Office, CGGC Group Indonesia Representative Office, and Guangxi Hydroelectric Investigation &amp; Design Institute Indonesia Representative Office attended the signing ceremony.</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: left"><strong>Element Type</strong></th>
+          <th style="text-align: left"><strong>Traditional Method Result</strong></th>
+          <th style="text-align: left"><strong>Large Model Result</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Project Name</td>
+          <td style="text-align: left">✅ Sulawesi 315MW Hydropower Project, Indonesia</td>
+          <td style="text-align: left">✅ Sulawesi 315MW Hydropower Project, Indonesia</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Country</td>
+          <td style="text-align: left">✅ Indonesia</td>
+          <td style="text-align: left">✅ Indonesia</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Contractor</td>
+          <td style="text-align: left">❌ Not Extracted</td>
+          <td style="text-align: left">✅ PowerChina International Group + CGGC + Guangxi Design Institute</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Project Capacity</td>
+          <td style="text-align: left">❌ Not Extracted</td>
+          <td style="text-align: left">✅ Plans to install 7 axial-flow generating units, including 4 peak-shaving units and 3 run-of-river units, total installed capacity approx. 315MW</td>
+      </tr>
+  </tbody>
+</table></div>
+<blockquote>
+<p>The large model can deeply understand its internal logic. Through semantic understanding, it extracts implied elements such as &ldquo;Contractor&rdquo; and &ldquo;Project Capacity&rdquo;.</p></blockquote>
+<h3 id="case-2-chile-kilo-high-voltage-dc-project">Case 2: Chile KILO High-Voltage DC Project
+</h3><h4 id="csg-international-trade-company-signs-contract-for-main-equipment-procurement-of-converter-station-for-chile-kilo-hvdc-transmission-epc-project">CSG International Trade Company Signs Contract for Main Equipment Procurement of Converter Station for Chile KILO HVDC Transmission EPC Project
+</h4><p>On May 5, Southern Power Grid International Trade (Guangzhou) Co., Ltd. (hereinafter referred to as &ldquo;Trade Company&rdquo;) signed the main equipment procurement contract for the converter station of the Chile KILO High-Voltage Direct Current (HVDC) Transmission EPC Project with XD Power System Co., Ltd. and XD Transformer Co., Ltd. The contract value exceeds CNY 1 billion. Gong Tiansen, Deputy General Manager of CSG International Company, presided over the signing ceremony. The Chile KILO project is the first HVDC transmission project in Chile undertaken by CSG International Company as the consortium leader. The procurement and supply of main equipment for the converter station were undertaken by the Trade Company. As the international trade platform of China Southern Power Grid Company, the Trade Company actively cooperated closely with the Chile KILO Converter Station EPC Project Department, CSG Research Institute, CSG Supply Chain Group, and other units. Based on the contract technical specifications of the Chilean owner, they continuously optimized the equipment procurement plan, shortened response times, and procured 21 converter transformers and a batch of converter valves and valve hall equipment, as well as water cooling systems through the CSG Supply Chain Procurement Platform, completing this major milestone task for the main equipment procurement of the Chile KILO project converter station on schedule. The Trade Company has always adhered to the guidance of &ldquo;accelerating the construction of a new development pattern and striving to promote high-quality development,&rdquo; planning the high-quality development of the trade sector of CSG International Company. By focusing on serving its core responsibilities and main businesses, it strives to provide timely, professional, and efficient one-stop equipment and material procurement and supply services for overseas projects, making due contributions to promoting the &ldquo;going global&rdquo; of advanced Chinese standards, technologies, equipment, and brands.</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: left"><strong>Key Difference</strong></th>
+          <th style="text-align: left">Traditional Method</th>
+          <th style="text-align: left">Large Model</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Contract Amount</td>
+          <td style="text-align: left">❌ Assigned value to &ldquo;Planned Investment Amount&rdquo; (Contract amount should not be confused with planned investment amount)</td>
+          <td style="text-align: left">✅ Exceeds CNY 1 billion</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Signing Date</td>
+          <td style="text-align: left">❌ Not Identified</td>
+          <td style="text-align: left">✅ May 5, 2023</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Project Type</td>
+          <td style="text-align: left">❌ Not Identified</td>
+          <td style="text-align: left">✅ Equipment Procurement Contract</td>
+      </tr>
+  </tbody>
+</table></div>
+<blockquote>
+<p>The large model achieves higher accuracy and recall rates in extraction. It can more accurately identify and extract key information such as contract amount, signing date, and project type.
+It is incorrect for the traditional method to assign this amount to &ldquo;Planned Investment Amount.&rdquo; The contract amount is not equivalent to the planned investment amount; the contract amount refers to the specific amount for procurement or contract signing.</p></blockquote>
+<h3 id="case-3-argentina-lithium-project">Case 3: Argentina Lithium Project
+</h3><h4 id="construction-commences-on-c233-section-of-argentinas-centenario-salt-lake-project">Construction Commences on C233 Section of Argentina&rsquo;s Centenario Salt Lake Project
+</h4><p>Recently, construction commenced on the C233 Installation Section of the Argentina Centenario Salt Lake Lithium Mine project, signed by PowerChina International and entrusted to Sinohydro Bureau 10 for implementation. Representatives from Eramet Group&rsquo;s South American subsidiary, Lafa Construction Company, and Sinohydro Bureau 10 attended the ceremony.</p>
+<p>The C233 installation section is the fifth section undertaken by Sinohydro Bureau 10, following Sections C201, C217, 2200, and 2300. It is located in the Ratones Salt Lake in the Andes Mountains within the Salta province in northwest Argentina, known as the &ldquo;South American Lithium Triangle,&rdquo; at an altitude of approximately 4,100 meters and about 370 kilometers from Salta City. The project duration is 300 days, and the main construction content includes the installation of steel structure workshops, mechanical equipment, and pipelines. The smooth progress of the various sections of the Argentina Centenario Salt Lake Lithium Mine project has accumulated valuable experience for Sinohydro Bureau 10&rsquo;s mining business to accelerate transformation and upgrading under the background of carbon peak and carbon neutrality.</p>
+<p>Argentina&rsquo;s total lithium resource reserves are approximately 1.8 billion tons, of which proven reserves are 1 billion tons, making it the world&rsquo;s third-largest lithium metal reserve country. In recent years, with the rapid development of the global new energy vehicle industry, downstream lithium battery industry demand has increased significantly. Since China and Argentina signed cooperation documents such as the Memorandum of Understanding on Co-constructing the &ldquo;Belt and Road,&rdquo; lithium industry cooperation has gradually become a highlight of China-Argentina new energy cooperation. The signing of this project is the result of PowerChina&rsquo;s deep cultivation of the Argentine market, focusing on the development of the country&rsquo;s key industries, and continuously consolidating brand advantages. It helps elevate China-Argentina co-construction of the &ldquo;Belt and Road&rdquo; to new levels.</p>
+<p><strong>Large Model Deep Understanding Capability</strong>:</p>
+<p>json</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Detailed Address&#34;</span><span class="p">:</span> <span class="s2">&#34;Project located in the Ratones Salt Lake, Andes Mountains, at an altitude of approximately 4,100 meters&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Project Background&#34;</span><span class="p">:</span> <span class="s2">&#34;Argentina&#39;s total lithium resource reserves are approximately 1.8 billion tons, making it the world&#39;s third-largest lithium metal reserve country. In recent years, with the rapid development of the global new energy vehicle industry, downstream lithium battery industry demand has increased significantly. Lithium industry cooperation has gradually become a highlight of China-Argentina new energy cooperation.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Project Significance&#34;</span><span class="p">:</span> <span class="s2">&#34;The signing of this project is the result of PowerChina&#39;s deep cultivation of the Argentine market, focusing on the development of the country&#39;s key industries, and continuously consolidating brand advantages. It helps elevate China-Argentina co-construction of the &#39;Belt and Road&#39; to new levels.&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>Compared to traditional models relying on predefined short labels for data annotation, large models possess stronger semantic understanding and contextual capture capabilities, enabling accurate extraction of unstructured information requiring long-text comprehension, such as &ldquo;Project Background&rdquo; and &ldquo;Project Significance.&rdquo;</p></blockquote>
+<h2 id="v-methodology-comparison-panorama">V. Methodology Comparison Panorama
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: left"><strong>Dimension</strong></th>
+          <th style="text-align: left"><strong>Traditional Supervised Learning</strong></th>
+          <th style="text-align: left"><strong>Large Model Approach</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Data Dependency</td>
+          <td style="text-align: left">Strongly dependent on thousands of annotated samples</td>
+          <td style="text-align: left">Zero-shot/Few-shot startup</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Deployment Cost</td>
+          <td style="text-align: left">Annotation + Training + Tuning ≥ 3 weeks</td>
+          <td style="text-align: left">API call, immediate effect</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Element Extensibility</td>
+          <td style="text-align: left">Adding new elements requires re-annotation &amp; training</td>
+          <td style="text-align: left">Modify Prompt to extend</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Fine-Grained Parsing</td>
+          <td style="text-align: left">✅ Precise entity boundaries</td>
+          <td style="text-align: left">⚠️ Occasional over-generation</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Implicit Information Mining</td>
+          <td style="text-align: left">❌ Limited</td>
+          <td style="text-align: left">✅ Deep association of background/significance</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Industry Migration Cost</td>
+          <td style="text-align: left">High (Requires new annotation)</td>
+          <td style="text-align: left">Low (Generic knowledge transfer)</td>
+      </tr>
+  </tbody>
+</table></div>
+<hr>
+<h2 id="vi-how-to-choose-the-technical-route">VI. How to Choose the Technical Route?
+</h2><h3 id="recommended-strategy-hybrid-architecture">Recommended Strategy: <strong>Hybrid Architecture</strong>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">graph LR
+</span></span><span class="line"><span class="cl">A[Input Text] --&gt; B{Element Complexity}
+</span></span><span class="line"><span class="cl">B --&gt;|Basic Elements| C[Traditional Model]
+</span></span><span class="line"><span class="cl">B --&gt;|Extended/Implicit Elements| D[Large Model API]
+</span></span><span class="line"><span class="cl">C --&gt; E[Result Fusion]
+</span></span><span class="line"><span class="cl">D --&gt; E
+</span></span><span class="line"><span class="cl">E --&gt; F[Structured Output]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="scenario-specific-advice">Scenario-Specific Advice:
+</h3><ol>
+<li><strong>High-Precision Critical Scenarios</strong> (Contract Parsing)
+<ul>
+<li>Traditional model guarantees 95%+ accuracy for core elements.</li>
+<li>Large model supplements background information.</li>
+</ul>
+</li>
+<li><strong>Rapid Response Needs</strong> (Emerging Industry Monitoring)
+<ul>
+<li>Large model enables zero-shot extraction, deployment within 48 hours.</li>
+</ul>
+</li>
+<li><strong>Cost-Sensitive Scenarios</strong>
+<ul>
+<li>Traditional model handles 80% of high-frequency elements.</li>
+<li>Large model handles long-tail demands.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="vii-future-evolution-directions">VII. Future Evolution Directions
+</h2><ol>
+<li><strong>Large Model Distillation</strong>
+<ul>
+<li>Distill knowledge from models like DeepSeek-R1 into lightweight specialized models, balancing effectiveness and cost.</li>
+</ul>
+</li>
+<li><strong>Dynamic Prompt Optimization</strong>
+<ul>
+<li>Automatically switch Prompt templates based on text type (Engineering/Trade/Mining).</li>
+</ul>
+</li>
+<li><strong>Error Correction Feedback Mechanism</strong>
+<ul>
+<li>Use manual correction results to inversely train traditional models, forming a closed loop.</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><strong>Key Conclusion</strong>: Large models are not replacing traditional methods but liberating them from the &ldquo;annotation quagmire,&rdquo; shifting towards an <strong>intelligence-augmented paradigm of human-machine collaboration</strong>.</p></blockquote>
+<hr>
+<p><strong>Note</strong>: This article is based on analysis of real project documents. Technical comparison conclusions were validated through actual testing of BERT/BiLSTM-CRF and GPT-4.
+[file content end]</p>
+<p>Here is an actual project interface screenshot.</p>
+<p><img src="https://raw.githubusercontent.com/iceberg2024/public/main/images/image-20250806163502776.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250806163502776"
+	
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/en/tags/structured-element-extraction/">Structured Element Extraction</a>
+        
+            <a href="/en/tags/machine-learning-approach/">Machine Learning Approach</a>
+        
+            <a href="/en/tags/large-model-technical-route/">Large Model Technical Route</a>
+        
+            <a href="/en/tags/technical-route-selection-strategy/">Technical Route Selection Strategy</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2025 ZibiaoZhang&#39;s Blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
