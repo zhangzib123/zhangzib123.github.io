@@ -80,6 +80,16 @@ params:
         issueTerm: "title"  # 可选: pathname/url/title/og:title
         theme: "github-light"  # 可选: github-light/github-dark/preferred-color-scheme
         label: "comment"       # 可选的问题标签
+            # 英文配置
+        en:
+            enable: true
+            repo: "zhangzib123/comment"
+    
+        # 中文配置
+        zh:
+            enable: true
+            repo: "zhangzib123/comment"
+            theme: "github-dark"  # 中文使用暗色主题
     widgets:
         homepage:
             - type: search

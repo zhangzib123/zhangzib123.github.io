@@ -25,17 +25,23 @@
 
 {{ define "main" }}
     {{ partial "article/article.html" . }}
-    {{ if and .Site.Params.utterances.enable (not (eq .Params.comments false)) }}
+
+    {{ $lang := .Site.Language.Lang }}
+    {{ $utterancesConfig := index .Site.Params.utterances $lang | default .Site.Params.utterances }}
+    
+    {{ if and $utterancesConfig.enable (not (eq .Params.comments false)) }}
     <section class="comments">
+        <h3>{{ i18n "comments" }}</h3>
         <script 
             src="https://utteranc.es/client.js"
-            repo="{{ .Site.Params.utterances.repo }}"
-            issue-term="{{ .Site.Params.utterances.issueTerm | default "pathname" }}"
-            theme="{{ .Site.Params.utterances.theme | default "github-light" }}"
-            label="{{ .Site.Params.utterances.label | default "" }}"
+            repo="{{ $utterancesConfig.repo }}"
+            issue-term="{{ $utterancesConfig.issueTerm | default "pathname" }}"
+            theme="{{ $utterancesConfig.theme | default "github-light" }}"
+            label="{{ $utterancesConfig.label | default "" }}"
             crossorigin="anonymous"
             async>
         </script>
+        <noscript>{{ i18n "enable_javascript_for_comments" }}</noscript>
     </section>
     {{ end }}
 

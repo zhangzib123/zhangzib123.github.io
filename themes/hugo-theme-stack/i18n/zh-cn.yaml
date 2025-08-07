@@ -26,6 +26,13 @@ article:
 
     readingTime:
         other: "阅读时长: {{ .Count }} 分钟"
+comments:
+    title:
+        other: 评论
+    enableJavascript:
+        other: "请启用JavaScript查看评论"
+    noComments:
+        other: "暂无评论"
 
 notFound:
     title:
