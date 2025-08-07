@@ -74,8 +74,7 @@ params:
         license:
             enabled: true
             default: Licensed under CC BY-NC-SA 4.0
-    params:
-      utterances:
+    utterances:
         enable: true  # 启用 Utterances
         repo: "zhangzib123/comment"  # 替换为你的 GitHub 用户名和仓库名
         issueTerm: "title"  # 可选: pathname/url/title/og:title
