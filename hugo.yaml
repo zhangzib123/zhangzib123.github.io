@@ -74,7 +74,13 @@ params:
         license:
             enabled: true
             default: Licensed under CC BY-NC-SA 4.0
-
+    params:
+      utterances:
+        enable: true  # 启用 Utterances
+        repo: "zhangzib123/comment"  # 替换为你的 GitHub 用户名和仓库名
+        issueTerm: "title"  # 可选: pathname/url/title/og:title
+        theme: "github-light"  # 可选: github-light/github-dark/preferred-color-scheme
+        label: "comment"       # 可选的问题标签
     widgets:
         homepage:
             - type: search

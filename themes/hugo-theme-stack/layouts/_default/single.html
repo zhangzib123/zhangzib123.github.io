@@ -25,6 +25,20 @@
 
 {{ define "main" }}
     {{ partial "article/article.html" . }}
+    {{ if and .Site.Params.utterances.enable (not (eq .Params.comments false)) }}
+    <section class="comments">
+        <script 
+            src="https://utteranc.es/client.js"
+            repo="{{ .Site.Params.utterances.repo }}"
+            issue-term="{{ .Site.Params.utterances.issueTerm | default "pathname" }}"
+            theme="{{ .Site.Params.utterances.theme | default "github-light" }}"
+            label="{{ .Site.Params.utterances.label | default "" }}"
+            crossorigin="anonymous"
+            async>
+        </script>
+    </section>
+    {{ end }}
+
 
     {{ if .Params.links }}
         {{ partial "article/components/links" . }}
