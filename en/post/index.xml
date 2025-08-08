@@ -522,6 +522,92 @@ Contact for more case studies: &lt;a class=&#34;link&#34; href=&#34;https://mail
 [file content end]&lt;/p&gt;&lt;/blockquote&gt;
 </description>
         </item>
+        <item>
+        <title>Experience Summary on Building Vertical Domain-Specific Large Models</title>
+        <link>https://zhangzib123.github.io/en/p/experience-summary-on-building-vertical-domain-specific-large-models/</link>
+        <pubDate>Mon, 04 Aug 2025 11:13:06 +0800</pubDate>
+        
+        <guid>https://zhangzib123.github.io/en/p/experience-summary-on-building-vertical-domain-specific-large-models/</guid>
+        <description>&lt;h2 id=&#34;experience-summary-on-building-vertical-domain-specific-large-models&#34;&gt;Experience Summary on Building Vertical Domain-Specific Large Models
+&lt;/h2&gt;&lt;h3 id=&#34;development-achievements&#34;&gt;Development Achievements
+&lt;/h3&gt;&lt;p&gt;Through pre-training and fine-tuning, our AI team has constructed a large model specialized in state-owned enterprise knowledge. From 2024 to the first half of 2025, we conducted two rounds of vertical domain training. Evaluation metrics have surpassed those of the base model and meet user requirements. The overall progress is as follows:&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Dimension&lt;/th&gt;
+          &lt;th&gt;First Round Training&lt;/th&gt;
+          &lt;th&gt;Second Round Training&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Base Model&lt;/td&gt;
+          &lt;td&gt;Qwen1.5-7B&lt;/td&gt;
+          &lt;td&gt;Qwen2.5-72B&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Pre-training Corpus Size&lt;/td&gt;
+          &lt;td&gt;~19.5B tokens (gpt tokenizer)&lt;/td&gt;
+          &lt;td&gt;~1.7B tokens (qwen2.5 tokenizer)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Domain Fine-tuning Corpus (Q&amp;amp;A Pairs)&lt;/td&gt;
+          &lt;td&gt;23,144&lt;/td&gt;
+          &lt;td&gt;397,355&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Covered Domain Tasks&lt;/td&gt;
+          &lt;td&gt;Domain Q&amp;amp;A, Classification Tasks&lt;/td&gt;
+          &lt;td&gt;Domain Q&amp;amp;A, Report Generation&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Model Context Length&lt;/td&gt;
+          &lt;td&gt;2048&lt;/td&gt;
+          &lt;td&gt;8192&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Training Method&lt;/td&gt;
+          &lt;td&gt;Pre-training + Domain SFT&lt;/td&gt;
+          &lt;td&gt;Pre-training + General SFT + Domain SFT&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Core Task Metrics (ROUGE)&lt;/td&gt;
+          &lt;td&gt;Domain Q&amp;amp;A: +6% over base model&lt;br&gt;Classification: +50% over base model&lt;/td&gt;
+          &lt;td&gt;Domain Q&amp;amp;A: +14% over base model&lt;br&gt;Report Generation: +0.65% over base model&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Existing Issues&lt;/td&gt;
+          &lt;td&gt;Responses overly concise, inadequate for complex scenarios.&lt;/td&gt;
+          &lt;td&gt;Content repetition, still brief responses, deficiencies in understanding ultra-long contexts.&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Evaluation metrics on state-owned enterprise datasets have surpassed those of the base model, with domain Q&amp;amp;A capabilities outperforming DeepSeek and Doubao models. However, writing task capabilities need enhancement. Key current shortcomings include overly concise generated content and suboptimal long-text and contextual comprehension, which will be the focus of subsequent optimization.&lt;/p&gt;
+&lt;h3 id=&#34;next-steps&#34;&gt;Next Steps
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Based on existing issues and analysis of professional corpus volume, the directions for next-stage pre-training and fine-tuning are:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Corpus Requirements&lt;br&gt;
+• Core corpus: 10GB+ internal materials&lt;br&gt;
+• Auxiliary corpus: 5GB+ domain-related materials&lt;br&gt;
+• Fine-tuning corpus:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Basic Q&amp;amp;A: 50k Q&amp;amp;A pairs&lt;/li&gt;
+&lt;li&gt;In-depth analysis: 150k Q&amp;amp;A pairs&lt;/li&gt;
+&lt;li&gt;Writing tasks: 250k Q&amp;amp;A pairs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Base Model Selection&lt;br&gt;
+Qwen3-32B&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pre-training Method&lt;br&gt;
+Parameter-efficient methods (Lora)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
         
     </channel>
 </rss>

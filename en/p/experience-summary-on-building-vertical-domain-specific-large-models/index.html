@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="zh-cn" dir="ltr">
+<html lang="en" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="通过预训练和微调构建国资国企知识领域大模型，我公司AI团队，从2024年到2025上半年，进行了两轮的垂直领域训练，评测指标已实现对基座模型的超越，能够满足用户需求 ">
-<title>垂直领域大模型建设经验总结</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Through pre-training and fine-tuning, our AI team has constructed a large model specialized in state-owned enterprise knowledge. From 2024 to the first half of 2025, we conducted two rounds of vertical domain training. Evaluation metrics have surpassed those of the base model and meet user requirements.">
+<title>Experience Summary on Building Vertical Domain-Specific Large Models</title>
 
-<link rel='canonical' href='https://zhangzib123.github.io/p/%E5%9E%82%E7%9B%B4%E9%A2%86%E5%9F%9F%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BB%BA%E8%AE%BE%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/'>
+<link rel='canonical' href='https://zhangzib123.github.io/en/p/experience-summary-on-building-vertical-domain-specific-large-models/'>
 
-<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="垂直领域大模型建设经验总结">
-<meta property='og:description' content="通过预训练和微调构建国资国企知识领域大模型，我公司AI团队，从2024年到2025上半年，进行了两轮的垂直领域训练，评测指标已实现对基座模型的超越，能够满足用户需求 ">
-<meta property='og:url' content='https://zhangzib123.github.io/p/%E5%9E%82%E7%9B%B4%E9%A2%86%E5%9F%9F%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BB%BA%E8%AE%BE%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/'>
-<meta property='og:site_name' content='张子彪的博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='国企知识领域大模型' /><meta property='article:tag' content='垂直领域大模型建设' /><meta property='article:tag' content='垂直领域大模型预训练' /><meta property='article:tag' content='行业大模型微调' /><meta property='article:published_time' content='2025-08-04T11:13:06&#43;08:00'/><meta property='article:modified_time' content='2025-08-04T11:13:06&#43;08:00'/>
-<meta name="twitter:title" content="垂直领域大模型建设经验总结">
-<meta name="twitter:description" content="通过预训练和微调构建国资国企知识领域大模型，我公司AI团队，从2024年到2025上半年，进行了两轮的垂直领域训练，评测指标已实现对基座模型的超越，能够满足用户需求 ">
+<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="Experience Summary on Building Vertical Domain-Specific Large Models">
+<meta property='og:description' content="Through pre-training and fine-tuning, our AI team has constructed a large model specialized in state-owned enterprise knowledge. From 2024 to the first half of 2025, we conducted two rounds of vertical domain training. Evaluation metrics have surpassed those of the base model and meet user requirements.">
+<meta property='og:url' content='https://zhangzib123.github.io/en/p/experience-summary-on-building-vertical-domain-specific-large-models/'>
+<meta property='og:site_name' content='ZibiaoZhang&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='State-Owned Enterprise Knowledge Large Model' /><meta property='article:tag' content='Vertical Domain-Specific Large Model Development' /><meta property='article:tag' content='Vertical Domain-Specific Large Model Pre-training' /><meta property='article:tag' content='Industry Large Model Fine-tuning' /><meta property='article:published_time' content='2025-08-04T11:13:06&#43;08:00'/><meta property='article:modified_time' content='2025-08-04T11:13:06&#43;08:00'/>
+<meta name="twitter:title" content="Experience Summary on Building Vertical Domain-Specific Large Models">
+<meta name="twitter:description" content="Through pre-training and fine-tuning, our AI team has constructed a large model specialized in state-owned enterprise knowledge. From 2024 to the first half of 2025, we conducted two rounds of vertical domain training. Evaluation metrics have surpassed those of the base model and meet user requirements.">
     </head>
     <body class="
     article-page
@@ -40,7 +40,7 @@
     })();
 </script>
 <div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
-    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
         <span class="hamburger-box">
             <span class="hamburger-inner"></span>
         </span>
@@ -50,7 +50,7 @@
         
             
             <figure class="site-avatar">
-                <a href="/">
+                <a href="/en/">
                 
                     
                     
@@ -69,8 +69,8 @@
         
         
         <div class="site-meta">
-            <h1 class="site-name"><a href="/">张子彪的博客</a></h1>
-            <h2 class="site-description">欢迎来到我的博客</h2>
+            <h1 class="site-name"><a href="/en">ZibiaoZhang&#39;s Blog</a></h1>
+            <h2 class="site-description">Welcome to my blog</h2>
         </div>
     </header><ol class="menu-social">
             
@@ -119,27 +119,7 @@
         
         
         <li >
-            <a href='/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <polyline points="5 12 3 12 12 3 21 12 19 12" />
-  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-</svg>
-
-
-
-                
-                <span>主页</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/%E5%85%B3%E4%BA%8E/' >
+            <a href='/en/about/' >
                 
                 
                 
@@ -152,13 +132,13 @@
 
 
                 
-                <span>关于</span>
+                <span>About</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives/' >
+            <a href='/en/archives/' >
                 
                 
                 
@@ -172,13 +152,13 @@
 
 
                 
-                <span>文章</span>
+                <span>Archives</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/search/' >
+            <a href='/en/search/' >
                 
                 
                 
@@ -191,13 +171,13 @@
 
 
                 
-                <span>搜索</span>
+                <span>Search</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
+            <a href='/en/links/' >
                 
                 
                 
@@ -210,7 +190,7 @@
 
 
                 
-                <span>友情链接</span>
+                <span>Links</span>
             </a>
         </li>
         
@@ -231,9 +211,9 @@
 
                             <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
                                 
-                                    <option value="https://zhangzib123.github.io/" selected>中文</option>
+                                    <option value="https://zhangzib123.github.io/" >中文</option>
                                 
-                                    <option value="https://zhangzib123.github.io/en/" >English</option>
+                                    <option value="https://zhangzib123.github.io/en/" selected>English</option>
                                 
                             </select>
                         </li>
@@ -258,7 +238,7 @@
 
 
 
-                        <span>暗色模式</span>
+                        <span>Dark Mode</span>
                     </li>
                 
             </ol>
@@ -283,15 +263,15 @@
 
 
         </div>
-        <h2 class="widget-title section-title">目录</h2>
+        <h2 class="widget-title section-title">Table of contents</h2>
         
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#垂直领域大模型建设经验总结">垂直领域大模型建设经验总结</a>
+    <li><a href="#experience-summary-on-building-vertical-domain-specific-large-models">Experience Summary on Building Vertical Domain-Specific Large Models</a>
       <ol>
-        <li><a href="#建设成果">建设成果</a></li>
-        <li><a href="#后续计划">后续计划</a></li>
+        <li><a href="#development-achievements">Development Achievements</a></li>
+        <li><a href="#next-steps">Next Steps</a></li>
       </ol>
     </li>
   </ol>
@@ -312,8 +292,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/%E5%9E%82%E7%9B%B4%E9%A2%86%E5%9F%9F%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BB%BA%E8%AE%BE/" >
-                垂直领域大模型建设
+            <a href="/en/categories/vertical-domain-specific-large-model-development/" >
+                Vertical Domain-Specific Large Model Development
             </a>
         
     </header>
@@ -321,12 +301,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/%E5%9E%82%E7%9B%B4%E9%A2%86%E5%9F%9F%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BB%BA%E8%AE%BE%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/">垂直领域大模型建设经验总结</a>
+            <a href="/en/p/experience-summary-on-building-vertical-domain-specific-large-models/">Experience Summary on Building Vertical Domain-Specific Large Models</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            通过预训练和微调构建国资国企知识领域大模型，我公司AI团队，从2024年到2025上半年，进行了两轮的垂直领域训练，评测指标已实现对基座模型的超越，能够满足用户需求 
+            Through pre-training and fine-tuning, our AI team has constructed a large model specialized in state-owned enterprise knowledge. From 2024 to the first half of 2025, we conducted two rounds of vertical domain training. Evaluation metrics have surpassed those of the base model and meet user requirements.
         </h3>
         
     </div>
@@ -362,7 +342,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 2 分钟
+                    2 minute read
                 </time>
             </div>
         
@@ -384,7 +364,7 @@
 
             <div>
                 
-                    <a href="https://zhangzib123.github.io/en/p/experience-summary-on-building-vertical-domain-specific-large-models/" class="link">English</a>
+                    <a href="https://zhangzib123.github.io/p/%E5%9E%82%E7%9B%B4%E9%A2%86%E5%9F%9F%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BB%BA%E8%AE%BE%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/" class="link">中文</a>
                 
             </div>
         </footer>
@@ -396,77 +376,82 @@
     <section class="article-content">
     
     
-    <h2 id="垂直领域大模型建设经验总结">垂直领域大模型建设经验总结
-</h2><h3 id="建设成果">建设成果
-</h3><p>通过预训练和微调构建国资国企知识领域大模型，我公司AI团队，从2024年到2025上半年，进行了两轮的垂直领域训练，评测指标已实现对基座模型的超越，能够满足用户需求，总体情况如下：</p>
+    <h2 id="experience-summary-on-building-vertical-domain-specific-large-models">Experience Summary on Building Vertical Domain-Specific Large Models
+</h2><h3 id="development-achievements">Development Achievements
+</h3><p>Through pre-training and fine-tuning, our AI team has constructed a large model specialized in state-owned enterprise knowledge. From 2024 to the first half of 2025, we conducted two rounds of vertical domain training. Evaluation metrics have surpassed those of the base model and meet user requirements. The overall progress is as follows:</p>
 <div class="table-wrapper"><table>
   <thead>
       <tr>
-          <th>维度</th>
-          <th>第一轮训练</th>
-          <th>第二轮训练</th>
+          <th>Dimension</th>
+          <th>First Round Training</th>
+          <th>Second Round Training</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td>基座模型</td>
+          <td>Base Model</td>
           <td>Qwen1.5-7B</td>
           <td>Qwen2.5-72B</td>
       </tr>
       <tr>
-          <td>预训练语料规模</td>
-          <td>约195亿tokens（gpt tokenizer）</td>
-          <td>约17亿tokens （qwen2.5 tokenizer）</td>
+          <td>Pre-training Corpus Size</td>
+          <td>~19.5B tokens (gpt tokenizer)</td>
+          <td>~1.7B tokens (qwen2.5 tokenizer)</td>
       </tr>
       <tr>
-          <td>领域微调语料（问答对数量）</td>
-          <td>23144</td>
-          <td>397355</td>
+          <td>Domain Fine-tuning Corpus (Q&amp;A Pairs)</td>
+          <td>23,144</td>
+          <td>397,355</td>
       </tr>
       <tr>
-          <td>覆盖领域任务</td>
-          <td>领域问答、分类任务</td>
-          <td>领域问答、报告生成</td>
+          <td>Covered Domain Tasks</td>
+          <td>Domain Q&amp;A, Classification Tasks</td>
+          <td>Domain Q&amp;A, Report Generation</td>
       </tr>
       <tr>
-          <td>模型上下文长度</td>
+          <td>Model Context Length</td>
           <td>2048</td>
           <td>8192</td>
       </tr>
       <tr>
-          <td>训练方式</td>
-          <td>预训练+领域SFT</td>
-          <td>预训练+通用SFT+领域SFT</td>
+          <td>Training Method</td>
+          <td>Pre-training + Domain SFT</td>
+          <td>Pre-training + General SFT + Domain SFT</td>
       </tr>
       <tr>
-          <td>核心任务指标对比（ROUGE）</td>
-          <td>领域问答超基座模型6% 分类任务超基座模型50%</td>
-          <td>领域问答超基座模型14% 报告生成任务超基座模型0.65%</td>
+          <td>Core Task Metrics (ROUGE)</td>
+          <td>Domain Q&amp;A: +6% over base model<br>Classification: +50% over base model</td>
+          <td>Domain Q&amp;A: +14% over base model<br>Report Generation: +0.65% over base model</td>
       </tr>
       <tr>
-          <td>存在问题</td>
-          <td>回答内容简短，难以满足复杂场景需求。</td>
-          <td>生成内容重复，回答仍偏短，对超长上下文理解存在缺陷。</td>
+          <td>Existing Issues</td>
+          <td>Responses overly concise, inadequate for complex scenarios.</td>
+          <td>Content repetition, still brief responses, deficiencies in understanding ultra-long contexts.</td>
       </tr>
   </tbody>
 </table></div>
-<p>在国资国企领域数据集上的评测指标已实现对基座模型的超越，领域问答能力优于DeepSeek、豆包大模型。不过，写作任务能力需强化；且模型当前关键短板集中在：内容生成时回答偏短，长文本及上下文理解也未达理想状态，这些将是后续优化的核心方向。</p>
-<h3 id="后续计划">后续计划
-</h3><p><strong>根据存在的问题以及涉及到的专业语料的数量研判，下一步预训练及微调方向</strong></p>
-<p>1、语料需求</p>
-<p>• 核心语料：10GB+内部资料
-• 辅助语料：5GB+领域相关语料
-• 微调语料：基础问答5万对问答对</p>
-<p>深度分析15万对问答对</p>
-<p>写作任务25万对问答对</p>
-<ol start="2">
+<p>Evaluation metrics on state-owned enterprise datasets have surpassed those of the base model, with domain Q&amp;A capabilities outperforming DeepSeek and Doubao models. However, writing task capabilities need enhancement. Key current shortcomings include overly concise generated content and suboptimal long-text and contextual comprehension, which will be the focus of subsequent optimization.</p>
+<h3 id="next-steps">Next Steps
+</h3><p><strong>Based on existing issues and analysis of professional corpus volume, the directions for next-stage pre-training and fine-tuning are:</strong></p>
+<ol>
 <li>
-<p>基座模型选择</p>
-<p>Qwen3-32B</p>
+<p>Corpus Requirements<br>
+• Core corpus: 10GB+ internal materials<br>
+• Auxiliary corpus: 5GB+ domain-related materials<br>
+• Fine-tuning corpus:</p>
+<ul>
+<li>Basic Q&amp;A: 50k Q&amp;A pairs</li>
+<li>In-depth analysis: 150k Q&amp;A pairs</li>
+<li>Writing tasks: 250k Q&amp;A pairs</li>
+</ul>
 </li>
 <li>
-<p>预训练方法</p>
-<p>参数高效方法（Lora）</p>
+<p>Base Model Selection<br>
+Qwen3-32B</p>
+</li>
+<li>
+<p>Pre-training Method<br>
+Parameter-efficient methods (Lora)</p>
 </li>
 </ol>
 
@@ -477,13 +462,13 @@
     
     <section class="article-tags">
         
-            <a href="/tags/%E5%9B%BD%E4%BC%81%E7%9F%A5%E8%AF%86%E9%A2%86%E5%9F%9F%E5%A4%A7%E6%A8%A1%E5%9E%8B/">国企知识领域大模型</a>
+            <a href="/en/tags/state-owned-enterprise-knowledge-large-model/">State-Owned Enterprise Knowledge Large Model</a>
         
-            <a href="/tags/%E5%9E%82%E7%9B%B4%E9%A2%86%E5%9F%9F%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BB%BA%E8%AE%BE/">垂直领域大模型建设</a>
+            <a href="/en/tags/vertical-domain-specific-large-model-development/">Vertical Domain-Specific Large Model Development</a>
         
-            <a href="/tags/%E5%9E%82%E7%9B%B4%E9%A2%86%E5%9F%9F%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%A2%84%E8%AE%AD%E7%BB%83/">垂直领域大模型预训练</a>
+            <a href="/en/tags/vertical-domain-specific-large-model-pre-training/">Vertical Domain-Specific Large Model Pre-Training</a>
         
-            <a href="/tags/%E8%A1%8C%E4%B8%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83/">行业大模型微调</a>
+            <a href="/en/tags/industry-large-model-fine-tuning/">Industry Large Model Fine-Tuning</a>
         
     </section>
 
@@ -515,9 +500,9 @@
         <script 
             src="https://utteranc.es/client.js"
             repo="zhangzib123/comment"
-            issue-term="title"
+            issue-term="pathname"
             theme="github-light"
-            label="comment"
+            label=""
             crossorigin="anonymous"
             async>
         </script>
@@ -530,28 +515,6 @@
 
     
 
-<aside class="related-content--wrapper">
-    <h2 class="section-title">相关文章</h2>
-    <div class="related-content">
-        <div class="flex article-list--tile">
-            
-                
-<article class="">
-    <a href="/p/%E5%BD%93%E5%AE%A1%E8%AE%A1%E7%9F%A5%E8%AF%86%E9%81%87%E4%B8%8Aai%E5%A4%A7%E6%A8%A1%E5%9E%8B20%E4%B8%87%E6%9D%A1%E4%B8%93%E4%B8%9A%E8%AE%AD%E7%BB%83%E7%82%BC%E5%B0%B1%E5%AE%A1%E8%AE%A1%E5%A4%A7%E8%84%91/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">当审计知识遇上AI大模型：20万条专业训练炼就“审计大脑</h2>
-        </div>
-    </a>
-</article>
-
-            
-        </div>
-    </div>
-</aside>
-
      
     
         
@@ -563,12 +526,12 @@
         
             2020 - 
         
-        2025 张子彪的博客
+        2025 ZibiaoZhang&#39;s Blog
     </section>
     
     <section class="powerby">
-        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 
