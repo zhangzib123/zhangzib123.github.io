@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Based on our company’s years of industry experience and technical implementation practices in public opinion monitoring and web data mining & analysis, this article explores the progression and paradigm shift of web parsing technologies from rule-driven to semantic understanding. It analyzes the revolutionary value and inherent limitations of LLMs for data extraction, and proposes a hybrid architecture solution.">
+<title>Integration of LLM and Traditional Parsing Technologies: Evolution and Best Practices in Web Data Extraction</title>
+
+<link rel='canonical' href='https://zhangzib123.github.io/en/p/integration-of-llm-and-traditional-parsing-technologies-evolution-and-best-practices-in-web-data-extraction/'>
+
+<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="Integration of LLM and Traditional Parsing Technologies: Evolution and Best Practices in Web Data Extraction">
+<meta property='og:description' content="Based on our company’s years of industry experience and technical implementation practices in public opinion monitoring and web data mining & analysis, this article explores the progression and paradigm shift of web parsing technologies from rule-driven to semantic understanding. It analyzes the revolutionary value and inherent limitations of LLMs for data extraction, and proposes a hybrid architecture solution.">
+<meta property='og:url' content='https://zhangzib123.github.io/en/p/integration-of-llm-and-traditional-parsing-technologies-evolution-and-best-practices-in-web-data-extraction/'>
+<meta property='og:site_name' content='ZibiaoZhang&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Public Opinion Monitoring' /><meta property='article:tag' content='Web Data Mining &amp; Analysis' /><meta property='article:tag' content='Web Parsing Technology' /><meta property='article:tag' content='LLM Applications' /><meta property='article:published_time' content='2025-08-13T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-08-13T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="Integration of LLM and Traditional Parsing Technologies: Evolution and Best Practices in Web Data Extraction">
+<meta name="twitter:description" content="Based on our company’s years of industry experience and technical implementation practices in public opinion monitoring and web data mining & analysis, this article explores the progression and paradigm shift of web parsing technologies from rule-driven to semantic understanding. It analyzes the revolutionary value and inherent limitations of LLMs for data extraction, and proposes a hybrid architecture solution.">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/en/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_f509edb42ecc0ebd.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/en">ZibiaoZhang&#39;s Blog</a></h1>
+            <h2 class="site-description">Welcome to my blog</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://zhangzib123.github.io/'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/en/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://zhangzib123.github.io/" >中文</option>
+                                
+                                    <option value="https://zhangzib123.github.io/en/" selected>English</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#1-traditional-parsing-technologies-the-era-of-rules-and-statistics">1. Traditional Parsing Technologies: The Era of Rules and Statistics</a>
+      <ol>
+        <li><a href="#11-evolution-of-core-methods">1.1 Evolution of Core Methods</a></li>
+        <li><a href="#12-drawbacks-of-traditional-parsing">1.2 Drawbacks of Traditional Parsing</a></li>
+        <li><a href="#13-advantages-and-suitable-scenarios-for-traditional-parsing">1.3 Advantages and Suitable Scenarios for Traditional Parsing</a></li>
+      </ol>
+    </li>
+    <li><a href="#2-llm-parsing-the-semantic-understanding-revolution">2. LLM Parsing: The Semantic Understanding Revolution</a>
+      <ol>
+        <li><a href="#21-core-advantages-of-llm">2.1 Core Advantages of LLM</a></li>
+        <li><a href="#22-four-accuracy-issues-of-llm">2.2 Four Accuracy Issues of LLM</a></li>
+      </ol>
+    </li>
+    <li><a href="#3-hybrid-parsing-architecture-balancing-accuracy-and-generalization">3. Hybrid Parsing Architecture: Balancing Accuracy and Generalization</a>
+      <ol>
+        <li><a href="#31-technical-integration-design-scheme">3.1 Technical Integration Design Scheme</a></li>
+        <li><a href="#32-key-implementation-strategies">3.2 Key Implementation Strategies</a>
+          <ol>
+            <li><a href="#strategy-1-strong-constraints-on-llm-output">Strategy 1: <strong>Strong Constraints on LLM Output</strong></a></li>
+            <li><a href="#strategy-2-fallback-to-traditional-rules">Strategy 2: <strong>Fallback to Traditional Rules</strong></a></li>
+            <li><a href="#strategy-3-dynamic-chunk-processing">Strategy 3: <strong>Dynamic Chunk Processing</strong></a></li>
+          </ol>
+        </li>
+        <li><a href="#33-performance-comparison-policy-and-regulation-information-parsing-scenario">3.3 Performance Comparison (Policy and Regulation Information Parsing Scenario)</a></li>
+      </ol>
+    </li>
+    <li><a href="#4-practical-case-general-web-information-collection-system">4. Practical Case: General Web Information Collection System</a>
+      <ol>
+        <li><a href="#41-technology-stack-components">4.1 Technology Stack Components</a></li>
+        <li><a href="#42-workflow">4.2 Workflow</a></li>
+        <li><a href="#43-benefit-analysis">4.3 Benefit Analysis</a></li>
+      </ol>
+    </li>
+    <li><a href="#5-conclusion-technical-selection-guide">5. Conclusion: Technical Selection Guide</a>
+      <ol>
+        <li><a href="#51-recommended-solution-matrix">5.1 Recommended Solution Matrix</a></li>
+        <li><a href="#52-future-directions">5.2 Future Directions</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/en/categories/%E4%BA%92%E8%81%94%E7%BD%91%E4%BF%A1%E6%81%AF%E6%8C%96%E6%8E%98%E5%88%86%E6%9E%90/" >
+                互联网信息挖掘分析
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/en/p/integration-of-llm-and-traditional-parsing-technologies-evolution-and-best-practices-in-web-data-extraction/">Integration of LLM and Traditional Parsing Technologies: Evolution and Best Practices in Web Data Extraction</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Based on our company’s years of industry experience and technical implementation practices in public opinion monitoring and web data mining &amp; analysis, this article explores the progression and paradigm shift of web parsing technologies from rule-driven to semantic understanding. It analyzes the revolutionary value and inherent limitations of LLMs for data extraction, and proposes a hybrid architecture solution.
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Aug 13, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="https://zhangzib123.github.io/p/llm-%E4%B8%8E%E4%BC%A0%E7%BB%9F%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF%E7%9A%84%E8%9E%8D%E5%90%88%E7%BD%91%E9%A1%B5%E6%95%B0%E6%8D%AE%E6%8F%90%E5%8F%96%E7%9A%84%E6%BC%94%E8%BF%9B%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" class="link">中文</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="integration-of-llm-and-traditional-parsing-technologies-evolution-and-best-practices-in-web-data-extraction">Integration of LLM and Traditional Parsing Technologies: Evolution and Best Practices in Web Data Extraction
+</h1><p>​                               Zhang Zibiao | Zhengzhou Shuneng Software Technology Co., Ltd. | China</p>
+<hr>
+<h2 id="1-traditional-parsing-technologies-the-era-of-rules-and-statistics">1. Traditional Parsing Technologies: The Era of Rules and Statistics
+</h2><h3 id="11-evolution-of-core-methods">1.1 Evolution of Core Methods
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>Period</strong></th>
+          <th><strong>Representative Technologies</strong></th>
+          <th><strong>Working Principle</strong></th>
+          <th><strong>Typical Tools</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Rule-based</td>
+          <td>Regular Expressions / XPath / CSS Selector</td>
+          <td>Manually written pattern matching rules</td>
+          <td><code>BeautifulSoup</code>, <code>Scrapy</code></td>
+      </tr>
+      <tr>
+          <td>Statistical</td>
+          <td>CRF / HMM Sequence Labeling</td>
+          <td>Learn entity recognition probability models from labeled data</td>
+          <td><code>Stanford NER</code>, <code>CRF++</code></td>
+      </tr>
+      <tr>
+          <td>Visual Parsing</td>
+          <td>OCR + Text Position Recognition via Page Rendering</td>
+          <td>Render page screenshots and recognize text positions</td>
+          <td><code>Selenium</code> + <code>Tesseract</code></td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="12-drawbacks-of-traditional-parsing">1.2 Drawbacks of Traditional Parsing
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Example: CSS extraction of website source info - breaks if the website layout changes</span>
+</span></span><span class="line"><span class="cl"><span class="n">price</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//span[@class=&#34;source&#34;]/text()&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>Poor generalization</strong>: Minor page structure changes cause rules to fail</li>
+<li><strong>Lack of semantic understanding</strong>: Can only extract explicit fields (e.g., price), cannot summarize product descriptions</li>
+<li><strong>Manual configuration</strong>: Requires manual configuration for each website section’s structure</li>
+<li><strong>Complex attribute extraction</strong>: Weakly structured attributes (e.g., source/document numbers) are difficult to accurately extract via configuration</li>
+</ul>
+<hr>
+<h3 id="13-advantages-and-suitable-scenarios-for-traditional-parsing">1.3 Advantages and Suitable Scenarios for Traditional Parsing
+</h3><ul>
+<li>
+<p><strong>High processing efficiency</strong>: Operates on local structured character parsing, very efficient</p>
+</li>
+<li>
+<p><strong>Suitable for highly structured content</strong>: For example, titles, list pages, and extracting main text fragments can be done well with simple configuration</p>
+</li>
+<li>
+<p><strong>Parsing optimization</strong>: By configuring CSS expressions properly, small changes in web structure can be adapted to. For example:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// Here, span &gt; li is too strict. If another tag (e.g., &lt;div&gt;, &lt;em&gt;, etc.) is inserted between span and li, it won’t match.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">div</span><span class="o">[</span><span class="kd">class</span><span class="err">=&#34;</span><span class="nc">zsy_conlist</span><span class="s">&#34;] &gt; ul &gt; span &gt; li &gt; a
+</span></span></span><span class="line"><span class="cl"><span class="s">// Change to descendant selector (space)
+</span></span></span><span class="line"><span class="cl"><span class="s">div[class=&#34;</span><span class="n">zsy_conlist</span><span class="s">&#34;] &gt; ul &gt; span li a
+</span></span></span><span class="line"><span class="cl"><span class="s">// This way, regardless of how many layers are inserted between span and li, it can still match. Adapts to small page structure changes
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h2 id="2-llm-parsing-the-semantic-understanding-revolution">2. LLM Parsing: The Semantic Understanding Revolution
+</h2><h3 id="21-core-advantages-of-llm">2.1 Core Advantages of LLM
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">[Input] HTML code (including ads/irrelevant tags)  
+</span></span><span class="line"><span class="cl">[LLM Instruction] Extract contact email and summarize main business  
+</span></span><span class="line"><span class="cl">[Output]  
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">  &#34;email&#34;: &#34;contact<span class="ni">@realestate</span>.com&#34;,
+</span></span><span class="line"><span class="cl">  &#34;business&#34;: &#34;Specialized in internet information collection and data processing solutions&#34;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>Breaks structural dependency</strong>: Directly understands page semantics</li>
+<li><strong>Handles complex tasks</strong>: Entity extraction + summary generation + custom phrasing in one step</li>
+<li><strong>Anti-interference capability</strong>: Ignores frontend obfuscation (e.g., dynamic class names)</li>
+</ul>
+<h3 id="22-four-accuracy-issues-of-llm">2.2 Four Accuracy Issues of LLM
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>Problem Type</strong></th>
+          <th><strong>Example</strong></th>
+          <th><strong>Root Cause</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Probabilistic bias</td>
+          <td>Phone <code>138-0013-8000</code> → <code>13800138000</code></td>
+          <td>Seeks semantic plausibility over exact matching</td>
+      </tr>
+      <tr>
+          <td>Context truncation</td>
+          <td>Loss of information at the end of long pages</td>
+          <td>Window size limits (e.g., DeepSeek 64K)</td>
+      </tr>
+      <tr>
+          <td>Fails under adversarial interference</td>
+          <td>Unable to recognize phone numbers in images</td>
+          <td>Limitations of text-only models</td>
+      </tr>
+      <tr>
+          <td>Slower processing</td>
+          <td>Slower extraction of specific content</td>
+          <td>Network and model performance limitations</td>
+      </tr>
+  </tbody>
+</table></div>
+<hr>
+<h2 id="3-hybrid-parsing-architecture-balancing-accuracy-and-generalization">3. Hybrid Parsing Architecture: Balancing Accuracy and Generalization
+</h2><h3 id="31-technical-integration-design-scheme">3.1 Technical Integration Design Scheme
+</h3><p><img src="https://zzsn-doc.obs.cn-north-1.myhuaweicloud.com/typora/image-20250813175727691.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250813175727691"
+	
+	
+></p>
+<h3 id="32-key-implementation-strategies">3.2 Key Implementation Strategies
+</h3><h4 id="strategy-1-strong-constraints-on-llm-output">Strategy 1: <strong>Strong Constraints on LLM Output</strong>
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Strictly output in JSON format:
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">  &#34;name&#34;: &#34;string or null&#34;,
+</span></span><span class="line"><span class="cl">  &#34;phone&#34;: &#34;Must match ^\d{3}-\d{4}-\d{4}$&#34;,
+</span></span><span class="line"><span class="cl">  &#34;business&#34;: &#34;Summary no longer than 20 characters&#34;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">Do not fabricate non-existent information!
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="strategy-2-fallback-to-traditional-rules">Strategy 2: <strong>Fallback to Traditional Rules</strong>
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">validate_phone</span><span class="p">(</span><span class="n">phone</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;^\d</span><span class="si">{3}</span><span class="s1">-\d</span><span class="si">{4}</span><span class="s1">-\d</span><span class="si">{4}</span><span class="s1">$&#39;</span>  <span class="c1"># Strong format validation</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">phone</span><span class="p">))</span> <span class="k">if</span> <span class="n">phone</span> <span class="k">else</span> <span class="kc">False</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="strategy-3-dynamic-chunk-processing">Strategy 3: <strong>Dynamic Chunk Processing</strong>
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Solve long page context overflow</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">chunk_html</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">2000</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">chunks</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">current_chunk</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;section&#39;</span><span class="p">):</span>  <span class="c1"># Split by semantic blocks</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_chunk</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">section</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">max_tokens</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">chunks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_chunk</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">current_chunk</span> <span class="o">=</span> <span class="n">section</span><span class="o">.</span><span class="n">text</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">current_chunk</span> <span class="o">+=</span> <span class="n">section</span><span class="o">.</span><span class="n">text</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">chunks</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="33-performance-comparison-policy-and-regulation-information-parsing-scenario">3.3 Performance Comparison (Policy and Regulation Information Parsing Scenario)
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>Solution</strong></th>
+          <th>Policy-Specific Attribute Accuracy</th>
+          <th>Main Text Accuracy</th>
+          <th>Cost/1K Pages</th>
+          <th>Layout Adaptability</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Pure Traditional Rules</td>
+          <td>68%</td>
+          <td>95%</td>
+          <td>$0.01</td>
+          <td>❌</td>
+      </tr>
+      <tr>
+          <td>Pure LLM (DeepSeek)</td>
+          <td>96%</td>
+          <td>83%</td>
+          <td>$0.15</td>
+          <td>✅</td>
+      </tr>
+      <tr>
+          <td><strong>Hybrid Architecture</strong></td>
+          <td><strong>98%</strong></td>
+          <td><strong>97%</strong></td>
+          <td><strong>$0.08</strong></td>
+          <td>✅</td>
+      </tr>
+  </tbody>
+</table></div>
+<hr>
+<h2 id="4-practical-case-general-web-information-collection-system">4. Practical Case: General Web Information Collection System
+</h2><h3 id="41-technology-stack-components">4.1 Technology Stack Components
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>Component</strong></th>
+          <th><strong>Recommended Tool</strong></th>
+          <th><strong>Function</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Crawler Framework</td>
+          <td>Crawl-for-AI / selenium</td>
+          <td>Webpage fetching</td>
+      </tr>
+      <tr>
+          <td>Dynamic Rendering</td>
+          <td>chrome-driver</td>
+          <td>Handle JS-loaded content</td>
+      </tr>
+      <tr>
+          <td>LLM Parsing</td>
+          <td>DeepSeek-V3 + glm:GLM-4-Flash</td>
+          <td>Summary generation &amp; attribute extraction</td>
+      </tr>
+      <tr>
+          <td>Rule Engine</td>
+          <td>Custom Python validation library</td>
+          <td>Key field format validation</td>
+      </tr>
+      <tr>
+          <td>Proxy Service</td>
+          <td>Bright Data</td>
+          <td>IP rotation to avoid bans</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="42-workflow">4.2 Workflow
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sequenceDiagram
+</span></span><span class="line"><span class="cl">    General Collection System-&gt;&gt;+chrome: Render dynamic page
+</span></span><span class="line"><span class="cl">    chrome--&gt;&gt;-General Collection System: Return complete HTML
+</span></span><span class="line"><span class="cl">    General Collection System-&gt;&gt;+Redis: Read website section structure configuration
+</span></span><span class="line"><span class="cl">    Redis--&gt;&gt;-General Collection System: Return section configuration and parse key content
+</span></span><span class="line"><span class="cl">    General Collection System-&gt;&gt;+DeepSeek: Send prompt and content to be parsed
+</span></span><span class="line"><span class="cl">    DeepSeek--&gt;&gt;-Validator: Return JSON data
+</span></span><span class="line"><span class="cl">    Validator-&gt;&gt;+Regex: Validate results
+</span></span><span class="line"><span class="cl">    Regex--&gt;&gt;-Output: Correct invalid formats
+</span></span><span class="line"><span class="cl">    Output-&gt;&gt;ES: Store structured data
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="43-benefit-analysis">4.3 Benefit Analysis
+</h3><ul>
+<li><strong>Collection efficiency and accuracy</strong>: Simple configuration for specific sites without worrying about follow-up processes; automated collection → business logic execution</li>
+<li><strong>Semantic understanding and processing</strong>: LLM generates summaries and extracts specific content attributes</li>
+<li><strong>Cost control</strong>: Hybrid solution reduces cost by 47% compared to pure LLM parsing</li>
+</ul>
+<hr>
+<h2 id="5-conclusion-technical-selection-guide">5. Conclusion: Technical Selection Guide
+</h2><h3 id="51-recommended-solution-matrix">5.1 Recommended Solution Matrix
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>Scenario</strong></th>
+          <th><strong>Recommended Solution</strong></th>
+          <th><strong>Reason</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Government Gazette/API Data</td>
+          <td>Pure rule parsing (XPath, CSS)</td>
+          <td>Stable structure, near-zero cost</td>
+      </tr>
+      <tr>
+          <td>E-commerce Price Monitoring</td>
+          <td>Rules + LLM Summary</td>
+          <td>High-precision number extraction + activity description understanding</td>
+      </tr>
+      <tr>
+          <td>Business Directory Lead Generation</td>
+          <td>LLM-centric + Rule Validation</td>
+          <td>Adapts to diverse page styles, ensures key field accuracy</td>
+      </tr>
+      <tr>
+          <td>Dynamic Rendering SPA Applications</td>
+          <td>Playwright + LLM Chunk Processing</td>
+          <td>JS execution first, then long page segmented parsing</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="52-future-directions">5.2 Future Directions
+</h3><ol>
+<li><strong>Multimodal Parsing Breakthroughs</strong>: LLM + Vision to recognize phone numbers in images / CAPTCHAs</li>
+<li><strong>Self-Iterating Wrappers</strong>: LLM automatically generates and maintains XPath rules</li>
+<li><strong>Lightweight Deployment</strong>: 7B-scale model local operation (e.g., Llama 3 + ONNX)</li>
+</ol>
+<blockquote>
+<p><strong>Ultimate Rules</strong>:</p>
+<ul>
+<li>Key fields (phone/email) <strong>must be validated by rules</strong></li>
+<li>Semantic tasks (summary/phrasing) <strong>should be handled by LLM</strong></li>
+<li>Dynamic content <strong>should be pre-rendered</strong></li>
+<li>Long pages <strong>should be chunked and deduplicated</strong></li>
+</ul></blockquote>
+<p>By combining <strong>LLM’s semantic generalization capability</strong> with <strong>the determinism of traditional rules</strong>, modern data extraction systems are achieving breakthroughs in both accuracy and adaptability.</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/en/tags/public-opinion-monitoring/">Public Opinion Monitoring</a>
+        
+            <a href="/en/tags/web-data-mining--analysis/">Web Data Mining &amp; Analysis</a>
+        
+            <a href="/en/tags/web-parsing-technology/">Web Parsing Technology</a>
+        
+            <a href="/en/tags/llm-applications/">LLM Applications</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+    
+    
+    
+    <section class="comments">
+        <h3></h3>
+        <script 
+            src="https://utteranc.es/client.js"
+            repo="zhangzib123/comment"
+            issue-term="pathname"
+            theme="github-light"
+            label=""
+            crossorigin="anonymous"
+            async>
+        </script>
+        <noscript></noscript>
+    </section>
+    
+
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2025 ZibiaoZhang&#39;s Blog
+    </section>
+
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
