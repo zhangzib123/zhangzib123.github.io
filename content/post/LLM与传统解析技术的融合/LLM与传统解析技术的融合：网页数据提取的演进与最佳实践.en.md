@@ -4,7 +4,7 @@ draft = false
 title = 'Integration of LLM and Traditional Parsing Technologies: Evolution and Best Practices in Web Data Extraction'
 description = "Based on our company’s years of industry experience and technical implementation practices in public opinion monitoring and web data mining & analysis, this article explores the progression and paradigm shift of web parsing technologies from rule-driven to semantic understanding. It analyzes the revolutionary value and inherent limitations of LLMs for data extraction, and proposes a hybrid architecture solution."
 categories = [
-    "互联网信息挖掘分析",
+    "Web Data Mining & Analysis",
 ]
 tags = [
     "Public Opinion Monitoring",
