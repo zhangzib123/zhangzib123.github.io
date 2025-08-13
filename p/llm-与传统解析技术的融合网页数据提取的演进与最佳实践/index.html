@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="根据我公司多年舆情监测和互联网信息挖掘分析的从业经验和开发实践，本文探讨从**规则驱动**到**语义理解**的网页解析技术演进，分析 LLM（大语言模型）在数据提取中的革命性价值与固有局限，并提出混合架构解决方案。">
+<title>LLM 与传统解析技术的融合：网页数据提取的演进与最佳实践</title>
+
+<link rel='canonical' href='https://zhangzib123.github.io/p/llm-%E4%B8%8E%E4%BC%A0%E7%BB%9F%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF%E7%9A%84%E8%9E%8D%E5%90%88%E7%BD%91%E9%A1%B5%E6%95%B0%E6%8D%AE%E6%8F%90%E5%8F%96%E7%9A%84%E6%BC%94%E8%BF%9B%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/'>
+
+<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="LLM 与传统解析技术的融合：网页数据提取的演进与最佳实践">
+<meta property='og:description' content="根据我公司多年舆情监测和互联网信息挖掘分析的从业经验和开发实践，本文探讨从**规则驱动**到**语义理解**的网页解析技术演进，分析 LLM（大语言模型）在数据提取中的革命性价值与固有局限，并提出混合架构解决方案。">
+<meta property='og:url' content='https://zhangzib123.github.io/p/llm-%E4%B8%8E%E4%BC%A0%E7%BB%9F%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF%E7%9A%84%E8%9E%8D%E5%90%88%E7%BD%91%E9%A1%B5%E6%95%B0%E6%8D%AE%E6%8F%90%E5%8F%96%E7%9A%84%E6%BC%94%E8%BF%9B%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/'>
+<meta property='og:site_name' content='张子彪的博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='舆情监测' /><meta property='article:tag' content='互联网信息挖掘分析' /><meta property='article:tag' content='网页解析技术' /><meta property='article:tag' content='大语言模型应用' /><meta property='article:published_time' content='2025-08-13T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-08-13T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="LLM 与传统解析技术的融合：网页数据提取的演进与最佳实践">
+<meta name="twitter:description" content="根据我公司多年舆情监测和互联网信息挖掘分析的从业经验和开发实践，本文探讨从**规则驱动**到**语义理解**的网页解析技术演进，分析 LLM（大语言模型）在数据提取中的革命性价值与固有局限，并提出混合架构解决方案。">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_f509edb42ecc0ebd.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">张子彪的博客</a></h1>
+            <h2 class="site-description">欢迎来到我的博客</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://zhangzib123.github.io/'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友情链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://zhangzib123.github.io/" selected>中文</option>
+                                
+                                    <option value="https://zhangzib123.github.io/en/" >English</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#一传统解析技术规则与统计的时代">一、传统解析技术：规则与统计的时代</a>
+      <ol>
+        <li><a href="#11-核心方法演进">1.1 核心方法演进</a></li>
+        <li><a href="#12-传统解析的缺点">1.2 传统解析的缺点</a></li>
+        <li><a href="#13-传统解析优点以及适合的场景">1.3 传统解析优点以及适合的场景</a></li>
+      </ol>
+    </li>
+    <li><a href="#二llm-解析语义理解革命">二、LLM 解析：语义理解革命</a>
+      <ol>
+        <li><a href="#21-llm-的核心优势">2.1 LLM 的核心优势</a></li>
+        <li><a href="#22-llm-的四大准确性问题">2.2 LLM 的四大准确性问题</a></li>
+      </ol>
+    </li>
+    <li><a href="#三混合解析架构平衡准确率与泛化性">三、混合解析架构：平衡准确率与泛化性</a>
+      <ol>
+        <li><a href="#31-技术融合设计方案">3.1 技术融合设计方案</a></li>
+        <li><a href="#32-关键实施策略">3.2 关键实施策略</a>
+          <ol>
+            <li><a href="#策略-1llm-输出强约束">策略 1：<strong>LLM 输出强约束</strong></a></li>
+            <li><a href="#策略-2传统规则兜底">策略 2：<strong>传统规则兜底</strong></a></li>
+            <li><a href="#策略-3动态分块处理">策略 3：<strong>动态分块处理</strong></a></li>
+          </ol>
+        </li>
+        <li><a href="#33-效能对比政策法规资讯解析场景">3.3 效能对比（政策法规资讯解析场景）</a></li>
+      </ol>
+    </li>
+    <li><a href="#四实战案例通用网页信息采集系统">四、实战案例：通用网页信息采集系统</a>
+      <ol>
+        <li><a href="#41-技术栈组成">4.1 技术栈组成</a></li>
+        <li><a href="#42-工作流">4.2 工作流</a></li>
+        <li><a href="#43-效益分析">4.3 效益分析</a></li>
+      </ol>
+    </li>
+    <li><a href="#五结论技术选型指南">五、结论：技术选型指南</a>
+      <ol>
+        <li><a href="#51-推荐方案矩阵">5.1 推荐方案矩阵</a></li>
+        <li><a href="#52-未来方向">5.2 未来方向</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E4%BA%92%E8%81%94%E7%BD%91%E4%BF%A1%E6%81%AF%E6%8C%96%E6%8E%98%E5%88%86%E6%9E%90/" >
+                互联网信息挖掘分析
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/llm-%E4%B8%8E%E4%BC%A0%E7%BB%9F%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF%E7%9A%84%E8%9E%8D%E5%90%88%E7%BD%91%E9%A1%B5%E6%95%B0%E6%8D%AE%E6%8F%90%E5%8F%96%E7%9A%84%E6%BC%94%E8%BF%9B%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">LLM 与传统解析技术的融合：网页数据提取的演进与最佳实践</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            根据我公司多年舆情监测和互联网信息挖掘分析的从业经验和开发实践，本文探讨从**规则驱动**到**语义理解**的网页解析技术演进，分析 LLM（大语言模型）在数据提取中的革命性价值与固有局限，并提出混合架构解决方案。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Aug 13, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 4 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="llm-与传统解析技术的融合网页数据提取的演进与最佳实践">LLM 与传统解析技术的融合：网页数据提取的演进与最佳实践
+</h1><p>​                               张子彪 | 郑州数能软件技术有限公司 | 中国</p>
+<hr>
+<h2 id="一传统解析技术规则与统计的时代">一、传统解析技术：规则与统计的时代
+</h2><h3 id="11-核心方法演进">1.1 核心方法演进
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>时期</strong></th>
+          <th><strong>技术代表</strong></th>
+          <th><strong>工作原理</strong></th>
+          <th><strong>典型工具</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>规则方法</td>
+          <td>正则表达式/XPath/CSS选择器</td>
+          <td>人工编写模式匹配规则</td>
+          <td><code>BeautifulSoup</code>, <code>Scrapy</code></td>
+      </tr>
+      <tr>
+          <td>统计方法</td>
+          <td>CRF/HMM 序列标注</td>
+          <td>从标注数据学习实体识别概率模型</td>
+          <td><code>Stanford NER</code>, <code>CRF++</code></td>
+      </tr>
+      <tr>
+          <td>视觉解析</td>
+          <td>OCR+坐标定位</td>
+          <td>渲染页面截图后识别文字位置</td>
+          <td><code>Selenium</code>+<code>Tesseract</code></td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="12-传统解析的缺点">1.2 传统解析的缺点
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 示例：css 提取网站来源信息 - 网站改版即崩溃</span>
+</span></span><span class="line"><span class="cl"><span class="n">price</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//span[@class=&#34;source&#34;]/text()&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>泛化性差</strong>：页面结构微调导致规则失效</li>
+<li><strong>语义理解缺失</strong>：只能提取显性字段（如价格），无法总结产品描述</li>
+<li>**人工配置：**需要根据每个网站栏目的结构进行人工配置</li>
+<li>**属性提取复杂：**部分特殊属性，如来源、发文字号等结构性不强，通过配置难以准确提取出来</li>
+</ul>
+<hr>
+<h3 id="13-传统解析优点以及适合的场景">1.3 传统解析优点以及适合的场景
+</h3><ul>
+<li>
+<p><strong>处理效率高</strong>：传统解析原理为本地结构化字符解析，效率很高</p>
+</li>
+<li>
+<p><strong>适合结构性强的内容</strong>：如标题、列表页列表解析、正文片段的提取通过简单的配置可以很好的提取</p>
+</li>
+<li>
+<p>**解析优化：**通过对css表达式进行合理的配置可以适应网页微小结构变化。例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//这里 span &gt; li 限制太死，如果 span 和 li 之间插了个别的标签（比如 &lt;div&gt;、&lt;em&gt; 等），就匹配不到了。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">div</span><span class="o">[</span><span class="kd">class</span><span class="err">=&#34;</span><span class="nc">zsy_conlist</span><span class="s">&#34;] &gt; ul &gt; span &gt; li &gt; a
+</span></span></span><span class="line"><span class="cl"><span class="s">//换成后代选择器（空格）
+</span></span></span><span class="line"><span class="cl"><span class="s">div[class=&#34;</span><span class="n">zsy_conlist</span><span class="s">&#34;] &gt; ul &gt; span li a
+</span></span></span><span class="line"><span class="cl"><span class="s">//这样无论 span 和 li 之间插了多少层标签，都能匹配到。适应了网页结构的微小变化
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h2 id="二llm-解析语义理解革命">二、LLM 解析：语义理解革命
+</h2><h3 id="21-llm-的核心优势">2.1 LLM 的核心优势
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">[输入] HTML 代码（含广告/无关标签）
+</span></span><span class="line"><span class="cl">[LLM 指令] 提取联系人邮箱并总结主营业务
+</span></span><span class="line"><span class="cl">[输出] 
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">  &#34;email&#34;: &#34;contact<span class="ni">@realestate</span>.com&#34;,
+</span></span><span class="line"><span class="cl">  &#34;business&#34;: &#34;专注互联网信息采集，数据处理解决方案&#34;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>突破结构依赖</strong>：直接理解网页语义</li>
+<li><strong>复杂任务处理</strong>：实体提取 + 摘要生成 + 话术定制一站式完成</li>
+<li><strong>抗干扰能力</strong>：忽略前端混淆代码（如动态 class 名）</li>
+</ul>
+<h3 id="22-llm-的四大准确性问题">2.2 LLM 的四大准确性问题
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>问题类型</strong></th>
+          <th><strong>案例</strong></th>
+          <th><strong>根源</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>概率性偏差</td>
+          <td>电话 <code>138-0013-8000</code> → <code>13800138000</code></td>
+          <td>追求语义合理而非精确匹配</td>
+      </tr>
+      <tr>
+          <td>上下文截断</td>
+          <td>长页面尾部信息丢失</td>
+          <td>窗口限制（如 DeepSeek 64K）</td>
+      </tr>
+      <tr>
+          <td>对抗干扰失效</td>
+          <td>图片电话无法识别</td>
+          <td>纯文本模型局限</td>
+      </tr>
+      <tr>
+          <td>处理速度较慢</td>
+          <td>特定内容提取速度较慢</td>
+          <td>网络和模型性能局限</td>
+      </tr>
+  </tbody>
+</table></div>
+<hr>
+<h2 id="三混合解析架构平衡准确率与泛化性">三、混合解析架构：平衡准确率与泛化性
+</h2><h3 id="31-技术融合设计方案">3.1 技术融合设计方案
+</h3><p><img src="https://zzsn-doc.obs.cn-north-1.myhuaweicloud.com/typora/image-20250813160840583.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250813160840583"
+	
+	
+></p>
+<h3 id="32-关键实施策略">3.2 关键实施策略
+</h3><h4 id="策略-1llm-输出强约束">策略 1：<strong>LLM 输出强约束</strong>
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">严格按 JSON 输出：
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">  &#34;name&#34;: &#34;字符串或null&#34;,
+</span></span><span class="line"><span class="cl">  &#34;phone&#34;: &#34;必须符合 ^\\d{3}-\\d{4}-\\d{4}$ 格式&#34;,
+</span></span><span class="line"><span class="cl">  &#34;business&#34;: &#34;不超过20字的摘要&#34;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">禁止编造不存在的信息！
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="策略-2传统规则兜底">策略 2：<strong>传统规则兜底</strong>
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">validate_phone</span><span class="p">(</span><span class="n">phone</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;^\d</span><span class="si">{3}</span><span class="s1">-\d</span><span class="si">{4}</span><span class="s1">-\d</span><span class="si">{4}</span><span class="s1">$&#39;</span>  <span class="c1"># 强格式校验</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">phone</span><span class="p">))</span> <span class="k">if</span> <span class="n">phone</span> <span class="k">else</span> <span class="kc">False</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="策略-3动态分块处理">策略 3：<strong>动态分块处理</strong>
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 解决长页面上下文溢出</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">chunk_html</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">2000</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">chunks</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">current_chunk</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;section&#39;</span><span class="p">):</span>  <span class="c1"># 按语义区块分割</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_chunk</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">section</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">max_tokens</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">chunks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_chunk</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">current_chunk</span> <span class="o">=</span> <span class="n">section</span><span class="o">.</span><span class="n">text</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">current_chunk</span> <span class="o">+=</span> <span class="n">section</span><span class="o">.</span><span class="n">text</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">chunks</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="33-效能对比政策法规资讯解析场景">3.3 效能对比（政策法规资讯解析场景）
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>方案</strong></th>
+          <th>政策特有属性准确率</th>
+          <th>正文准确率</th>
+          <th>成本/千页</th>
+          <th>改版适应力</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>纯传统规则</td>
+          <td>68%</td>
+          <td>95%</td>
+          <td>$0.01</td>
+          <td>❌</td>
+      </tr>
+      <tr>
+          <td>纯 LLM (DeepSeek)</td>
+          <td>96%</td>
+          <td>83%</td>
+          <td>$0.15</td>
+          <td>✅</td>
+      </tr>
+      <tr>
+          <td><strong>混合架构</strong></td>
+          <td><strong>98%</strong></td>
+          <td><strong>97%</strong></td>
+          <td><strong>$0.08</strong></td>
+          <td>✅</td>
+      </tr>
+  </tbody>
+</table></div>
+<hr>
+<h2 id="四实战案例通用网页信息采集系统">四、实战案例：通用网页信息采集系统
+</h2><h3 id="41-技术栈组成">4.1 技术栈组成
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>组件</strong></th>
+          <th><strong>推荐工具</strong></th>
+          <th><strong>作用</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>爬虫框架</td>
+          <td>Crawl-for-AI / selenium</td>
+          <td>网页抓取</td>
+      </tr>
+      <tr>
+          <td>动态渲染</td>
+          <td>chrome-driver</td>
+          <td>处理 JS 加载内容</td>
+      </tr>
+      <tr>
+          <td>LLM 解析</td>
+          <td>DeepSeek-V3 + glm:GLM-4-Flash</td>
+          <td>摘要生成与属性提取</td>
+      </tr>
+      <tr>
+          <td>规则引擎</td>
+          <td>自定义 Python 校验库</td>
+          <td>关键字段格式验证</td>
+      </tr>
+      <tr>
+          <td>代理服务</td>
+          <td>Bright Data</td>
+          <td>IP 轮换防封禁</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="42-工作流">4.2 工作流
+</h3><p><img src="https://zzsn-doc.obs.cn-north-1.myhuaweicloud.com/typora/image-20250813160910145.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250813160910145"
+	
+	
+></p>
+<h3 id="43-效益分析">4.3 效益分析
+</h3><ul>
+<li><strong>采集效率和准确率</strong>：通过对特定网站的简单配置，无需关心后续流程；自动化采集 -&gt; 执行业务逻辑</li>
+<li><strong>语义理解与处理</strong>：LLM 生成总结和提取特定内容属性</li>
+<li><strong>成本控制</strong>：混合方案比纯 LLM 解析降低 47% 费用</li>
+</ul>
+<hr>
+<h2 id="五结论技术选型指南">五、结论：技术选型指南
+</h2><h3 id="51-推荐方案矩阵">5.1 推荐方案矩阵
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>场景</strong></th>
+          <th><strong>推荐方案</strong></th>
+          <th><strong>原因</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>政府公报/API 数据</td>
+          <td>纯规则解析 (XPath、css)</td>
+          <td>结构稳定，成本近乎为零</td>
+      </tr>
+      <tr>
+          <td>电商价格监控</td>
+          <td>规则+LLM 摘要</td>
+          <td>需高精度数字提取+活动描述理解</td>
+      </tr>
+      <tr>
+          <td>企业黄页获客</td>
+          <td>LLM 为主+规则校验</td>
+          <td>适应多样式页面，保障关键字段准确</td>
+      </tr>
+      <tr>
+          <td>动态渲染SPA 应用</td>
+          <td>Playwright+LLM 分块处理</td>
+          <td>需先执行 JS，长页面分段解析</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="52-未来方向">5.2 未来方向
+</h3><ol>
+<li><strong>多模态解析突破</strong>：LLM+Vision 识别图片电话/验证码</li>
+<li><strong>自迭代包装器</strong>：LLM 自动生成维护 XPath 规则</li>
+<li><strong>轻量化部署</strong>：7B 级模型本地化运行（如 Llama 3 + ONNX）</li>
+</ol>
+<blockquote>
+<p><strong>终极法则</strong>：</p>
+<ul>
+<li>关键字段（电话/邮箱）<strong>必须规则校验</strong></li>
+<li>语义任务（摘要/话术）<strong>交给 LLM 发挥</strong></li>
+<li>动态内容<strong>预先渲染</strong></li>
+<li>长页面<strong>分块处理+去重合并</strong></li>
+</ul></blockquote>
+<p>通过 <strong>LLM 的语义泛化能力 + 传统规则的确定性保障</strong>，现代数据提取系统正实现准确率与适应性的双重突破。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E8%88%86%E6%83%85%E7%9B%91%E6%B5%8B/">舆情监测</a>
+        
+            <a href="/tags/%E4%BA%92%E8%81%94%E7%BD%91%E4%BF%A1%E6%81%AF%E6%8C%96%E6%8E%98%E5%88%86%E6%9E%90/">互联网信息挖掘分析</a>
+        
+            <a href="/tags/%E7%BD%91%E9%A1%B5%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/">网页解析技术</a>
+        
+            <a href="/tags/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/">大语言模型应用</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+    
+    
+    
+    <section class="comments">
+        <h3></h3>
+        <script 
+            src="https://utteranc.es/client.js"
+            repo="zhangzib123/comment"
+            issue-term="title"
+            theme="github-light"
+            label="comment"
+            crossorigin="anonymous"
+            async>
+        </script>
+        <noscript></noscript>
+    </section>
+    
+
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2025 张子彪的博客
+    </section>
+
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
