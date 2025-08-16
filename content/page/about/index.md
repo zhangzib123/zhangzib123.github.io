@@ -1,5 +1,5 @@
 ---
-title: 关于
+title: 博主
 menu:
     main: 
         weight: -90
