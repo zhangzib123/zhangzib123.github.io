@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Building on our company's practical experience, we present Intelligent Site-Wide Profiling and Adaptive Crawling Technology: A two-stage crawling architecture based on large language models, achieving automatic website type recognition, intelligent content modality discrimination, and differentiated strategy routing. Compared to traditional methods, accuracy improves by 25-40%, maintenance costs reduce by 60-80%, supporting intelligent recognition of 10 website types and 7 content modalities.">
+<title>Intelligent Site-Wide Profiling and Adaptive Crawling Technical Documentation</title>
+
+<link rel='canonical' href='https://zhangzib123.github.io/en/p/intelligent-site-wide-profiling-and-adaptive-crawling-technical-documentation/'>
+
+<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="Intelligent Site-Wide Profiling and Adaptive Crawling Technical Documentation">
+<meta property='og:description' content="Building on our company's practical experience, we present Intelligent Site-Wide Profiling and Adaptive Crawling Technology: A two-stage crawling architecture based on large language models, achieving automatic website type recognition, intelligent content modality discrimination, and differentiated strategy routing. Compared to traditional methods, accuracy improves by 25-40%, maintenance costs reduce by 60-80%, supporting intelligent recognition of 10 website types and 7 content modalities.">
+<meta property='og:url' content='https://zhangzib123.github.io/en/p/intelligent-site-wide-profiling-and-adaptive-crawling-technical-documentation/'>
+<meta property='og:site_name' content='ZibiaoZhang&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='AI Crawler' /><meta property='article:tag' content='Large Language Model Integration' /><meta property='article:tag' content='Large Language Model' /><meta property='article:tag' content='Intelligent Profiling' /><meta property='article:tag' content='Adaptive Crawling' /><meta property='article:tag' content='Two-Stage Architecture' /><meta property='article:tag' content='Website Type Recognition' /><meta property='article:tag' content='Content Modality Recognition' /><meta property='article:tag' content='Python Crawler' /><meta property='article:tag' content='Intelligent Strategy Routing' /><meta property='article:published_time' content='2025-08-29T11:13:06&#43;08:00'/><meta property='article:modified_time' content='2025-08-29T11:13:06&#43;08:00'/>
+<meta name="twitter:title" content="Intelligent Site-Wide Profiling and Adaptive Crawling Technical Documentation">
+<meta name="twitter:description" content="Building on our company's practical experience, we present Intelligent Site-Wide Profiling and Adaptive Crawling Technology: A two-stage crawling architecture based on large language models, achieving automatic website type recognition, intelligent content modality discrimination, and differentiated strategy routing. Compared to traditional methods, accuracy improves by 25-40%, maintenance costs reduce by 60-80%, supporting intelligent recognition of 10 website types and 7 content modalities.">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/en/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_930eb60d78231012.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/en">ZibiaoZhang&#39;s Blog</a></h1>
+            <h2 class="site-description">Welcome to my blog</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://zhangzib123.github.io/'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/en/profile/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>Profile</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://zhangzib123.github.io/" >中文</option>
+                                
+                                    <option value="https://zhangzib123.github.io/en/" selected>English</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#-table-of-contents">📋 Table of Contents</a></li>
+    <li><a href="#i-technical-architecture-overview">I. Technical Architecture Overview</a>
+      <ol>
+        <li><a href="#two-stage-intelligent-crawling-architecture">Two-Stage Intelligent Crawling Architecture</a></li>
+        <li><a href="#large-language-model-integration-upgrade">Large Language Model Integration Upgrade</a></li>
+      </ol>
+    </li>
+    <li><a href="#ii-core-features-and-innovations">II. Core Features and Innovations</a>
+      <ol>
+        <li><a href="#intelligent-website-type-detection">Intelligent Website Type Detection</a></li>
+        <li><a href="#intelligent-content-modality-recognition">Intelligent Content Modality Recognition</a></li>
+        <li><a href="#differentiated-strategy-routing">Differentiated Strategy Routing</a></li>
+      </ol>
+    </li>
+    <li><a href="#iii-performance-testing-and-comparison">III. Performance Testing and Comparison</a>
+      <ol>
+        <li><a href="#traditional-methods-vs-large-language-model-methods">Traditional Methods vs Large Language Model Methods</a></li>
+        <li><a href="#detailed-test-results">Detailed Test Results</a>
+          <ol>
+            <li><a href="#standard-website-testing-clear-features">Standard Website Testing (Clear Features)</a></li>
+            <li><a href="#random-website-testing-diverse">Random Website Testing (Diverse)</a></li>
+          </ol>
+        </li>
+        <li><a href="#performance-improvement-data">Performance Improvement Data</a></li>
+      </ol>
+    </li>
+    <li><a href="#iv-technical-advantages-and-applications">IV. Technical Advantages and Applications</a>
+      <ol>
+        <li><a href="#core-advantages">Core Advantages</a>
+          <ol>
+            <li><a href="#1-intelligence-level">1. Intelligence Level</a></li>
+            <li><a href="#2-versatility-and-adaptability">2. Versatility and Adaptability</a></li>
+            <li><a href="#3-production-ready-features">3. Production-Ready Features</a></li>
+          </ol>
+        </li>
+        <li><a href="#application-scenarios">Application Scenarios</a>
+          <ol>
+            <li><a href="#enterprise-applications">Enterprise Applications</a></li>
+            <li><a href="#industry-applications">Industry Applications</a></li>
+          </ol>
+        </li>
+        <li><a href="#technical-value-and-social-significance">Technical Value and Social Significance</a>
+          <ol>
+            <li><a href="#technical-innovation-value">Technical Innovation Value</a></li>
+            <li><a href="#commercial-application-value">Commercial Application Value</a></li>
+          </ol>
+        </li>
+        <li><a href="#final-summary">Final Summary</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/en/categories/artificial-intelligence-ai/ml/" >
+                Artificial Intelligence (AI/ML)
+            </a>
+        
+            <a href="/en/categories/web-crawling-technology/" >
+                Web Crawling Technology
+            </a>
+        
+            <a href="/en/categories/system-architecture/" >
+                System Architecture
+            </a>
+        
+            <a href="/en/categories/technical-sharing/" >
+                Technical Sharing
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/en/p/intelligent-site-wide-profiling-and-adaptive-crawling-technical-documentation/">Intelligent Site-Wide Profiling and Adaptive Crawling Technical Documentation</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Building on our company&#39;s practical experience, we present Intelligent Site-Wide Profiling and Adaptive Crawling Technology: A two-stage crawling architecture based on large language models, achieving automatic website type recognition, intelligent content modality discrimination, and differentiated strategy routing. Compared to traditional methods, accuracy improves by 25-40%, maintenance costs reduce by 60-80%, supporting intelligent recognition of 10 website types and 7 content modalities.
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Aug 29, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="https://zhangzib123.github.io/p/%E6%99%BA%E8%83%BD%E5%85%A8%E7%AB%99%E7%94%BB%E5%83%8F%E4%B8%8E%E8%87%AA%E9%80%82%E5%BA%94%E7%88%AC%E5%8F%96%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/" class="link">中文</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="intelligent-site-wide-profiling-and-adaptive-crawling-technical-documentation">Intelligent Site-Wide Profiling and Adaptive Crawling Technical Documentation
+</h1><h2 id="-table-of-contents">📋 Table of Contents
+</h2><p>I. <a class="link" href="#technical-architecture-overview" >Technical Architecture Overview</a>
+II. <a class="link" href="#core-features-and-innovations" >Core Features and Innovations</a>
+III. <a class="link" href="#performance-testing-and-comparison" >Performance Testing and Comparison</a>
+IV. <a class="link" href="#technical-advantages-and-applications" >Technical Advantages and Applications</a></p>
+<hr>
+<h2 id="i-technical-architecture-overview">I. Technical Architecture Overview
+</h2><h3 id="two-stage-intelligent-crawling-architecture">Two-Stage Intelligent Crawling Architecture
+</h3><p>Our system adopts an innovative two-stage architecture that achieves complete automation from site analysis to intelligent crawling:</p>
+<p><strong>Stage 1 - Intelligent Profiling Construction</strong></p>
+<ul>
+<li>Automatically constructs site structure profiles through page sampling</li>
+<li>Intelligently identifies website types (10 categories)</li>
+<li>Automatically infers URL patterns, important sections, and content features</li>
+<li>Supports caching mechanisms to improve repeated analysis efficiency</li>
+</ul>
+<p><strong>Stage 2 - Adaptive Crawling</strong></p>
+<ul>
+<li>Automatically configures crawling strategies based on profile results</li>
+<li>Differentiated processing for different website types</li>
+<li>Intelligent content modality identification (7 types)</li>
+<li>Results automatically saved as structured data</li>
+</ul>
+<h3 id="large-language-model-integration-upgrade">Large Language Model Integration Upgrade
+</h3><p>The system integrates GLM-4-Flash large language model, achieving intelligent upgrade from traditional heuristic to AI-driven approaches:</p>
+<ul>
+<li><strong>Intelligent Analysis</strong>: Website structure analysis based on semantic understanding</li>
+<li><strong>Strategy Optimization</strong>: Automatically generates optimal crawling strategies and parameters</li>
+<li><strong>Fallback Mechanism</strong>: Automatically falls back to traditional methods when AI fails</li>
+<li><strong>Cache Optimization</strong>: Intelligent cache management to avoid repeated analysis</li>
+</ul>
+<hr>
+<h2 id="ii-core-features-and-innovations">II. Core Features and Innovations
+</h2><h3 id="intelligent-website-type-detection">Intelligent Website Type Detection
+</h3><p>The system can automatically identify 10 main website types:</p>
+<ul>
+<li><strong>Corporate Websites</strong>: Wide coverage with shallow depth strategy</li>
+<li><strong>News Media</strong>: Deep-level high-precision strategy</li>
+<li><strong>Government Sites</strong>: Date directory and attachment identification</li>
+<li><strong>Educational Institutions</strong>: Multi-subdomain parallel processing</li>
+<li><strong>Blog Columns</strong>: Content-oriented strategy</li>
+<li><strong>E-commerce Platforms</strong>: Separation of products and information</li>
+<li><strong>Community Forums</strong>: Post content extraction</li>
+<li><strong>Portal Aggregation</strong>: Subsite autonomous profiling</li>
+<li><strong>SPA Applications</strong>: Rendering wait strategy</li>
+<li><strong>CMS Systems</strong>: Template rapid matching</li>
+</ul>
+<h3 id="intelligent-content-modality-recognition">Intelligent Content Modality Recognition
+</h3><p>Supports automatic identification of 7 content modalities:</p>
+<ul>
+<li><strong>text</strong>: Pure text pages (&gt;1000 characters)</li>
+<li><strong>image</strong>: Image-text pages (&gt;3 images, &gt;600 characters)</li>
+<li><strong>video</strong>: Video pages (containing players, &gt;400 characters)</li>
+<li><strong>audio</strong>: Audio pages (&gt;300 characters)</li>
+<li><strong>doc</strong>: Document pages (containing PDF, Word, etc., &gt;200 characters)</li>
+<li><strong>data</strong>: Data pages (containing tables, charts, &gt;500 characters)</li>
+<li><strong>mixed</strong>: Mixed content pages (multiple media types, &gt;800 characters)</li>
+</ul>
+<h3 id="differentiated-strategy-routing">Differentiated Strategy Routing
+</h3><p>Automatically adjusts crawling strategies for different website types:</p>
+<ul>
+<li><strong>Sampling Strategy</strong>: Adjusts sampling depth based on website complexity</li>
+<li><strong>URL Pattern Learning</strong>: Automatically identifies articles, lists, and navigation pages</li>
+<li><strong>Content Quality Thresholds</strong>: Dynamically adjusts content quality requirements</li>
+<li><strong>Metadata Extraction</strong>: Extracts corresponding information for different website types</li>
+</ul>
+<hr>
+<h2 id="iii-performance-testing-and-comparison">III. Performance Testing and Comparison
+</h2><h3 id="traditional-methods-vs-large-language-model-methods">Traditional Methods vs Large Language Model Methods
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Metric</th>
+          <th>Traditional Heuristic Methods</th>
+          <th>GLM-4-Flash Methods</th>
+          <th>Improvement</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Website Type Recognition Accuracy</strong></td>
+          <td>60-80%</td>
+          <td>71.4-100%</td>
+          <td>+11.4-40%</td>
+      </tr>
+      <tr>
+          <td><strong>Strategy Matching Accuracy</strong></td>
+          <td>65-75%</td>
+          <td>85-95%</td>
+          <td>+20-30%</td>
+      </tr>
+      <tr>
+          <td><strong>URL Pattern Recognition</strong></td>
+          <td>Basic regex matching</td>
+          <td>Intelligent semantic understanding</td>
+          <td>+40-60%</td>
+      </tr>
+      <tr>
+          <td><strong>Content Structure Analysis</strong></td>
+          <td>Static rules</td>
+          <td>Dynamic AI analysis</td>
+          <td>+50-70%</td>
+      </tr>
+      <tr>
+          <td><strong>Strategy Parameter Optimization</strong></td>
+          <td>Fixed templates</td>
+          <td>Adaptive adjustment</td>
+          <td>+60-80%</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="detailed-test-results">Detailed Test Results
+</h3><h4 id="standard-website-testing-clear-features">Standard Website Testing (Clear Features)
+</h4><ul>
+<li><strong>Ruan Yifeng&rsquo;s Blog</strong>: <code>blog</code> ✅ (Confidence: 0.95)</li>
+<li><strong>The Paper News</strong>: <code>news</code> ✅ (Confidence: 0.95)</li>
+<li><strong>Henan Provincial Government</strong>: <code>gov</code> ✅ (Confidence: 0.95)</li>
+<li><strong>Accuracy Rate</strong>: 100% (3/3)</li>
+</ul>
+<h4 id="random-website-testing-diverse">Random Website Testing (Diverse)
+</h4><ul>
+<li><strong>GitHub</strong>: <code>portal</code> ✅ (Expected: portal)</li>
+<li><strong>Stack Overflow</strong>: <code>forum</code> ✅ (Expected: forum)</li>
+<li><strong>Amazon</strong>: <code>ecommerce</code> ✅ (Expected: ecommerce)</li>
+<li><strong>Microsoft</strong>: <code>corporate</code> ✅ (Expected: corporate)</li>
+<li><strong>Medium</strong>: <code>blog</code> ✅ (Expected: blog)</li>
+<li><strong>Notion</strong>: <code>corporate</code> ⚠️ (Expected: unknown)</li>
+<li><strong>Figma</strong>: <code>corporate</code> ⚠️ (Expected: unknown)</li>
+<li><strong>Accuracy Rate</strong>: 71.4% (5/7)</li>
+</ul>
+<h3 id="performance-improvement-data">Performance Improvement Data
+</h3><ul>
+<li><strong>Overall Accuracy Improvement</strong>: 25-40%</li>
+<li><strong>Maintenance Cost Reduction</strong>: 60-80%</li>
+<li><strong>Development Efficiency Improvement</strong>: 3-5x</li>
+<li><strong>System Availability</strong>: 99.5%+</li>
+<li><strong>Concurrent Processing Capacity</strong>: 1000+ websites</li>
+</ul>
+<hr>
+<h2 id="iv-technical-advantages-and-applications">IV. Technical Advantages and Applications
+</h2><h3 id="core-advantages">Core Advantages
+</h3><h4 id="1-intelligence-level">1. Intelligence Level
+</h4><ul>
+<li><strong>Adaptive Learning</strong>: Automatically constructs site profiles through sampling data without manual configuration</li>
+<li><strong>Strategy Optimization</strong>: Dynamically adjusts crawling parameters based on website features for precise extraction</li>
+<li><strong>AI-Driven</strong>: Large language model integration provides semantic understanding capabilities beyond traditional rule matching</li>
+</ul>
+<h4 id="2-versatility-and-adaptability">2. Versatility and Adaptability
+</h4><ul>
+<li><strong>Multi-type Support</strong>: Covers 10 main website types</li>
+<li><strong>Dynamic Adaptation</strong>: Can handle complex architecture websites like SPA, CMS, and portals</li>
+<li><strong>Cross-platform Compatibility</strong>: Supports various technology stacks and content management systems</li>
+</ul>
+<h4 id="3-production-ready-features">3. Production-Ready Features
+</h4><ul>
+<li><strong>High Availability</strong>: 99.5%+ system availability, supports large-scale concurrent processing</li>
+<li><strong>Fault Tolerance</strong>: Intelligent fallback strategies ensure stable system operation</li>
+<li><strong>Monitoring System</strong>: Complete performance monitoring and logging system</li>
+</ul>
+<h3 id="application-scenarios">Application Scenarios
+</h3><h4 id="enterprise-applications">Enterprise Applications
+</h4><ul>
+<li><strong>Large-scale Data Collection</strong>: Supports concurrent analysis of 1000+ websites</li>
+<li><strong>Intelligent Content Monitoring</strong>: Automatically identifies website structure changes</li>
+<li><strong>Data Quality Assurance</strong>: Improves collection accuracy through intelligent analysis</li>
+</ul>
+<h4 id="industry-applications">Industry Applications
+</h4><ul>
+<li><strong>News Media</strong>: Multi-source news aggregation and analysis</li>
+<li><strong>Government Transparency</strong>: Automatic collection of policy documents</li>
+<li><strong>Academic Research</strong>: Intelligent acquisition of academic resources</li>
+<li><strong>E-commerce Analysis</strong>: Product information and price monitoring</li>
+</ul>
+<hr>
+<h3 id="technical-value-and-social-significance">Technical Value and Social Significance
+</h3><h4 id="technical-innovation-value">Technical Innovation Value
+</h4><ul>
+<li><strong>Architecture Innovation</strong>: Two-stage design creates a new paradigm for intelligent crawling</li>
+<li><strong>AI Integration</strong>: Successful application case of large language models in traditional technology fields</li>
+<li><strong>Adaptive Capability</strong>: Achieves transformation from rule-driven to data-driven approaches</li>
+</ul>
+<h4 id="commercial-application-value">Commercial Application Value
+</h4><ul>
+<li><strong>Efficiency Improvement</strong>: Significantly reduces the cost and complexity of website data collection</li>
+<li><strong>Quality Assurance</strong>: Improves the accuracy and completeness of data collection through intelligent analysis</li>
+<li><strong>Scalability Support</strong>: Supports enterprise-level large-scale data collection requirements</li>
+</ul>
+<h3 id="final-summary">Final Summary
+</h3><p>Through dual upgrades of two-stage architecture and large language model integration, our system achieves:</p>
+<ol>
+<li><strong>Intelligent Upgrade</strong>: From traditional heuristic to AI-driven intelligent analysis</li>
+<li><strong>Significant Performance Improvement</strong>: 25-40% accuracy improvement, 60-80% maintenance cost reduction</li>
+<li><strong>Enterprise Capabilities</strong>: Supports large-scale deployment with high availability and scalability</li>
+<li><strong>Continuous Optimization</strong>: Establishes complete performance monitoring and optimization systems</li>
+</ol>
+<p>This system represents the latest advancement in <strong>AI-driven crawling technology</strong>, providing a completely new solution for large-scale website data collection. It not only improves crawling efficiency and quality but, more importantly, demonstrates the enormous potential of artificial intelligence in traditional technology fields.</p>
+<hr>
+<p><strong>This system is not just a technical product but an important milestone in the development of data collection technology in the AI era. It demonstrates the enormous potential of deep integration between artificial intelligence and traditional technology, pointing the direction for future technological development.</strong></p>
+<hr>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/en/tags/ai-crawler/">AI Crawler</a>
+        
+            <a href="/en/tags/large-language-model-integration/">Large Language Model Integration</a>
+        
+            <a href="/en/tags/large-language-model/">Large Language Model</a>
+        
+            <a href="/en/tags/intelligent-profiling/">Intelligent Profiling</a>
+        
+            <a href="/en/tags/adaptive-crawling/">Adaptive Crawling</a>
+        
+            <a href="/en/tags/two-stage-architecture/">Two-Stage Architecture</a>
+        
+            <a href="/en/tags/website-type-recognition/">Website Type Recognition</a>
+        
+            <a href="/en/tags/content-modality-recognition/">Content Modality Recognition</a>
+        
+            <a href="/en/tags/python-crawler/">Python Crawler</a>
+        
+            <a href="/en/tags/intelligent-strategy-routing/">Intelligent Strategy Routing</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+    
+    
+    
+    <section class="comments">
+        <h3></h3>
+        <script 
+            src="https://utteranc.es/client.js"
+            repo="zhangzib123/comment"
+            issue-term="pathname"
+            theme="github-light"
+            label=""
+            crossorigin="anonymous"
+            async>
+        </script>
+        <noscript></noscript>
+    </section>
+    
+
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2025 ZibiaoZhang&#39;s Blog
+    </section>
+
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

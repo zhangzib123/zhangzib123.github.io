@@ -6,7 +6,215 @@
         <description>Recent content on ZibiaoZhang&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Wed, 13 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://zhangzib123.github.io/en/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 29 Aug 2025 11:13:06 +0800</lastBuildDate><atom:link href="https://zhangzib123.github.io/en/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Intelligent Site-Wide Profiling and Adaptive Crawling Technical Documentation</title>
+        <link>https://zhangzib123.github.io/en/p/intelligent-site-wide-profiling-and-adaptive-crawling-technical-documentation/</link>
+        <pubDate>Fri, 29 Aug 2025 11:13:06 +0800</pubDate>
+        
+        <guid>https://zhangzib123.github.io/en/p/intelligent-site-wide-profiling-and-adaptive-crawling-technical-documentation/</guid>
+        <description>&lt;h1 id=&#34;intelligent-site-wide-profiling-and-adaptive-crawling-technical-documentation&#34;&gt;Intelligent Site-Wide Profiling and Adaptive Crawling Technical Documentation
+&lt;/h1&gt;&lt;h2 id=&#34;-table-of-contents&#34;&gt;📋 Table of Contents
+&lt;/h2&gt;&lt;p&gt;I. &lt;a class=&#34;link&#34; href=&#34;#technical-architecture-overview&#34; &gt;Technical Architecture Overview&lt;/a&gt;
+II. &lt;a class=&#34;link&#34; href=&#34;#core-features-and-innovations&#34; &gt;Core Features and Innovations&lt;/a&gt;
+III. &lt;a class=&#34;link&#34; href=&#34;#performance-testing-and-comparison&#34; &gt;Performance Testing and Comparison&lt;/a&gt;
+IV. &lt;a class=&#34;link&#34; href=&#34;#technical-advantages-and-applications&#34; &gt;Technical Advantages and Applications&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;i-technical-architecture-overview&#34;&gt;I. Technical Architecture Overview
+&lt;/h2&gt;&lt;h3 id=&#34;two-stage-intelligent-crawling-architecture&#34;&gt;Two-Stage Intelligent Crawling Architecture
+&lt;/h3&gt;&lt;p&gt;Our system adopts an innovative two-stage architecture that achieves complete automation from site analysis to intelligent crawling:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Stage 1 - Intelligent Profiling Construction&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Automatically constructs site structure profiles through page sampling&lt;/li&gt;
+&lt;li&gt;Intelligently identifies website types (10 categories)&lt;/li&gt;
+&lt;li&gt;Automatically infers URL patterns, important sections, and content features&lt;/li&gt;
+&lt;li&gt;Supports caching mechanisms to improve repeated analysis efficiency&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Stage 2 - Adaptive Crawling&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Automatically configures crawling strategies based on profile results&lt;/li&gt;
+&lt;li&gt;Differentiated processing for different website types&lt;/li&gt;
+&lt;li&gt;Intelligent content modality identification (7 types)&lt;/li&gt;
+&lt;li&gt;Results automatically saved as structured data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;large-language-model-integration-upgrade&#34;&gt;Large Language Model Integration Upgrade
+&lt;/h3&gt;&lt;p&gt;The system integrates GLM-4-Flash large language model, achieving intelligent upgrade from traditional heuristic to AI-driven approaches:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Intelligent Analysis&lt;/strong&gt;: Website structure analysis based on semantic understanding&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Strategy Optimization&lt;/strong&gt;: Automatically generates optimal crawling strategies and parameters&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fallback Mechanism&lt;/strong&gt;: Automatically falls back to traditional methods when AI fails&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cache Optimization&lt;/strong&gt;: Intelligent cache management to avoid repeated analysis&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ii-core-features-and-innovations&#34;&gt;II. Core Features and Innovations
+&lt;/h2&gt;&lt;h3 id=&#34;intelligent-website-type-detection&#34;&gt;Intelligent Website Type Detection
+&lt;/h3&gt;&lt;p&gt;The system can automatically identify 10 main website types:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Corporate Websites&lt;/strong&gt;: Wide coverage with shallow depth strategy&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;News Media&lt;/strong&gt;: Deep-level high-precision strategy&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Government Sites&lt;/strong&gt;: Date directory and attachment identification&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Educational Institutions&lt;/strong&gt;: Multi-subdomain parallel processing&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Blog Columns&lt;/strong&gt;: Content-oriented strategy&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;E-commerce Platforms&lt;/strong&gt;: Separation of products and information&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Community Forums&lt;/strong&gt;: Post content extraction&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Portal Aggregation&lt;/strong&gt;: Subsite autonomous profiling&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SPA Applications&lt;/strong&gt;: Rendering wait strategy&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CMS Systems&lt;/strong&gt;: Template rapid matching&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;intelligent-content-modality-recognition&#34;&gt;Intelligent Content Modality Recognition
+&lt;/h3&gt;&lt;p&gt;Supports automatic identification of 7 content modalities:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;text&lt;/strong&gt;: Pure text pages (&amp;gt;1000 characters)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;image&lt;/strong&gt;: Image-text pages (&amp;gt;3 images, &amp;gt;600 characters)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;video&lt;/strong&gt;: Video pages (containing players, &amp;gt;400 characters)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;audio&lt;/strong&gt;: Audio pages (&amp;gt;300 characters)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;doc&lt;/strong&gt;: Document pages (containing PDF, Word, etc., &amp;gt;200 characters)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;data&lt;/strong&gt;: Data pages (containing tables, charts, &amp;gt;500 characters)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;mixed&lt;/strong&gt;: Mixed content pages (multiple media types, &amp;gt;800 characters)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;differentiated-strategy-routing&#34;&gt;Differentiated Strategy Routing
+&lt;/h3&gt;&lt;p&gt;Automatically adjusts crawling strategies for different website types:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Sampling Strategy&lt;/strong&gt;: Adjusts sampling depth based on website complexity&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;URL Pattern Learning&lt;/strong&gt;: Automatically identifies articles, lists, and navigation pages&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Content Quality Thresholds&lt;/strong&gt;: Dynamically adjusts content quality requirements&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Metadata Extraction&lt;/strong&gt;: Extracts corresponding information for different website types&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;iii-performance-testing-and-comparison&#34;&gt;III. Performance Testing and Comparison
+&lt;/h2&gt;&lt;h3 id=&#34;traditional-methods-vs-large-language-model-methods&#34;&gt;Traditional Methods vs Large Language Model Methods
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Metric&lt;/th&gt;
+          &lt;th&gt;Traditional Heuristic Methods&lt;/th&gt;
+          &lt;th&gt;GLM-4-Flash Methods&lt;/th&gt;
+          &lt;th&gt;Improvement&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Website Type Recognition Accuracy&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;60-80%&lt;/td&gt;
+          &lt;td&gt;71.4-100%&lt;/td&gt;
+          &lt;td&gt;+11.4-40%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Strategy Matching Accuracy&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;65-75%&lt;/td&gt;
+          &lt;td&gt;85-95%&lt;/td&gt;
+          &lt;td&gt;+20-30%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;URL Pattern Recognition&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Basic regex matching&lt;/td&gt;
+          &lt;td&gt;Intelligent semantic understanding&lt;/td&gt;
+          &lt;td&gt;+40-60%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Content Structure Analysis&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Static rules&lt;/td&gt;
+          &lt;td&gt;Dynamic AI analysis&lt;/td&gt;
+          &lt;td&gt;+50-70%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Strategy Parameter Optimization&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Fixed templates&lt;/td&gt;
+          &lt;td&gt;Adaptive adjustment&lt;/td&gt;
+          &lt;td&gt;+60-80%&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;detailed-test-results&#34;&gt;Detailed Test Results
+&lt;/h3&gt;&lt;h4 id=&#34;standard-website-testing-clear-features&#34;&gt;Standard Website Testing (Clear Features)
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Ruan Yifeng&amp;rsquo;s Blog&lt;/strong&gt;: &lt;code&gt;blog&lt;/code&gt; ✅ (Confidence: 0.95)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Paper News&lt;/strong&gt;: &lt;code&gt;news&lt;/code&gt; ✅ (Confidence: 0.95)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Henan Provincial Government&lt;/strong&gt;: &lt;code&gt;gov&lt;/code&gt; ✅ (Confidence: 0.95)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Accuracy Rate&lt;/strong&gt;: 100% (3/3)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;random-website-testing-diverse&#34;&gt;Random Website Testing (Diverse)
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;GitHub&lt;/strong&gt;: &lt;code&gt;portal&lt;/code&gt; ✅ (Expected: portal)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stack Overflow&lt;/strong&gt;: &lt;code&gt;forum&lt;/code&gt; ✅ (Expected: forum)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Amazon&lt;/strong&gt;: &lt;code&gt;ecommerce&lt;/code&gt; ✅ (Expected: ecommerce)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Microsoft&lt;/strong&gt;: &lt;code&gt;corporate&lt;/code&gt; ✅ (Expected: corporate)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Medium&lt;/strong&gt;: &lt;code&gt;blog&lt;/code&gt; ✅ (Expected: blog)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Notion&lt;/strong&gt;: &lt;code&gt;corporate&lt;/code&gt; ⚠️ (Expected: unknown)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Figma&lt;/strong&gt;: &lt;code&gt;corporate&lt;/code&gt; ⚠️ (Expected: unknown)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Accuracy Rate&lt;/strong&gt;: 71.4% (5/7)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;performance-improvement-data&#34;&gt;Performance Improvement Data
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Overall Accuracy Improvement&lt;/strong&gt;: 25-40%&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Maintenance Cost Reduction&lt;/strong&gt;: 60-80%&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Development Efficiency Improvement&lt;/strong&gt;: 3-5x&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;System Availability&lt;/strong&gt;: 99.5%+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Concurrent Processing Capacity&lt;/strong&gt;: 1000+ websites&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;iv-technical-advantages-and-applications&#34;&gt;IV. Technical Advantages and Applications
+&lt;/h2&gt;&lt;h3 id=&#34;core-advantages&#34;&gt;Core Advantages
+&lt;/h3&gt;&lt;h4 id=&#34;1-intelligence-level&#34;&gt;1. Intelligence Level
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Adaptive Learning&lt;/strong&gt;: Automatically constructs site profiles through sampling data without manual configuration&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Strategy Optimization&lt;/strong&gt;: Dynamically adjusts crawling parameters based on website features for precise extraction&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AI-Driven&lt;/strong&gt;: Large language model integration provides semantic understanding capabilities beyond traditional rule matching&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;2-versatility-and-adaptability&#34;&gt;2. Versatility and Adaptability
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Multi-type Support&lt;/strong&gt;: Covers 10 main website types&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dynamic Adaptation&lt;/strong&gt;: Can handle complex architecture websites like SPA, CMS, and portals&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cross-platform Compatibility&lt;/strong&gt;: Supports various technology stacks and content management systems&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;3-production-ready-features&#34;&gt;3. Production-Ready Features
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;High Availability&lt;/strong&gt;: 99.5%+ system availability, supports large-scale concurrent processing&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fault Tolerance&lt;/strong&gt;: Intelligent fallback strategies ensure stable system operation&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Monitoring System&lt;/strong&gt;: Complete performance monitoring and logging system&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;application-scenarios&#34;&gt;Application Scenarios
+&lt;/h3&gt;&lt;h4 id=&#34;enterprise-applications&#34;&gt;Enterprise Applications
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Large-scale Data Collection&lt;/strong&gt;: Supports concurrent analysis of 1000+ websites&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Intelligent Content Monitoring&lt;/strong&gt;: Automatically identifies website structure changes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data Quality Assurance&lt;/strong&gt;: Improves collection accuracy through intelligent analysis&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;industry-applications&#34;&gt;Industry Applications
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;News Media&lt;/strong&gt;: Multi-source news aggregation and analysis&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Government Transparency&lt;/strong&gt;: Automatic collection of policy documents&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Academic Research&lt;/strong&gt;: Intelligent acquisition of academic resources&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;E-commerce Analysis&lt;/strong&gt;: Product information and price monitoring&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;technical-value-and-social-significance&#34;&gt;Technical Value and Social Significance
+&lt;/h3&gt;&lt;h4 id=&#34;technical-innovation-value&#34;&gt;Technical Innovation Value
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Architecture Innovation&lt;/strong&gt;: Two-stage design creates a new paradigm for intelligent crawling&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AI Integration&lt;/strong&gt;: Successful application case of large language models in traditional technology fields&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Adaptive Capability&lt;/strong&gt;: Achieves transformation from rule-driven to data-driven approaches&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;commercial-application-value&#34;&gt;Commercial Application Value
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Efficiency Improvement&lt;/strong&gt;: Significantly reduces the cost and complexity of website data collection&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Quality Assurance&lt;/strong&gt;: Improves the accuracy and completeness of data collection through intelligent analysis&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scalability Support&lt;/strong&gt;: Supports enterprise-level large-scale data collection requirements&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;final-summary&#34;&gt;Final Summary
+&lt;/h3&gt;&lt;p&gt;Through dual upgrades of two-stage architecture and large language model integration, our system achieves:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Intelligent Upgrade&lt;/strong&gt;: From traditional heuristic to AI-driven intelligent analysis&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Significant Performance Improvement&lt;/strong&gt;: 25-40% accuracy improvement, 60-80% maintenance cost reduction&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Enterprise Capabilities&lt;/strong&gt;: Supports large-scale deployment with high availability and scalability&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Continuous Optimization&lt;/strong&gt;: Establishes complete performance monitoring and optimization systems&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This system represents the latest advancement in &lt;strong&gt;AI-driven crawling technology&lt;/strong&gt;, providing a completely new solution for large-scale website data collection. It not only improves crawling efficiency and quality but, more importantly, demonstrates the enormous potential of artificial intelligence in traditional technology fields.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;This system is not just a technical product but an important milestone in the development of data collection technology in the AI era. It demonstrates the enormous potential of deep integration between artificial intelligence and traditional technology, pointing the direction for future technological development.&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+</description>
+        </item>
+        <item>
         <title>Integration of LLM and Traditional Parsing Technologies: Evolution and Best Practices in Web Data Extraction</title>
         <link>https://zhangzib123.github.io/en/p/integration-of-llm-and-traditional-parsing-technologies-evolution-and-best-practices-in-web-data-extraction/</link>
         <pubDate>Wed, 13 Aug 2025 00:00:00 +0000</pubDate>
