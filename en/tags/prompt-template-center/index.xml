@@ -54,31 +54,17 @@ Once you need to switch models or adjust strategies, it quickly becomes a compan
 but decided centrally by the platform.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h4 id=&#34;22-architectural-view-layers-and-responsibilities&#34;&gt;2.2 Architectural View: Layers and Responsibilities
-&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;graph TB
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    A[Upper-layer Applications&amp;lt;br/&amp;gt;Business Systems] --&amp;gt; B[AI Governance &amp;amp; Scheduling Platform&amp;lt;br/&amp;gt;Unified Entry]
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    B --&amp;gt; C[Intelligent Scheduling Layer&amp;lt;br/&amp;gt;Model Selection / Fallback / Throttling]
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    B --&amp;gt; D[Plugin Ecosystem Layer&amp;lt;br/&amp;gt;In-house AI Components / Business Plugins]
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    B --&amp;gt; E[Service Registry Layer&amp;lt;br/&amp;gt;Traditional ML / External AI Services]
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    C --&amp;gt; F[Model Pool&amp;lt;br/&amp;gt;Multiple LLM Vendors / Private Models]
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    D --&amp;gt; G[Prompt Template Center&amp;lt;br/&amp;gt;Best-practice Library]
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    E --&amp;gt; H[Registered Service Catalog]
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    B --&amp;gt; I[Monitoring &amp;amp; Cost Governance&amp;lt;br/&amp;gt;QPS / Health / Tokens / Cost]
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Key ideas:&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/iceberg2024/public/main/images/image-20251209115253120.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20251209115253120&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Key ideas:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Unified entry&lt;/strong&gt;: business systems integrate once, use many models/services behind the scenes&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Intelligent scheduling&lt;/strong&gt;: the platform decides routing based on business tier, cost preference, health and load&lt;/li&gt;

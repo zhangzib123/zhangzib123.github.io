@@ -452,31 +452,17 @@ Once you need to switch models or adjust strategies, it quickly becomes a compan
 but decided centrally by the platform.</p>
 </blockquote>
 <h4 id="22-architectural-view-layers-and-responsibilities">2.2 Architectural View: Layers and Responsibilities
-</h4><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">graph TB
-</span></span><span class="line"><span class="cl">    A[Upper-layer Applications&lt;br/&gt;Business Systems] --&gt; B[AI Governance &amp; Scheduling Platform&lt;br/&gt;Unified Entry]
-</span></span><span class="line"><span class="cl">    B --&gt; C[Intelligent Scheduling Layer&lt;br/&gt;Model Selection / Fallback / Throttling]
-</span></span><span class="line"><span class="cl">    B --&gt; D[Plugin Ecosystem Layer&lt;br/&gt;In-house AI Components / Business Plugins]
-</span></span><span class="line"><span class="cl">    B --&gt; E[Service Registry Layer&lt;br/&gt;Traditional ML / External AI Services]
-</span></span><span class="line"><span class="cl">    C --&gt; F[Model Pool&lt;br/&gt;Multiple LLM Vendors / Private Models]
-</span></span><span class="line"><span class="cl">    D --&gt; G[Prompt Template Center&lt;br/&gt;Best-practice Library]
-</span></span><span class="line"><span class="cl">    E --&gt; H[Registered Service Catalog]
-</span></span><span class="line"><span class="cl">    B --&gt; I[Monitoring &amp; Cost Governance&lt;br/&gt;QPS / Health / Tokens / Cost]
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>Key ideas:</p>
+</h4><p><img src="https://raw.githubusercontent.com/iceberg2024/public/main/images/image-20251209115253120.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20251209115253120"
+	
+	
+></p>
+<p>Key ideas:</p>
 <ul>
 <li><strong>Unified entry</strong>: business systems integrate once, use many models/services behind the scenes</li>
 <li><strong>Intelligent scheduling</strong>: the platform decides routing based on business tier, cost preference, health and load</li>

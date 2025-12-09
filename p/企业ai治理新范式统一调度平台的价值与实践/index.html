@@ -474,31 +474,17 @@
 </blockquote>
 <h3 id="22-架构理念分层解耦--统一调度--资产沉淀">2.2 架构理念：分层解耦 + 统一调度 + 资产沉淀
 </h3><p>用一幅简化架构图来理解平台角色：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">graph TB
-</span></span><span class="line"><span class="cl">    A[上层应用&lt;br/&gt;业务系统] --&gt; B[AI治理与调度平台&lt;br/&gt;统一入口]
-</span></span><span class="line"><span class="cl">    B --&gt; C[智能调度层&lt;br/&gt;模型选择/熔断/限流]
-</span></span><span class="line"><span class="cl">    B --&gt; D[插件生态层&lt;br/&gt;自研AI组件/业务插件]
-</span></span><span class="line"><span class="cl">    B --&gt; E[服务注册层&lt;br/&gt;传统ML服务/外部AI服务]
-</span></span><span class="line"><span class="cl">    C --&gt; F[模型池&lt;br/&gt;多家LLM/私有模型]
-</span></span><span class="line"><span class="cl">    D --&gt; G[Prompt模板中心&lt;br/&gt;最佳实践沉淀]
-</span></span><span class="line"><span class="cl">    E --&gt; H[注册服务目录]
-</span></span><span class="line"><span class="cl">    B --&gt; I[监控与成本治理&lt;br/&gt;QPS/健康/Token/成本]
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>关键设计理念：</p>
+<p><img src="https://raw.githubusercontent.com/iceberg2024/public/main/images/image-20251209115835748.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20251209115835748"
+	
+	
+></p>
+<p>关键设计理念：</p>
 <ul>
 <li><strong>统一入口</strong>：业务只对接平台一个出口，不再“人手一个第三方 API”</li>
 <li><strong>智能调度</strong>：结合业务等级、成本偏好、健康状态、负载等多维因素自动路由</li>
