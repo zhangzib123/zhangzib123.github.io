@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>LLM Gateway on ZibiaoZhang&#39;s Blog</title>
+        <link>https://zhangzib123.github.io/en/tags/llm-gateway/</link>
+        <description>Recent content in LLM Gateway on ZibiaoZhang&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Mon, 08 Dec 2025 11:13:06 +0800</lastBuildDate><atom:link href="https://zhangzib123.github.io/en/tags/llm-gateway/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>A New Paradigm for Enterprise AI Governance: The Value and Practice of a Unified Scheduling Platform</title>
+        <link>https://zhangzib123.github.io/en/p/a-new-paradigm-for-enterprise-ai-governance-the-value-and-practice-of-a-unified-scheduling-platform/</link>
+        <pubDate>Mon, 08 Dec 2025 11:13:06 +0800</pubDate>
+        
+        <guid>https://zhangzib123.github.io/en/p/a-new-paradigm-for-enterprise-ai-governance-the-value-and-practice-of-a-unified-scheduling-platform/</guid>
+        <description>&lt;h2 id=&#34;a-new-paradigm-for-enterprise-ai-governance-the-value-and-practice-of-a-unified-scheduling-platform&#34;&gt;A New Paradigm for Enterprise AI Governance: The Value and Practice of a Unified Scheduling Platform
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;— From scattered model calls to a unified “AI hub”, turning intelligent capabilities into evolving assets&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;i-real-world-challenges-of-enterprise-ai-adoption&#34;&gt;I. Real-World Challenges of Enterprise AI Adoption
+&lt;/h3&gt;&lt;p&gt;With large language models going mainstream, a common pattern inside enterprises is:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Customer support uses GPT‑4&lt;/li&gt;
+&lt;li&gt;Content teams use Claude&lt;/li&gt;
+&lt;li&gt;Engineering uses GLM‑4&lt;/li&gt;
+&lt;li&gt;Data teams use DeepSeek&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Each system manages its own keys, error handling, rate limiting and cost control.&lt;br&gt;
+Once you need to switch models or adjust strategies, it quickly becomes a company-wide “coordination + code change” campaign.&lt;/p&gt;
+&lt;p&gt;This leads to several issues:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Model fragmentation&lt;/strong&gt;: Integrations are scattered, with no global view or unified governance&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Uncontrolled cost&lt;/strong&gt;: Hard to know who spent how much on which models, and what the ROI is&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No intelligent scheduling&lt;/strong&gt;: Simple tasks use the most expensive model, while complex tasks may not get optimal resources&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Poor availability&lt;/strong&gt;: A single model outage can impact many systems if there is no automatic fallback&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No accumulation of “intelligent assets”&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Document extraction, tagging, event extraction, embeddings, etc. are re‑implemented in each project&lt;/li&gt;
+&lt;li&gt;High‑quality prompts stay hidden in code or notebooks&lt;/li&gt;
+&lt;li&gt;In‑house AI components and model services remain project‑specific and hard to reuse or evolve&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;ii-a-new-paradigm-ai-governance-and-scheduling-platform&#34;&gt;II. A New Paradigm: AI Governance and Scheduling Platform
+&lt;/h3&gt;&lt;h4 id=&#34;21-what-is-an-ai-governance-and-scheduling-platform&#34;&gt;2.1 What Is an AI Governance and Scheduling Platform?
+&lt;/h4&gt;&lt;p&gt;An &lt;strong&gt;AI governance and scheduling platform&lt;/strong&gt; acts as the enterprise’s &lt;strong&gt;AI bus and hub&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Upstream&lt;/strong&gt;: exposes a &lt;strong&gt;single, stable API entry point&lt;/strong&gt; to all business systems&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Downstream&lt;/strong&gt;: manages multiple LLM vendors, private models, traditional ML services and in‑house plugins&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;In the middle&lt;/strong&gt;: performs &lt;strong&gt;intelligent scheduling&lt;/strong&gt; (routing, load balancing, fallback), plus monitoring and cost governance&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In other words:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“Which model/service to call, and under what strategy” is no longer hard‑coded in each app,&lt;br&gt;
+but decided centrally by the platform.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;22-architectural-view-layers-and-responsibilities&#34;&gt;2.2 Architectural View: Layers and Responsibilities
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;graph TB
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    A[Upper-layer Applications&amp;lt;br/&amp;gt;Business Systems] --&amp;gt; B[AI Governance &amp;amp; Scheduling Platform&amp;lt;br/&amp;gt;Unified Entry]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    B --&amp;gt; C[Intelligent Scheduling Layer&amp;lt;br/&amp;gt;Model Selection / Fallback / Throttling]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    B --&amp;gt; D[Plugin Ecosystem Layer&amp;lt;br/&amp;gt;In-house AI Components / Business Plugins]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    B --&amp;gt; E[Service Registry Layer&amp;lt;br/&amp;gt;Traditional ML / External AI Services]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    C --&amp;gt; F[Model Pool&amp;lt;br/&amp;gt;Multiple LLM Vendors / Private Models]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    D --&amp;gt; G[Prompt Template Center&amp;lt;br/&amp;gt;Best-practice Library]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    E --&amp;gt; H[Registered Service Catalog]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    B --&amp;gt; I[Monitoring &amp;amp; Cost Governance&amp;lt;br/&amp;gt;QPS / Health / Tokens / Cost]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Key ideas:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Unified entry&lt;/strong&gt;: business systems integrate once, use many models/services behind the scenes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Intelligent scheduling&lt;/strong&gt;: the platform decides routing based on business tier, cost preference, health and load&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Plugin ecosystem&lt;/strong&gt;: in‑house AI capabilities are exposed as plugins, reusable and centrally scheduled&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Service registry&lt;/strong&gt;: traditional ML and external AI services are registered and governed centrally&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Monitoring &amp;amp; cost governance&lt;/strong&gt;: QPS, latency, error rates, tokens and cost are tracked at platform level&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Intelligent asset accumulation&lt;/strong&gt;: prompts, plugins and best practices become shared, evolving assets&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;iii-core-value-solving-four-major-pain-points&#34;&gt;III. Core Value: Solving Four Major Pain Points
+&lt;/h3&gt;&lt;h4 id=&#34;31-from-model-fragmentation--unified-management-and-scheduling&#34;&gt;3.1 From Model Fragmentation → Unified Management and Scheduling
+&lt;/h4&gt;&lt;p&gt;A centralized &lt;strong&gt;model pool&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Holds all model configurations in one place&lt;/li&gt;
+&lt;li&gt;Decouples business logic from specific vendors&lt;/li&gt;
+&lt;li&gt;Allows upgrades, switching and A/B testing at the platform level&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This significantly reduces integration and coordination overhead, and keeps the door open for new models and deployments.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;32-from-uncontrolled-cost--precise-accounting--policy-driven-scheduling&#34;&gt;3.2 From Uncontrolled Cost → Precise Accounting + Policy-Driven Scheduling
+&lt;/h4&gt;&lt;p&gt;The platform:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Logs tokens and cost for every call&lt;/li&gt;
+&lt;li&gt;Aggregates by model, tenant, business line, and application&lt;/li&gt;
+&lt;li&gt;Allows each business to specify &lt;strong&gt;cost vs. quality preferences&lt;/strong&gt; and &lt;strong&gt;business tiers&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Scheduling decisions then balance quality, latency and cost automatically.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Outcome:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You know &lt;strong&gt;who&lt;/strong&gt; spent &lt;strong&gt;how much&lt;/strong&gt; on &lt;strong&gt;which models&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;You can see which models are “expensive but underperforming”&lt;/li&gt;
+&lt;li&gt;High‑value traffic can be steered to stronger models, while low‑value or bulk workloads go to cheaper ones&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;33-from-ad-hoc-routing--multi-dimensional-intelligent-scheduling&#34;&gt;3.3 From Ad-Hoc Routing → Multi-Dimensional Intelligent Scheduling
+&lt;/h4&gt;&lt;p&gt;Instead of hard‑coding model choices, business systems simply declare:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Business tier: &lt;code&gt;premium / normal / economy&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Cost preference: cost‑first vs. quality‑first&lt;/li&gt;
+&lt;li&gt;Capability tags: multilingual, coding, long‑context, etc.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The platform combines this with:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Model health and availability&lt;/li&gt;
+&lt;li&gt;Current load (QPS, concurrency)&lt;/li&gt;
+&lt;li&gt;Historical latency and error rates&lt;/li&gt;
+&lt;li&gt;Budget and cost constraints&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;to perform end‑to‑end &lt;strong&gt;intelligent scheduling&lt;/strong&gt;: routing, load balancing, fallback and degradation.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;34-from-poor-extensibility--plugin-based-ecosystem--unified-scheduling&#34;&gt;3.4 From Poor Extensibility → Plugin-Based Ecosystem + Unified Scheduling
+&lt;/h4&gt;&lt;p&gt;New AI capabilities (contract key‑point extraction, policy parsing, industry news summarization, etc.):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Are implemented as &lt;strong&gt;platform plugins&lt;/strong&gt;, not buried inside each app&lt;/li&gt;
+&lt;li&gt;Exposed through unified APIs, reusable across systems&lt;/li&gt;
+&lt;li&gt;Centrally scheduled: a plugin can internally use LLMs, traditional ML or external services, all coordinated by the platform&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This enables “build once, reuse everywhere”, faster rollout of new capabilities and lower maintenance cost.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;iv-intelligent-assets-organization-level-capabilities&#34;&gt;IV. Intelligent Assets: Organization-Level Capabilities
+&lt;/h3&gt;&lt;p&gt;The real long‑term differentiator is not &lt;strong&gt;who connects to which model first&lt;/strong&gt;, but:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Who can turn their AI components, prompts and best practices&lt;br&gt;
+into &lt;strong&gt;continuously evolving intelligent assets&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;41-prompt-template-center&#34;&gt;4.1 Prompt Template Center
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;Extracts critical prompts from scattered code and centralizes them in a &lt;strong&gt;prompt library&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Organizes by scenario / industry / plugin&lt;/li&gt;
+&lt;li&gt;Supports versioning, online editing and hot reload&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;New projects can start from proven templates; improvements to a template benefit all consumers at once.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;42-unified-management-and-scheduling-of-in-house-ai-components&#34;&gt;4.2 Unified Management and Scheduling of In-House AI Components
+&lt;/h4&gt;&lt;p&gt;In many organizations, in‑house AI components and model services live in:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Individual project repositories&lt;/li&gt;
+&lt;li&gt;Team‑owned private services&lt;/li&gt;
+&lt;li&gt;Small logic blocks inside business code&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The platform promotes them to &lt;strong&gt;first‑class capabilities&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Registered as plugins or services with clear contracts&lt;/li&gt;
+&lt;li&gt;Scheduled together with LLMs and traditional ML&lt;/li&gt;
+&lt;li&gt;Evolved centrally (better prompts, better models, better policies) without changing callers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Every project thus contributes new “building blocks” to the enterprise AI asset pool.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;43-from-project-centric-to-asset-centric&#34;&gt;4.3 From Project-Centric to Asset-Centric
+&lt;/h4&gt;&lt;p&gt;Previously:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Each project implemented its own extraction, tagging, summarization logic&lt;/li&gt;
+&lt;li&gt;Code and know‑how stayed within that project team&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;With an AI governance and scheduling platform:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Each project leaves behind plugins, prompt templates and best practices&lt;/li&gt;
+&lt;li&gt;Future projects can assemble solutions from these assets instead of reinventing them&lt;/li&gt;
+&lt;li&gt;The organization’s AI maturity compounds over time&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is what it means to &lt;strong&gt;turn a series of self-developed AI components and model services into long-term intelligent assets&lt;/strong&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;v-who-benefits-the-most&#34;&gt;V. Who Benefits the Most
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Mid‑to‑large enterprises&lt;/strong&gt;: multiple business lines using AI, needing a unified AI hub and scheduling layer&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Software vendors / ISVs&lt;/strong&gt;: turning scattered project code into productized, reusable AI capabilities&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AI API / platform providers&lt;/strong&gt;: needing unified external APIs, service discovery, billing and ecosystem support&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Organizations building AI middle platforms&lt;/strong&gt;: wanting a sustainable intelligent layer above data and services&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For all of them, the key benefit is that &lt;strong&gt;every new AI project starts higher than the last one&lt;/strong&gt;,&lt;br&gt;
+because the platform keeps accumulating and evolving intelligent assets in the background.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;vi-conclusion-from-using-models-to-operating-intelligent-assets&#34;&gt;VI. Conclusion: From “Using Models” to “Operating Intelligent Assets”
+&lt;/h3&gt;&lt;p&gt;A unified AI governance and scheduling platform upgrades the enterprise on three levels:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Engineering&lt;/strong&gt;: from scattered integrations to a unified, intelligent entry point&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Management&lt;/strong&gt;: from opaque spending to measurable, optimizable AI usage&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Organization&lt;/strong&gt;: from project‑by‑project output to an ever‑growing pool of reusable AI capabilities&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;LLMs make “intelligence” accessible;&lt;br&gt;
+an AI governance and scheduling platform makes that intelligence &lt;strong&gt;stick, improve and compound&lt;/strong&gt; over time.&lt;br&gt;
+For enterprises seeking sustainable advantage in the AI era, this is a step worth taking early.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Author:&lt;/strong&gt; Zhengzhou Shuneng Software Technology Co., Ltd.&lt;br&gt;
+&lt;strong&gt;Tags:&lt;/strong&gt; &lt;code&gt;ai-platform&lt;/code&gt; · &lt;code&gt;ai-governance&lt;/code&gt; · &lt;code&gt;ai-scheduling&lt;/code&gt; · &lt;code&gt;llm-gateway&lt;/code&gt; · &lt;code&gt;enterprise-ai&lt;/code&gt; · &lt;code&gt;intelligent-assets&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

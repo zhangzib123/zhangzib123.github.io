@@ -375,7 +375,8 @@
 &lt;li&gt;语义任务（摘要/话术）&lt;strong&gt;交给 LLM 发挥&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;动态内容&lt;strong&gt;预先渲染&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;长页面&lt;strong&gt;分块处理+去重合并&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/blockquote&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;通过 &lt;strong&gt;LLM 的语义泛化能力 + 传统规则的确定性保障&lt;/strong&gt;，现代数据提取系统正实现准确率与适应性的双重突破。&lt;/p&gt;
 </description>
         </item>

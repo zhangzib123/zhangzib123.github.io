@@ -80,7 +80,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Annotating a &amp;ldquo;Foreign Country&amp;rdquo; requires precise segmentation of entity boundaries, taking approximately 3-5 minutes per sentence.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Annotating a &amp;ldquo;Foreign Country&amp;rdquo; requires precise segmentation of entity boundaries, taking approximately 3-5 minutes per sentence.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id=&#34;2-model-construction-process&#34;&gt;2. Model Construction Process
 &lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/iceberg2024/public/main/images/image-20250806183055572.png&#34;
 	
@@ -147,7 +148,8 @@
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The large model can deeply understand its internal logic. Through semantic understanding, it extracts implied elements such as &amp;ldquo;Contractor&amp;rdquo; and &amp;ldquo;Project Capacity&amp;rdquo;.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;The large model can deeply understand its internal logic. Through semantic understanding, it extracts implied elements such as &amp;ldquo;Contractor&amp;rdquo; and &amp;ldquo;Project Capacity&amp;rdquo;.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id=&#34;case-2-chile-kilo-high-voltage-dc-project&#34;&gt;Case 2: Chile KILO High-Voltage DC Project
 &lt;/h3&gt;&lt;h4 id=&#34;csg-international-trade-company-signs-contract-for-main-equipment-procurement-of-converter-station-for-chile-kilo-hvdc-transmission-epc-project&#34;&gt;CSG International Trade Company Signs Contract for Main Equipment Procurement of Converter Station for Chile KILO HVDC Transmission EPC Project
 &lt;/h4&gt;&lt;p&gt;On May 5, Southern Power Grid International Trade (Guangzhou) Co., Ltd. (hereinafter referred to as &amp;ldquo;Trade Company&amp;rdquo;) signed the main equipment procurement contract for the converter station of the Chile KILO High-Voltage Direct Current (HVDC) Transmission EPC Project with XD Power System Co., Ltd. and XD Transformer Co., Ltd. The contract value exceeds CNY 1 billion. Gong Tiansen, Deputy General Manager of CSG International Company, presided over the signing ceremony. The Chile KILO project is the first HVDC transmission project in Chile undertaken by CSG International Company as the consortium leader. The procurement and supply of main equipment for the converter station were undertaken by the Trade Company. As the international trade platform of China Southern Power Grid Company, the Trade Company actively cooperated closely with the Chile KILO Converter Station EPC Project Department, CSG Research Institute, CSG Supply Chain Group, and other units. Based on the contract technical specifications of the Chilean owner, they continuously optimized the equipment procurement plan, shortened response times, and procured 21 converter transformers and a batch of converter valves and valve hall equipment, as well as water cooling systems through the CSG Supply Chain Procurement Platform, completing this major milestone task for the main equipment procurement of the Chile KILO project converter station on schedule. The Trade Company has always adhered to the guidance of &amp;ldquo;accelerating the construction of a new development pattern and striving to promote high-quality development,&amp;rdquo; planning the high-quality development of the trade sector of CSG International Company. By focusing on serving its core responsibilities and main businesses, it strives to provide timely, professional, and efficient one-stop equipment and material procurement and supply services for overseas projects, making due contributions to promoting the &amp;ldquo;going global&amp;rdquo; of advanced Chinese standards, technologies, equipment, and brands.&lt;/p&gt;
@@ -179,7 +181,8 @@
 &lt;/table&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The large model achieves higher accuracy and recall rates in extraction. It can more accurately identify and extract key information such as contract amount, signing date, and project type.
-It is incorrect for the traditional method to assign this amount to &amp;ldquo;Planned Investment Amount.&amp;rdquo; The contract amount is not equivalent to the planned investment amount; the contract amount refers to the specific amount for procurement or contract signing.&lt;/p&gt;&lt;/blockquote&gt;
+It is incorrect for the traditional method to assign this amount to &amp;ldquo;Planned Investment Amount.&amp;rdquo; The contract amount is not equivalent to the planned investment amount; the contract amount refers to the specific amount for procurement or contract signing.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id=&#34;case-3-argentina-lithium-project&#34;&gt;Case 3: Argentina Lithium Project
 &lt;/h3&gt;&lt;h4 id=&#34;construction-commences-on-c233-section-of-argentinas-centenario-salt-lake-project&#34;&gt;Construction Commences on C233 Section of Argentina&amp;rsquo;s Centenario Salt Lake Project
 &lt;/h4&gt;&lt;p&gt;Recently, construction commenced on the C233 Installation Section of the Argentina Centenario Salt Lake Lithium Mine project, signed by PowerChina International and entrusted to Sinohydro Bureau 10 for implementation. Representatives from Eramet Group&amp;rsquo;s South American subsidiary, Lafa Construction Company, and Sinohydro Bureau 10 attended the ceremony.&lt;/p&gt;
@@ -204,7 +207,8 @@ It is incorrect for the traditional method to assign this amount to &amp;ldquo;P
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Compared to traditional models relying on predefined short labels for data annotation, large models possess stronger semantic understanding and contextual capture capabilities, enabling accurate extraction of unstructured information requiring long-text comprehension, such as &amp;ldquo;Project Background&amp;rdquo; and &amp;ldquo;Project Significance.&amp;rdquo;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Compared to traditional models relying on predefined short labels for data annotation, large models possess stronger semantic understanding and contextual capture capabilities, enabling accurate extraction of unstructured information requiring long-text comprehension, such as &amp;ldquo;Project Background&amp;rdquo; and &amp;ldquo;Project Significance.&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;v-methodology-comparison-panorama&#34;&gt;V. Methodology Comparison Panorama
 &lt;/h2&gt;&lt;table&gt;
   &lt;thead&gt;
@@ -300,7 +304,8 @@ It is incorrect for the traditional method to assign this amount to &amp;ldquo;P
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Key Conclusion&lt;/strong&gt;: Large models are not replacing traditional methods but liberating them from the &amp;ldquo;annotation quagmire,&amp;rdquo; shifting towards an &lt;strong&gt;intelligence-augmented paradigm of human-machine collaboration&lt;/strong&gt;.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Key Conclusion&lt;/strong&gt;: Large models are not replacing traditional methods but liberating them from the &amp;ldquo;annotation quagmire,&amp;rdquo; shifting towards an &lt;strong&gt;intelligence-augmented paradigm of human-machine collaboration&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;hr&gt;
 &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: This article is based on analysis of real project documents. Technical comparison conclusions were validated through actual testing of BERT/BiLSTM-CRF and GPT-4.
 [file content end]&lt;/p&gt;

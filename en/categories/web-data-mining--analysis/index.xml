@@ -391,7 +391,8 @@
 &lt;li&gt;Semantic tasks (summary/phrasing) &lt;strong&gt;should be handled by LLM&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;Dynamic content &lt;strong&gt;should be pre-rendered&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;Long pages &lt;strong&gt;should be chunked and deduplicated&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/blockquote&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;By combining &lt;strong&gt;LLM’s semantic generalization capability&lt;/strong&gt; with &lt;strong&gt;the determinism of traditional rules&lt;/strong&gt;, modern data extraction systems are achieving breakthroughs in both accuracy and adaptability.&lt;/p&gt;
 </description>
         </item>

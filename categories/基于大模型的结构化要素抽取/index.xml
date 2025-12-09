@@ -81,7 +81,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;标注一个“境外国家”需精确切分实体边界，耗时约3-5分钟/句。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;标注一个“境外国家”需精确切分实体边界，耗时约3-5分钟/句。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id=&#34;2-模型构建流程&#34;&gt;2. 模型构建流程
 &lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/iceberg2024/public/main/images/image-20250806183206426.png&#34;
 	
@@ -149,7 +150,8 @@
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;blockquote&gt;
-&lt;p&gt;大模型能深入理解其内在逻辑，通过语义理解，抽取出隐含的要素，如“承建单位”，“项目产能”。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;大模型能深入理解其内在逻辑，通过语义理解，抽取出隐含的要素，如“承建单位”，“项目产能”。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id=&#34;案例2智利kilo高压直流项目&#34;&gt;案例2：智利KILO高压直流项目
 &lt;/h3&gt;&lt;h4 id=&#34;南网国际贸易公司签订智利kilo高压直流输电epc项目换流站主设备采购合同&#34;&gt;南网国际贸易公司签订智利KILO高压直流输电EPC项目换流站主设备采购合同
 &lt;/h4&gt;&lt;p&gt;5月5日，南方电网国际贸易（广州）有限责任公司（以下简称“贸易公司”）与西电电力系统有限公司、西电变压器有限责任公司共同签订智利KILO高压直流输电EPC项目换流站主要设备采购合同，合同金额超十亿元人民币。南网国际公司副总经理龚天森主持签约仪式。智利KILO项目是南网国际公司作为联营体牵头方承担的智利首个高压直流输电项目，其中换流站主要设备采购供货工作由贸易公司承接。作为南方电网公司的国际贸易平台，贸易公司主动与智利KILO换流站EPC项目部、南网科研院、南网供应链集团等单位紧密合作，根据智利业主方的合同技术规范要求，不断优化设备采购方案，缩短响应时间，通过南网供应链采购平台采购21台换流变设备和一批换流阀及阀厅设备、水冷成套设备，如期完成智利KILO项目换流站主要设备采购这一重大里程碑节点工作。一直以来，贸易公司坚持以“加快构建新发展格局，着力推动高质量发展”为指引，谋划南网国际公司贸易板块的高质量发展，通过聚焦服务主责主业，力求为海外项目提供及时、专业及高效的一站式设备物资采购供应服务，为带动中国企业先进的标准、技术、装备、品牌“走出去”作出应有贡献。 &lt;/p&gt;
@@ -181,7 +183,8 @@
 &lt;/table&gt;
 &lt;blockquote&gt;
 &lt;p&gt;大模型的抽取的准确率、召回率更高。能够更准确地识别和抽取关键信息，如合同金额、签订日期和项目类型等。&lt;br&gt;
-传统方法将该金额赋给“计划投资金额”是不正确的。合同金额并不等同于计划投资金额，合同金额是指具体采购或签订合同的金额。&lt;/p&gt;&lt;/blockquote&gt;
+传统方法将该金额赋给“计划投资金额”是不正确的。合同金额并不等同于计划投资金额，合同金额是指具体采购或签订合同的金额。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id=&#34;案例3阿根廷锂矿项目&#34;&gt;案例3：阿根廷锂矿项目
 &lt;/h3&gt;&lt;h4 id=&#34;阿根廷百年盐湖项目c233标段启动建设&#34;&gt;阿根廷百年盐湖项目C233标段启动建设
 &lt;/h4&gt;&lt;p&gt;日前，由电建国际签约并委托水电十局实施的阿根廷百年盐湖锂矿C233安装标段项目启动建设。法国埃赫曼集团南美子公司、拉法建设公司、水电十局有关代表出席仪式。&lt;/p&gt;
@@ -206,7 +209,8 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;blockquote&gt;
 &lt;p&gt;相比传统模型依赖于预定义的短标签进行数据标注，大模型具备更强的语义理解和上下文捕捉能力，能够准确抽取出“项目背景”“项目意义”等需要长文本理解的非结构化信息。&lt;/p&gt;
-&lt;hr&gt;&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;五方法论对比全景图&#34;&gt;五、方法论对比全景图
 &lt;/h2&gt;&lt;table&gt;
   &lt;thead&gt;
@@ -302,7 +306,8 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;关键结论&lt;/strong&gt;：大模型不是替代传统方法，而是将其从“标注泥潭”中解放，转向&lt;strong&gt;人机协同的智能增强范式&lt;/strong&gt;。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;关键结论&lt;/strong&gt;：大模型不是替代传统方法，而是将其从“标注泥潭”中解放，转向&lt;strong&gt;人机协同的智能增强范式&lt;/strong&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;hr&gt;
 &lt;p&gt;&lt;strong&gt;注&lt;/strong&gt;：本文基于真实项目文档分析。技术对比结论经BERT/BiLSTM-CRF与GPT-4实测验证。&lt;/p&gt;
 </description>

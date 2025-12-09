@@ -2,17 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://zhangzib123.github.io/en/tags/adaptive-crawling/</loc>
-    <lastmod>2025-08-29T11:13:06+08:00</lastmod>
+    <loc>https://zhangzib123.github.io/en/p/a-new-paradigm-for-enterprise-ai-governance-the-value-and-practice-of-a-unified-scheduling-platform/</loc>
+    <lastmod>2025-12-08T11:13:06+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhangzib123.github.io/p/%E4%BC%81%E4%B8%9Aai%E6%B2%BB%E7%90%86%E6%96%B0%E8%8C%83%E5%BC%8F%E7%BB%9F%E4%B8%80%E8%B0%83%E5%BA%A6%E5%B9%B3%E5%8F%B0%E7%9A%84%E4%BB%B7%E5%80%BC%E4%B8%8E%E5%AE%9E%E8%B7%B5/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhangzib123.github.io/en/p/a-new-paradigm-for-enterprise-ai-governance-the-value-and-practice-of-a-unified-scheduling-platform/"
+                />
   </url><url>
-    <loc>https://zhangzib123.github.io/en/tags/ai-crawler/</loc>
-    <lastmod>2025-08-29T11:13:06+08:00</lastmod>
+    <loc>https://zhangzib123.github.io/en/tags/ai-governance/</loc>
+    <lastmod>2025-12-08T11:13:06+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/ai-scheduling-platform/</loc>
+    <lastmod>2025-12-08T11:13:06+08:00</lastmod>
   </url><url>
     <loc>https://zhangzib123.github.io/en/categories/artificial-intelligence-ai/ml/</loc>
-    <lastmod>2025-08-29T11:13:06+08:00</lastmod>
+    <lastmod>2025-12-08T11:13:06+08:00</lastmod>
   </url><url>
     <loc>https://zhangzib123.github.io/en/categories/</loc>
-    <lastmod>2025-08-29T11:13:06+08:00</lastmod>
+    <lastmod>2025-12-08T11:13:06+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -23,6 +36,84 @@
                 hreflang="en"
                 href="https://zhangzib123.github.io/en/categories/"
                 />
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/cost-governance/</loc>
+    <lastmod>2025-12-08T11:13:06+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/enterprise-ai-platform/</loc>
+    <lastmod>2025-12-08T11:13:06+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/categories/enterprise-platforms/</loc>
+    <lastmod>2025-12-08T11:13:06+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/intelligent-routing/</loc>
+    <lastmod>2025-12-08T11:13:06+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/llm-gateway/</loc>
+    <lastmod>2025-12-08T11:13:06+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/multi-model-management/</loc>
+    <lastmod>2025-12-08T11:13:06+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/plugin-ecosystem/</loc>
+    <lastmod>2025-12-08T11:13:06+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/post/</loc>
+    <lastmod>2025-12-08T11:13:06+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhangzib123.github.io/post/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhangzib123.github.io/en/post/"
+                />
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/prompt-template-center/</loc>
+    <lastmod>2025-12-08T11:13:06+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/categories/system-architecture/</loc>
+    <lastmod>2025-12-08T11:13:06+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/</loc>
+    <lastmod>2025-12-08T11:13:06+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhangzib123.github.io/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhangzib123.github.io/en/tags/"
+                />
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/categories/technical-practice--best-practices/</loc>
+    <lastmod>2025-12-08T11:13:06+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/traditional-ml-integration/</loc>
+    <lastmod>2025-12-08T11:13:06+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/</loc>
+    <lastmod>2025-12-08T11:13:06+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhangzib123.github.io/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhangzib123.github.io/en/"
+                />
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/adaptive-crawling/</loc>
+    <lastmod>2025-08-29T11:13:06+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/ai-crawler/</loc>
+    <lastmod>2025-08-29T11:13:06+08:00</lastmod>
   </url><url>
     <loc>https://zhangzib123.github.io/en/tags/content-modality-recognition/</loc>
     <lastmod>2025-08-29T11:13:06+08:00</lastmod>
@@ -52,37 +143,8 @@
     <loc>https://zhangzib123.github.io/en/tags/large-language-model-integration/</loc>
     <lastmod>2025-08-29T11:13:06+08:00</lastmod>
   </url><url>
-    <loc>https://zhangzib123.github.io/en/post/</loc>
-    <lastmod>2025-08-29T11:13:06+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://zhangzib123.github.io/post/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://zhangzib123.github.io/en/post/"
-                />
-  </url><url>
     <loc>https://zhangzib123.github.io/en/tags/python-crawler/</loc>
     <lastmod>2025-08-29T11:13:06+08:00</lastmod>
-  </url><url>
-    <loc>https://zhangzib123.github.io/en/categories/system-architecture/</loc>
-    <lastmod>2025-08-29T11:13:06+08:00</lastmod>
-  </url><url>
-    <loc>https://zhangzib123.github.io/en/tags/</loc>
-    <lastmod>2025-08-29T11:13:06+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://zhangzib123.github.io/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://zhangzib123.github.io/en/tags/"
-                />
   </url><url>
     <loc>https://zhangzib123.github.io/en/categories/technical-sharing/</loc>
     <lastmod>2025-08-29T11:13:06+08:00</lastmod>
@@ -95,19 +157,6 @@
   </url><url>
     <loc>https://zhangzib123.github.io/en/tags/website-type-recognition/</loc>
     <lastmod>2025-08-29T11:13:06+08:00</lastmod>
-  </url><url>
-    <loc>https://zhangzib123.github.io/en/</loc>
-    <lastmod>2025-08-29T11:13:06+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://zhangzib123.github.io/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://zhangzib123.github.io/en/"
-                />
   </url><url>
     <loc>https://zhangzib123.github.io/en/p/integration-of-llm-and-traditional-parsing-technologies-evolution-and-best-practices-in-web-data-extraction/</loc>
     <lastmod>2025-08-13T00:00:00+00:00</lastmod>
