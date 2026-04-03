@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="This article shares the practical experience of building a Related Transaction Clue Tracking System based on the Neo4j graph database. The system transforms scattered account/transaction/relationship data into an interpretable relationship network, achieving three core capabilities: path query, cycle detection, and account/gang fusion. Through layered strategies, pre-positioned rules, and engineering optimizations, it helps risk control and due diligence scenarios efficiently discover suspicious fund links.">
+<title>Related Transaction Clue Tracking System Technical Documentation</title>
+
+<link rel='canonical' href='https://zhangzib123.github.io/en/p/related-transaction-clue-tracking-system-technical-documentation/'>
+
+<link rel="stylesheet" href="/scss/style.min.6a692fd055deae459f2a9767f57f3855ba80cafd5041317f24f7360f6ca47cdf.css"><meta property='og:title' content="Related Transaction Clue Tracking System Technical Documentation">
+<meta property='og:description' content="This article shares the practical experience of building a Related Transaction Clue Tracking System based on the Neo4j graph database. The system transforms scattered account/transaction/relationship data into an interpretable relationship network, achieving three core capabilities: path query, cycle detection, and account/gang fusion. Through layered strategies, pre-positioned rules, and engineering optimizations, it helps risk control and due diligence scenarios efficiently discover suspicious fund links.">
+<meta property='og:url' content='https://zhangzib123.github.io/en/p/related-transaction-clue-tracking-system-technical-documentation/'>
+<meta property='og:site_name' content='ZibiaoZhang&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Neo4j' /><meta property='article:tag' content='Graph Database' /><meta property='article:tag' content='Graph Algorithms' /><meta property='article:tag' content='Path Query' /><meta property='article:tag' content='Cycle Detection' /><meta property='article:tag' content='K-Shortest Path' /><meta property='article:tag' content='APOC' /><meta property='article:tag' content='GDS' /><meta property='article:tag' content='Python' /><meta property='article:tag' content='Django' /><meta property='article:published_time' content='2026-04-03T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-04-03T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="Related Transaction Clue Tracking System Technical Documentation">
+<meta name="twitter:description" content="This article shares the practical experience of building a Related Transaction Clue Tracking System based on the Neo4j graph database. The system transforms scattered account/transaction/relationship data into an interpretable relationship network, achieving three core capabilities: path query, cycle detection, and account/gang fusion. Through layered strategies, pre-positioned rules, and engineering optimizations, it helps risk control and due diligence scenarios efficiently discover suspicious fund links.">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/en/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_4d943b6ebedeccb4.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/en">ZibiaoZhang&#39;s Blog</a></h1>
+            <h2 class="site-description">Welcome to my blog</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://zhangzib123.github.io/'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/en/profile/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>Profile</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://zhangzib123.github.io/" >中文</option>
+                                
+                                    <option value="https://zhangzib123.github.io/en/" selected>English</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#-table-of-contents">📋 Table of Contents</a></li>
+    <li><a href="#i-background-what-system-are-we-building-and-why">I. Background: What System Are We Building and Why?</a>
+      <ol>
+        <li><a href="#11-system-function">1.1 System Function</a></li>
+        <li><a href="#12-typical-application-scenarios">1.2 Typical Application Scenarios</a></li>
+        <li><a href="#13-data-and-technology-landscape">1.3 Data and Technology Landscape</a></li>
+        <li><a href="#14-one-path-query-implemented-in-three-ways">1.4 “One Path Query” Implemented in Three Ways</a></li>
+      </ol>
+    </li>
+    <li><a href="#ii-unified-path-query-one-entry-automatically-selects-the-best-engine">II. Unified Path Query: One Entry, Automatically Selects the Best Engine</a>
+      <ol>
+        <li><a href="#21-key-inputs-and-business-semantics">2.1 Key Inputs and Business Semantics</a></li>
+        <li><a href="#22-strategy-1-ultra-fast-shortest-path-for-limit--1">2.2 Strategy 1: Ultra-Fast Shortest Path for <code>limit == 1</code></a></li>
+        <li><a href="#23-strategy-2-shallow-multi-paths-maxlevel--6-use-apoc-balancing-performance-and-control">2.3 Strategy 2: Shallow Multi-Paths (<code>maxLevel &lt; 6</code>) Use APOC, Balancing Performance and Control</a></li>
+        <li><a href="#24-strategy-3-deep-multi-paths-maxlevel--6-use-gds-yens--temporary-subgraph-projection">2.4 Strategy 3: Deep Multi-Paths (<code>maxLevel &gt;= 6</code>) Use GDS Yen’s + Temporary Subgraph Projection</a></li>
+      </ol>
+    </li>
+    <li><a href="#iii-path-query-api-parameter-governance-and-full-link-blacklist">III. Path Query API: Parameter Governance and Full-Link Blacklist</a></li>
+    <li><a href="#iv-cycle-detection-from-extended-paths-to-interpretable-loops">IV. Cycle Detection: From “Extended Paths” to “Interpretable Loops”</a>
+      <ol>
+        <li><a href="#41-starting-set-locate-the-account-set-from-personenterprise">4.1 Starting Set: Locate the “Account Set” from “Person/Enterprise”</a></li>
+        <li><a href="#42-use-apoc-for-bfs-expansion-with-return-to-starting-set-as-termination-condition">4.2 Use APOC for BFS Expansion with “Return to Starting Set” as Termination Condition</a></li>
+        <li><a href="#43-temporal-validation-turning-having-a-cycle-into-a-reasonable-fund-chain">4.3 Temporal Validation: Turning “Having a Cycle” into “A Reasonable Fund Chain”</a></li>
+      </ol>
+    </li>
+    <li><a href="#v-graph-construction-and-fusion-transforming-an-account-level-graph-into-an-entity-level-relationship-graph">V. Graph Construction and Fusion: Transforming an “Account-Level Graph” into an “Entity-Level Relationship Graph”</a>
+      <ol>
+        <li><a href="#51-gang-fusion-first-refine-social-relationships-into-a-person--gang-mapping">5.1 Gang Fusion: First Refine “Social Relationships” into a “Person → Gang” Mapping</a></li>
+        <li><a href="#52-account-fusion-batch-query-account-holders-to-avoid-n1">5.2 Account Fusion: Batch Query Account Holders to Avoid N+1</a></li>
+        <li><a href="#53-endpoint-replacement-replace-not-only-nodes-but-also-edge-endpoints">5.3 Endpoint Replacement: Replace Not Only Nodes but Also Edge Endpoints</a></li>
+        <li><a href="#54-path-visualization-support-each-edge-carries-a-set-of-paths-it-belongs-to">5.4 Path Visualization Support: Each Edge Carries a “Set of Paths It Belongs To”</a></li>
+        <li><a href="#55-deduplication-and-graph-quality-edge-deduplication--bidirectional-edge-folding--discrete-point-filtering">5.5 Deduplication and Graph Quality: Edge Deduplication + Bidirectional Edge Folding + Discrete Point Filtering</a></li>
+      </ol>
+    </li>
+    <li><a href="#vi-summary-turning-graph-algorithm-capabilities-into-a-viable-business-product">VI. Summary: Turning Graph Algorithm Capabilities into a Viable Business Product</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/en/categories/graph-algorithms/" >
+                Graph Algorithms
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/en/p/related-transaction-clue-tracking-system-technical-documentation/">Related Transaction Clue Tracking System Technical Documentation</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            This article shares the practical experience of building a Related Transaction Clue Tracking System based on the Neo4j graph database. The system transforms scattered account/transaction/relationship data into an interpretable relationship network, achieving three core capabilities: path query, cycle detection, and account/gang fusion. Through layered strategies, pre-positioned rules, and engineering optimizations, it helps risk control and due diligence scenarios efficiently discover suspicious fund links.
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Apr 03, 2026</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    8 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="https://zhangzib123.github.io/p/%E5%85%B3%E8%81%94%E4%BA%A4%E6%98%93%E7%BA%BF%E7%B4%A2%E8%BF%BD%E8%B8%AA%E7%B3%BB%E7%BB%9F/" class="link">中文</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="related-transaction-clue-tracking-system-technical-documentation">Related Transaction Clue Tracking System Technical Documentation
+</h1><p><em>关联交易线索追踪系统技术文档</em></p>
+<h2 id="-table-of-contents">📋 Table of Contents
+</h2><p>I. <a class="link" href="#background-what-system-are-we-building-and-why" >Background: What System Are We Building and Why?</a>
+II. <a class="link" href="#unified-path-query-one-entry-automatically-selects-the-best-engine" >Unified Path Query: One Entry, Automatically Selects the Best Engine</a>
+III. <a class="link" href="#path-query-api-parameter-governance-and-full-link-blacklist" >Path Query API: Parameter Governance and Full-Link Blacklist</a>
+IV. <a class="link" href="#cycle-detection-from-extended-paths-to-interpretable-loops" >Cycle Detection: From “Extended Paths” to “Interpretable Loops”</a>
+V. <a class="link" href="#graph-construction-and-fusion-transforming-an-account-level-graph-into-an-entity-level-relationship-graph" >Graph Construction and Fusion: Transforming an “Account-Level Graph” into a “Entity-Level Relationship Graph”</a>
+VI. <a class="link" href="#summary-turning-graph-algorithm-capabilities-into-a-viable-business-product" >Summary: Turning Graph Algorithm Capabilities into a Viable Business Product</a></p>
+<hr>
+<h2 id="i-background-what-system-are-we-building-and-why">I. Background: What System Are We Building and Why?
+</h2><p>The essence of many business analyses is not “querying a single table,” but <strong>finding interpretable links and patterns among a large number of entities and relationships</strong>. Clue discovery systems are designed for this type of problem: organizing data such as enterprises/persons/accounts/transactions/relationships into a graph, performing queries, merging, and analysis on the graph, and outputting a visualized relationship network and path results for the front-end, helping business personnel locate clues more quickly.</p>
+<h3 id="11-system-function">1.1 System Function
+</h3><p>It transforms scattered entity and transaction data into a “traceable, interpretable, and visualizable” relationship network, used in scenarios such as <strong>relationship link discovery, fund flow tracking, and anomaly pattern identification</strong>.</p>
+<h3 id="12-typical-application-scenarios">1.2 Typical Application Scenarios
+</h3><ul>
+<li><strong>Enterprise Relationship Network Analysis</strong>: Query the relationship chain between a company and its upstream/downstream partners, related companies/personnel to assist with due diligence, risk control, and compliance reviews.</li>
+<li><strong>Fund Flow Tracking</strong>: Starting from a single entity, trace the destination/source of funds to identify intermediary accounts and key nodes.</li>
+<li><strong>Transaction Path Discovery</strong>: Given two groups of entities (or accounts), find the “shortest link” or “multiple alternative links” between them to explain “why they are related.”</li>
+<li><strong>Anomaly Pattern Identification (Cycle/Return Flow)</strong>: Detect if funds circulate back to the starting point, helping to identify suspicious patterns like matched orders or round-tripping.</li>
+<li><strong>Account Fusion/Gang Identification</strong>: Merge the “account layer” into the “account holder layer,” or merge individuals into the “gang layer,” simplifying the graph into a business perspective that is easier to understand.</li>
+</ul>
+<h3 id="13-data-and-technology-landscape">1.3 Data and Technology Landscape
+</h3><ul>
+<li><strong>Data Landscape</strong>: Nodes (person/enterprise/bank account/gang/industry, etc.) + relationships (transactions, account ownership, social relationships, regular connections, etc.). Relationship edges often carry attributes (transaction time, amount, method, notes, etc.).</li>
+<li><strong>Storage Landscape</strong>: Graph data is stored in Neo4j, while metadata and configurations are stored in MySQL (e.g., schema, display configurations, default database selection, blocked nodes).</li>
+<li><strong>Service Landscape</strong>: Django provides APIs, and the front-end visualizes and interacts with <code>nodes + edges + path_list</code> after receiving them.</li>
+</ul>
+<h3 id="14-one-path-query-implemented-in-three-ways">1.4 “One Path Query” Implemented in Three Ways
+</h3><p>Why implement “one path query” in three ways? Because user requirements vary significantly in different interaction contexts:</p>
+<ul>
+<li><strong>Need only one shortest explanatory link</strong>: It must be fast and stable, preferably providing results in seconds.</li>
+<li><strong>Need multiple alternative links</strong>: It must be controllable (direction, filtering, termination, blocking) without slowing down the system.</li>
+<li><strong>Deep paths (high number of hops)</strong>: The search space expands exponentially, requiring stronger algorithms and engineering safeguards (e.g., temporary subgraphs, dynamic K, resource reclamation).</li>
+</ul>
+<p>Correspondingly, we use the three implementations in the system as follows (detailed in Section II):</p>
+<ul>
+<li><strong>Shortest Single Path (Interaction &ldquo;Only Need 1&rdquo;)</strong>: When <code>limit == 1</code>, the system prioritizes the shortest path capability. If constraints like blocked nodes exist, it uses a controllable path extension method to ensure “nodes that should not appear are excluded during the query phase.” The goal is <strong>maximum response speed + interpretable results</strong>.</li>
+<li><strong>Shallow Multi-Paths (Small Depth)</strong>: When <code>maxLevel</code> is small and multiple alternative links are needed, an extensible query with direction/filtering/termination/blocking capabilities is used. The goal is <strong>constraint-friendly + stable performance</strong>.</li>
+<li><strong>Deep Multi-Paths (Large Depth)</strong>: When <code>maxLevel</code> is large, the system switches to a graph algorithm engine (e.g., K-shortest path), combined with temporary subgraphs and dynamic parameter control. The goal is <strong>to avoid search explosion + provide sufficient candidate paths within controllable resources</strong>.</li>
+</ul>
+<hr>
+<h2 id="ii-unified-path-query-one-entry-automatically-selects-the-best-engine">II. Unified Path Query: One Entry, Automatically Selects the Best Engine
+</h2><p>Path queries are the function in graph analysis systems most prone to “slow results for demands, incomplete results for speed.” We’ve converged its implementation into a unified entry point: input start/end node sets, direction, depth range, number of results, transaction type preferences, and optional “blocked nodes,” with internal strategy routing.</p>
+<h3 id="21-key-inputs-and-business-semantics">2.1 Key Inputs and Business Semantics
+</h3><ul>
+<li><strong>Start/End Points</strong>: Supports combinations of multiple start and end points to avoid multiple front-end requests.</li>
+<li><strong>Direction Control (Transaction Direction)</strong>:
+<ul>
+<li><code>0</code>: Forward (start → end)</li>
+<li><code>1</code>: Reverse (start ← end)</li>
+<li><code>2</code>: Bidirectional (undirected/mixed)</li>
+</ul>
+</li>
+<li><strong>Depth Range</strong>: <code>minLevel</code>/<code>maxLevel</code> controls path length (hops).</li>
+<li><strong>limit</strong>: Number of paths to return. We specifically optimize for <code>limit == 1</code> as a strong scenario for “the shortest/most appropriate one.”</li>
+<li><strong>Transaction Type Switch</strong>: Supports filtering preferences like “only large amounts/only small amounts/both.”</li>
+<li><strong>Blocked Nodes (blacklist)</strong>: Used for entities that should be “hidden/excluded” for business reasons (e.g., false-positive nodes, sensitive nodes, noisy nodes), requiring they <strong>cannot appear in the path</strong>.</li>
+</ul>
+<h3 id="22-strategy-1-ultra-fast-shortest-path-for-limit--1">2.2 Strategy 1: Ultra-Fast Shortest Path for <code>limit == 1</code>
+</h3><p>When the user only needs one path, the system prioritizes the most efficient route:</p>
+<ul>
+<li><strong>Without Blocked Nodes</strong>: Directly uses Neo4j’s native shortest path capability, matching with direction patterns (forward/reverse/bidirectional) for optimal performance.</li>
+<li><strong>With Blocked Nodes</strong>: Since the native shortest path doesn’t easily allow strict exclusion of nodes during the “search phase,” it switches to APOC for path extension, using <code>blacklistNodes</code> in the extension parameters to filter out blocked nodes “preemptively.” Results are then sorted by hop count, and the shortest one is taken.</li>
+</ul>
+<p>The benefit is that <strong>common interactions (viewing just one shortest relationship chain) are as fast as possible</strong>, and blocking rules take effect during the query phase, avoiding the poor experience of “fetching results and then deleting them, potentially leading to empty results.”</p>
+<h3 id="23-strategy-2-shallow-multi-paths-maxlevel--6-use-apoc-balancing-performance-and-control">2.3 Strategy 2: Shallow Multi-Paths (<code>maxLevel &lt; 6</code>) Use APOC, Balancing Performance and Control
+</h3><p>When depth is shallow but multiple paths are needed, we use APOC’s extension capabilities:</p>
+<ul>
+<li><strong>Relationship Filtering</strong>: Combine “base relationships” (e.g., social relationships, bank accounts) with “transaction-type relationships” (account transactions/large/small) into a <code>relationshipFilter</code>, generating different filter strings based on the direction parameter.</li>
+<li><strong>Terminator Nodes</strong>: Explicitly set the end node set using <code>terminatorNodes</code> to avoid meaningless diffusion.</li>
+<li><strong>Blocked Nodes</strong>: Directly use APOC’s <code>blacklistNodes</code> for exclusion during the search phase.</li>
+<li><strong>Deduplication</strong>: Merge duplicate paths with the same node sequence to prevent identical paths from occupying multiple result slots.</li>
+</ul>
+<p>The characteristic of this path is: <strong>very friendly to business conditions (direction, filtering, termination, blocking)</strong>, and performance is stable when depth is shallow.</p>
+<h3 id="24-strategy-3-deep-multi-paths-maxlevel--6-use-gds-yens--temporary-subgraph-projection">2.4 Strategy 3: Deep Multi-Paths (<code>maxLevel &gt;= 6</code>) Use GDS Yen’s + Temporary Subgraph Projection
+</h3><p>When depth increases, APOC extensions can easily lead to “search space explosion.” At this point, we switch to the GDS (Graph Data Science) solution. The core approach is:</p>
+<ol>
+<li><strong>Dynamically Create Temporary Subgraph Projection</strong>: Create a projection graph valid only for the lifecycle of this query, deleting it immediately after the query to avoid polluting the global graph and prevent long-term memory usage.</li>
+<li><strong>More Granular Direction Control</strong>: Not all relationships are affected by “transaction direction.” In the current implementation, “transaction-type relationships” (at least including <code>account transaction</code>, and can include <code>large/small transactions</code> based on front-end switches) are set with controllable direction:
+<ul>
+<li>Forward: NATURAL</li>
+<li>Reverse: REVERSE</li>
+<li>Bidirectional: UNDIRECTED
+Other relationships remain NATURAL to ensure non-transaction edges like “social relationships/account relationships” are not incorrectly flipped.</li>
+</ul>
+</li>
+<li><strong>Estimate Shortest Distance d First, Then Dynamically Set K</strong>:
+<ul>
+<li>First, use a shortest path calculation to get the shortest hop count <code>d</code>.</li>
+<li>Then set <code>K = 2^d</code>, adding lower/upper limits (e.g., ensure enough candidate paths, but cap to prevent explosion).
+The intuition for this strategy is: <strong>The further the node pair, the more candidate paths are needed to find multiple “business-usable” links</strong>, but a hard upper limit must be set to protect the system.</li>
+</ul>
+</li>
+<li><strong>Reconstruct Relationship Information After Yen’s K-Shortest Path Output</strong>: GDS outputs a node sequence. We match actual relationships based on adjacent node pairs to bring edge attributes (transaction time, amount, method, etc.) back to the front-end for display.</li>
+<li><strong>Blocked Node Handling</strong>: Due to the relationship between projection and reconstruction, blocked nodes in deep path scenarios are filtered again in the result phase (ensuring the final path contains no blocked nodes).</li>
+<li><strong>Resource Release</strong>: Regardless of query success or failure, ensure the temporary projection graph is deleted to avoid resource leakage.</li>
+</ol>
+<p>The main benefits of adopting this solution for deep paths are: <strong>stronger stability and controllability</strong>, preventing a single deep query from crippling the system.</p>
+<hr>
+<h2 id="iii-path-query-api-parameter-governance-and-full-link-blacklist">III. Path Query API: Parameter Governance and Full-Link Blacklist
+</h2><p>The API entry point for path queries does two main things:</p>
+<ul>
+<li><strong>Parameter Normalization</strong>: Direction, depth, number of results, time range, amount range, transaction count range, etc., are all converted to unified backend types and default values at the entry point.</li>
+<li><strong>Blacklist Injection</strong>: Read the “blocked node list” from the current default database configuration and pass it as <code>blacklist_nodes</code> to the path query engine.</li>
+</ul>
+<p>The value is that blocking rules don’t need to be scattered across various query logics; the API entry point is only responsible for “supplementing the rules,” and the underlying layer executes them uniformly.</p>
+<p>Additionally, before path query results are returned, they undergo graph construction (see Section IV), and the results are written to a user-specific cache. This is used to “avoid re-querying the database when the same user performs consecutive operations (hide/append/switch fusion mode).”</p>
+<hr>
+<h2 id="iv-cycle-detection-from-extended-paths-to-interpretable-loops">IV. Cycle Detection: From “Extended Paths” to “Interpretable Loops”
+</h2><p>The business goal of cycle detection is to start from accounts related to a certain entity and find cyclic paths where funds “circle back to themselves” in the network, used to identify patterns like round-tripping, matched orders, and money laundering.</p>
+<h3 id="41-starting-set-locate-the-account-set-from-personenterprise">4.1 Starting Set: Locate the “Account Set” from “Person/Enterprise”
+</h3><p>The user selects “a certain entity” in the interface, but the real carriers of fund flow in the graph are bank account nodes. In implementation, a set of account node IDs is first queried based on the entity information (e.g., partial matching of the account holder field) as the starting set for subsequent expansion.</p>
+<h3 id="42-use-apoc-for-bfs-expansion-with-return-to-starting-set-as-termination-condition">4.2 Use APOC for BFS Expansion with “Return to Starting Set” as Termination Condition
+</h3><p>The core query logic is APOC expansion:</p>
+<ul>
+<li><strong>relationshipFilter</strong>: Limited to fund-related and necessary auxiliary relationships (e.g., account transactions, cash deposits, withdrawals, account relationships, social relationships, etc.), can include direction tendencies (common practice is mainly “outward diffusion”).</li>
+<li><strong>bfs</strong>: Using breadth-first is better for discovering short cycles first.</li>
+<li><strong>terminatorNodes</strong>: Set to the starting account set, allowing the path to naturally converge when “returning to any starting account,” forming a cycle.</li>
+<li><strong>blacklistNodes</strong>: Also supports excluding blocked nodes during the search phase.</li>
+<li><strong>uniqueness</strong>: Uses a global relationship deduplication strategy to reduce redundant traversal.</li>
+</ul>
+<h3 id="43-temporal-validation-turning-having-a-cycle-into-a-reasonable-fund-chain">4.3 Temporal Validation: Turning “Having a Cycle” into “A Reasonable Fund Chain”
+</h3><p>The existence of a cycle in a graph does not necessarily mean the fund chain is reasonable. Cycle detection applies a layer of <strong>temporal validation</strong> to the results:</p>
+<ul>
+<li>Enforce time order constraints only on transaction-type edges (e.g., account transactions).</li>
+<li>Eliminate paths where the time order is significantly reversed.</li>
+</ul>
+<p>The significance of this step is to filter “topological cycles” into “cycles that better align with the actual sequence of business events,” improving the interpretability and usability of the results.</p>
+<p>Finally, the cycle detection results reuse the same graph construction and fusion logic for output to the front-end (see Section IV).</p>
+<hr>
+<h2 id="v-graph-construction-and-fusion-transforming-an-account-level-graph-into-an-entity-level-relationship-graph">V. Graph Construction and Fusion: Transforming an “Account-Level Graph” into an “Entity-Level Relationship Graph”
+</h2><p>The raw query results from Neo4j are typically a collection of “nodes(path) + relationships(path),” but what the front-end needs is:</p>
+<ul>
+<li><strong>Nodes</strong>: With styles, icons, display names, clustering information.</li>
+<li><strong>Edges</strong>: With direction, categories, display fields (transaction time/amount), and the ability to be highlighted by the path list.</li>
+</ul>
+<p>Therefore, we designed a unified graph construction function to convert the query results into a graph data structure suitable for visualization. At this stage, we also complete “account fusion” and “gang fusion.”</p>
+<h3 id="51-gang-fusion-first-refine-social-relationships-into-a-person--gang-mapping">5.1 Gang Fusion: First Refine “Social Relationships” into a “Person → Gang” Mapping
+</h3><p>The system supports a graph simplification: when one end of a social relationship edge is a “gang” node, the related person is mapped to the gang node. In implementation, it first traverses the social relationship edges in the query results to build a <code>person_id -&gt; groupNode</code> mapping.</p>
+<p>Placing this step before graph construction is crucial because <strong>subsequent processing of both nodes and edges can use the same mapping table for fast substitution without repeatedly querying the database</strong>.</p>
+<h3 id="52-account-fusion-batch-query-account-holders-to-avoid-n1">5.2 Account Fusion: Batch Query Account Holders to Avoid N+1
+</h3><p>The goal of account fusion is to replace “bank account nodes” with their holders (person/enterprise) nodes, thereby elevating the presentation from “between accounts” to “between entities.”</p>
+<p>A key optimization here is that instead of querying the holder for each account individually, we:</p>
+<ul>
+<li>Collect all distinct bank account IDs appearing in the query results.</li>
+<li>Perform one batch query to get the “account → holder” mapping.</li>
+<li>Construct lightweight holder node objects and cache them for subsequent replacement.</li>
+</ul>
+<p>This reduces holder queries from <strong>N times</strong> to <strong>1 batch</strong>, making a significant difference when there are many path results or many accounts.</p>
+<h3 id="53-endpoint-replacement-replace-not-only-nodes-but-also-edge-endpoints">5.3 Endpoint Replacement: Replace Not Only Nodes but Also Edge Endpoints
+</h3><p>If account fusion only replaces nodes without replacing edge endpoints, it can lead to broken graph structures or confusion where “edges still point to account nodes.” During graph construction, for each relationship, we simultaneously:</p>
+<ul>
+<li>If the start point is a bank account → replace with its holder.</li>
+<li>If the end point is a bank account → replace with its holder.</li>
+<li>Then apply gang fusion replacements.</li>
+<li>If the start and end points ultimately fall on the same node (self-loop), skip it.</li>
+</ul>
+<h3 id="54-path-visualization-support-each-edge-carries-a-set-of-paths-it-belongs-to">5.4 Path Visualization Support: Each Edge Carries a “Set of Paths It Belongs To”
+</h3><p>To support the front-end “clicking a path in the list → highlighting that path in the graph,” the graph construction phase attaches, for each edge, a list of path IDs it belongs to (e.g., <code>id2path_ids</code>). It also generates a <code>path_list</code> for the UI (path titles, length, summary of nodes passed, list of edge IDs).</p>
+<h3 id="55-deduplication-and-graph-quality-edge-deduplication--bidirectional-edge-folding--discrete-point-filtering">5.5 Deduplication and Graph Quality: Edge Deduplication + Bidirectional Edge Folding + Discrete Point Filtering
+</h3><p>It’s common in real data that:</p>
+<ul>
+<li>The same relationship appears in multiple paths.</li>
+<li>Bidirectional relationships cause both “A—B” and “B—A” to appear in the graph.</li>
+<li>Disconnected discrete points appear after graph construction (affecting readability).</li>
+</ul>
+<p>Therefore, several post-processing steps are applied after graph construction:</p>
+<ul>
+<li><strong>Deduplicate by Edge ID</strong>: Keep only one instance of the same relationship.</li>
+<li><strong>Fold Bidirectional Edges</strong>: For specific categories (considered “undirected relationships”), keep only one edge for the same unordered pair to reduce visual clutter.</li>
+<li><strong>Filter Discrete Points</strong>: Keep only nodes that appear at least in the set of edge endpoints; then apply blocked node filtering to ensure the front-end sees a “compact and interpretable subgraph.”</li>
+</ul>
+<p>Finally, node size calculation, edge style adjustment, and legend statistics are performed to enhance readability and interaction experience.</p>
+<hr>
+<h2 id="vi-summary-turning-graph-algorithm-capabilities-into-a-viable-business-product">VI. Summary: Turning Graph Algorithm Capabilities into a Viable Business Product
+</h2><p>Looking back at this implementation, the core isn’t “which algorithm is more advanced,” but rather:</p>
+<ul>
+<li><strong>Unified Entry</strong>: A single API/single core function reduces branching and maintenance costs.</li>
+<li><strong>Layered Strategy</strong>: <code>limit == 1</code>, shallow multi-paths, and deep multi-paths each use the most appropriate engine.</li>
+<li><strong>Rule Pre-positioning</strong>: Blocked nodes are applied during the query phase as much as possible, with a final safeguard in the result phase.</li>
+<li><strong>Engineering Optimizations</strong>: Batch queries replace N+1 queries, temporary subgraph lifecycle management, deduplication, and folding improve visualization quality.</li>
+<li><strong>Interpretability</strong>: Cycle detection adds temporal validation, path lists are highlightable, and edges carry transaction summaries.</li>
+</ul>
+<p>If you’re also working on systems involving “graph databases + relationship analysis + visualization,” I hope this approach can provide some inspiration for your work.</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/en/tags/neo4j/">Neo4j</a>
+        
+            <a href="/en/tags/graph-database/">Graph Database</a>
+        
+            <a href="/en/tags/graph-algorithms/">Graph Algorithms</a>
+        
+            <a href="/en/tags/path-query/">Path Query</a>
+        
+            <a href="/en/tags/cycle-detection/">Cycle Detection</a>
+        
+            <a href="/en/tags/k-shortest-path/">K-Shortest Path</a>
+        
+            <a href="/en/tags/apoc/">APOC</a>
+        
+            <a href="/en/tags/gds/">GDS</a>
+        
+            <a href="/en/tags/python/">Python</a>
+        
+            <a href="/en/tags/django/">Django</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+    
+    
+    
+    <section class="comments">
+        <h3></h3>
+        <script 
+            src="https://utteranc.es/client.js"
+            repo="zhangzib123/comment"
+            issue-term="pathname"
+            theme="github-light"
+            label=""
+            crossorigin="anonymous"
+            async>
+        </script>
+        <noscript></noscript>
+    </section>
+    
+
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2026 ZibiaoZhang&#39;s Blog
+    </section>
+
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

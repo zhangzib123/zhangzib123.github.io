@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>APOC on ZibiaoZhang&#39;s Blog</title>
+        <link>https://zhangzib123.github.io/en/tags/apoc/</link>
+        <description>Recent content in APOC on ZibiaoZhang&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Fri, 03 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://zhangzib123.github.io/en/tags/apoc/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Related Transaction Clue Tracking System Technical Documentation</title>
+        <link>https://zhangzib123.github.io/en/p/related-transaction-clue-tracking-system-technical-documentation/</link>
+        <pubDate>Fri, 03 Apr 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhangzib123.github.io/en/p/related-transaction-clue-tracking-system-technical-documentation/</guid>
+        <description>&lt;h1 id=&#34;related-transaction-clue-tracking-system-technical-documentation&#34;&gt;Related Transaction Clue Tracking System Technical Documentation
+&lt;/h1&gt;&lt;p&gt;&lt;em&gt;关联交易线索追踪系统技术文档&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;-table-of-contents&#34;&gt;📋 Table of Contents
+&lt;/h2&gt;&lt;p&gt;I. &lt;a class=&#34;link&#34; href=&#34;#background-what-system-are-we-building-and-why&#34; &gt;Background: What System Are We Building and Why?&lt;/a&gt;
+II. &lt;a class=&#34;link&#34; href=&#34;#unified-path-query-one-entry-automatically-selects-the-best-engine&#34; &gt;Unified Path Query: One Entry, Automatically Selects the Best Engine&lt;/a&gt;
+III. &lt;a class=&#34;link&#34; href=&#34;#path-query-api-parameter-governance-and-full-link-blacklist&#34; &gt;Path Query API: Parameter Governance and Full-Link Blacklist&lt;/a&gt;
+IV. &lt;a class=&#34;link&#34; href=&#34;#cycle-detection-from-extended-paths-to-interpretable-loops&#34; &gt;Cycle Detection: From “Extended Paths” to “Interpretable Loops”&lt;/a&gt;
+V. &lt;a class=&#34;link&#34; href=&#34;#graph-construction-and-fusion-transforming-an-account-level-graph-into-an-entity-level-relationship-graph&#34; &gt;Graph Construction and Fusion: Transforming an “Account-Level Graph” into a “Entity-Level Relationship Graph”&lt;/a&gt;
+VI. &lt;a class=&#34;link&#34; href=&#34;#summary-turning-graph-algorithm-capabilities-into-a-viable-business-product&#34; &gt;Summary: Turning Graph Algorithm Capabilities into a Viable Business Product&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;i-background-what-system-are-we-building-and-why&#34;&gt;I. Background: What System Are We Building and Why?
+&lt;/h2&gt;&lt;p&gt;The essence of many business analyses is not “querying a single table,” but &lt;strong&gt;finding interpretable links and patterns among a large number of entities and relationships&lt;/strong&gt;. Clue discovery systems are designed for this type of problem: organizing data such as enterprises/persons/accounts/transactions/relationships into a graph, performing queries, merging, and analysis on the graph, and outputting a visualized relationship network and path results for the front-end, helping business personnel locate clues more quickly.&lt;/p&gt;
+&lt;h3 id=&#34;11-system-function&#34;&gt;1.1 System Function
+&lt;/h3&gt;&lt;p&gt;It transforms scattered entity and transaction data into a “traceable, interpretable, and visualizable” relationship network, used in scenarios such as &lt;strong&gt;relationship link discovery, fund flow tracking, and anomaly pattern identification&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;12-typical-application-scenarios&#34;&gt;1.2 Typical Application Scenarios
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Enterprise Relationship Network Analysis&lt;/strong&gt;: Query the relationship chain between a company and its upstream/downstream partners, related companies/personnel to assist with due diligence, risk control, and compliance reviews.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fund Flow Tracking&lt;/strong&gt;: Starting from a single entity, trace the destination/source of funds to identify intermediary accounts and key nodes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Transaction Path Discovery&lt;/strong&gt;: Given two groups of entities (or accounts), find the “shortest link” or “multiple alternative links” between them to explain “why they are related.”&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Anomaly Pattern Identification (Cycle/Return Flow)&lt;/strong&gt;: Detect if funds circulate back to the starting point, helping to identify suspicious patterns like matched orders or round-tripping.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Account Fusion/Gang Identification&lt;/strong&gt;: Merge the “account layer” into the “account holder layer,” or merge individuals into the “gang layer,” simplifying the graph into a business perspective that is easier to understand.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;13-data-and-technology-landscape&#34;&gt;1.3 Data and Technology Landscape
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Data Landscape&lt;/strong&gt;: Nodes (person/enterprise/bank account/gang/industry, etc.) + relationships (transactions, account ownership, social relationships, regular connections, etc.). Relationship edges often carry attributes (transaction time, amount, method, notes, etc.).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Storage Landscape&lt;/strong&gt;: Graph data is stored in Neo4j, while metadata and configurations are stored in MySQL (e.g., schema, display configurations, default database selection, blocked nodes).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Service Landscape&lt;/strong&gt;: Django provides APIs, and the front-end visualizes and interacts with &lt;code&gt;nodes + edges + path_list&lt;/code&gt; after receiving them.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;14-one-path-query-implemented-in-three-ways&#34;&gt;1.4 “One Path Query” Implemented in Three Ways
+&lt;/h3&gt;&lt;p&gt;Why implement “one path query” in three ways? Because user requirements vary significantly in different interaction contexts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Need only one shortest explanatory link&lt;/strong&gt;: It must be fast and stable, preferably providing results in seconds.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Need multiple alternative links&lt;/strong&gt;: It must be controllable (direction, filtering, termination, blocking) without slowing down the system.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Deep paths (high number of hops)&lt;/strong&gt;: The search space expands exponentially, requiring stronger algorithms and engineering safeguards (e.g., temporary subgraphs, dynamic K, resource reclamation).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Correspondingly, we use the three implementations in the system as follows (detailed in Section II):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Shortest Single Path (Interaction &amp;ldquo;Only Need 1&amp;rdquo;)&lt;/strong&gt;: When &lt;code&gt;limit == 1&lt;/code&gt;, the system prioritizes the shortest path capability. If constraints like blocked nodes exist, it uses a controllable path extension method to ensure “nodes that should not appear are excluded during the query phase.” The goal is &lt;strong&gt;maximum response speed + interpretable results&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Shallow Multi-Paths (Small Depth)&lt;/strong&gt;: When &lt;code&gt;maxLevel&lt;/code&gt; is small and multiple alternative links are needed, an extensible query with direction/filtering/termination/blocking capabilities is used. The goal is &lt;strong&gt;constraint-friendly + stable performance&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Deep Multi-Paths (Large Depth)&lt;/strong&gt;: When &lt;code&gt;maxLevel&lt;/code&gt; is large, the system switches to a graph algorithm engine (e.g., K-shortest path), combined with temporary subgraphs and dynamic parameter control. The goal is &lt;strong&gt;to avoid search explosion + provide sufficient candidate paths within controllable resources&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ii-unified-path-query-one-entry-automatically-selects-the-best-engine&#34;&gt;II. Unified Path Query: One Entry, Automatically Selects the Best Engine
+&lt;/h2&gt;&lt;p&gt;Path queries are the function in graph analysis systems most prone to “slow results for demands, incomplete results for speed.” We’ve converged its implementation into a unified entry point: input start/end node sets, direction, depth range, number of results, transaction type preferences, and optional “blocked nodes,” with internal strategy routing.&lt;/p&gt;
+&lt;h3 id=&#34;21-key-inputs-and-business-semantics&#34;&gt;2.1 Key Inputs and Business Semantics
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Start/End Points&lt;/strong&gt;: Supports combinations of multiple start and end points to avoid multiple front-end requests.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Direction Control (Transaction Direction)&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;0&lt;/code&gt;: Forward (start → end)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;1&lt;/code&gt;: Reverse (start ← end)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;2&lt;/code&gt;: Bidirectional (undirected/mixed)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Depth Range&lt;/strong&gt;: &lt;code&gt;minLevel&lt;/code&gt;/&lt;code&gt;maxLevel&lt;/code&gt; controls path length (hops).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;limit&lt;/strong&gt;: Number of paths to return. We specifically optimize for &lt;code&gt;limit == 1&lt;/code&gt; as a strong scenario for “the shortest/most appropriate one.”&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Transaction Type Switch&lt;/strong&gt;: Supports filtering preferences like “only large amounts/only small amounts/both.”&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Blocked Nodes (blacklist)&lt;/strong&gt;: Used for entities that should be “hidden/excluded” for business reasons (e.g., false-positive nodes, sensitive nodes, noisy nodes), requiring they &lt;strong&gt;cannot appear in the path&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;22-strategy-1-ultra-fast-shortest-path-for-limit--1&#34;&gt;2.2 Strategy 1: Ultra-Fast Shortest Path for &lt;code&gt;limit == 1&lt;/code&gt;
+&lt;/h3&gt;&lt;p&gt;When the user only needs one path, the system prioritizes the most efficient route:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Without Blocked Nodes&lt;/strong&gt;: Directly uses Neo4j’s native shortest path capability, matching with direction patterns (forward/reverse/bidirectional) for optimal performance.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;With Blocked Nodes&lt;/strong&gt;: Since the native shortest path doesn’t easily allow strict exclusion of nodes during the “search phase,” it switches to APOC for path extension, using &lt;code&gt;blacklistNodes&lt;/code&gt; in the extension parameters to filter out blocked nodes “preemptively.” Results are then sorted by hop count, and the shortest one is taken.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The benefit is that &lt;strong&gt;common interactions (viewing just one shortest relationship chain) are as fast as possible&lt;/strong&gt;, and blocking rules take effect during the query phase, avoiding the poor experience of “fetching results and then deleting them, potentially leading to empty results.”&lt;/p&gt;
+&lt;h3 id=&#34;23-strategy-2-shallow-multi-paths-maxlevel--6-use-apoc-balancing-performance-and-control&#34;&gt;2.3 Strategy 2: Shallow Multi-Paths (&lt;code&gt;maxLevel &amp;lt; 6&lt;/code&gt;) Use APOC, Balancing Performance and Control
+&lt;/h3&gt;&lt;p&gt;When depth is shallow but multiple paths are needed, we use APOC’s extension capabilities:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Relationship Filtering&lt;/strong&gt;: Combine “base relationships” (e.g., social relationships, bank accounts) with “transaction-type relationships” (account transactions/large/small) into a &lt;code&gt;relationshipFilter&lt;/code&gt;, generating different filter strings based on the direction parameter.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Terminator Nodes&lt;/strong&gt;: Explicitly set the end node set using &lt;code&gt;terminatorNodes&lt;/code&gt; to avoid meaningless diffusion.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Blocked Nodes&lt;/strong&gt;: Directly use APOC’s &lt;code&gt;blacklistNodes&lt;/code&gt; for exclusion during the search phase.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Deduplication&lt;/strong&gt;: Merge duplicate paths with the same node sequence to prevent identical paths from occupying multiple result slots.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The characteristic of this path is: &lt;strong&gt;very friendly to business conditions (direction, filtering, termination, blocking)&lt;/strong&gt;, and performance is stable when depth is shallow.&lt;/p&gt;
+&lt;h3 id=&#34;24-strategy-3-deep-multi-paths-maxlevel--6-use-gds-yens--temporary-subgraph-projection&#34;&gt;2.4 Strategy 3: Deep Multi-Paths (&lt;code&gt;maxLevel &amp;gt;= 6&lt;/code&gt;) Use GDS Yen’s + Temporary Subgraph Projection
+&lt;/h3&gt;&lt;p&gt;When depth increases, APOC extensions can easily lead to “search space explosion.” At this point, we switch to the GDS (Graph Data Science) solution. The core approach is:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Dynamically Create Temporary Subgraph Projection&lt;/strong&gt;: Create a projection graph valid only for the lifecycle of this query, deleting it immediately after the query to avoid polluting the global graph and prevent long-term memory usage.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;More Granular Direction Control&lt;/strong&gt;: Not all relationships are affected by “transaction direction.” In the current implementation, “transaction-type relationships” (at least including &lt;code&gt;account transaction&lt;/code&gt;, and can include &lt;code&gt;large/small transactions&lt;/code&gt; based on front-end switches) are set with controllable direction:
+&lt;ul&gt;
+&lt;li&gt;Forward: NATURAL&lt;/li&gt;
+&lt;li&gt;Reverse: REVERSE&lt;/li&gt;
+&lt;li&gt;Bidirectional: UNDIRECTED
+Other relationships remain NATURAL to ensure non-transaction edges like “social relationships/account relationships” are not incorrectly flipped.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Estimate Shortest Distance d First, Then Dynamically Set K&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;First, use a shortest path calculation to get the shortest hop count &lt;code&gt;d&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Then set &lt;code&gt;K = 2^d&lt;/code&gt;, adding lower/upper limits (e.g., ensure enough candidate paths, but cap to prevent explosion).
+The intuition for this strategy is: &lt;strong&gt;The further the node pair, the more candidate paths are needed to find multiple “business-usable” links&lt;/strong&gt;, but a hard upper limit must be set to protect the system.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reconstruct Relationship Information After Yen’s K-Shortest Path Output&lt;/strong&gt;: GDS outputs a node sequence. We match actual relationships based on adjacent node pairs to bring edge attributes (transaction time, amount, method, etc.) back to the front-end for display.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Blocked Node Handling&lt;/strong&gt;: Due to the relationship between projection and reconstruction, blocked nodes in deep path scenarios are filtered again in the result phase (ensuring the final path contains no blocked nodes).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Resource Release&lt;/strong&gt;: Regardless of query success or failure, ensure the temporary projection graph is deleted to avoid resource leakage.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The main benefits of adopting this solution for deep paths are: &lt;strong&gt;stronger stability and controllability&lt;/strong&gt;, preventing a single deep query from crippling the system.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;iii-path-query-api-parameter-governance-and-full-link-blacklist&#34;&gt;III. Path Query API: Parameter Governance and Full-Link Blacklist
+&lt;/h2&gt;&lt;p&gt;The API entry point for path queries does two main things:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Parameter Normalization&lt;/strong&gt;: Direction, depth, number of results, time range, amount range, transaction count range, etc., are all converted to unified backend types and default values at the entry point.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Blacklist Injection&lt;/strong&gt;: Read the “blocked node list” from the current default database configuration and pass it as &lt;code&gt;blacklist_nodes&lt;/code&gt; to the path query engine.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The value is that blocking rules don’t need to be scattered across various query logics; the API entry point is only responsible for “supplementing the rules,” and the underlying layer executes them uniformly.&lt;/p&gt;
+&lt;p&gt;Additionally, before path query results are returned, they undergo graph construction (see Section IV), and the results are written to a user-specific cache. This is used to “avoid re-querying the database when the same user performs consecutive operations (hide/append/switch fusion mode).”&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;iv-cycle-detection-from-extended-paths-to-interpretable-loops&#34;&gt;IV. Cycle Detection: From “Extended Paths” to “Interpretable Loops”
+&lt;/h2&gt;&lt;p&gt;The business goal of cycle detection is to start from accounts related to a certain entity and find cyclic paths where funds “circle back to themselves” in the network, used to identify patterns like round-tripping, matched orders, and money laundering.&lt;/p&gt;
+&lt;h3 id=&#34;41-starting-set-locate-the-account-set-from-personenterprise&#34;&gt;4.1 Starting Set: Locate the “Account Set” from “Person/Enterprise”
+&lt;/h3&gt;&lt;p&gt;The user selects “a certain entity” in the interface, but the real carriers of fund flow in the graph are bank account nodes. In implementation, a set of account node IDs is first queried based on the entity information (e.g., partial matching of the account holder field) as the starting set for subsequent expansion.&lt;/p&gt;
+&lt;h3 id=&#34;42-use-apoc-for-bfs-expansion-with-return-to-starting-set-as-termination-condition&#34;&gt;4.2 Use APOC for BFS Expansion with “Return to Starting Set” as Termination Condition
+&lt;/h3&gt;&lt;p&gt;The core query logic is APOC expansion:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;relationshipFilter&lt;/strong&gt;: Limited to fund-related and necessary auxiliary relationships (e.g., account transactions, cash deposits, withdrawals, account relationships, social relationships, etc.), can include direction tendencies (common practice is mainly “outward diffusion”).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;bfs&lt;/strong&gt;: Using breadth-first is better for discovering short cycles first.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;terminatorNodes&lt;/strong&gt;: Set to the starting account set, allowing the path to naturally converge when “returning to any starting account,” forming a cycle.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;blacklistNodes&lt;/strong&gt;: Also supports excluding blocked nodes during the search phase.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;uniqueness&lt;/strong&gt;: Uses a global relationship deduplication strategy to reduce redundant traversal.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;43-temporal-validation-turning-having-a-cycle-into-a-reasonable-fund-chain&#34;&gt;4.3 Temporal Validation: Turning “Having a Cycle” into “A Reasonable Fund Chain”
+&lt;/h3&gt;&lt;p&gt;The existence of a cycle in a graph does not necessarily mean the fund chain is reasonable. Cycle detection applies a layer of &lt;strong&gt;temporal validation&lt;/strong&gt; to the results:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Enforce time order constraints only on transaction-type edges (e.g., account transactions).&lt;/li&gt;
+&lt;li&gt;Eliminate paths where the time order is significantly reversed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The significance of this step is to filter “topological cycles” into “cycles that better align with the actual sequence of business events,” improving the interpretability and usability of the results.&lt;/p&gt;
+&lt;p&gt;Finally, the cycle detection results reuse the same graph construction and fusion logic for output to the front-end (see Section IV).&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;v-graph-construction-and-fusion-transforming-an-account-level-graph-into-an-entity-level-relationship-graph&#34;&gt;V. Graph Construction and Fusion: Transforming an “Account-Level Graph” into an “Entity-Level Relationship Graph”
+&lt;/h2&gt;&lt;p&gt;The raw query results from Neo4j are typically a collection of “nodes(path) + relationships(path),” but what the front-end needs is:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Nodes&lt;/strong&gt;: With styles, icons, display names, clustering information.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Edges&lt;/strong&gt;: With direction, categories, display fields (transaction time/amount), and the ability to be highlighted by the path list.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Therefore, we designed a unified graph construction function to convert the query results into a graph data structure suitable for visualization. At this stage, we also complete “account fusion” and “gang fusion.”&lt;/p&gt;
+&lt;h3 id=&#34;51-gang-fusion-first-refine-social-relationships-into-a-person--gang-mapping&#34;&gt;5.1 Gang Fusion: First Refine “Social Relationships” into a “Person → Gang” Mapping
+&lt;/h3&gt;&lt;p&gt;The system supports a graph simplification: when one end of a social relationship edge is a “gang” node, the related person is mapped to the gang node. In implementation, it first traverses the social relationship edges in the query results to build a &lt;code&gt;person_id -&amp;gt; groupNode&lt;/code&gt; mapping.&lt;/p&gt;
+&lt;p&gt;Placing this step before graph construction is crucial because &lt;strong&gt;subsequent processing of both nodes and edges can use the same mapping table for fast substitution without repeatedly querying the database&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;52-account-fusion-batch-query-account-holders-to-avoid-n1&#34;&gt;5.2 Account Fusion: Batch Query Account Holders to Avoid N+1
+&lt;/h3&gt;&lt;p&gt;The goal of account fusion is to replace “bank account nodes” with their holders (person/enterprise) nodes, thereby elevating the presentation from “between accounts” to “between entities.”&lt;/p&gt;
+&lt;p&gt;A key optimization here is that instead of querying the holder for each account individually, we:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Collect all distinct bank account IDs appearing in the query results.&lt;/li&gt;
+&lt;li&gt;Perform one batch query to get the “account → holder” mapping.&lt;/li&gt;
+&lt;li&gt;Construct lightweight holder node objects and cache them for subsequent replacement.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This reduces holder queries from &lt;strong&gt;N times&lt;/strong&gt; to &lt;strong&gt;1 batch&lt;/strong&gt;, making a significant difference when there are many path results or many accounts.&lt;/p&gt;
+&lt;h3 id=&#34;53-endpoint-replacement-replace-not-only-nodes-but-also-edge-endpoints&#34;&gt;5.3 Endpoint Replacement: Replace Not Only Nodes but Also Edge Endpoints
+&lt;/h3&gt;&lt;p&gt;If account fusion only replaces nodes without replacing edge endpoints, it can lead to broken graph structures or confusion where “edges still point to account nodes.” During graph construction, for each relationship, we simultaneously:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If the start point is a bank account → replace with its holder.&lt;/li&gt;
+&lt;li&gt;If the end point is a bank account → replace with its holder.&lt;/li&gt;
+&lt;li&gt;Then apply gang fusion replacements.&lt;/li&gt;
+&lt;li&gt;If the start and end points ultimately fall on the same node (self-loop), skip it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;54-path-visualization-support-each-edge-carries-a-set-of-paths-it-belongs-to&#34;&gt;5.4 Path Visualization Support: Each Edge Carries a “Set of Paths It Belongs To”
+&lt;/h3&gt;&lt;p&gt;To support the front-end “clicking a path in the list → highlighting that path in the graph,” the graph construction phase attaches, for each edge, a list of path IDs it belongs to (e.g., &lt;code&gt;id2path_ids&lt;/code&gt;). It also generates a &lt;code&gt;path_list&lt;/code&gt; for the UI (path titles, length, summary of nodes passed, list of edge IDs).&lt;/p&gt;
+&lt;h3 id=&#34;55-deduplication-and-graph-quality-edge-deduplication--bidirectional-edge-folding--discrete-point-filtering&#34;&gt;5.5 Deduplication and Graph Quality: Edge Deduplication + Bidirectional Edge Folding + Discrete Point Filtering
+&lt;/h3&gt;&lt;p&gt;It’s common in real data that:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The same relationship appears in multiple paths.&lt;/li&gt;
+&lt;li&gt;Bidirectional relationships cause both “A—B” and “B—A” to appear in the graph.&lt;/li&gt;
+&lt;li&gt;Disconnected discrete points appear after graph construction (affecting readability).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Therefore, several post-processing steps are applied after graph construction:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Deduplicate by Edge ID&lt;/strong&gt;: Keep only one instance of the same relationship.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fold Bidirectional Edges&lt;/strong&gt;: For specific categories (considered “undirected relationships”), keep only one edge for the same unordered pair to reduce visual clutter.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Filter Discrete Points&lt;/strong&gt;: Keep only nodes that appear at least in the set of edge endpoints; then apply blocked node filtering to ensure the front-end sees a “compact and interpretable subgraph.”&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Finally, node size calculation, edge style adjustment, and legend statistics are performed to enhance readability and interaction experience.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;vi-summary-turning-graph-algorithm-capabilities-into-a-viable-business-product&#34;&gt;VI. Summary: Turning Graph Algorithm Capabilities into a Viable Business Product
+&lt;/h2&gt;&lt;p&gt;Looking back at this implementation, the core isn’t “which algorithm is more advanced,” but rather:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Unified Entry&lt;/strong&gt;: A single API/single core function reduces branching and maintenance costs.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Layered Strategy&lt;/strong&gt;: &lt;code&gt;limit == 1&lt;/code&gt;, shallow multi-paths, and deep multi-paths each use the most appropriate engine.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rule Pre-positioning&lt;/strong&gt;: Blocked nodes are applied during the query phase as much as possible, with a final safeguard in the result phase.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Engineering Optimizations&lt;/strong&gt;: Batch queries replace N+1 queries, temporary subgraph lifecycle management, deduplication, and folding improve visualization quality.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Interpretability&lt;/strong&gt;: Cycle detection adds temporal validation, path lists are highlightable, and edges carry transaction summaries.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you’re also working on systems involving “graph databases + relationship analysis + visualization,” I hope this approach can provide some inspiration for your work.&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="📝 博客描述 (Description) 简短描述 (SEO Meta Description) 本文分享基于Neo4j图数据库构建的关联交易线索追踪系统实践。系统将分散的账户/交易/关系数据转化为可解释的关系网络，实现了路径查询、环形检测、账户/团伙融合三大核心能力。通过策略分层、规则前置与工程化优化，帮助风控、尽调等场景高效发现可疑资金链路。\n">
+<title></title>
+
+<link rel='canonical' href='https://zhangzib123.github.io/p/'>
+
+<link rel="stylesheet" href="/scss/style.min.6a692fd055deae459f2a9767f57f3855ba80cafd5041317f24f7360f6ca47cdf.css"><meta property='og:title' content="">
+<meta property='og:description' content="📝 博客描述 (Description) 简短描述 (SEO Meta Description) 本文分享基于Neo4j图数据库构建的关联交易线索追踪系统实践。系统将分散的账户/交易/关系数据转化为可解释的关系网络，实现了路径查询、环形检测、账户/团伙融合三大核心能力。通过策略分层、规则前置与工程化优化，帮助风控、尽调等场景高效发现可疑资金链路。\n">
+<meta property='og:url' content='https://zhangzib123.github.io/p/'>
+<meta property='og:site_name' content='张子彪的博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' />
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="📝 博客描述 (Description) 简短描述 (SEO Meta Description) 本文分享基于Neo4j图数据库构建的关联交易线索追踪系统实践。系统将分散的账户/交易/关系数据转化为可解释的关系网络，实现了路径查询、环形检测、账户/团伙融合三大核心能力。通过策略分层、规则前置与工程化优化，帮助风控、尽调等场景高效发现可疑资金链路。\n">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_4d943b6ebedeccb4.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">张子彪的博客</a></h1>
+            <h2 class="site-description">欢迎来到我的博客</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://zhangzib123.github.io/'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8D%9A%E4%B8%BB/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>博主</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友情链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://zhangzib123.github.io/" selected>中文</option>
+                                
+                                    <option value="https://zhangzib123.github.io/en/" >English</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#-blog-description-description">📝 <strong>Blog Description (Description)</strong></a>
+      <ol>
+        <li><a href="#short-description-seo-meta-description"><strong>Short Description (SEO Meta Description)</strong></a></li>
+        <li><a href="#detailed-description-blog-summary"><strong>Detailed Description (Blog Summary)</strong></a></li>
+      </ol>
+    </li>
+    <li><a href="#-tags-tags">🏷️ <strong>Tags (Tags)</strong></a>
+      <ol>
+        <li><a href="#technical-tags"><strong>Technical Tags</strong></a></li>
+        <li><a href="#application-tags"><strong>Application Tags</strong></a></li>
+        <li><a href="#industry-tags"><strong>Industry Tags</strong></a></li>
+      </ol>
+    </li>
+    <li><a href="#-topic-categories-categories">📂 <strong>Topic Categories (Categories)</strong></a>
+      <ol>
+        <li><a href="#main-topics"><strong>Main Topics</strong></a></li>
+        <li><a href="#sub-topics"><strong>Sub-topics</strong></a></li>
+        <li><a href="#technology-stack-topics"><strong>Technology Stack Topics</strong></a></li>
+      </ol>
+    </li>
+    <li><a href="#-seo-keyword-suggestions">🔍 <strong>SEO Keyword Suggestions</strong></a>
+      <ol>
+        <li><a href="#primary-keywords"><strong>Primary Keywords</strong></a></li>
+        <li><a href="#long-tail-keywords"><strong>Long-tail Keywords</strong></a></li>
+        <li><a href="#technical-keywords"><strong>Technical Keywords</strong></a></li>
+      </ol>
+    </li>
+    <li><a href="#-blog-platform-adaptation-suggestions">📊 <strong>Blog Platform Adaptation Suggestions</strong></a>
+      <ol>
+        <li><a href="#csdnblog-garden"><strong>CSDN/Blog Garden</strong></a></li>
+        <li><a href="#zhihujianshu"><strong>Zhihu/Jianshu</strong></a></li>
+        <li><a href="#wechat-official-account"><strong>WeChat Official Account</strong></a></li>
+        <li><a href="#juejinsifou"><strong>Juejin/Sifou</strong></a></li>
+      </ol>
+    </li>
+    <li><a href="#-international-platform-adaptation">🌐 <strong>International Platform Adaptation</strong></a>
+      <ol>
+        <li><a href="#mediumdevto"><strong>Medium/Dev.to</strong></a></li>
+        <li><a href="#github-pagestechnical-blogs"><strong>GitHub Pages/Technical Blogs</strong></a></li>
+        <li><a href="#linkedin-articles"><strong>LinkedIn Articles</strong></a></li>
+        <li><a href="#reddit-rprogramming-rdatascience-rneo4j"><strong>Reddit (r/programming, r/datascience, r/Neo4j)</strong></a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/"></a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 3 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="blog-description-description">Blog Description (Description)
+</h1><h2 id="-blog-description-description">📝 <strong>Blog Description (Description)</strong>
+</h2><h3 id="short-description-seo-meta-description"><strong>Short Description (SEO Meta Description)</strong>
+</h3><p>This article shares the practical experience of building a Related Transaction Clue Tracking System based on the Neo4j graph database. The system transforms scattered account/transaction/relationship data into an interpretable relationship network, achieving three core capabilities: path query, cycle detection, and account/gang fusion. Through layered strategies, pre-positioned rules, and engineering optimizations, it helps risk control and due diligence scenarios efficiently discover suspicious fund links.</p>
+<h3 id="detailed-description-blog-summary"><strong>Detailed Description (Blog Summary)</strong>
+</h3><p>In scenarios such as related transaction analysis and fund flow tracking, the core problem is no longer &ldquo;querying a single table,&rdquo; but finding interpretable links and patterns among massive entities and relationships. Based on our company&rsquo;s practical experience, this article introduces how to build a clue tracking system using the Neo4j graph database.</p>
+<p>The article focuses on the implementation process of three core capabilities:</p>
+<ol>
+<li><strong>Unified Path Query</strong>: Through a single entry point, the system automatically selects the most suitable engine (Neo4j native, APOC, GDS) for &ldquo;shortest single path,&rdquo; &ldquo;shallow multi-paths,&rdquo; and &ldquo;deep multi-paths,&rdquo; enabling refined parameter management such as direction control, depth range, and blocked nodes.</li>
+<li><strong>Cycle Detection</strong>: Using APOC for BFS expansion combined with temporal validation, it filters &ldquo;reasonable&rdquo; cycles that align with the actual sequence of fund flow from topological cycles, used to identify suspicious patterns like round-tripping and matched orders.</li>
+<li><strong>Graph Construction and Fusion</strong>: Through batch queries and mapping substitution, the underlying &ldquo;account-level&rdquo; graph is abstracted into a business-perspective &ldquo;entity-level&rdquo; graph (account fusion and gang fusion). Processes like edge deduplication, bidirectional edge folding, and discrete point filtering generate visual data that is efficient for front-end rendering and interaction.</li>
+</ol>
+<p>This solution transforms complex graph algorithm capabilities into a stable and interpretable business product, providing robust technical support for risk control, compliance reviews, due diligence analysis, and more.</p>
+<h2 id="-tags-tags">🏷️ <strong>Tags (Tags)</strong>
+</h2><h3 id="technical-tags"><strong>Technical Tags</strong>
+</h3><ul>
+<li><code>Neo4j</code></li>
+<li><code>Graph Database</code></li>
+<li><code>Graph Algorithms</code></li>
+<li><code>Path Query</code></li>
+<li><code>Cycle Detection</code></li>
+<li><code>K-Shortest Path</code></li>
+<li><code>APOC</code></li>
+<li><code>GDS</code></li>
+<li><code>Python</code></li>
+<li><code>Django</code></li>
+</ul>
+<h3 id="application-tags"><strong>Application Tags</strong>
+</h3><ul>
+<li><code>Related Transaction Analysis</code></li>
+<li><code>Fund Flow Tracking</code></li>
+<li><code>Risk Control System</code></li>
+<li><code>Anti-Money Laundering</code></li>
+<li><code>Gang Identification</code></li>
+<li><code>Relationship Network Analysis</code></li>
+<li><code>Graph Visualization</code></li>
+<li><code>Data Mining</code></li>
+</ul>
+<h3 id="industry-tags"><strong>Industry Tags</strong>
+</h3><ul>
+<li><code>Technical Blog</code></li>
+<li><code>FinTech</code></li>
+<li><code>Risk Control Technology</code></li>
+<li><code>Data Engineering</code></li>
+<li><code>System Architecture</code></li>
+<li><code>Backend Development</code></li>
+<li><code>Algorithm Practice</code></li>
+<li><code>Enterprise Applications</code></li>
+</ul>
+<h2 id="-topic-categories-categories">📂 <strong>Topic Categories (Categories)</strong>
+</h2><h3 id="main-topics"><strong>Main Topics</strong>
+</h3><ul>
+<li><strong>Graph Database Technology</strong></li>
+<li><strong>Risk Control System Design</strong></li>
+<li><strong>Backend Architecture</strong></li>
+<li><strong>Technical Practice</strong></li>
+</ul>
+<h3 id="sub-topics"><strong>Sub-topics</strong>
+</h3><ul>
+<li><strong>Graph Algorithm Application</strong></li>
+<li><strong>Financial Risk Control</strong></li>
+<li><strong>System Performance Optimization</strong></li>
+<li><strong>Data Modeling</strong></li>
+<li><strong>Visualization Design</strong></li>
+</ul>
+<h3 id="technology-stack-topics"><strong>Technology Stack Topics</strong>
+</h3><ul>
+<li><strong>Neo4j Development</strong></li>
+<li><strong>Python Web Development</strong></li>
+<li><strong>Algorithm Engineering</strong></li>
+<li><strong>API Design</strong></li>
+</ul>
+<h2 id="-seo-keyword-suggestions">🔍 <strong>SEO Keyword Suggestions</strong>
+</h2><h3 id="primary-keywords"><strong>Primary Keywords</strong>
+</h3><ul>
+<li>Related transaction analysis</li>
+<li>Neo4j graph database application</li>
+<li>Fund flow tracking</li>
+<li>Path query algorithms</li>
+<li>Cycle detection</li>
+</ul>
+<h3 id="long-tail-keywords"><strong>Long-tail Keywords</strong>
+</h3><ul>
+<li>Graph database applications in risk control</li>
+<li>Neo4j shortest path query practices</li>
+<li>Cyclic transaction detection methods</li>
+<li>Account fusion and gang identification techniques</li>
+<li>Graph data visualization backend design</li>
+</ul>
+<h3 id="technical-keywords"><strong>Technical Keywords</strong>
+</h3><ul>
+<li>Graph algorithms</li>
+<li>Risk control system architecture</li>
+<li>APOC extension</li>
+<li>Graph Data Science library</li>
+<li>Anti-money laundering technology</li>
+</ul>
+<h2 id="-blog-platform-adaptation-suggestions">📊 <strong>Blog Platform Adaptation Suggestions</strong>
+</h2><h3 id="csdnblog-garden"><strong>CSDN/Blog Garden</strong>
+</h3><ul>
+<li><strong>Category</strong>: Database &gt; NoSQL &gt; Graph Database</li>
+<li><strong>Tags</strong>: Prioritize technical tags like Neo4j, Graph Database, Path Query</li>
+</ul>
+<h3 id="zhihujianshu"><strong>Zhihu/Jianshu</strong>
+</h3><ul>
+<li><strong>Topics</strong>: #GraphDatabase# #Neo4j# #RiskControlTechnology# #SystemArchitecture#</li>
+<li><strong>Columns</strong>: Technical Columns, FinTech Columns</li>
+</ul>
+<h3 id="wechat-official-account"><strong>WeChat Official Account</strong>
+</h3><ul>
+<li><strong>Topic Tags</strong>: Technical Insights, Financial Risk Control, Backend Development, Data Mining</li>
+<li><strong>Article Types</strong>: Technical Analysis, Practice Sharing</li>
+</ul>
+<h3 id="juejinsifou"><strong>Juejin/Sifou</strong>
+</h3><ul>
+<li><strong>Categories</strong>: Backend, Database, Artificial Intelligence</li>
+<li><strong>Tags</strong>: Prioritize Neo4j, Python, System Design</li>
+</ul>
+<hr>
+<h2 id="-international-platform-adaptation">🌐 <strong>International Platform Adaptation</strong>
+</h2><h3 id="mediumdevto"><strong>Medium/Dev.to</strong>
+</h3><ul>
+<li><strong>Tags</strong>: #GraphDatabase #Neo4j #RiskControl #Python #SystemArchitecture #DataMining</li>
+<li><strong>Categories</strong>: Technology, Programming, Data Science</li>
+</ul>
+<h3 id="github-pagestechnical-blogs"><strong>GitHub Pages/Technical Blogs</strong>
+</h3><ul>
+<li><strong>Topics</strong>: Graph Database, Backend Engineering, Risk Control Systems, Algorithm Engineering</li>
+<li><strong>Audience</strong>: Developers, Data Engineers, System Architects, Risk Control Analysts</li>
+</ul>
+<h3 id="linkedin-articles"><strong>LinkedIn Articles</strong>
+</h3><ul>
+<li><strong>Professional Focus</strong>: Technology Innovation, Financial Technology, Enterprise Risk Solutions</li>
+<li><strong>Industry Tags</strong>: Technology, FinTech, Risk Management, Software Architecture</li>
+</ul>
+<h3 id="reddit-rprogramming-rdatascience-rneo4j"><strong>Reddit (r/programming, r/datascience, r/Neo4j)</strong>
+</h3><ul>
+<li><strong>Community Focus</strong>: Technical discussions, code examples, architecture reviews, use case sharing</li>
+<li><strong>Engagement</strong>: Implementation details, performance benchmarks, visualization examples</li>
+</ul>
+<p>These metadata will help your blog:</p>
+<ol>
+<li><strong>Improve search engine visibility</strong></li>
+<li><strong>Increase exposure in technical communities</strong></li>
+<li><strong>Facilitate reader classification and search</strong></li>
+<li><strong>Enhance technical influence</strong></li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+    
+    
+    
+    <section class="comments">
+        <h3></h3>
+        <script 
+            src="https://utteranc.es/client.js"
+            repo="zhangzib123/comment"
+            issue-term="title"
+            theme="github-light"
+            label="comment"
+            crossorigin="anonymous"
+            async>
+        </script>
+        <noscript></noscript>
+    </section>
+    
+
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2026 张子彪的博客
+    </section>
+
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
