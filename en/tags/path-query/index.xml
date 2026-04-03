@@ -13,8 +13,7 @@
         
         <guid>https://zhangzib123.github.io/en/p/related-transaction-clue-tracking-system-technical-documentation/</guid>
         <description>&lt;h1 id=&#34;related-transaction-clue-tracking-system-technical-documentation&#34;&gt;Related Transaction Clue Tracking System Technical Documentation
-&lt;/h1&gt;&lt;p&gt;&lt;em&gt;关联交易线索追踪系统技术文档&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;-table-of-contents&#34;&gt;📋 Table of Contents
+&lt;/h1&gt;&lt;h2 id=&#34;-table-of-contents&#34;&gt;📋 Table of Contents
 &lt;/h2&gt;&lt;p&gt;I. &lt;a class=&#34;link&#34; href=&#34;#background-what-system-are-we-building-and-why&#34; &gt;Background: What System Are We Building and Why?&lt;/a&gt;
 II. &lt;a class=&#34;link&#34; href=&#34;#unified-path-query-one-entry-automatically-selects-the-best-engine&#34; &gt;Unified Path Query: One Entry, Automatically Selects the Best Engine&lt;/a&gt;
 III. &lt;a class=&#34;link&#34; href=&#34;#path-query-api-parameter-governance-and-full-link-blacklist&#34; &gt;Path Query API: Parameter Governance and Full-Link Blacklist&lt;/a&gt;
