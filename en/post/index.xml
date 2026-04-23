@@ -1,0 +1,1605 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Posts on ZibiaoZhang&#39;s Blog</title>
+        <link>https://zhangzib123.github.io/en/post/</link>
+        <description>Recent content in Posts on ZibiaoZhang&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Fri, 03 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://zhangzib123.github.io/en/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Related Transaction Clue Tracking System Technical Documentation</title>
+        <link>https://zhangzib123.github.io/en/p/related-transaction-clue-tracking-system-technical-documentation/</link>
+        <pubDate>Fri, 03 Apr 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhangzib123.github.io/en/p/related-transaction-clue-tracking-system-technical-documentation/</guid>
+        <description>&lt;h1 id=&#34;related-transaction-clue-tracking-system-technical-documentation&#34;&gt;Related Transaction Clue Tracking System Technical Documentation
+&lt;/h1&gt;&lt;h2 id=&#34;-table-of-contents&#34;&gt;📋 Table of Contents
+&lt;/h2&gt;&lt;p&gt;I. &lt;a class=&#34;link&#34; href=&#34;#background-what-system-are-we-building-and-why&#34; &gt;Background: What System Are We Building and Why?&lt;/a&gt;
+II. &lt;a class=&#34;link&#34; href=&#34;#unified-path-query-one-entry-automatically-selects-the-best-engine&#34; &gt;Unified Path Query: One Entry, Automatically Selects the Best Engine&lt;/a&gt;
+III. &lt;a class=&#34;link&#34; href=&#34;#path-query-api-parameter-governance-and-full-link-blacklist&#34; &gt;Path Query API: Parameter Governance and Full-Link Blacklist&lt;/a&gt;
+IV. &lt;a class=&#34;link&#34; href=&#34;#cycle-detection-from-extended-paths-to-interpretable-loops&#34; &gt;Cycle Detection: From “Extended Paths” to “Interpretable Loops”&lt;/a&gt;
+V. &lt;a class=&#34;link&#34; href=&#34;#graph-construction-and-fusion-transforming-an-account-level-graph-into-an-entity-level-relationship-graph&#34; &gt;Graph Construction and Fusion: Transforming an “Account-Level Graph” into a “Entity-Level Relationship Graph”&lt;/a&gt;
+VI. &lt;a class=&#34;link&#34; href=&#34;#summary-turning-graph-algorithm-capabilities-into-a-viable-business-product&#34; &gt;Summary: Turning Graph Algorithm Capabilities into a Viable Business Product&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;i-background-what-system-are-we-building-and-why&#34;&gt;I. Background: What System Are We Building and Why?
+&lt;/h2&gt;&lt;p&gt;The essence of many business analyses is not “querying a single table,” but &lt;strong&gt;finding interpretable links and patterns among a large number of entities and relationships&lt;/strong&gt;. Clue discovery systems are designed for this type of problem: organizing data such as enterprises/persons/accounts/transactions/relationships into a graph, performing queries, merging, and analysis on the graph, and outputting a visualized relationship network and path results for the front-end, helping business personnel locate clues more quickly.&lt;/p&gt;
+&lt;h3 id=&#34;11-system-function&#34;&gt;1.1 System Function
+&lt;/h3&gt;&lt;p&gt;It transforms scattered entity and transaction data into a “traceable, interpretable, and visualizable” relationship network, used in scenarios such as &lt;strong&gt;relationship link discovery, fund flow tracking, and anomaly pattern identification&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;12-typical-application-scenarios&#34;&gt;1.2 Typical Application Scenarios
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Enterprise Relationship Network Analysis&lt;/strong&gt;: Query the relationship chain between a company and its upstream/downstream partners, related companies/personnel to assist with due diligence, risk control, and compliance reviews.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fund Flow Tracking&lt;/strong&gt;: Starting from a single entity, trace the destination/source of funds to identify intermediary accounts and key nodes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Transaction Path Discovery&lt;/strong&gt;: Given two groups of entities (or accounts), find the “shortest link” or “multiple alternative links” between them to explain “why they are related.”&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Anomaly Pattern Identification (Cycle/Return Flow)&lt;/strong&gt;: Detect if funds circulate back to the starting point, helping to identify suspicious patterns like matched orders or round-tripping.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Account Fusion/Gang Identification&lt;/strong&gt;: Merge the “account layer” into the “account holder layer,” or merge individuals into the “gang layer,” simplifying the graph into a business perspective that is easier to understand.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;13-data-and-technology-landscape&#34;&gt;1.3 Data and Technology Landscape
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Data Landscape&lt;/strong&gt;: Nodes (person/enterprise/bank account/gang/industry, etc.) + relationships (transactions, account ownership, social relationships, regular connections, etc.). Relationship edges often carry attributes (transaction time, amount, method, notes, etc.).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Storage Landscape&lt;/strong&gt;: Graph data is stored in Neo4j, while metadata and configurations are stored in MySQL (e.g., schema, display configurations, default database selection, blocked nodes).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Service Landscape&lt;/strong&gt;: Django provides APIs, and the front-end visualizes and interacts with &lt;code&gt;nodes + edges + path_list&lt;/code&gt; after receiving them.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;14-one-path-query-implemented-in-three-ways&#34;&gt;1.4 “One Path Query” Implemented in Three Ways
+&lt;/h3&gt;&lt;p&gt;Why implement “one path query” in three ways? Because user requirements vary significantly in different interaction contexts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Need only one shortest explanatory link&lt;/strong&gt;: It must be fast and stable, preferably providing results in seconds.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Need multiple alternative links&lt;/strong&gt;: It must be controllable (direction, filtering, termination, blocking) without slowing down the system.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Deep paths (high number of hops)&lt;/strong&gt;: The search space expands exponentially, requiring stronger algorithms and engineering safeguards (e.g., temporary subgraphs, dynamic K, resource reclamation).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Correspondingly, we use the three implementations in the system as follows (detailed in Section II):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Shortest Single Path (Interaction &amp;ldquo;Only Need 1&amp;rdquo;)&lt;/strong&gt;: When &lt;code&gt;limit == 1&lt;/code&gt;, the system prioritizes the shortest path capability. If constraints like blocked nodes exist, it uses a controllable path extension method to ensure “nodes that should not appear are excluded during the query phase.” The goal is &lt;strong&gt;maximum response speed + interpretable results&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Shallow Multi-Paths (Small Depth)&lt;/strong&gt;: When &lt;code&gt;maxLevel&lt;/code&gt; is small and multiple alternative links are needed, an extensible query with direction/filtering/termination/blocking capabilities is used. The goal is &lt;strong&gt;constraint-friendly + stable performance&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Deep Multi-Paths (Large Depth)&lt;/strong&gt;: When &lt;code&gt;maxLevel&lt;/code&gt; is large, the system switches to a graph algorithm engine (e.g., K-shortest path), combined with temporary subgraphs and dynamic parameter control. The goal is &lt;strong&gt;to avoid search explosion + provide sufficient candidate paths within controllable resources&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ii-unified-path-query-one-entry-automatically-selects-the-best-engine&#34;&gt;II. Unified Path Query: One Entry, Automatically Selects the Best Engine
+&lt;/h2&gt;&lt;p&gt;Path queries are the function in graph analysis systems most prone to “slow results for demands, incomplete results for speed.” We’ve converged its implementation into a unified entry point: input start/end node sets, direction, depth range, number of results, transaction type preferences, and optional “blocked nodes,” with internal strategy routing.&lt;/p&gt;
+&lt;h3 id=&#34;21-key-inputs-and-business-semantics&#34;&gt;2.1 Key Inputs and Business Semantics
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Start/End Points&lt;/strong&gt;: Supports combinations of multiple start and end points to avoid multiple front-end requests.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Direction Control (Transaction Direction)&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;0&lt;/code&gt;: Forward (start → end)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;1&lt;/code&gt;: Reverse (start ← end)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;2&lt;/code&gt;: Bidirectional (undirected/mixed)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Depth Range&lt;/strong&gt;: &lt;code&gt;minLevel&lt;/code&gt;/&lt;code&gt;maxLevel&lt;/code&gt; controls path length (hops).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;limit&lt;/strong&gt;: Number of paths to return. We specifically optimize for &lt;code&gt;limit == 1&lt;/code&gt; as a strong scenario for “the shortest/most appropriate one.”&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Transaction Type Switch&lt;/strong&gt;: Supports filtering preferences like “only large amounts/only small amounts/both.”&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Blocked Nodes (blacklist)&lt;/strong&gt;: Used for entities that should be “hidden/excluded” for business reasons (e.g., false-positive nodes, sensitive nodes, noisy nodes), requiring they &lt;strong&gt;cannot appear in the path&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;22-strategy-1-ultra-fast-shortest-path-for-limit--1&#34;&gt;2.2 Strategy 1: Ultra-Fast Shortest Path for &lt;code&gt;limit == 1&lt;/code&gt;
+&lt;/h3&gt;&lt;p&gt;When the user only needs one path, the system prioritizes the most efficient route:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Without Blocked Nodes&lt;/strong&gt;: Directly uses Neo4j’s native shortest path capability, matching with direction patterns (forward/reverse/bidirectional) for optimal performance.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;With Blocked Nodes&lt;/strong&gt;: Since the native shortest path doesn’t easily allow strict exclusion of nodes during the “search phase,” it switches to APOC for path extension, using &lt;code&gt;blacklistNodes&lt;/code&gt; in the extension parameters to filter out blocked nodes “preemptively.” Results are then sorted by hop count, and the shortest one is taken.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The benefit is that &lt;strong&gt;common interactions (viewing just one shortest relationship chain) are as fast as possible&lt;/strong&gt;, and blocking rules take effect during the query phase, avoiding the poor experience of “fetching results and then deleting them, potentially leading to empty results.”&lt;/p&gt;
+&lt;h3 id=&#34;23-strategy-2-shallow-multi-paths-maxlevel--6-use-apoc-balancing-performance-and-control&#34;&gt;2.3 Strategy 2: Shallow Multi-Paths (&lt;code&gt;maxLevel &amp;lt; 6&lt;/code&gt;) Use APOC, Balancing Performance and Control
+&lt;/h3&gt;&lt;p&gt;When depth is shallow but multiple paths are needed, we use APOC’s extension capabilities:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Relationship Filtering&lt;/strong&gt;: Combine “base relationships” (e.g., social relationships, bank accounts) with “transaction-type relationships” (account transactions/large/small) into a &lt;code&gt;relationshipFilter&lt;/code&gt;, generating different filter strings based on the direction parameter.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Terminator Nodes&lt;/strong&gt;: Explicitly set the end node set using &lt;code&gt;terminatorNodes&lt;/code&gt; to avoid meaningless diffusion.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Blocked Nodes&lt;/strong&gt;: Directly use APOC’s &lt;code&gt;blacklistNodes&lt;/code&gt; for exclusion during the search phase.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Deduplication&lt;/strong&gt;: Merge duplicate paths with the same node sequence to prevent identical paths from occupying multiple result slots.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The characteristic of this path is: &lt;strong&gt;very friendly to business conditions (direction, filtering, termination, blocking)&lt;/strong&gt;, and performance is stable when depth is shallow.&lt;/p&gt;
+&lt;h3 id=&#34;24-strategy-3-deep-multi-paths-maxlevel--6-use-gds-yens--temporary-subgraph-projection&#34;&gt;2.4 Strategy 3: Deep Multi-Paths (&lt;code&gt;maxLevel &amp;gt;= 6&lt;/code&gt;) Use GDS Yen’s + Temporary Subgraph Projection
+&lt;/h3&gt;&lt;p&gt;When depth increases, APOC extensions can easily lead to “search space explosion.” At this point, we switch to the GDS (Graph Data Science) solution. The core approach is:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Dynamically Create Temporary Subgraph Projection&lt;/strong&gt;: Create a projection graph valid only for the lifecycle of this query, deleting it immediately after the query to avoid polluting the global graph and prevent long-term memory usage.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;More Granular Direction Control&lt;/strong&gt;: Not all relationships are affected by “transaction direction.” In the current implementation, “transaction-type relationships” (at least including &lt;code&gt;account transaction&lt;/code&gt;, and can include &lt;code&gt;large/small transactions&lt;/code&gt; based on front-end switches) are set with controllable direction:
+&lt;ul&gt;
+&lt;li&gt;Forward: NATURAL&lt;/li&gt;
+&lt;li&gt;Reverse: REVERSE&lt;/li&gt;
+&lt;li&gt;Bidirectional: UNDIRECTED
+Other relationships remain NATURAL to ensure non-transaction edges like “social relationships/account relationships” are not incorrectly flipped.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Estimate Shortest Distance d First, Then Dynamically Set K&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;First, use a shortest path calculation to get the shortest hop count &lt;code&gt;d&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Then set &lt;code&gt;K = 2^d&lt;/code&gt;, adding lower/upper limits (e.g., ensure enough candidate paths, but cap to prevent explosion).
+The intuition for this strategy is: &lt;strong&gt;The further the node pair, the more candidate paths are needed to find multiple “business-usable” links&lt;/strong&gt;, but a hard upper limit must be set to protect the system.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reconstruct Relationship Information After Yen’s K-Shortest Path Output&lt;/strong&gt;: GDS outputs a node sequence. We match actual relationships based on adjacent node pairs to bring edge attributes (transaction time, amount, method, etc.) back to the front-end for display.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Blocked Node Handling&lt;/strong&gt;: Due to the relationship between projection and reconstruction, blocked nodes in deep path scenarios are filtered again in the result phase (ensuring the final path contains no blocked nodes).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Resource Release&lt;/strong&gt;: Regardless of query success or failure, ensure the temporary projection graph is deleted to avoid resource leakage.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The main benefits of adopting this solution for deep paths are: &lt;strong&gt;stronger stability and controllability&lt;/strong&gt;, preventing a single deep query from crippling the system.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;iii-path-query-api-parameter-governance-and-full-link-blacklist&#34;&gt;III. Path Query API: Parameter Governance and Full-Link Blacklist
+&lt;/h2&gt;&lt;p&gt;The API entry point for path queries does two main things:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Parameter Normalization&lt;/strong&gt;: Direction, depth, number of results, time range, amount range, transaction count range, etc., are all converted to unified backend types and default values at the entry point.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Blacklist Injection&lt;/strong&gt;: Read the “blocked node list” from the current default database configuration and pass it as &lt;code&gt;blacklist_nodes&lt;/code&gt; to the path query engine.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The value is that blocking rules don’t need to be scattered across various query logics; the API entry point is only responsible for “supplementing the rules,” and the underlying layer executes them uniformly.&lt;/p&gt;
+&lt;p&gt;Additionally, before path query results are returned, they undergo graph construction (see Section IV), and the results are written to a user-specific cache. This is used to “avoid re-querying the database when the same user performs consecutive operations (hide/append/switch fusion mode).”&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;iv-cycle-detection-from-extended-paths-to-interpretable-loops&#34;&gt;IV. Cycle Detection: From “Extended Paths” to “Interpretable Loops”
+&lt;/h2&gt;&lt;p&gt;The business goal of cycle detection is to start from accounts related to a certain entity and find cyclic paths where funds “circle back to themselves” in the network, used to identify patterns like round-tripping, matched orders, and money laundering.&lt;/p&gt;
+&lt;h3 id=&#34;41-starting-set-locate-the-account-set-from-personenterprise&#34;&gt;4.1 Starting Set: Locate the “Account Set” from “Person/Enterprise”
+&lt;/h3&gt;&lt;p&gt;The user selects “a certain entity” in the interface, but the real carriers of fund flow in the graph are bank account nodes. In implementation, a set of account node IDs is first queried based on the entity information (e.g., partial matching of the account holder field) as the starting set for subsequent expansion.&lt;/p&gt;
+&lt;h3 id=&#34;42-use-apoc-for-bfs-expansion-with-return-to-starting-set-as-termination-condition&#34;&gt;4.2 Use APOC for BFS Expansion with “Return to Starting Set” as Termination Condition
+&lt;/h3&gt;&lt;p&gt;The core query logic is APOC expansion:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;relationshipFilter&lt;/strong&gt;: Limited to fund-related and necessary auxiliary relationships (e.g., account transactions, cash deposits, withdrawals, account relationships, social relationships, etc.), can include direction tendencies (common practice is mainly “outward diffusion”).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;bfs&lt;/strong&gt;: Using breadth-first is better for discovering short cycles first.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;terminatorNodes&lt;/strong&gt;: Set to the starting account set, allowing the path to naturally converge when “returning to any starting account,” forming a cycle.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;blacklistNodes&lt;/strong&gt;: Also supports excluding blocked nodes during the search phase.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;uniqueness&lt;/strong&gt;: Uses a global relationship deduplication strategy to reduce redundant traversal.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;43-temporal-validation-turning-having-a-cycle-into-a-reasonable-fund-chain&#34;&gt;4.3 Temporal Validation: Turning “Having a Cycle” into “A Reasonable Fund Chain”
+&lt;/h3&gt;&lt;p&gt;The existence of a cycle in a graph does not necessarily mean the fund chain is reasonable. Cycle detection applies a layer of &lt;strong&gt;temporal validation&lt;/strong&gt; to the results:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Enforce time order constraints only on transaction-type edges (e.g., account transactions).&lt;/li&gt;
+&lt;li&gt;Eliminate paths where the time order is significantly reversed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The significance of this step is to filter “topological cycles” into “cycles that better align with the actual sequence of business events,” improving the interpretability and usability of the results.&lt;/p&gt;
+&lt;p&gt;Finally, the cycle detection results reuse the same graph construction and fusion logic for output to the front-end (see Section IV).&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;v-graph-construction-and-fusion-transforming-an-account-level-graph-into-an-entity-level-relationship-graph&#34;&gt;V. Graph Construction and Fusion: Transforming an “Account-Level Graph” into an “Entity-Level Relationship Graph”
+&lt;/h2&gt;&lt;p&gt;The raw query results from Neo4j are typically a collection of “nodes(path) + relationships(path),” but what the front-end needs is:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Nodes&lt;/strong&gt;: With styles, icons, display names, clustering information.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Edges&lt;/strong&gt;: With direction, categories, display fields (transaction time/amount), and the ability to be highlighted by the path list.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Therefore, we designed a unified graph construction function to convert the query results into a graph data structure suitable for visualization. At this stage, we also complete “account fusion” and “gang fusion.”&lt;/p&gt;
+&lt;h3 id=&#34;51-gang-fusion-first-refine-social-relationships-into-a-person--gang-mapping&#34;&gt;5.1 Gang Fusion: First Refine “Social Relationships” into a “Person → Gang” Mapping
+&lt;/h3&gt;&lt;p&gt;The system supports a graph simplification: when one end of a social relationship edge is a “gang” node, the related person is mapped to the gang node. In implementation, it first traverses the social relationship edges in the query results to build a &lt;code&gt;person_id -&amp;gt; groupNode&lt;/code&gt; mapping.&lt;/p&gt;
+&lt;p&gt;Placing this step before graph construction is crucial because &lt;strong&gt;subsequent processing of both nodes and edges can use the same mapping table for fast substitution without repeatedly querying the database&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;52-account-fusion-batch-query-account-holders-to-avoid-n1&#34;&gt;5.2 Account Fusion: Batch Query Account Holders to Avoid N+1
+&lt;/h3&gt;&lt;p&gt;The goal of account fusion is to replace “bank account nodes” with their holders (person/enterprise) nodes, thereby elevating the presentation from “between accounts” to “between entities.”&lt;/p&gt;
+&lt;p&gt;A key optimization here is that instead of querying the holder for each account individually, we:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Collect all distinct bank account IDs appearing in the query results.&lt;/li&gt;
+&lt;li&gt;Perform one batch query to get the “account → holder” mapping.&lt;/li&gt;
+&lt;li&gt;Construct lightweight holder node objects and cache them for subsequent replacement.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This reduces holder queries from &lt;strong&gt;N times&lt;/strong&gt; to &lt;strong&gt;1 batch&lt;/strong&gt;, making a significant difference when there are many path results or many accounts.&lt;/p&gt;
+&lt;h3 id=&#34;53-endpoint-replacement-replace-not-only-nodes-but-also-edge-endpoints&#34;&gt;5.3 Endpoint Replacement: Replace Not Only Nodes but Also Edge Endpoints
+&lt;/h3&gt;&lt;p&gt;If account fusion only replaces nodes without replacing edge endpoints, it can lead to broken graph structures or confusion where “edges still point to account nodes.” During graph construction, for each relationship, we simultaneously:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If the start point is a bank account → replace with its holder.&lt;/li&gt;
+&lt;li&gt;If the end point is a bank account → replace with its holder.&lt;/li&gt;
+&lt;li&gt;Then apply gang fusion replacements.&lt;/li&gt;
+&lt;li&gt;If the start and end points ultimately fall on the same node (self-loop), skip it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;54-path-visualization-support-each-edge-carries-a-set-of-paths-it-belongs-to&#34;&gt;5.4 Path Visualization Support: Each Edge Carries a “Set of Paths It Belongs To”
+&lt;/h3&gt;&lt;p&gt;To support the front-end “clicking a path in the list → highlighting that path in the graph,” the graph construction phase attaches, for each edge, a list of path IDs it belongs to (e.g., &lt;code&gt;id2path_ids&lt;/code&gt;). It also generates a &lt;code&gt;path_list&lt;/code&gt; for the UI (path titles, length, summary of nodes passed, list of edge IDs).&lt;/p&gt;
+&lt;h3 id=&#34;55-deduplication-and-graph-quality-edge-deduplication--bidirectional-edge-folding--discrete-point-filtering&#34;&gt;5.5 Deduplication and Graph Quality: Edge Deduplication + Bidirectional Edge Folding + Discrete Point Filtering
+&lt;/h3&gt;&lt;p&gt;It’s common in real data that:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The same relationship appears in multiple paths.&lt;/li&gt;
+&lt;li&gt;Bidirectional relationships cause both “A—B” and “B—A” to appear in the graph.&lt;/li&gt;
+&lt;li&gt;Disconnected discrete points appear after graph construction (affecting readability).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Therefore, several post-processing steps are applied after graph construction:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Deduplicate by Edge ID&lt;/strong&gt;: Keep only one instance of the same relationship.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fold Bidirectional Edges&lt;/strong&gt;: For specific categories (considered “undirected relationships”), keep only one edge for the same unordered pair to reduce visual clutter.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Filter Discrete Points&lt;/strong&gt;: Keep only nodes that appear at least in the set of edge endpoints; then apply blocked node filtering to ensure the front-end sees a “compact and interpretable subgraph.”&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Finally, node size calculation, edge style adjustment, and legend statistics are performed to enhance readability and interaction experience.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;vi-summary-turning-graph-algorithm-capabilities-into-a-viable-business-product&#34;&gt;VI. Summary: Turning Graph Algorithm Capabilities into a Viable Business Product
+&lt;/h2&gt;&lt;p&gt;Looking back at this implementation, the core isn’t “which algorithm is more advanced,” but rather:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Unified Entry&lt;/strong&gt;: A single API/single core function reduces branching and maintenance costs.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Layered Strategy&lt;/strong&gt;: &lt;code&gt;limit == 1&lt;/code&gt;, shallow multi-paths, and deep multi-paths each use the most appropriate engine.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rule Pre-positioning&lt;/strong&gt;: Blocked nodes are applied during the query phase as much as possible, with a final safeguard in the result phase.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Engineering Optimizations&lt;/strong&gt;: Batch queries replace N+1 queries, temporary subgraph lifecycle management, deduplication, and folding improve visualization quality.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Interpretability&lt;/strong&gt;: Cycle detection adds temporal validation, path lists are highlightable, and edges carry transaction summaries.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you’re also working on systems involving “graph databases + relationship analysis + visualization,” I hope this approach can provide some inspiration for your work.&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>A New Paradigm for Enterprise AI Governance: The Value and Practice of a Unified Scheduling Platform</title>
+        <link>https://zhangzib123.github.io/en/p/a-new-paradigm-for-enterprise-ai-governance-the-value-and-practice-of-a-unified-scheduling-platform/</link>
+        <pubDate>Mon, 08 Dec 2025 11:13:06 +0800</pubDate>
+        
+        <guid>https://zhangzib123.github.io/en/p/a-new-paradigm-for-enterprise-ai-governance-the-value-and-practice-of-a-unified-scheduling-platform/</guid>
+        <description>&lt;h2 id=&#34;a-new-paradigm-for-enterprise-ai-governance-the-value-and-practice-of-a-unified-scheduling-platform&#34;&gt;A New Paradigm for Enterprise AI Governance: The Value and Practice of a Unified Scheduling Platform
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;— From scattered model calls to a unified “AI hub”, turning intelligent capabilities into evolving assets&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;i-real-world-challenges-of-enterprise-ai-adoption&#34;&gt;I. Real-World Challenges of Enterprise AI Adoption
+&lt;/h3&gt;&lt;p&gt;With large language models going mainstream, a common pattern inside enterprises is:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Customer support uses GPT‑4&lt;/li&gt;
+&lt;li&gt;Content teams use Claude&lt;/li&gt;
+&lt;li&gt;Engineering uses GLM‑4&lt;/li&gt;
+&lt;li&gt;Data teams use DeepSeek&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Each system manages its own keys, error handling, rate limiting and cost control.&lt;br&gt;
+Once you need to switch models or adjust strategies, it quickly becomes a company-wide “coordination + code change” campaign.&lt;/p&gt;
+&lt;p&gt;This leads to several issues:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Model fragmentation&lt;/strong&gt;: Integrations are scattered, with no global view or unified governance&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Uncontrolled cost&lt;/strong&gt;: Hard to know who spent how much on which models, and what the ROI is&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No intelligent scheduling&lt;/strong&gt;: Simple tasks use the most expensive model, while complex tasks may not get optimal resources&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Poor availability&lt;/strong&gt;: A single model outage can impact many systems if there is no automatic fallback&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No accumulation of “intelligent assets”&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Document extraction, tagging, event extraction, embeddings, etc. are re‑implemented in each project&lt;/li&gt;
+&lt;li&gt;High‑quality prompts stay hidden in code or notebooks&lt;/li&gt;
+&lt;li&gt;In‑house AI components and model services remain project‑specific and hard to reuse or evolve&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;ii-a-new-paradigm-ai-governance-and-scheduling-platform&#34;&gt;II. A New Paradigm: AI Governance and Scheduling Platform
+&lt;/h3&gt;&lt;h4 id=&#34;21-what-is-an-ai-governance-and-scheduling-platform&#34;&gt;2.1 What Is an AI Governance and Scheduling Platform?
+&lt;/h4&gt;&lt;p&gt;An &lt;strong&gt;AI governance and scheduling platform&lt;/strong&gt; acts as the enterprise’s &lt;strong&gt;AI bus and hub&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Upstream&lt;/strong&gt;: exposes a &lt;strong&gt;single, stable API entry point&lt;/strong&gt; to all business systems&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Downstream&lt;/strong&gt;: manages multiple LLM vendors, private models, traditional ML services and in‑house plugins&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;In the middle&lt;/strong&gt;: performs &lt;strong&gt;intelligent scheduling&lt;/strong&gt; (routing, load balancing, fallback), plus monitoring and cost governance&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In other words:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“Which model/service to call, and under what strategy” is no longer hard‑coded in each app,&lt;br&gt;
+but decided centrally by the platform.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;22-architectural-view-layers-and-responsibilities&#34;&gt;2.2 Architectural View: Layers and Responsibilities
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/iceberg2024/public/main/images/image-20251209115253120.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20251209115253120&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Key ideas:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Unified entry&lt;/strong&gt;: business systems integrate once, use many models/services behind the scenes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Intelligent scheduling&lt;/strong&gt;: the platform decides routing based on business tier, cost preference, health and load&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Plugin ecosystem&lt;/strong&gt;: in‑house AI capabilities are exposed as plugins, reusable and centrally scheduled&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Service registry&lt;/strong&gt;: traditional ML and external AI services are registered and governed centrally&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Monitoring &amp;amp; cost governance&lt;/strong&gt;: QPS, latency, error rates, tokens and cost are tracked at platform level&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Intelligent asset accumulation&lt;/strong&gt;: prompts, plugins and best practices become shared, evolving assets&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;iii-core-value-solving-four-major-pain-points&#34;&gt;III. Core Value: Solving Four Major Pain Points
+&lt;/h3&gt;&lt;h4 id=&#34;31-from-model-fragmentation--unified-management-and-scheduling&#34;&gt;3.1 From Model Fragmentation → Unified Management and Scheduling
+&lt;/h4&gt;&lt;p&gt;A centralized &lt;strong&gt;model pool&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Holds all model configurations in one place&lt;/li&gt;
+&lt;li&gt;Decouples business logic from specific vendors&lt;/li&gt;
+&lt;li&gt;Allows upgrades, switching and A/B testing at the platform level&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This significantly reduces integration and coordination overhead, and keeps the door open for new models and deployments.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;32-from-uncontrolled-cost--precise-accounting--policy-driven-scheduling&#34;&gt;3.2 From Uncontrolled Cost → Precise Accounting + Policy-Driven Scheduling
+&lt;/h4&gt;&lt;p&gt;The platform:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Logs tokens and cost for every call&lt;/li&gt;
+&lt;li&gt;Aggregates by model, tenant, business line, and application&lt;/li&gt;
+&lt;li&gt;Allows each business to specify &lt;strong&gt;cost vs. quality preferences&lt;/strong&gt; and &lt;strong&gt;business tiers&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Scheduling decisions then balance quality, latency and cost automatically.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Outcome:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You know &lt;strong&gt;who&lt;/strong&gt; spent &lt;strong&gt;how much&lt;/strong&gt; on &lt;strong&gt;which models&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;You can see which models are “expensive but underperforming”&lt;/li&gt;
+&lt;li&gt;High‑value traffic can be steered to stronger models, while low‑value or bulk workloads go to cheaper ones&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;33-from-ad-hoc-routing--multi-dimensional-intelligent-scheduling&#34;&gt;3.3 From Ad-Hoc Routing → Multi-Dimensional Intelligent Scheduling
+&lt;/h4&gt;&lt;p&gt;Instead of hard‑coding model choices, business systems simply declare:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Business tier: &lt;code&gt;premium / normal / economy&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Cost preference: cost‑first vs. quality‑first&lt;/li&gt;
+&lt;li&gt;Capability tags: multilingual, coding, long‑context, etc.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The platform combines this with:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Model health and availability&lt;/li&gt;
+&lt;li&gt;Current load (QPS, concurrency)&lt;/li&gt;
+&lt;li&gt;Historical latency and error rates&lt;/li&gt;
+&lt;li&gt;Budget and cost constraints&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;to perform end‑to‑end &lt;strong&gt;intelligent scheduling&lt;/strong&gt;: routing, load balancing, fallback and degradation.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;34-from-poor-extensibility--plugin-based-ecosystem--unified-scheduling&#34;&gt;3.4 From Poor Extensibility → Plugin-Based Ecosystem + Unified Scheduling
+&lt;/h4&gt;&lt;p&gt;New AI capabilities (contract key‑point extraction, policy parsing, industry news summarization, etc.):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Are implemented as &lt;strong&gt;platform plugins&lt;/strong&gt;, not buried inside each app&lt;/li&gt;
+&lt;li&gt;Exposed through unified APIs, reusable across systems&lt;/li&gt;
+&lt;li&gt;Centrally scheduled: a plugin can internally use LLMs, traditional ML or external services, all coordinated by the platform&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This enables “build once, reuse everywhere”, faster rollout of new capabilities and lower maintenance cost.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;iv-intelligent-assets-organization-level-capabilities&#34;&gt;IV. Intelligent Assets: Organization-Level Capabilities
+&lt;/h3&gt;&lt;p&gt;The real long‑term differentiator is not &lt;strong&gt;who connects to which model first&lt;/strong&gt;, but:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Who can turn their AI components, prompts and best practices&lt;br&gt;
+into &lt;strong&gt;continuously evolving intelligent assets&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;41-prompt-template-center&#34;&gt;4.1 Prompt Template Center
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;Extracts critical prompts from scattered code and centralizes them in a &lt;strong&gt;prompt library&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Organizes by scenario / industry / plugin&lt;/li&gt;
+&lt;li&gt;Supports versioning, online editing and hot reload&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;New projects can start from proven templates; improvements to a template benefit all consumers at once.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;42-unified-management-and-scheduling-of-in-house-ai-components&#34;&gt;4.2 Unified Management and Scheduling of In-House AI Components
+&lt;/h4&gt;&lt;p&gt;In many organizations, in‑house AI components and model services live in:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Individual project repositories&lt;/li&gt;
+&lt;li&gt;Team‑owned private services&lt;/li&gt;
+&lt;li&gt;Small logic blocks inside business code&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The platform promotes them to &lt;strong&gt;first‑class capabilities&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Registered as plugins or services with clear contracts&lt;/li&gt;
+&lt;li&gt;Scheduled together with LLMs and traditional ML&lt;/li&gt;
+&lt;li&gt;Evolved centrally (better prompts, better models, better policies) without changing callers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Every project thus contributes new “building blocks” to the enterprise AI asset pool.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;43-from-project-centric-to-asset-centric&#34;&gt;4.3 From Project-Centric to Asset-Centric
+&lt;/h4&gt;&lt;p&gt;Previously:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Each project implemented its own extraction, tagging, summarization logic&lt;/li&gt;
+&lt;li&gt;Code and know‑how stayed within that project team&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;With an AI governance and scheduling platform:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Each project leaves behind plugins, prompt templates and best practices&lt;/li&gt;
+&lt;li&gt;Future projects can assemble solutions from these assets instead of reinventing them&lt;/li&gt;
+&lt;li&gt;The organization’s AI maturity compounds over time&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is what it means to &lt;strong&gt;turn a series of self-developed AI components and model services into long-term intelligent assets&lt;/strong&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;v-who-benefits-the-most&#34;&gt;V. Who Benefits the Most
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Mid‑to‑large enterprises&lt;/strong&gt;: multiple business lines using AI, needing a unified AI hub and scheduling layer&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Software vendors / ISVs&lt;/strong&gt;: turning scattered project code into productized, reusable AI capabilities&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AI API / platform providers&lt;/strong&gt;: needing unified external APIs, service discovery, billing and ecosystem support&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Organizations building AI middle platforms&lt;/strong&gt;: wanting a sustainable intelligent layer above data and services&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For all of them, the key benefit is that &lt;strong&gt;every new AI project starts higher than the last one&lt;/strong&gt;,&lt;br&gt;
+because the platform keeps accumulating and evolving intelligent assets in the background.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;vi-conclusion-from-using-models-to-operating-intelligent-assets&#34;&gt;VI. Conclusion: From “Using Models” to “Operating Intelligent Assets”
+&lt;/h3&gt;&lt;p&gt;A unified AI governance and scheduling platform upgrades the enterprise on three levels:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Engineering&lt;/strong&gt;: from scattered integrations to a unified, intelligent entry point&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Management&lt;/strong&gt;: from opaque spending to measurable, optimizable AI usage&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Organization&lt;/strong&gt;: from project‑by‑project output to an ever‑growing pool of reusable AI capabilities&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;LLMs make “intelligence” accessible;&lt;br&gt;
+an AI governance and scheduling platform makes that intelligence &lt;strong&gt;stick, improve and compound&lt;/strong&gt; over time.&lt;br&gt;
+For enterprises seeking sustainable advantage in the AI era, this is a step worth taking early.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Author:&lt;/strong&gt; Zhengzhou Shuneng Software Technology Co., Ltd.&lt;br&gt;
+&lt;strong&gt;Tags:&lt;/strong&gt; &lt;code&gt;ai-platform&lt;/code&gt; · &lt;code&gt;ai-governance&lt;/code&gt; · &lt;code&gt;ai-scheduling&lt;/code&gt; · &lt;code&gt;llm-gateway&lt;/code&gt; · &lt;code&gt;enterprise-ai&lt;/code&gt; · &lt;code&gt;intelligent-assets&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
+        <title>Intelligent Site-Wide Profiling and Adaptive Crawling Technical Documentation</title>
+        <link>https://zhangzib123.github.io/en/p/intelligent-site-wide-profiling-and-adaptive-crawling-technical-documentation/</link>
+        <pubDate>Fri, 29 Aug 2025 11:13:06 +0800</pubDate>
+        
+        <guid>https://zhangzib123.github.io/en/p/intelligent-site-wide-profiling-and-adaptive-crawling-technical-documentation/</guid>
+        <description>&lt;h1 id=&#34;intelligent-site-wide-profiling-and-adaptive-crawling-technical-documentation&#34;&gt;Intelligent Site-Wide Profiling and Adaptive Crawling Technical Documentation
+&lt;/h1&gt;&lt;h2 id=&#34;-table-of-contents&#34;&gt;📋 Table of Contents
+&lt;/h2&gt;&lt;p&gt;I. &lt;a class=&#34;link&#34; href=&#34;#technical-architecture-overview&#34; &gt;Technical Architecture Overview&lt;/a&gt;
+II. &lt;a class=&#34;link&#34; href=&#34;#core-features-and-innovations&#34; &gt;Core Features and Innovations&lt;/a&gt;
+III. &lt;a class=&#34;link&#34; href=&#34;#performance-testing-and-comparison&#34; &gt;Performance Testing and Comparison&lt;/a&gt;
+IV. &lt;a class=&#34;link&#34; href=&#34;#technical-advantages-and-applications&#34; &gt;Technical Advantages and Applications&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;i-technical-architecture-overview&#34;&gt;I. Technical Architecture Overview
+&lt;/h2&gt;&lt;h3 id=&#34;two-stage-intelligent-crawling-architecture&#34;&gt;Two-Stage Intelligent Crawling Architecture
+&lt;/h3&gt;&lt;p&gt;Our system adopts an innovative two-stage architecture that achieves complete automation from site analysis to intelligent crawling:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Stage 1 - Intelligent Profiling Construction&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Automatically constructs site structure profiles through page sampling&lt;/li&gt;
+&lt;li&gt;Intelligently identifies website types (10 categories)&lt;/li&gt;
+&lt;li&gt;Automatically infers URL patterns, important sections, and content features&lt;/li&gt;
+&lt;li&gt;Supports caching mechanisms to improve repeated analysis efficiency&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Stage 2 - Adaptive Crawling&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Automatically configures crawling strategies based on profile results&lt;/li&gt;
+&lt;li&gt;Differentiated processing for different website types&lt;/li&gt;
+&lt;li&gt;Intelligent content modality identification (7 types)&lt;/li&gt;
+&lt;li&gt;Results automatically saved as structured data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;large-language-model-integration-upgrade&#34;&gt;Large Language Model Integration Upgrade
+&lt;/h3&gt;&lt;p&gt;The system integrates GLM-4-Flash large language model, achieving intelligent upgrade from traditional heuristic to AI-driven approaches:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Intelligent Analysis&lt;/strong&gt;: Website structure analysis based on semantic understanding&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Strategy Optimization&lt;/strong&gt;: Automatically generates optimal crawling strategies and parameters&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fallback Mechanism&lt;/strong&gt;: Automatically falls back to traditional methods when AI fails&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cache Optimization&lt;/strong&gt;: Intelligent cache management to avoid repeated analysis&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ii-core-features-and-innovations&#34;&gt;II. Core Features and Innovations
+&lt;/h2&gt;&lt;h3 id=&#34;intelligent-website-type-detection&#34;&gt;Intelligent Website Type Detection
+&lt;/h3&gt;&lt;p&gt;The system can automatically identify 10 main website types:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Corporate Websites&lt;/strong&gt;: Wide coverage with shallow depth strategy&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;News Media&lt;/strong&gt;: Deep-level high-precision strategy&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Government Sites&lt;/strong&gt;: Date directory and attachment identification&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Educational Institutions&lt;/strong&gt;: Multi-subdomain parallel processing&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Blog Columns&lt;/strong&gt;: Content-oriented strategy&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;E-commerce Platforms&lt;/strong&gt;: Separation of products and information&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Community Forums&lt;/strong&gt;: Post content extraction&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Portal Aggregation&lt;/strong&gt;: Subsite autonomous profiling&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SPA Applications&lt;/strong&gt;: Rendering wait strategy&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CMS Systems&lt;/strong&gt;: Template rapid matching&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;intelligent-content-modality-recognition&#34;&gt;Intelligent Content Modality Recognition
+&lt;/h3&gt;&lt;p&gt;Supports automatic identification of 7 content modalities:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;text&lt;/strong&gt;: Pure text pages (&amp;gt;1000 characters)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;image&lt;/strong&gt;: Image-text pages (&amp;gt;3 images, &amp;gt;600 characters)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;video&lt;/strong&gt;: Video pages (containing players, &amp;gt;400 characters)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;audio&lt;/strong&gt;: Audio pages (&amp;gt;300 characters)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;doc&lt;/strong&gt;: Document pages (containing PDF, Word, etc., &amp;gt;200 characters)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;data&lt;/strong&gt;: Data pages (containing tables, charts, &amp;gt;500 characters)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;mixed&lt;/strong&gt;: Mixed content pages (multiple media types, &amp;gt;800 characters)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;differentiated-strategy-routing&#34;&gt;Differentiated Strategy Routing
+&lt;/h3&gt;&lt;p&gt;Automatically adjusts crawling strategies for different website types:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Sampling Strategy&lt;/strong&gt;: Adjusts sampling depth based on website complexity&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;URL Pattern Learning&lt;/strong&gt;: Automatically identifies articles, lists, and navigation pages&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Content Quality Thresholds&lt;/strong&gt;: Dynamically adjusts content quality requirements&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Metadata Extraction&lt;/strong&gt;: Extracts corresponding information for different website types&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;iii-performance-testing-and-comparison&#34;&gt;III. Performance Testing and Comparison
+&lt;/h2&gt;&lt;h3 id=&#34;traditional-methods-vs-large-language-model-methods&#34;&gt;Traditional Methods vs Large Language Model Methods
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Metric&lt;/th&gt;
+          &lt;th&gt;Traditional Heuristic Methods&lt;/th&gt;
+          &lt;th&gt;GLM-4-Flash Methods&lt;/th&gt;
+          &lt;th&gt;Improvement&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Website Type Recognition Accuracy&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;60-80%&lt;/td&gt;
+          &lt;td&gt;71.4-100%&lt;/td&gt;
+          &lt;td&gt;+11.4-40%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Strategy Matching Accuracy&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;65-75%&lt;/td&gt;
+          &lt;td&gt;85-95%&lt;/td&gt;
+          &lt;td&gt;+20-30%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;URL Pattern Recognition&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Basic regex matching&lt;/td&gt;
+          &lt;td&gt;Intelligent semantic understanding&lt;/td&gt;
+          &lt;td&gt;+40-60%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Content Structure Analysis&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Static rules&lt;/td&gt;
+          &lt;td&gt;Dynamic AI analysis&lt;/td&gt;
+          &lt;td&gt;+50-70%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Strategy Parameter Optimization&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Fixed templates&lt;/td&gt;
+          &lt;td&gt;Adaptive adjustment&lt;/td&gt;
+          &lt;td&gt;+60-80%&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;detailed-test-results&#34;&gt;Detailed Test Results
+&lt;/h3&gt;&lt;h4 id=&#34;standard-website-testing-clear-features&#34;&gt;Standard Website Testing (Clear Features)
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Ruan Yifeng&amp;rsquo;s Blog&lt;/strong&gt;: &lt;code&gt;blog&lt;/code&gt; ✅ (Confidence: 0.95)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Paper News&lt;/strong&gt;: &lt;code&gt;news&lt;/code&gt; ✅ (Confidence: 0.95)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Henan Provincial Government&lt;/strong&gt;: &lt;code&gt;gov&lt;/code&gt; ✅ (Confidence: 0.95)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Accuracy Rate&lt;/strong&gt;: 100% (3/3)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;random-website-testing-diverse&#34;&gt;Random Website Testing (Diverse)
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;GitHub&lt;/strong&gt;: &lt;code&gt;portal&lt;/code&gt; ✅ (Expected: portal)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stack Overflow&lt;/strong&gt;: &lt;code&gt;forum&lt;/code&gt; ✅ (Expected: forum)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Amazon&lt;/strong&gt;: &lt;code&gt;ecommerce&lt;/code&gt; ✅ (Expected: ecommerce)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Microsoft&lt;/strong&gt;: &lt;code&gt;corporate&lt;/code&gt; ✅ (Expected: corporate)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Medium&lt;/strong&gt;: &lt;code&gt;blog&lt;/code&gt; ✅ (Expected: blog)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Notion&lt;/strong&gt;: &lt;code&gt;corporate&lt;/code&gt; ⚠️ (Expected: unknown)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Figma&lt;/strong&gt;: &lt;code&gt;corporate&lt;/code&gt; ⚠️ (Expected: unknown)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Accuracy Rate&lt;/strong&gt;: 71.4% (5/7)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;performance-improvement-data&#34;&gt;Performance Improvement Data
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Overall Accuracy Improvement&lt;/strong&gt;: 25-40%&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Maintenance Cost Reduction&lt;/strong&gt;: 60-80%&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Development Efficiency Improvement&lt;/strong&gt;: 3-5x&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;System Availability&lt;/strong&gt;: 99.5%+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Concurrent Processing Capacity&lt;/strong&gt;: 1000+ websites&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;iv-technical-advantages-and-applications&#34;&gt;IV. Technical Advantages and Applications
+&lt;/h2&gt;&lt;h3 id=&#34;core-advantages&#34;&gt;Core Advantages
+&lt;/h3&gt;&lt;h4 id=&#34;1-intelligence-level&#34;&gt;1. Intelligence Level
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Adaptive Learning&lt;/strong&gt;: Automatically constructs site profiles through sampling data without manual configuration&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Strategy Optimization&lt;/strong&gt;: Dynamically adjusts crawling parameters based on website features for precise extraction&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AI-Driven&lt;/strong&gt;: Large language model integration provides semantic understanding capabilities beyond traditional rule matching&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;2-versatility-and-adaptability&#34;&gt;2. Versatility and Adaptability
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Multi-type Support&lt;/strong&gt;: Covers 10 main website types&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dynamic Adaptation&lt;/strong&gt;: Can handle complex architecture websites like SPA, CMS, and portals&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cross-platform Compatibility&lt;/strong&gt;: Supports various technology stacks and content management systems&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;3-production-ready-features&#34;&gt;3. Production-Ready Features
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;High Availability&lt;/strong&gt;: 99.5%+ system availability, supports large-scale concurrent processing&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fault Tolerance&lt;/strong&gt;: Intelligent fallback strategies ensure stable system operation&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Monitoring System&lt;/strong&gt;: Complete performance monitoring and logging system&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;application-scenarios&#34;&gt;Application Scenarios
+&lt;/h3&gt;&lt;h4 id=&#34;enterprise-applications&#34;&gt;Enterprise Applications
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Large-scale Data Collection&lt;/strong&gt;: Supports concurrent analysis of 1000+ websites&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Intelligent Content Monitoring&lt;/strong&gt;: Automatically identifies website structure changes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data Quality Assurance&lt;/strong&gt;: Improves collection accuracy through intelligent analysis&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;industry-applications&#34;&gt;Industry Applications
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;News Media&lt;/strong&gt;: Multi-source news aggregation and analysis&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Government Transparency&lt;/strong&gt;: Automatic collection of policy documents&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Academic Research&lt;/strong&gt;: Intelligent acquisition of academic resources&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;E-commerce Analysis&lt;/strong&gt;: Product information and price monitoring&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;technical-value-and-social-significance&#34;&gt;Technical Value and Social Significance
+&lt;/h3&gt;&lt;h4 id=&#34;technical-innovation-value&#34;&gt;Technical Innovation Value
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Architecture Innovation&lt;/strong&gt;: Two-stage design creates a new paradigm for intelligent crawling&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AI Integration&lt;/strong&gt;: Successful application case of large language models in traditional technology fields&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Adaptive Capability&lt;/strong&gt;: Achieves transformation from rule-driven to data-driven approaches&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;commercial-application-value&#34;&gt;Commercial Application Value
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Efficiency Improvement&lt;/strong&gt;: Significantly reduces the cost and complexity of website data collection&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Quality Assurance&lt;/strong&gt;: Improves the accuracy and completeness of data collection through intelligent analysis&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scalability Support&lt;/strong&gt;: Supports enterprise-level large-scale data collection requirements&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;final-summary&#34;&gt;Final Summary
+&lt;/h3&gt;&lt;p&gt;Through dual upgrades of two-stage architecture and large language model integration, our system achieves:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Intelligent Upgrade&lt;/strong&gt;: From traditional heuristic to AI-driven intelligent analysis&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Significant Performance Improvement&lt;/strong&gt;: 25-40% accuracy improvement, 60-80% maintenance cost reduction&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Enterprise Capabilities&lt;/strong&gt;: Supports large-scale deployment with high availability and scalability&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Continuous Optimization&lt;/strong&gt;: Establishes complete performance monitoring and optimization systems&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This system represents the latest advancement in &lt;strong&gt;AI-driven crawling technology&lt;/strong&gt;, providing a completely new solution for large-scale website data collection. It not only improves crawling efficiency and quality but, more importantly, demonstrates the enormous potential of artificial intelligence in traditional technology fields.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;This system is not just a technical product but an important milestone in the development of data collection technology in the AI era. It demonstrates the enormous potential of deep integration between artificial intelligence and traditional technology, pointing the direction for future technological development.&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+</description>
+        </item>
+        <item>
+        <title>Integration of LLM and Traditional Parsing Technologies: Evolution and Best Practices in Web Data Extraction</title>
+        <link>https://zhangzib123.github.io/en/p/integration-of-llm-and-traditional-parsing-technologies-evolution-and-best-practices-in-web-data-extraction/</link>
+        <pubDate>Wed, 13 Aug 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhangzib123.github.io/en/p/integration-of-llm-and-traditional-parsing-technologies-evolution-and-best-practices-in-web-data-extraction/</guid>
+        <description>&lt;h1 id=&#34;integration-of-llm-and-traditional-parsing-technologies-evolution-and-best-practices-in-web-data-extraction&#34;&gt;Integration of LLM and Traditional Parsing Technologies: Evolution and Best Practices in Web Data Extraction
+&lt;/h1&gt;&lt;p&gt;​                               Zhang Zibiao | Zhengzhou Shuneng Software Technology Co., Ltd. | China&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-traditional-parsing-technologies-the-era-of-rules-and-statistics&#34;&gt;1. Traditional Parsing Technologies: The Era of Rules and Statistics
+&lt;/h2&gt;&lt;h3 id=&#34;11-evolution-of-core-methods&#34;&gt;1.1 Evolution of Core Methods
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;strong&gt;Period&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;Representative Technologies&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;Working Principle&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;Typical Tools&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Rule-based&lt;/td&gt;
+          &lt;td&gt;Regular Expressions / XPath / CSS Selector&lt;/td&gt;
+          &lt;td&gt;Manually written pattern matching rules&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;BeautifulSoup&lt;/code&gt;, &lt;code&gt;Scrapy&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Statistical&lt;/td&gt;
+          &lt;td&gt;CRF / HMM Sequence Labeling&lt;/td&gt;
+          &lt;td&gt;Learn entity recognition probability models from labeled data&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;Stanford NER&lt;/code&gt;, &lt;code&gt;CRF++&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Visual Parsing&lt;/td&gt;
+          &lt;td&gt;OCR + Text Position Recognition via Page Rendering&lt;/td&gt;
+          &lt;td&gt;Render page screenshots and recognize text positions&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;Selenium&lt;/code&gt; + &lt;code&gt;Tesseract&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;12-drawbacks-of-traditional-parsing&#34;&gt;1.2 Drawbacks of Traditional Parsing
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Example: CSS extraction of website source info - breaks if the website layout changes&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;price&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;response&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;xpath&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;//span[@class=&amp;#34;source&amp;#34;]/text()&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Poor generalization&lt;/strong&gt;: Minor page structure changes cause rules to fail&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Lack of semantic understanding&lt;/strong&gt;: Can only extract explicit fields (e.g., price), cannot summarize product descriptions&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Manual configuration&lt;/strong&gt;: Requires manual configuration for each website section’s structure&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Complex attribute extraction&lt;/strong&gt;: Weakly structured attributes (e.g., source/document numbers) are difficult to accurately extract via configuration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;13-advantages-and-suitable-scenarios-for-traditional-parsing&#34;&gt;1.3 Advantages and Suitable Scenarios for Traditional Parsing
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;High processing efficiency&lt;/strong&gt;: Operates on local structured character parsing, very efficient&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Suitable for highly structured content&lt;/strong&gt;: For example, titles, list pages, and extracting main text fragments can be done well with simple configuration&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Parsing optimization&lt;/strong&gt;: By configuring CSS expressions properly, small changes in web structure can be adapted to. For example:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Here, span &amp;gt; li is too strict. If another tag (e.g., &amp;lt;div&amp;gt;, &amp;lt;em&amp;gt;, etc.) is inserted between span and li, it won’t match.&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;div&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;=&amp;#34;&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;zsy_conlist&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;] &amp;gt; ul &amp;gt; span &amp;gt; li &amp;gt; a
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s&#34;&gt;// Change to descendant selector (space)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s&#34;&gt;div[class=&amp;#34;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;zsy_conlist&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;] &amp;gt; ul &amp;gt; span li a
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s&#34;&gt;// This way, regardless of how many layers are inserted between span and li, it can still match. Adapts to small page structure changes
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;2-llm-parsing-the-semantic-understanding-revolution&#34;&gt;2. LLM Parsing: The Semantic Understanding Revolution
+&lt;/h2&gt;&lt;h3 id=&#34;21-core-advantages-of-llm&#34;&gt;2.1 Core Advantages of LLM
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[Input] HTML code (including ads/irrelevant tags)  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[LLM Instruction] Extract contact email and summarize main business  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[Output]  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &amp;#34;email&amp;#34;: &amp;#34;contact&lt;span class=&#34;ni&#34;&gt;@realestate&lt;/span&gt;.com&amp;#34;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &amp;#34;business&amp;#34;: &amp;#34;Specialized in internet information collection and data processing solutions&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Breaks structural dependency&lt;/strong&gt;: Directly understands page semantics&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Handles complex tasks&lt;/strong&gt;: Entity extraction + summary generation + custom phrasing in one step&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Anti-interference capability&lt;/strong&gt;: Ignores frontend obfuscation (e.g., dynamic class names)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;22-four-accuracy-issues-of-llm&#34;&gt;2.2 Four Accuracy Issues of LLM
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;strong&gt;Problem Type&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;Root Cause&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Probabilistic bias&lt;/td&gt;
+          &lt;td&gt;Phone &lt;code&gt;138-0013-8000&lt;/code&gt; → &lt;code&gt;13800138000&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Seeks semantic plausibility over exact matching&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Context truncation&lt;/td&gt;
+          &lt;td&gt;Loss of information at the end of long pages&lt;/td&gt;
+          &lt;td&gt;Window size limits (e.g., DeepSeek 64K)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Fails under adversarial interference&lt;/td&gt;
+          &lt;td&gt;Unable to recognize phone numbers in images&lt;/td&gt;
+          &lt;td&gt;Limitations of text-only models&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Slower processing&lt;/td&gt;
+          &lt;td&gt;Slower extraction of specific content&lt;/td&gt;
+          &lt;td&gt;Network and model performance limitations&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-hybrid-parsing-architecture-balancing-accuracy-and-generalization&#34;&gt;3. Hybrid Parsing Architecture: Balancing Accuracy and Generalization
+&lt;/h2&gt;&lt;h3 id=&#34;31-technical-integration-design-scheme&#34;&gt;3.1 Technical Integration Design Scheme
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://zzsn-doc.obs.cn-north-1.myhuaweicloud.com/typora/image-20250813175727691.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250813175727691&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;32-key-implementation-strategies&#34;&gt;3.2 Key Implementation Strategies
+&lt;/h3&gt;&lt;h4 id=&#34;strategy-1-strong-constraints-on-llm-output&#34;&gt;Strategy 1: &lt;strong&gt;Strong Constraints on LLM Output&lt;/strong&gt;
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Strictly output in JSON format:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &amp;#34;name&amp;#34;: &amp;#34;string or null&amp;#34;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &amp;#34;phone&amp;#34;: &amp;#34;Must match ^\d{3}-\d{4}-\d{4}$&amp;#34;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &amp;#34;business&amp;#34;: &amp;#34;Summary no longer than 20 characters&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Do not fabricate non-existent information!
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;strategy-2-fallback-to-traditional-rules&#34;&gt;Strategy 2: &lt;strong&gt;Fallback to Traditional Rules&lt;/strong&gt;
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;validate_phone&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;phone&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;re&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;pattern&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;sa&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;^\d&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;{3}&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;-\d&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;{4}&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;-\d&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;{4}&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;$&amp;#39;&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;# Strong format validation&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;bool&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;re&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;match&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pattern&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phone&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phone&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;False&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;strategy-3-dynamic-chunk-processing&#34;&gt;Strategy 3: &lt;strong&gt;Dynamic Chunk Processing&lt;/strong&gt;
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Solve long page context overflow&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;bs4&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;BeautifulSoup&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;chunk_html&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;html&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;max_tokens&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2000&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;soup&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;BeautifulSoup&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;html&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;html.parser&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;chunks&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;current_chunk&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;section&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;soup&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;find_all&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;section&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;# Split by semantic blocks&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;len&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;current_chunk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;len&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;section&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;text&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;max_tokens&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;n&#34;&gt;chunks&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;append&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;current_chunk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;n&#34;&gt;current_chunk&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;section&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;text&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;n&#34;&gt;current_chunk&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;section&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;text&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;chunks&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;33-performance-comparison-policy-and-regulation-information-parsing-scenario&#34;&gt;3.3 Performance Comparison (Policy and Regulation Information Parsing Scenario)
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;strong&gt;Solution&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;Policy-Specific Attribute Accuracy&lt;/th&gt;
+          &lt;th&gt;Main Text Accuracy&lt;/th&gt;
+          &lt;th&gt;Cost/1K Pages&lt;/th&gt;
+          &lt;th&gt;Layout Adaptability&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Pure Traditional Rules&lt;/td&gt;
+          &lt;td&gt;68%&lt;/td&gt;
+          &lt;td&gt;95%&lt;/td&gt;
+          &lt;td&gt;$0.01&lt;/td&gt;
+          &lt;td&gt;❌&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Pure LLM (DeepSeek)&lt;/td&gt;
+          &lt;td&gt;96%&lt;/td&gt;
+          &lt;td&gt;83%&lt;/td&gt;
+          &lt;td&gt;$0.15&lt;/td&gt;
+          &lt;td&gt;✅&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Hybrid Architecture&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;98%&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;97%&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;$0.08&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;✅&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;4-practical-case-general-web-information-collection-system&#34;&gt;4. Practical Case: General Web Information Collection System
+&lt;/h2&gt;&lt;h3 id=&#34;41-technology-stack-components&#34;&gt;4.1 Technology Stack Components
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;strong&gt;Component&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;Recommended Tool&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;Function&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Crawler Framework&lt;/td&gt;
+          &lt;td&gt;Crawl-for-AI / selenium&lt;/td&gt;
+          &lt;td&gt;Webpage fetching&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Dynamic Rendering&lt;/td&gt;
+          &lt;td&gt;chrome-driver&lt;/td&gt;
+          &lt;td&gt;Handle JS-loaded content&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;LLM Parsing&lt;/td&gt;
+          &lt;td&gt;DeepSeek-V3 + glm:GLM-4-Flash&lt;/td&gt;
+          &lt;td&gt;Summary generation &amp;amp; attribute extraction&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Rule Engine&lt;/td&gt;
+          &lt;td&gt;Custom Python validation library&lt;/td&gt;
+          &lt;td&gt;Key field format validation&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Proxy Service&lt;/td&gt;
+          &lt;td&gt;Bright Data&lt;/td&gt;
+          &lt;td&gt;IP rotation to avoid bans&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;42-workflow&#34;&gt;4.2 Workflow
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sequenceDiagram
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    General Collection System-&amp;gt;&amp;gt;+chrome: Render dynamic page
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    chrome--&amp;gt;&amp;gt;-General Collection System: Return complete HTML
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    General Collection System-&amp;gt;&amp;gt;+Redis: Read website section structure configuration
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    Redis--&amp;gt;&amp;gt;-General Collection System: Return section configuration and parse key content
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    General Collection System-&amp;gt;&amp;gt;+DeepSeek: Send prompt and content to be parsed
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    DeepSeek--&amp;gt;&amp;gt;-Validator: Return JSON data
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    Validator-&amp;gt;&amp;gt;+Regex: Validate results
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    Regex--&amp;gt;&amp;gt;-Output: Correct invalid formats
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    Output-&amp;gt;&amp;gt;ES: Store structured data
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;43-benefit-analysis&#34;&gt;4.3 Benefit Analysis
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Collection efficiency and accuracy&lt;/strong&gt;: Simple configuration for specific sites without worrying about follow-up processes; automated collection → business logic execution&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Semantic understanding and processing&lt;/strong&gt;: LLM generates summaries and extracts specific content attributes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cost control&lt;/strong&gt;: Hybrid solution reduces cost by 47% compared to pure LLM parsing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;5-conclusion-technical-selection-guide&#34;&gt;5. Conclusion: Technical Selection Guide
+&lt;/h2&gt;&lt;h3 id=&#34;51-recommended-solution-matrix&#34;&gt;5.1 Recommended Solution Matrix
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;strong&gt;Scenario&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;Recommended Solution&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;Reason&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Government Gazette/API Data&lt;/td&gt;
+          &lt;td&gt;Pure rule parsing (XPath, CSS)&lt;/td&gt;
+          &lt;td&gt;Stable structure, near-zero cost&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;E-commerce Price Monitoring&lt;/td&gt;
+          &lt;td&gt;Rules + LLM Summary&lt;/td&gt;
+          &lt;td&gt;High-precision number extraction + activity description understanding&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Business Directory Lead Generation&lt;/td&gt;
+          &lt;td&gt;LLM-centric + Rule Validation&lt;/td&gt;
+          &lt;td&gt;Adapts to diverse page styles, ensures key field accuracy&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Dynamic Rendering SPA Applications&lt;/td&gt;
+          &lt;td&gt;Playwright + LLM Chunk Processing&lt;/td&gt;
+          &lt;td&gt;JS execution first, then long page segmented parsing&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;52-future-directions&#34;&gt;5.2 Future Directions
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Multimodal Parsing Breakthroughs&lt;/strong&gt;: LLM + Vision to recognize phone numbers in images / CAPTCHAs&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Self-Iterating Wrappers&lt;/strong&gt;: LLM automatically generates and maintains XPath rules&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Lightweight Deployment&lt;/strong&gt;: 7B-scale model local operation (e.g., Llama 3 + ONNX)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Ultimate Rules&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Key fields (phone/email) &lt;strong&gt;must be validated by rules&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Semantic tasks (summary/phrasing) &lt;strong&gt;should be handled by LLM&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Dynamic content &lt;strong&gt;should be pre-rendered&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Long pages &lt;strong&gt;should be chunked and deduplicated&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;By combining &lt;strong&gt;LLM’s semantic generalization capability&lt;/strong&gt; with &lt;strong&gt;the determinism of traditional rules&lt;/strong&gt;, modern data extraction systems are achieving breakthroughs in both accuracy and adaptability.&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Project Element Extraction: Traditional Machine Learning vs. Large Model Approaches - An In-depth Comparison</title>
+        <link>https://zhangzib123.github.io/en/p/project-element-extraction-traditional-machine-learning-vs.-large-model-approaches-an-in-depth-comparison/</link>
+        <pubDate>Wed, 06 Aug 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhangzib123.github.io/en/p/project-element-extraction-traditional-machine-learning-vs.-large-model-approaches-an-in-depth-comparison/</guid>
+        <description>&lt;h1 id=&#34;project-element-extraction-traditional-machine-learning-vs-large-model-approaches---an-in-depth-comparison&#34;&gt;Project Element Extraction: Traditional Machine Learning vs. Large Model Approaches - An In-depth Comparison
+&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;——A Comprehensive Analysis Based on Real Business Scenarios from Our Company, Covering Annotation Costs, Generalization Capabilities, to Practical Results&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;i-business-demand-core-challenges-in-project-element-extraction&#34;&gt;I. Business Demand: Core Challenges in Project Element Extraction
+&lt;/h2&gt;&lt;h3 id=&#34;target-element-system&#34;&gt;Target Element System
+&lt;/h3&gt;&lt;p&gt;According to business documentation, structured data needs to be extracted from three types of texts:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Basic Elements&lt;/strong&gt; (10 categories)
+&lt;ul&gt;
+&lt;li&gt;Project Name, Region, Executing Agency, Enterprise, Industry&lt;/li&gt;
+&lt;li&gt;Investment Amount, Production Capacity, Cycle, Status, Foreign Country&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Extended Elements&lt;/strong&gt; (20+ categories)
+&lt;ul&gt;
+&lt;li&gt;Financing Entity, Trade Method, Technical Standards, Construction Cycle, etc.&lt;/li&gt;
+&lt;li&gt;Covering the entire lifecycle (Signing → Construction → Commissioning → Financing)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;text-type-complexity&#34;&gt;Text Type Complexity
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Engineering News (e.g., &amp;ldquo;315MW Hydropower Station EPC Contract&amp;rdquo;)&lt;/li&gt;
+&lt;li&gt;Trade Announcements (e.g., &amp;ldquo;High-Voltage DC Equipment Procurement&amp;rdquo;)&lt;/li&gt;
+&lt;li&gt;Mineral Development (e.g., &amp;ldquo;Salt Lake Lithium Mine Construction Project&amp;rdquo;)&lt;br&gt;
+&lt;strong&gt;Challenges&lt;/strong&gt;: Dense professional terminology, variable sentence structures, scattered element distribution.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ii-traditional-supervised-learning-approach-high-cost-precision-models&#34;&gt;II. Traditional Supervised Learning Approach: High-Cost Precision Models
+&lt;/h2&gt;&lt;h3 id=&#34;1-data-annotation-labor-intensive-work-actual-annotation-sample-size&#34;&gt;1. Data Annotation: Labor-Intensive Work (Actual Annotation Sample Size)
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Category&lt;/th&gt;
+          &lt;th&gt;Annotation Sample Size&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Infrastructure Projects&lt;/td&gt;
+          &lt;td&gt;7,013&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Investment Projects&lt;/td&gt;
+          &lt;td&gt;7,678&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Trade Supply &amp;amp; Demand&lt;/td&gt;
+          &lt;td&gt;9,386&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Investment Promotion&lt;/td&gt;
+          &lt;td&gt;6,381&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Annotation Example&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;BIOE Sequence Labeling: (B-Beginning, I-Inside, E-End)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-plaintext&#34; data-lang=&#34;plaintext&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;圭 亚 那 自 然 资 源 部  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;B-COU I-COU E-COU O O O O  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;Annotating a &amp;ldquo;Foreign Country&amp;rdquo; requires precise segmentation of entity boundaries, taking approximately 3-5 minutes per sentence.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;2-model-construction-process&#34;&gt;2. Model Construction Process
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/iceberg2024/public/main/images/image-20250806183055572.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250806183055572&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;3-core-bottlenecks&#34;&gt;3. Core Bottlenecks
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;High Cost&lt;/strong&gt;: Annotating 10,000 data points ≈ 10 person-weeks, cost exceeding CNY 200,000.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Poor Generalization&lt;/strong&gt;: Changes in industry terminology (e.g., &amp;ldquo;converter valve equipment&amp;rdquo;) require re-annotation.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Difficult to Extend&lt;/strong&gt;: Adding new elements (e.g., &amp;ldquo;financing purpose&amp;rdquo;) requires a full process iteration.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;iii-large-model-approach-prompt-driven-zero-shot-extraction&#34;&gt;III. Large Model Approach: Prompt-Driven Zero-Shot Extraction
+&lt;/h2&gt;&lt;h3 id=&#34;1-paradigm-shift-in-technology&#34;&gt;1. Paradigm Shift in Technology
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Traditional Method&lt;/strong&gt;: &lt;code&gt;Text → Model → Elements&lt;/code&gt;
+&lt;strong&gt;Large Model Method&lt;/strong&gt;: &lt;code&gt;Text + Prompt → LLM → Structured JSON&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;2-core-advantages&#34;&gt;2. Core Advantages
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Zero-Shot Startup&lt;/strong&gt;: Extract new elements without annotation.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Strong Semantic Understanding&lt;/strong&gt;: Parses &amp;ldquo;training hydropower industry workers&amp;rdquo; → Project Significance.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multi-Task Compatibility&lt;/strong&gt;: Simultaneously supports element extraction + relationship extraction (e.g., &amp;ldquo;Owner-Contractor&amp;rdquo;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;iv-practical-case-comparison-traditional-vs-large-model&#34;&gt;IV. Practical Case Comparison: Traditional vs. Large Model
+&lt;/h2&gt;&lt;h3 id=&#34;case-1-indonesia-315mw-hydropower-project&#34;&gt;Case 1: Indonesia 315MW Hydropower Project
+&lt;/h3&gt;&lt;h4 id=&#34;signed-epc-contract-for-the-315mw-hydropower-project-in-sulawesi-indonesia&#34;&gt;Signed! EPC Contract for the 315MW Hydropower Project in Sulawesi, Indonesia
+&lt;/h4&gt;&lt;p&gt;On May 16, a consortium formed by PowerChina International Group, CGGC International, and Guangxi Hydroelectric Investigation &amp;amp; Design Institute reached a cooperation consensus with Indonesia&amp;rsquo;s Mandiri Group on the Sulawesi 315MW Hydropower Project in Indonesia and signed the project EPC contract with the owner&amp;rsquo;s project company. This achievement drives the rolling development of Indonesia&amp;rsquo;s clean energy market and accelerates Indonesia&amp;rsquo;s progress towards its carbon neutrality goals.&lt;/p&gt;
+&lt;p&gt;The project is located in northern Sulawesi Island, Indonesia. It plans to install 7 axial-flow generating units, including 4 peak-shaving units and 3 run-of-river units, with a total installed capacity of approximately 315MW. The main structures include a concrete gravity dam, flood discharge structures, water diversion structures, and a powerhouse. Upon completion, the project will provide Sulawesi with stable clean energy, alleviate power shortages, empower the transformation of industrial parks on Sulawesi Island, Indonesia, and simultaneously train a group of hydropower industry workers. It sets a benchmark for high-quality co-construction of the &amp;ldquo;Belt and Road&amp;rdquo; and the &amp;ldquo;Regional Comprehensive Economic Corridor&amp;rdquo; between China and Indonesia, deepening bilateral production capacity cooperation.&lt;/p&gt;
+&lt;p&gt;Representatives from PowerChina International Group&amp;rsquo;s Southeast Asia Regional Headquarters, PowerChina Indonesia Representative Office, CGGC Group Indonesia Representative Office, and Guangxi Hydroelectric Investigation &amp;amp; Design Institute Indonesia Representative Office attended the signing ceremony.&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Element Type&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Traditional Method Result&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Large Model Result&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Project Name&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;✅ Sulawesi 315MW Hydropower Project, Indonesia&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;✅ Sulawesi 315MW Hydropower Project, Indonesia&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Country&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;✅ Indonesia&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;✅ Indonesia&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Contractor&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;❌ Not Extracted&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;✅ PowerChina International Group + CGGC + Guangxi Design Institute&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Project Capacity&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;❌ Not Extracted&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;✅ Plans to install 7 axial-flow generating units, including 4 peak-shaving units and 3 run-of-river units, total installed capacity approx. 315MW&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The large model can deeply understand its internal logic. Through semantic understanding, it extracts implied elements such as &amp;ldquo;Contractor&amp;rdquo; and &amp;ldquo;Project Capacity&amp;rdquo;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;case-2-chile-kilo-high-voltage-dc-project&#34;&gt;Case 2: Chile KILO High-Voltage DC Project
+&lt;/h3&gt;&lt;h4 id=&#34;csg-international-trade-company-signs-contract-for-main-equipment-procurement-of-converter-station-for-chile-kilo-hvdc-transmission-epc-project&#34;&gt;CSG International Trade Company Signs Contract for Main Equipment Procurement of Converter Station for Chile KILO HVDC Transmission EPC Project
+&lt;/h4&gt;&lt;p&gt;On May 5, Southern Power Grid International Trade (Guangzhou) Co., Ltd. (hereinafter referred to as &amp;ldquo;Trade Company&amp;rdquo;) signed the main equipment procurement contract for the converter station of the Chile KILO High-Voltage Direct Current (HVDC) Transmission EPC Project with XD Power System Co., Ltd. and XD Transformer Co., Ltd. The contract value exceeds CNY 1 billion. Gong Tiansen, Deputy General Manager of CSG International Company, presided over the signing ceremony. The Chile KILO project is the first HVDC transmission project in Chile undertaken by CSG International Company as the consortium leader. The procurement and supply of main equipment for the converter station were undertaken by the Trade Company. As the international trade platform of China Southern Power Grid Company, the Trade Company actively cooperated closely with the Chile KILO Converter Station EPC Project Department, CSG Research Institute, CSG Supply Chain Group, and other units. Based on the contract technical specifications of the Chilean owner, they continuously optimized the equipment procurement plan, shortened response times, and procured 21 converter transformers and a batch of converter valves and valve hall equipment, as well as water cooling systems through the CSG Supply Chain Procurement Platform, completing this major milestone task for the main equipment procurement of the Chile KILO project converter station on schedule. The Trade Company has always adhered to the guidance of &amp;ldquo;accelerating the construction of a new development pattern and striving to promote high-quality development,&amp;rdquo; planning the high-quality development of the trade sector of CSG International Company. By focusing on serving its core responsibilities and main businesses, it strives to provide timely, professional, and efficient one-stop equipment and material procurement and supply services for overseas projects, making due contributions to promoting the &amp;ldquo;going global&amp;rdquo; of advanced Chinese standards, technologies, equipment, and brands.&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Key Difference&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Traditional Method&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Large Model&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Contract Amount&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;❌ Assigned value to &amp;ldquo;Planned Investment Amount&amp;rdquo; (Contract amount should not be confused with planned investment amount)&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;✅ Exceeds CNY 1 billion&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Signing Date&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;❌ Not Identified&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;✅ May 5, 2023&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Project Type&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;❌ Not Identified&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;✅ Equipment Procurement Contract&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The large model achieves higher accuracy and recall rates in extraction. It can more accurately identify and extract key information such as contract amount, signing date, and project type.
+It is incorrect for the traditional method to assign this amount to &amp;ldquo;Planned Investment Amount.&amp;rdquo; The contract amount is not equivalent to the planned investment amount; the contract amount refers to the specific amount for procurement or contract signing.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;case-3-argentina-lithium-project&#34;&gt;Case 3: Argentina Lithium Project
+&lt;/h3&gt;&lt;h4 id=&#34;construction-commences-on-c233-section-of-argentinas-centenario-salt-lake-project&#34;&gt;Construction Commences on C233 Section of Argentina&amp;rsquo;s Centenario Salt Lake Project
+&lt;/h4&gt;&lt;p&gt;Recently, construction commenced on the C233 Installation Section of the Argentina Centenario Salt Lake Lithium Mine project, signed by PowerChina International and entrusted to Sinohydro Bureau 10 for implementation. Representatives from Eramet Group&amp;rsquo;s South American subsidiary, Lafa Construction Company, and Sinohydro Bureau 10 attended the ceremony.&lt;/p&gt;
+&lt;p&gt;The C233 installation section is the fifth section undertaken by Sinohydro Bureau 10, following Sections C201, C217, 2200, and 2300. It is located in the Ratones Salt Lake in the Andes Mountains within the Salta province in northwest Argentina, known as the &amp;ldquo;South American Lithium Triangle,&amp;rdquo; at an altitude of approximately 4,100 meters and about 370 kilometers from Salta City. The project duration is 300 days, and the main construction content includes the installation of steel structure workshops, mechanical equipment, and pipelines. The smooth progress of the various sections of the Argentina Centenario Salt Lake Lithium Mine project has accumulated valuable experience for Sinohydro Bureau 10&amp;rsquo;s mining business to accelerate transformation and upgrading under the background of carbon peak and carbon neutrality.&lt;/p&gt;
+&lt;p&gt;Argentina&amp;rsquo;s total lithium resource reserves are approximately 1.8 billion tons, of which proven reserves are 1 billion tons, making it the world&amp;rsquo;s third-largest lithium metal reserve country. In recent years, with the rapid development of the global new energy vehicle industry, downstream lithium battery industry demand has increased significantly. Since China and Argentina signed cooperation documents such as the Memorandum of Understanding on Co-constructing the &amp;ldquo;Belt and Road,&amp;rdquo; lithium industry cooperation has gradually become a highlight of China-Argentina new energy cooperation. The signing of this project is the result of PowerChina&amp;rsquo;s deep cultivation of the Argentine market, focusing on the development of the country&amp;rsquo;s key industries, and continuously consolidating brand advantages. It helps elevate China-Argentina co-construction of the &amp;ldquo;Belt and Road&amp;rdquo; to new levels.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Large Model Deep Understanding Capability&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;json&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;s2&#34;&gt;&amp;#34;Detailed Address&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Project located in the Ratones Salt Lake, Andes Mountains, at an altitude of approximately 4,100 meters&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;s2&#34;&gt;&amp;#34;Project Background&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Argentina&amp;#39;s total lithium resource reserves are approximately 1.8 billion tons, making it the world&amp;#39;s third-largest lithium metal reserve country. In recent years, with the rapid development of the global new energy vehicle industry, downstream lithium battery industry demand has increased significantly. Lithium industry cooperation has gradually become a highlight of China-Argentina new energy cooperation.&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;s2&#34;&gt;&amp;#34;Project Significance&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;The signing of this project is the result of PowerChina&amp;#39;s deep cultivation of the Argentine market, focusing on the development of the country&amp;#39;s key industries, and continuously consolidating brand advantages. It helps elevate China-Argentina co-construction of the &amp;#39;Belt and Road&amp;#39; to new levels.&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;Compared to traditional models relying on predefined short labels for data annotation, large models possess stronger semantic understanding and contextual capture capabilities, enabling accurate extraction of unstructured information requiring long-text comprehension, such as &amp;ldquo;Project Background&amp;rdquo; and &amp;ldquo;Project Significance.&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;v-methodology-comparison-panorama&#34;&gt;V. Methodology Comparison Panorama
+&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Dimension&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Traditional Supervised Learning&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Large Model Approach&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Data Dependency&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Strongly dependent on thousands of annotated samples&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Zero-shot/Few-shot startup&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Deployment Cost&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Annotation + Training + Tuning ≥ 3 weeks&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;API call, immediate effect&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Element Extensibility&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Adding new elements requires re-annotation &amp;amp; training&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Modify Prompt to extend&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Fine-Grained Parsing&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;✅ Precise entity boundaries&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⚠️ Occasional over-generation&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Implicit Information Mining&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;❌ Limited&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;✅ Deep association of background/significance&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Industry Migration Cost&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;High (Requires new annotation)&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Low (Generic knowledge transfer)&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;vi-how-to-choose-the-technical-route&#34;&gt;VI. How to Choose the Technical Route?
+&lt;/h2&gt;&lt;h3 id=&#34;recommended-strategy-hybrid-architecture&#34;&gt;Recommended Strategy: &lt;strong&gt;Hybrid Architecture&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/iceberg2024/public/main/images/image-20250806183123287.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250806183123287&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;scenario-specific-advice&#34;&gt;Scenario-Specific Advice:
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;High-Precision Critical Scenarios&lt;/strong&gt; (Contract Parsing)
+&lt;ul&gt;
+&lt;li&gt;Traditional model guarantees 95%+ accuracy for core elements.&lt;/li&gt;
+&lt;li&gt;Large model supplements background information.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rapid Response Needs&lt;/strong&gt; (Emerging Industry Monitoring)
+&lt;ul&gt;
+&lt;li&gt;Large model enables zero-shot extraction, deployment within 48 hours.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cost-Sensitive Scenarios&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Traditional model handles 80% of high-frequency elements.&lt;/li&gt;
+&lt;li&gt;Large model handles long-tail demands.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;vii-future-evolution-directions&#34;&gt;VII. Future Evolution Directions
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Large Model Distillation&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Distill knowledge from models like DeepSeek-R1 into lightweight specialized models, balancing effectiveness and cost.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dynamic Prompt Optimization&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Automatically switch Prompt templates based on text type (Engineering/Trade/Mining).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Error Correction Feedback Mechanism&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Use manual correction results to inversely train traditional models, forming a closed loop.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Key Conclusion&lt;/strong&gt;: Large models are not replacing traditional methods but liberating them from the &amp;ldquo;annotation quagmire,&amp;rdquo; shifting towards an &lt;strong&gt;intelligence-augmented paradigm of human-machine collaboration&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: This article is based on analysis of real project documents. Technical comparison conclusions were validated through actual testing of BERT/BiLSTM-CRF and GPT-4.
+[file content end]&lt;/p&gt;
+&lt;p&gt;Here is an actual project interface screenshot.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/iceberg2024/public/main/images/image-20250806163502776.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250806163502776&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>When Audit Knowledge Meets AI Large Models: Forging an &#34;Audit Brain&#34; with 200,000 Professional Training Sessions</title>
+        <link>https://zhangzib123.github.io/en/p/when-audit-knowledge-meets-ai-large-models-forging-an-audit-brain-with-200000-professional-training-sessions/</link>
+        <pubDate>Wed, 06 Aug 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhangzib123.github.io/en/p/when-audit-knowledge-meets-ai-large-models-forging-an-audit-brain-with-200000-professional-training-sessions/</guid>
+        <description>&lt;h1 id=&#34;when-audit-knowledge-meets-ai-large-models-forging-an-audit-brain-with-200000-professional-training-sessions&#34;&gt;When Audit Knowledge Meets AI Large Models: Forging an &amp;ldquo;Audit Brain&amp;rdquo; with 200,000 Professional Training Sessions
+&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;——Summary of Practical Experience in Building an Audit Knowledge Large Model&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;i-breaking-point-pain-points-in-the-audit-industrys-cognitive-revolution&#34;&gt;I. Breaking Point: Pain Points in the Audit Industry&amp;rsquo;s &amp;ldquo;Cognitive Revolution&amp;rdquo;
+&lt;/h2&gt;&lt;h3 id=&#34;three-challenges-of-traditional-auditing&#34;&gt;Three Challenges of Traditional Auditing:
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Over-Reliance on Experience&lt;/strong&gt;&lt;br&gt;
+New employees facing ambiguous phenomena like &amp;ldquo;exceeding reception standards&amp;rdquo; or &amp;ldquo;lack of environmental supervision&amp;rdquo; need to review an average of 37 documents to determine the nature of the problem.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Lack of Standardization&lt;/strong&gt;&lt;br&gt;
+Different auditors show up to 45% variance in characterizing the same phenomenon, affecting the credibility of conclusions.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Delayed Response Speed&lt;/strong&gt;&lt;br&gt;
+Complex case analysis takes an average of 4.6 hours, causing delays in handling critical issues.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;-core-breakthrough-need&#34;&gt;🔍 Core Breakthrough Need:
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Transforming fragmented audit phenomena → into precise specific problems&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;E.g.: &amp;ldquo;Repeatedly accepting banquets&amp;rdquo; ➔ &amp;ldquo;Violating official reception regulations&amp;rdquo;&lt;br&gt;
+&amp;ldquo;Inadequate supervision of sewage discharge&amp;rdquo; ➔ &amp;ldquo;Environmental regulatory negligence&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ii-solution-forging-a-professional-brain-for-the-audit-field&#34;&gt;II. Solution: Forging a &amp;ldquo;Professional Brain&amp;rdquo; for the Audit Field
+&lt;/h2&gt;&lt;h3 id=&#34;technology-path-panorama&#34;&gt;Technology Path Panorama
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/iceberg2024/public/main/images/image-20250806182648978.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250806182648978&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;key-innovations&#34;&gt;Key Innovations:
+&lt;/h3&gt;&lt;h4 id=&#34;1-knowledge-fusion-200000-professional-corpora-forge-industry-cognition&#34;&gt;1. &lt;strong&gt;Knowledge Fusion: 200,000 Professional Corpora Forge Industry Cognition&lt;/strong&gt;
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;Integrates knowledge systems from 10 major audit domains:
+Common economic business audits, economic responsibility audits, fiscal and tax audits, administrative institution audits, agricultural and rural audits, fixed asset investment audits, social security audits, natural resources and ecological environment audits, financial audits, enterprise audits.&lt;/li&gt;
+&lt;li&gt;Covers three-dimensional knowledge: laws and regulations, typical cases, and disposition basis, forming a corpus of nearly 200,000 entries.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;2-model-evolution-transformation-from&#34;&gt;2. &lt;strong&gt;Model Evolution: Transformation from &amp;ldquo;Generalist&amp;rdquo; to &amp;ldquo;Audit Expert&amp;rdquo;&lt;/strong&gt;
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;Base Model: &lt;strong&gt;Qwen2.5-7B&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Fine-tuning Method: Full-parameter fine-tuning&lt;/li&gt;
+&lt;li&gt;Training Framework: LLaMA-Factory&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;✓ Parallel training on 8 A10 GPUs
+✓ Professional capability injection completed in just &lt;strong&gt;2 hours&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;iii-practical-results-the-exceptional-performance-of-the-ai-auditor&#34;&gt;III. Practical Results: The Exceptional Performance of the AI Auditor
+&lt;/h2&gt;&lt;h3 id=&#34;case-comparison-traditional-model-vs-audit-specific-model&#34;&gt;Case Comparison: Traditional Model vs. Audit-Specific Model
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Audit Scenario&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Generic Model Response&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Specialized Model Response&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Value Improvement&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Irregular Reception Issues&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Generalized interpretation of integrity principles (198 words)&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&amp;ldquo;Party member cadres exceeding reception standards&amp;rdquo;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Positioning accuracy ↑200%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Environmental Regulatory Negligence&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Analysis of law enforcement process loopholes (326 words)&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&amp;ldquo;Environmental protection department failing to investigate violations&amp;rdquo;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Problem focus speed ↑5.8x&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Window Service Negligence&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Discussion on service standards importance (415 words)&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&amp;ldquo;Evading public requests damages cadre-mass relations&amp;rdquo;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Characterization accuracy 90%&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;-core-capability-breakthroughs&#34;&gt;✨ Core Capability Breakthroughs:
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Phenomena to Essence&lt;/strong&gt;: Average response length reduced from 312 words to 18 words&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Precise Legal Anchoring&lt;/strong&gt;: Automatic association accuracy with relevant laws reaches 91.7%&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Digitized Expertise&lt;/strong&gt;: Transformed 10 years of audit expertise into reusable AI capabilities&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;iv-implementation-the-new-intelligent-paradigm-for-audit-work&#34;&gt;IV. Implementation: The New Intelligent Paradigm for Audit Work
+&lt;/h2&gt;&lt;h3 id=&#34;typical-application-scenarios&#34;&gt;Typical Application Scenarios
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/iceberg2024/public/main/images/image-20250806182731215.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250806182731215&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;three-functions-currently-being-deployed&#34;&gt;Three Functions Currently Being Deployed:
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Mobile Audit Assistant&lt;/strong&gt;
+  ▶ Get problem characterization suggestions immediately upon input or upload&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Automatic Report Generation&lt;/strong&gt;
+  ▶ Input phenomena to automatically output complete audit opinion letters&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Risk Warning Radar&lt;/strong&gt;
+  ▶ Predict high-frequency violation points based on historical data&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;📱 Pilot data from a provincial audit department shows: Projects using AI assistants achieved &lt;strong&gt;40% efficiency improvement&lt;/strong&gt; and &lt;strong&gt;28% increase in problem detection rate&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;v-why-choose-the-large-model-approach&#34;&gt;V. Why Choose the Large Model Approach?
+&lt;/h2&gt;&lt;h3 id=&#34;comparative-advantages-over-traditional-systems&#34;&gt;Comparative Advantages Over Traditional Systems
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Dimension&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Rule Engine System&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;AI Large Model Solution&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Winning Reason&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Knowledge Update&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Requires manual rule writing (3 person-months/update)&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Automatically learns new cases (real-time update)&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;10x faster response to policy changes&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Complex Scenario Handling&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Only handles predefined scenarios&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Understands unseen new case types&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Generalization capability improved 8.3x&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Usage Threshold&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Requires professional training&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Natural language interaction&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Grassroots staff onboarding time reduced by 90%&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;-three-reasons-for-choosing-qwen-as-the-base-model&#34;&gt;💡 Three Reasons for Choosing Qwen as the Base Model:
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Chinese Comprehension Champion&lt;/strong&gt;: Authoritative evaluations surpass international models like GPT-4&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fully Autonomous and Controllable&lt;/strong&gt;: Open-source license allows deep customization&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Lightweight and Efficient&lt;/strong&gt;: 7B parameter model runs on consumer-grade GPUs&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;vi-future-blueprint-the-next-stage-of-audit-intelligence&#34;&gt;VI. Future Blueprint: The Next Stage of Audit Intelligence
+&lt;/h2&gt;&lt;h3 id=&#34;ongoing-evolution-directions&#34;&gt;Ongoing Evolution Directions
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Multimodal Auditor&lt;/strong&gt;
+  ▶ Supports non-text analysis of documents like invoices and engineering drawings&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dynamic Risk Mapping&lt;/strong&gt;
+  ▶ Constructs cross-year risk profiles for organizations/individuals&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Intelligent Audit Sandbox&lt;/strong&gt;
+  ▶ Simulates impact of policy changes on various entities&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;-ecosystem-open-strategy&#34;&gt;🌐 Ecosystem Open Strategy:
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/iceberg2024/public/main/images/image-20250806182801435.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250806182801435&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;conclusion-the-new-era-of-human-machine-collaboration&#34;&gt;Conclusion: The New Era of Human-Machine Collaboration
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;This is not a revolution to replace experts, but an evolution to liberate them&lt;/strong&gt;
+When auditors are freed from tedious regulatory research and can focus on higher-value risk assessment and decision support, we finally achieve:
+✅ &lt;strong&gt;Experience Can Be Preserved&lt;/strong&gt; - 200,000 knowledge entries perpetuated
+✅ &lt;strong&gt;Capabilities Can Be Replicated&lt;/strong&gt; - Newcomers instantly gain expert-level judgment
+✅ &lt;strong&gt;Efficiency Can Be Quantified&lt;/strong&gt; - Audit efficiency breaks historical bottlenecks&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;The most impressive aspect isn&amp;rsquo;t the technology itself, but seeing young auditors,
+with AI assistance, make judgments as precise as 20-year veterans&amp;rdquo;
+——Director of a Provincial Audit Department Pilot Project&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Appendix: Technology System Panorama&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/iceberg2024/public/main/images/image-20250806182818459.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250806182818459&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Results presented are based on real projects, core technical indicators verified by third parties.
+Contact for more case studies: &lt;a class=&#34;link&#34; href=&#34;https://mailto:zhzb@ciglobal.cn/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;zhzb@ciglobal.cn&lt;/a&gt;
+[file content end]&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        <item>
+        <title>Experience Summary on Building Vertical Domain-Specific Large Models</title>
+        <link>https://zhangzib123.github.io/en/p/experience-summary-on-building-vertical-domain-specific-large-models/</link>
+        <pubDate>Mon, 04 Aug 2025 11:13:06 +0800</pubDate>
+        
+        <guid>https://zhangzib123.github.io/en/p/experience-summary-on-building-vertical-domain-specific-large-models/</guid>
+        <description>&lt;h2 id=&#34;experience-summary-on-building-vertical-domain-specific-large-models&#34;&gt;Experience Summary on Building Vertical Domain-Specific Large Models
+&lt;/h2&gt;&lt;h3 id=&#34;development-achievements&#34;&gt;Development Achievements
+&lt;/h3&gt;&lt;p&gt;Through pre-training and fine-tuning, our AI team has constructed a large model specialized in state-owned enterprise knowledge. From 2024 to the first half of 2025, we conducted two rounds of vertical domain training. Evaluation metrics have surpassed those of the base model and meet user requirements. The overall progress is as follows:&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Dimension&lt;/th&gt;
+          &lt;th&gt;First Round Training&lt;/th&gt;
+          &lt;th&gt;Second Round Training&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Base Model&lt;/td&gt;
+          &lt;td&gt;Qwen1.5-7B&lt;/td&gt;
+          &lt;td&gt;Qwen2.5-72B&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Pre-training Corpus Size&lt;/td&gt;
+          &lt;td&gt;~19.5B tokens (gpt tokenizer)&lt;/td&gt;
+          &lt;td&gt;~1.7B tokens (qwen2.5 tokenizer)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Domain Fine-tuning Corpus (Q&amp;amp;A Pairs)&lt;/td&gt;
+          &lt;td&gt;23,144&lt;/td&gt;
+          &lt;td&gt;397,355&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Covered Domain Tasks&lt;/td&gt;
+          &lt;td&gt;Domain Q&amp;amp;A, Classification Tasks&lt;/td&gt;
+          &lt;td&gt;Domain Q&amp;amp;A, Report Generation&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Model Context Length&lt;/td&gt;
+          &lt;td&gt;2048&lt;/td&gt;
+          &lt;td&gt;8192&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Training Method&lt;/td&gt;
+          &lt;td&gt;Pre-training + Domain SFT&lt;/td&gt;
+          &lt;td&gt;Pre-training + General SFT + Domain SFT&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Core Task Metrics (ROUGE)&lt;/td&gt;
+          &lt;td&gt;Domain Q&amp;amp;A: +6% over base model&lt;br&gt;Classification: +50% over base model&lt;/td&gt;
+          &lt;td&gt;Domain Q&amp;amp;A: +14% over base model&lt;br&gt;Report Generation: +0.65% over base model&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Existing Issues&lt;/td&gt;
+          &lt;td&gt;Responses overly concise, inadequate for complex scenarios.&lt;/td&gt;
+          &lt;td&gt;Content repetition, still brief responses, deficiencies in understanding ultra-long contexts.&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Evaluation metrics on state-owned enterprise datasets have surpassed those of the base model, with domain Q&amp;amp;A capabilities outperforming DeepSeek and Doubao models. However, writing task capabilities need enhancement. Key current shortcomings include overly concise generated content and suboptimal long-text and contextual comprehension, which will be the focus of subsequent optimization.&lt;/p&gt;
+&lt;h3 id=&#34;next-steps&#34;&gt;Next Steps
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Based on existing issues and analysis of professional corpus volume, the directions for next-stage pre-training and fine-tuning are:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Corpus Requirements&lt;br&gt;
+• Core corpus: 10GB+ internal materials&lt;br&gt;
+• Auxiliary corpus: 5GB+ domain-related materials&lt;br&gt;
+• Fine-tuning corpus:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Basic Q&amp;amp;A: 50k Q&amp;amp;A pairs&lt;/li&gt;
+&lt;li&gt;In-depth analysis: 150k Q&amp;amp;A pairs&lt;/li&gt;
+&lt;li&gt;Writing tasks: 250k Q&amp;amp;A pairs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Base Model Selection&lt;br&gt;
+Qwen3-32B&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pre-training Method&lt;br&gt;
+Parameter-efficient methods (Lora)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
