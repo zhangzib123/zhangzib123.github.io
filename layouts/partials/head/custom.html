@@ -1,74 +1,90 @@
-{{/* Schema.org JSON-LD for Articles */ -}}
-{{ if .IsPage }}
-{{ if eq .Section "post" }}
+{{ if eq .RelPermalink "/p/基于多模型融合的全球经济预测研究/" }}
 <script type="application/ld+json">
 {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": {{ .Permalink | jsonify }}
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "什么是多模型融合的经济预测方法？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "多模型融合经济预测方法是将 LSTM（长短期记忆网络）、XGBoost（极端梯度提升）和 DFM（动态因子模型）三种不同的预测模型结合起来，通过简单平均、加权平均或动态权重等融合策略，提高预测精度的方法。这种方法充分利用了不同模型的优势，互补了各自的局限性。"
+      }
     },
-    "headline": {{ .Title | jsonify }},
-    {{- with .Description }}
-    "description": {{ . | jsonify }},
-    {{- else }}
-    "description": {{ .Summary | plainify | truncate 160 | jsonify }},
-    {{- end }}
-    "datePublished": {{ .Date.Format "2006-01-02T15:04:05Z07:00" | jsonify }},
-    "dateModified": {{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" | jsonify }},
-    "author": {
-        "@type": "Person",
-        "name": {{ .Site.Params.sidebar.subtitle | default .Site.Title | jsonify }},
-        "url": {{ .Site.BaseURL | jsonify }}
+    {
+      "@type": "Question",
+      "name": "为什么需要多模型融合而不是使用单一模型？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "单一模型各有局限：LSTM训练时间长，参数调优复杂；XGBoost容易过拟合，对时间序列特性考虑不足；DFM假设因子关系为线性。多模型融合可以互补优势，提高预测的鲁棒性和准确性。实验结果表明，相比单一模型，多模型融合能够显著提高预测精度。"
+      }
     },
-    "publisher": {
-        "@type": "Organization",
-        "name": {{ .Site.Title | jsonify }},
-        "logo": {
-            "@type": "ImageObject",
-            {{- with .Site.Params.sidebar.avatar }}
-            {{- if .enabled }}
-            {{- if .local }}
-            "url": {{ printf "%s%s" .Site.BaseURL .src | jsonify }}
-            {{- else }}
-            "url": {{ .src | jsonify }}
-            {{- end }}
-            {{- end }}
-            {{- end }}
-        }
+    {
+      "@type": "Question",
+      "name": "多模型融合能提高多少预测精度？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "实验结果显示，多模型融合方法在不同预测时间跨度上都取得了良好的效果：1季度预测RMSE = 0.0156，2季度预测RMSE = 0.0189，3季度预测RMSE = 0.0223，4季度预测RMSE = 0.0267。预测精度随预测时间跨度的增加而下降，但多模型融合始终保持较好的稳定性。"
+      }
     },
-    "wordCount": {{ .WordCount }},
-    "articleSection": {{ with .Params.categories }}{{ index . 0 | jsonify }}{{ else }}"Blog"{{ end }},
-    {{- with .Params.tags }}
-    "keywords": {{ delimit . ", " | jsonify }},
-    {{- end }}
-    "inLanguage": {{ .Site.LanguageCode | default "zh-CN" | jsonify }}
-}
-</script>
-{{ end }}
-{{ end }}
-
-{{/* Schema.org JSON-LD for Website (on homepage) */ -}}
-{{ if .IsHome }}
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": {{ .Site.Title | jsonify }},
-    {{- with .Site.Params.description }}
-    "description": {{ . | jsonify }},
-    {{- end }}
-    "url": {{ .Site.BaseURL | jsonify }},
-    "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-            "@type": "EntryPoint",
-            "urlTemplate": {{ printf "%ssearch?q={search_term_string}" .Site.BaseURL | jsonify }}
-        },
-        "query-input": "required name=search_term_string"
+    {
+      "@type": "Question",
+      "name": "这项研究对经济政策制定有什么价值？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "这项研究为政策制定者提供了更准确的经济预测工具、因子分析帮助识别影响经济的主要因素（如工业产值贡献度35.2%、消费指数贡献度28.7%）、动态调整策略可以根据预测精度变化调整模型权重，以及可量化、可解释的决策支持。"
+      }
     },
-    "inLanguage": {{ .Site.LanguageCode | default "zh-CN" | jsonify }}
+    {
+      "@type": "Question",
+      "name": "如何构建多模型融合的预测框架？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "构建多模型融合预测框架包括以下步骤：1. 数据预处理（缺失值处理、异常值检测、数据标准化）；2. 模型训练（分别训练LSTM、XGBoost和DFM模型）；3. 预测生成（使用训练好的模型进行预测）；4. 结果融合（采用简单平均、加权平均或动态权重等策略融合预测结果）。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "这项研究使用了哪些数据？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "本研究使用的数据集包括：多个国家的季度GDP数据、宏观经济指标（工业产值、消费指数、就业数据等）、时间跨度为1992年至2024年（约32年）、数据频率包括季度和月度数据、数据划分为训练集（1992-2020，约80%）和测试集（2020-2024，约20%）。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "LSTM、XGBoost 和 DFM 各有什么优势？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LSTM能够有效学习长期时间依赖关系，捕捉复杂的非线性模式，天然适合时间序列数据。XGBoost能够处理多种类型的特征，通过集成提高预测精度，提供特征重要性排序。DFM具有坚实的计量经济学理论基础，能够识别影响经济的主要因子，处理数据缺失问题。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "如何评估预测模型的性能？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "本研究使用RMSE（均方根误差）衡量预测值与真实值之间的差异，数值越小预测精度越高；因子贡献度分析识别影响经济的主要因素；时序交叉验证确保模型评估的可靠性；预测稳定性分析预测精度随时间的变化趋势。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "这项研究有哪些局限性？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "本研究存在以下局限：数据限制，受数据可得性限制，样本期间相对较短（1992-2024）；模型选择，仅选择了三种代表性模型，未涵盖所有先进方法（如Transformer、图神经网络）；外生冲击，未充分考虑重大外生冲击（如金融危机、疫情）对预测的影响。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "未来研究方向有哪些？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "未来研究可以从以下方面展开：模型扩展，引入Transformer、图神经网络等更先进的预测模型；数据融合，整合文本数据、卫星数据等非传统数据源；实时预测，开发实时预测系统提高预测的时效性；不确定性量化，更好地量化预测的不确定性；政策模拟，结合政策模拟分析为政策制定提供更全面的支持。"
+      }
+    }
+  ]
 }
 </script>
 {{ end }}
