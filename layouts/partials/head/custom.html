@@ -1,5 +1,6 @@
-{{ if .Params.faq_schema }}
-{{ if eq .File.ContentBaseName "统一调度平台的价值与实践" }}
+{{ with .Params.faq_schema }}
+{{ if . }}
+{{ if eq $.Title "企业AI治理新范式：统一调度平台的价值与实践" }}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -90,7 +91,7 @@
 </script>
 {{ end }}
 
-{{ if eq .File.ContentBaseName "基于多模型融合的全球经济预测研究" }}
+{{ if eq $.Title "基于多模型融合的全球经济预测研究" }}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -179,5 +180,6 @@
   ]
 }
 </script>
+{{ end }}
 {{ end }}
 {{ end }}
