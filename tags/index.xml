@@ -6,87 +6,7 @@
         <description>Recent content in Tags on 张子彪的博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Fri, 24 Apr 2026 11:50:00 +0800</lastBuildDate><atom:link href="https://zhangzib123.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>GDP预测</title>
-        <link>https://zhangzib123.github.io/tags/gdp%E9%A2%84%E6%B5%8B/</link>
-        <pubDate>Fri, 24 Apr 2026 11:50:00 +0800</pubDate>
-        
-        <guid>https://zhangzib123.github.io/tags/gdp%E9%A2%84%E6%B5%8B/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>LSTM神经网络</title>
-        <link>https://zhangzib123.github.io/tags/lstm%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</link>
-        <pubDate>Fri, 24 Apr 2026 11:50:00 +0800</pubDate>
-        
-        <guid>https://zhangzib123.github.io/tags/lstm%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>XGBoost</title>
-        <link>https://zhangzib123.github.io/tags/xgboost/</link>
-        <pubDate>Fri, 24 Apr 2026 11:50:00 +0800</pubDate>
-        
-        <guid>https://zhangzib123.github.io/tags/xgboost/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>动态因子模型</title>
-        <link>https://zhangzib123.github.io/tags/%E5%8A%A8%E6%80%81%E5%9B%A0%E5%AD%90%E6%A8%A1%E5%9E%8B/</link>
-        <pubDate>Fri, 24 Apr 2026 11:50:00 +0800</pubDate>
-        
-        <guid>https://zhangzib123.github.io/tags/%E5%8A%A8%E6%80%81%E5%9B%A0%E5%AD%90%E6%A8%A1%E5%9E%8B/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>多模型融合</title>
-        <link>https://zhangzib123.github.io/tags/%E5%A4%9A%E6%A8%A1%E5%9E%8B%E8%9E%8D%E5%90%88/</link>
-        <pubDate>Fri, 24 Apr 2026 11:50:00 +0800</pubDate>
-        
-        <guid>https://zhangzib123.github.io/tags/%E5%A4%9A%E6%A8%A1%E5%9E%8B%E8%9E%8D%E5%90%88/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>宏观经济</title>
-        <link>https://zhangzib123.github.io/tags/%E5%AE%8F%E8%A7%82%E7%BB%8F%E6%B5%8E/</link>
-        <pubDate>Fri, 24 Apr 2026 11:50:00 +0800</pubDate>
-        
-        <guid>https://zhangzib123.github.io/tags/%E5%AE%8F%E8%A7%82%E7%BB%8F%E6%B5%8E/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>机器学习</title>
-        <link>https://zhangzib123.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</link>
-        <pubDate>Fri, 24 Apr 2026 11:50:00 +0800</pubDate>
-        
-        <guid>https://zhangzib123.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>经济预测</title>
-        <link>https://zhangzib123.github.io/tags/%E7%BB%8F%E6%B5%8E%E9%A2%84%E6%B5%8B/</link>
-        <pubDate>Fri, 24 Apr 2026 11:50:00 +0800</pubDate>
-        
-        <guid>https://zhangzib123.github.io/tags/%E7%BB%8F%E6%B5%8E%E9%A2%84%E6%B5%8B/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>深度学习</title>
-        <link>https://zhangzib123.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
-        <pubDate>Fri, 24 Apr 2026 11:50:00 +0800</pubDate>
-        
-        <guid>https://zhangzib123.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>时间序列分析</title>
-        <link>https://zhangzib123.github.io/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E5%88%86%E6%9E%90/</link>
-        <pubDate>Fri, 24 Apr 2026 11:50:00 +0800</pubDate>
-        
-        <guid>https://zhangzib123.github.io/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E5%88%86%E6%9E%90/</guid>
-        <description></description>
-        </item>
-        <item>
+        <lastBuildDate>Fri, 03 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://zhangzib123.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>GDS</title>
         <link>https://zhangzib123.github.io/tags/gds/</link>
         <pubDate>Fri, 03 Apr 2026 00:00:00 +0000</pubDate>
@@ -436,6 +356,62 @@
         <pubDate>Fri, 01 Aug 2025 17:13:06 +0800</pubDate>
         
         <guid>https://zhangzib123.github.io/tags/%E6%99%BA%E8%83%BD%E4%BD%93%E5%BC%80%E5%8F%91/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>LSTM神经网络</title>
+        <link>https://zhangzib123.github.io/tags/lstm%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</link>
+        <pubDate>Sun, 01 Dec 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhangzib123.github.io/tags/lstm%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>XGBoost</title>
+        <link>https://zhangzib123.github.io/tags/xgboost/</link>
+        <pubDate>Sun, 01 Dec 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhangzib123.github.io/tags/xgboost/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>动态因子模型</title>
+        <link>https://zhangzib123.github.io/tags/%E5%8A%A8%E6%80%81%E5%9B%A0%E5%AD%90%E6%A8%A1%E5%9E%8B/</link>
+        <pubDate>Sun, 01 Dec 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhangzib123.github.io/tags/%E5%8A%A8%E6%80%81%E5%9B%A0%E5%AD%90%E6%A8%A1%E5%9E%8B/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>机器学习</title>
+        <link>https://zhangzib123.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</link>
+        <pubDate>Sun, 01 Dec 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhangzib123.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>经济建模</title>
+        <link>https://zhangzib123.github.io/tags/%E7%BB%8F%E6%B5%8E%E5%BB%BA%E6%A8%A1/</link>
+        <pubDate>Sun, 01 Dec 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhangzib123.github.io/tags/%E7%BB%8F%E6%B5%8E%E5%BB%BA%E6%A8%A1/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>深度学习</title>
+        <link>https://zhangzib123.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
+        <pubDate>Sun, 01 Dec 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhangzib123.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>时间序列预测</title>
+        <link>https://zhangzib123.github.io/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E9%A2%84%E6%B5%8B/</link>
+        <pubDate>Sun, 01 Dec 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhangzib123.github.io/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E9%A2%84%E6%B5%8B/</guid>
         <description></description>
         </item>
         
