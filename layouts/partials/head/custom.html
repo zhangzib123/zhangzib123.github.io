@@ -1,5 +1,9 @@
+<!-- Debug: Checking faq_schema -->
 {{ if .Params.faq_schema }}
+<!-- Debug: faq_schema is true -->
+<!-- Debug: Title = {{ .Title }} -->
 {{ if eq .Title "企业AI治理新范式：统一调度平台的价值与实践" }}
+<!-- Debug: Matched AI governance article -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -91,6 +95,7 @@
 {{ end }}
 
 {{ if eq .Title "基于多模型融合的全球经济预测研究" }}
+<!-- Debug: Matched economic forecast article -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -180,4 +185,6 @@
 }
 </script>
 {{ end }}
+{{ else }}
+<!-- Debug: faq_schema not found -->
 {{ end }}
