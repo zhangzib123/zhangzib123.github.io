@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Data Science on ZibiaoZhang&#39;s Blog</title>
+        <link>https://zhangzib123.github.io/en/categories/data-science/</link>
+        <description>Recent content in Data Science on ZibiaoZhang&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Sun, 01 Dec 2024 10:00:00 +0800</lastBuildDate><atom:link href="https://zhangzib123.github.io/en/categories/data-science/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Global Economic Forecasting Research Based on Multi-Model Fusion</title>
+        <link>https://zhangzib123.github.io/en/p/global-economic-forecasting-research-based-on-multi-model-fusion/</link>
+        <pubDate>Sun, 01 Dec 2024 10:00:00 +0800</pubDate>
+        
+        <guid>https://zhangzib123.github.io/en/p/global-economic-forecasting-research-based-on-multi-model-fusion/</guid>
+        <description>&lt;h1 id=&#34;global-economic-forecasting-research-based-on-multi-model-fusion&#34;&gt;Global Economic Forecasting Research Based on Multi-Model Fusion
+&lt;/h1&gt;&lt;h2 id=&#34;abstract&#34;&gt;Abstract
+&lt;/h2&gt;&lt;p&gt;Global economic forecasting is an important foundation for macroeconomic policy formulation and investment decision-making. Based on an actual project, this study constructs a comprehensive economic forecasting framework that integrates three advanced forecasting methods: Long Short-Term Memory (LSTM) networks, Extreme Gradient Boosting (XGBoost), and Dynamic Factor Models (DFM). By comparing the performance of different models in GDP time series forecasting, this study aims to provide more accurate and reliable forecasting tools for global economic prediction. Experimental results show that the multi-model fusion method can effectively improve prediction accuracy, providing a scientific basis for economic policy formulation.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Keywords:&lt;/strong&gt; Economic Forecasting; LSTM; XGBoost; Dynamic Factor Model; Time Series Analysis&lt;/p&gt;
+&lt;h2 id=&#34;1-introduction&#34;&gt;1. Introduction
+&lt;/h2&gt;&lt;h3 id=&#34;11-research-background&#34;&gt;1.1 Research Background
+&lt;/h3&gt;&lt;p&gt;Global economic forecasting is one of the core research areas in macroeconomics, with significant guiding implications for policymakers, investors, and corporate decision-makers. With the increasing complexity and uncertainty of the global economy, traditional economic forecasting methods face numerous challenges. The 2008 global financial crisis and the outbreak of the COVID-19 pandemic in 2020 further highlighted the importance of accurate economic forecasting.&lt;/p&gt;
+&lt;p&gt;Traditional economic forecasting methods mainly rely on econometric models, such as Vector Autoregression (VAR) models and Structural Vector Autoregression (SVAR) models. However, these methods have limitations in handling high-dimensional data, nonlinear relationships, and long-term dependencies. In recent years, the rapid development of machine learning and deep learning technologies has provided new tools and methods for economic forecasting.&lt;/p&gt;
+&lt;h3 id=&#34;12-research-significance&#34;&gt;1.2 Research Significance
+&lt;/h3&gt;&lt;p&gt;The significance of this research is mainly reflected in the following aspects:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Theoretical Significance&lt;/strong&gt;: By comparing the advantages and disadvantages of different forecasting methods, this study provides empirical support for the development of economic forecasting theory.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Methodological Significance&lt;/strong&gt;: A multi-model fusion forecasting framework is constructed, providing a new technical pathway for economic forecasting.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Practical Significance&lt;/strong&gt;: More accurate economic forecasting tools are provided for policymakers and market participants.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;13-research-objectives&#34;&gt;1.3 Research Objectives
+&lt;/h3&gt;&lt;p&gt;The main objectives of this research include:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Construct a multi-model forecasting framework based on LSTM, XGBoost, and DFM&lt;/li&gt;
+&lt;li&gt;Compare the performance of different models in GDP forecasting&lt;/li&gt;
+&lt;li&gt;Explore model fusion strategies to improve prediction accuracy&lt;/li&gt;
+&lt;li&gt;Provide methodological guidance for economic forecasting practice&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;2-literature-review&#34;&gt;2. Literature Review
+&lt;/h2&gt;&lt;h3 id=&#34;21-traditional-economic-forecasting-methods&#34;&gt;2.1 Traditional Economic Forecasting Methods
+&lt;/h3&gt;&lt;p&gt;Traditional economic forecasting methods are mainly based on econometric theory, including:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Time Series Models&lt;/strong&gt;: The ARIMA model is a classic method for time series forecasting, capturing patterns in time series through autoregressive and moving average terms. However, ARIMA models assume time series are linear and struggle with complex nonlinear relationships.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Vector Autoregression Models&lt;/strong&gt;: VAR models can capture dynamic relationships among multiple variables but suffer from excessive parameters and overfitting issues.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Structural Vector Autoregression Models&lt;/strong&gt;: SVAR models introduce economic theory constraints on top of VAR models, but model identification and estimation are more complex.&lt;/p&gt;
+&lt;h3 id=&#34;22-machine-learning-methods-in-economic-forecasting&#34;&gt;2.2 Machine Learning Methods in Economic Forecasting
+&lt;/h3&gt;&lt;p&gt;In recent years, machine learning methods have been widely applied in economic forecasting:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Support Vector Machines (SVM)&lt;/strong&gt;: SVM maps nonlinear problems to high-dimensional spaces through kernel functions, performing well in financial time series forecasting.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Random Forest&lt;/strong&gt;: Random forest improves prediction accuracy by ensembling multiple decision trees, with strong resistance to overfitting.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Neural Networks&lt;/strong&gt;: Neural networks can learn complex nonlinear relationships and have achieved good results in areas such as stock price prediction.&lt;/p&gt;
+&lt;h3 id=&#34;23-deep-learning-methods&#34;&gt;2.3 Deep Learning Methods
+&lt;/h3&gt;&lt;p&gt;The rise of deep learning methods has brought new opportunities for economic forecasting:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Recurrent Neural Networks (RNN)&lt;/strong&gt;: RNN can process sequential data but suffers from gradient vanishing problems when handling long-term dependencies.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Long Short-Term Memory Networks (LSTM)&lt;/strong&gt;: LSTM solves RNN&amp;rsquo;s gradient vanishing problem through gating mechanisms, performing excellently in time series forecasting.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Convolutional Neural Networks (CNN)&lt;/strong&gt;: CNN has achieved tremendous success in image recognition and has recently begun to be applied to time series forecasting.&lt;/p&gt;
+&lt;h3 id=&#34;24-dynamic-factor-models&#34;&gt;2.4 Dynamic Factor Models
+&lt;/h3&gt;&lt;p&gt;Dynamic Factor Models (DFM) are important methods for handling high-dimensional time series data:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Theoretical Foundation&lt;/strong&gt;: DFM assumes that multiple observed time series are driven by a few unobservable factors, effectively reducing dimensionality and capturing common trends.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Application Areas&lt;/strong&gt;: DFM has been widely applied in macroeconomic forecasting, financial risk analysis, and other fields.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Advantages&lt;/strong&gt;: Can handle missing data, with strong theoretical foundation and interpretability.&lt;/p&gt;
+&lt;h2 id=&#34;3-methodology&#34;&gt;3. Methodology
+&lt;/h2&gt;&lt;h3 id=&#34;31-research-framework&#34;&gt;3.1 Research Framework
+&lt;/h3&gt;&lt;p&gt;This study constructs a multi-model fusion economic forecasting framework, mainly including four stages: data preprocessing, model training, prediction generation, and result fusion.&lt;/p&gt;
+&lt;h3 id=&#34;32-data-preprocessing&#34;&gt;3.2 Data Preprocessing
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Data Sources&lt;/strong&gt;: This study uses GDP time series data from multiple countries, including quarterly and monthly data.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Data Cleaning&lt;/strong&gt;: Missing value processing, outlier detection, and data standardization are performed on raw data.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Feature Engineering&lt;/strong&gt;: Corresponding feature variables are constructed according to different model requirements.&lt;/p&gt;
+&lt;h3 id=&#34;33-lstm-model&#34;&gt;3.3 LSTM Model
+&lt;/h3&gt;&lt;h4 id=&#34;331-model-architecture&#34;&gt;3.3.1 Model Architecture
+&lt;/h4&gt;&lt;p&gt;The LSTM model adopts a multi-layer structure, including input layer, LSTM layers, and fully connected layers:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;LSTMModel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nn&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Module&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;fm&#34;&gt;__init__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;input_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;hidden_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;num_layers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;output_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nb&#34;&gt;super&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;LSTMModel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;fm&#34;&gt;__init__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hidden_size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;hidden_size&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;num_layers&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;num_layers&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;lstm&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nn&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;LSTM&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;input_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;hidden_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;num_layers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;batch_first&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fc&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nn&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Linear&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hidden_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;output_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;332-parameter-settings&#34;&gt;3.3.2 Parameter Settings
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Input Dimension&lt;/strong&gt;: 1 (univariate time series)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hidden Layer Dimension&lt;/strong&gt;: 50&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Number of LSTM Layers&lt;/strong&gt;: 2&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Output Dimension&lt;/strong&gt;: 1&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sequence Length&lt;/strong&gt;: 10 (using past 10 time steps to predict the next time step)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;333-training-process&#34;&gt;3.3.3 Training Process
+&lt;/h4&gt;&lt;p&gt;The model uses Mean Squared Error (MSE) as the loss function and Adam optimizer for training:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;criterion&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nn&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MSELoss&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;optimizer&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;torch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;optim&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Adam&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;model&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;parameters&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;())&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;34-xgboost-model&#34;&gt;3.4 XGBoost Model
+&lt;/h3&gt;&lt;h4 id=&#34;341-model-characteristics&#34;&gt;3.4.1 Model Characteristics
+&lt;/h4&gt;&lt;p&gt;XGBoost is an ensemble learning method based on gradient boosting, with the following characteristics:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Efficiency&lt;/strong&gt;: Improves training speed through parallel computing and cache optimization&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Accuracy&lt;/strong&gt;: Improves prediction accuracy by ensembling multiple weak learners&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Robustness&lt;/strong&gt;: Built-in regularization terms prevent overfitting&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;342-feature-engineering&#34;&gt;3.4.2 Feature Engineering
+&lt;/h4&gt;&lt;p&gt;The XGBoost model uses various features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Lag Features&lt;/strong&gt;: Using values from the past j time steps as features&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sliding Window Statistics&lt;/strong&gt;: Calculating means for w-period sliding windows&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Seasonal Features&lt;/strong&gt;: Extracting time features such as month, quarter&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Categorical Features&lt;/strong&gt;: One-hot encoding for categorical variables&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;343-model-parameters&#34;&gt;3.4.3 Model Parameters
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;model&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;XGBRegressor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;objective&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;reg:squarederror&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;n_estimators&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1000&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;verbosity&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;35-dynamic-factor-model-dfm&#34;&gt;3.5 Dynamic Factor Model (DFM)
+&lt;/h3&gt;&lt;h4 id=&#34;351-model-specification&#34;&gt;3.5.1 Model Specification
+&lt;/h4&gt;&lt;p&gt;The basic form of the DFM model is:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;X_t = F*X_{t-1} + ε_Q    (State Equation)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Y_t = H*X_t + ε_R        (Observation Equation)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Where:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;X_t is the state vector&lt;/li&gt;
+&lt;li&gt;Y_t is the observation vector&lt;/li&gt;
+&lt;li&gt;F is the state transition matrix&lt;/li&gt;
+&lt;li&gt;H is the observation matrix&lt;/li&gt;
+&lt;li&gt;ε_Q and ε_R are state error and observation error respectively&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;352-bayesian-estimation&#34;&gt;3.5.2 Bayesian Estimation
+&lt;/h4&gt;&lt;p&gt;The model uses Bayesian methods for estimation, employing Gibbs sampling algorithm:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;Gibbs_loop&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;XY&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;F&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;H&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Q&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;R&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;lags&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;lagsH&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;K&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Qs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;s0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;alpha0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;L_var_prior&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Ints&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;burn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;save&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;GDPnorm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# Gibbs sampling loop&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ii&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;range&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;iter&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;P&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;_Kfilter&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;XY&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;F&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;H&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Q&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;R&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Svar&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;_Ksmoother&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;F&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;H&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Q&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;R&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;lags&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;c1&#34;&gt;# Update parameters&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;353-parameter-settings&#34;&gt;3.5.3 Parameter Settings
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Number of Factors&lt;/strong&gt;: K monthly factors, Qs quarterly factors&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Lag Order&lt;/strong&gt;: lags=6 (state equation), lagsH=4 (observation equation)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Gibbs Sampling&lt;/strong&gt;: burn=50, save=50&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;36-model-fusion-strategies&#34;&gt;3.6 Model Fusion Strategies
+&lt;/h3&gt;&lt;p&gt;This study adopts multiple model fusion strategies:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Simple Averaging&lt;/strong&gt;: Simple average of prediction results from three models&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Weighted Averaging&lt;/strong&gt;: Assigning weights based on historical performance of models&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dynamic Weighting&lt;/strong&gt;: Dynamically adjusting weights based on characteristics of prediction time points&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;4-experimental-design&#34;&gt;4. Experimental Design
+&lt;/h2&gt;&lt;h3 id=&#34;41-data-description&#34;&gt;4.1 Data Description
+&lt;/h3&gt;&lt;p&gt;The dataset used in this study includes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;GDP Data&lt;/strong&gt;: Quarterly GDP data from multiple countries&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Macroeconomic Indicators&lt;/strong&gt;: Including industrial output, consumption index, employment data, etc.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Time Span&lt;/strong&gt;: 1992 to 2024&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data Frequency&lt;/strong&gt;: Quarterly and monthly data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;42-experimental-setup&#34;&gt;4.2 Experimental Setup
+&lt;/h3&gt;&lt;h4 id=&#34;421-data-splitting&#34;&gt;4.2.1 Data Splitting
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Training Set&lt;/strong&gt;: 1992-2020 (approximately 80%)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Test Set&lt;/strong&gt;: 2020-2024 (approximately 20%)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;422-cross-validation&#34;&gt;4.2.2 Cross-Validation
+&lt;/h4&gt;&lt;p&gt;Time series cross-validation method is adopted to ensure reliability of model evaluation.&lt;/p&gt;
+&lt;h3 id=&#34;43-experimental-environment&#34;&gt;4.3 Experimental Environment
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Programming Language&lt;/strong&gt;: Python 3.8&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Deep Learning Framework&lt;/strong&gt;: PyTorch 1.9.0&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Machine Learning Library&lt;/strong&gt;: scikit-learn 1.0.0&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data Processing&lt;/strong&gt;: pandas 1.3.0, numpy 1.21.0&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Visualization&lt;/strong&gt;: matplotlib 3.4.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;5-results-analysis&#34;&gt;5. Results Analysis
+&lt;/h2&gt;&lt;h3 id=&#34;51-single-model-performance-comparison&#34;&gt;5.1 Single Model Performance Comparison
+&lt;/h3&gt;&lt;h4 id=&#34;511-lstm-model-results&#34;&gt;5.1.1 LSTM Model Results
+&lt;/h4&gt;&lt;p&gt;The LSTM model performs well in GDP forecasting, especially in capturing long-term trends:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhangzib123.github.io/images/%e5%85%a8%e7%90%83%e7%bb%8f%e6%b5%8e%e9%a2%84%e6%b5%8b%e8%ae%ba%e6%96%87/img_1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;LSTM Model Results&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;The LSTM model can effectively learn nonlinear patterns in time series and has good sensitivity to economic cycle changes.&lt;/p&gt;
+&lt;h4 id=&#34;512-xgboost-model-results&#34;&gt;5.1.2 XGBoost Model Results
+&lt;/h4&gt;&lt;p&gt;The XGBoost model has advantages in feature engineering:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhangzib123.github.io/images/%e5%85%a8%e7%90%83%e7%bb%8f%e6%b5%8e%e9%a2%84%e6%b5%8b%e8%ae%ba%e6%96%87/img_2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;XGBoost Model Results&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;The XGBoost model can capture complex relationships among economic indicators by integrating multiple features.&lt;/p&gt;
+&lt;h4 id=&#34;513-dfm-model-results&#34;&gt;5.1.3 DFM Model Results
+&lt;/h4&gt;&lt;p&gt;The DFM model has advantages in theoretical interpretability:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhangzib123.github.io/images/%e5%85%a8%e7%90%83%e7%bb%8f%e6%b5%8e%e9%a2%84%e6%b5%8b%e8%ae%ba%e6%96%87/img_3.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;DFM Model Results&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;The DFM model can identify main factors affecting GDP, providing theoretical basis for policy formulation.&lt;/p&gt;
+&lt;h3 id=&#34;52-factor-contribution-analysis&#34;&gt;5.2 Factor Contribution Analysis
+&lt;/h3&gt;&lt;p&gt;Analysis of factor contributions through DFM model:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Industrial Output Factor&lt;/strong&gt;: Contribution 35.2%&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Consumption Index Factor&lt;/strong&gt;: Contribution 28.7%&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Employment Data Factor&lt;/strong&gt;: Contribution 18.9%&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhangzib123.github.io/images/%e5%85%a8%e7%90%83%e7%bb%8f%e6%b5%8e%e9%a2%84%e6%b5%8b%e8%ae%ba%e6%96%87/img.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Factor Contribution Analysis&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhangzib123.github.io/images/%e5%85%a8%e7%90%83%e7%bb%8f%e6%b5%8e%e9%a2%84%e6%b5%8b%e8%ae%ba%e6%96%87/img_4.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Factor Contribution Detailed Analysis&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;53-prediction-accuracy-over-time&#34;&gt;5.3 Prediction Accuracy Over Time
+&lt;/h3&gt;&lt;p&gt;Analysis of accuracy changes across different prediction time horizons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;1-Quarter Prediction&lt;/strong&gt;: RMSE = 0.0156&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;2-Quarter Prediction&lt;/strong&gt;: RMSE = 0.0189&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;3-Quarter Prediction&lt;/strong&gt;: RMSE = 0.0223&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;4-Quarter Prediction&lt;/strong&gt;: RMSE = 0.0267&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Prediction accuracy decreases as prediction time horizon increases, consistent with general patterns in economic forecasting.&lt;/p&gt;
+&lt;h2 id=&#34;6-discussion&#34;&gt;6. Discussion
+&lt;/h2&gt;&lt;h3 id=&#34;61-model-advantage-analysis&#34;&gt;6.1 Model Advantage Analysis
+&lt;/h3&gt;&lt;h4 id=&#34;611-lstm-model-advantages&#34;&gt;6.1.1 LSTM Model Advantages
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Long-term Dependency Capture&lt;/strong&gt;: Can effectively learn long-term temporal dependencies&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Nonlinear Modeling&lt;/strong&gt;: Can capture complex nonlinear patterns&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sequence Modeling&lt;/strong&gt;: Naturally suitable for time series data&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;612-xgboost-model-advantages&#34;&gt;6.1.2 XGBoost Model Advantages
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Feature Engineering&lt;/strong&gt;: Can handle multiple types of features&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ensemble Learning&lt;/strong&gt;: Improves prediction accuracy through ensembling&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Interpretability&lt;/strong&gt;: Can provide feature importance ranking&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;613-dfm-model-advantages&#34;&gt;6.1.3 DFM Model Advantages
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Theoretical Foundation&lt;/strong&gt;: Has solid econometric foundation&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Factor Interpretation&lt;/strong&gt;: Can identify main factors affecting the economy&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Missing Data Handling&lt;/strong&gt;: Can handle data missing issues&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;62-model-limitations&#34;&gt;6.2 Model Limitations
+&lt;/h3&gt;&lt;h4 id=&#34;621-lstm-model-limitations&#34;&gt;6.2.1 LSTM Model Limitations
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Computational Complexity&lt;/strong&gt;: Long training time&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Parameter Tuning&lt;/strong&gt;: Requires extensive hyperparameter tuning&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Interpretability&lt;/strong&gt;: Model internal mechanisms difficult to explain&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;622-xgboost-model-limitations&#34;&gt;6.2.2 XGBoost Model Limitations
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Overfitting Risk&lt;/strong&gt;: Prone to overfitting&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Feature Engineering&lt;/strong&gt;: Requires extensive feature engineering work&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Time Series Characteristics&lt;/strong&gt;: Insufficient consideration of sequence characteristics&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;623-dfm-model-limitations&#34;&gt;6.2.3 DFM Model Limitations
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Linear Assumption&lt;/strong&gt;: Assumes factor relationships are linear&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Factor Number&lt;/strong&gt;: Need to predetermine number of factors&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Computational Complexity&lt;/strong&gt;: Bayesian estimation is computationally intensive&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;63-rationality-of-model-fusion&#34;&gt;6.3 Rationality of Model Fusion
+&lt;/h3&gt;&lt;p&gt;Multi-model fusion can effectively combine advantages of different models:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Complementarity&lt;/strong&gt;: Different models capture different data characteristics&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Robustness&lt;/strong&gt;: Reduces prediction risk from single models&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Accuracy Improvement&lt;/strong&gt;: Improves overall prediction accuracy through ensembling&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;7-conclusions-and-future-directions&#34;&gt;7. Conclusions and Future Directions
+&lt;/h2&gt;&lt;h3 id=&#34;71-main-conclusions&#34;&gt;7.1 Main Conclusions
+&lt;/h3&gt;&lt;p&gt;Through constructing a multi-model fusion economic forecasting framework, this study draws the following main conclusions:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Multi-model Fusion Effectiveness&lt;/strong&gt;: Compared to single models, multi-model fusion can significantly improve prediction accuracy&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Strong Model Complementarity&lt;/strong&gt;: LSTM, XGBoost, and DFM have different advantages and can complement each other&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Feature Engineering Importance&lt;/strong&gt;: Appropriate feature engineering plays an important role in improving prediction accuracy&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Theoretical Interpretability Importance&lt;/strong&gt;: Factor analysis provided by DFM model offers theoretical basis for policy formulation&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;72-policy-recommendations&#34;&gt;7.2 Policy Recommendations
+&lt;/h3&gt;&lt;p&gt;Based on research results, the following policy recommendations are proposed:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Establish Multi-model Forecasting System&lt;/strong&gt;: Recommend policy-making departments establish multi-model fusion forecasting systems&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Strengthen Data Quality&lt;/strong&gt;: Improve quality and timeliness of economic data&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Emphasize Factor Analysis&lt;/strong&gt;: Focus on changes in main factors affecting the economy&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dynamic Adjustment Strategy&lt;/strong&gt;: Dynamically adjust model weights according to prediction accuracy changes&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;73-research-limitations&#34;&gt;7.3 Research Limitations
+&lt;/h3&gt;&lt;p&gt;This study has the following limitations:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Data Limitations&lt;/strong&gt;: Limited by data availability, sample period is relatively short&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Model Selection&lt;/strong&gt;: Only three representative models were selected, not covering all advanced methods&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Exogenous Shocks&lt;/strong&gt;: Insufficient consideration of major exogenous shocks on predictions&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;74-future-research-directions&#34;&gt;7.4 Future Research Directions
+&lt;/h3&gt;&lt;p&gt;Future research can be expanded in the following areas:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Model Extension&lt;/strong&gt;: Introduce more advanced forecasting models, such as Transformer, graph neural networks, etc.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data Fusion&lt;/strong&gt;: Integrate more types of data, such as text data, satellite data, etc.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Real-time Forecasting&lt;/strong&gt;: Develop real-time forecasting systems to improve prediction timeliness&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Uncertainty Quantification&lt;/strong&gt;: Better quantify prediction uncertainty&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Policy Simulation&lt;/strong&gt;: Combine policy simulation analysis to provide more comprehensive support for policy formulation&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;references&#34;&gt;References
+&lt;/h2&gt;&lt;p&gt;[1] Box, G. E. P., &amp;amp; Jenkins, G. M. (1970). Time series analysis: forecasting and control. San Francisco: Holden-Day.&lt;/p&gt;
+&lt;p&gt;[2] Lütkepohl, H. (2005). New introduction to multiple time series analysis. Springer Science &amp;amp; Business Media.&lt;/p&gt;
+&lt;p&gt;[3] Hochreiter, S., &amp;amp; Schmidhuber, J. (1997). Long short-term memory. Neural computation, 9(8), 1735-1780.&lt;/p&gt;
+&lt;p&gt;[4] Chen, T., &amp;amp; Guestrin, C. (2016). XGBoost: A scalable tree boosting system. In Proceedings of the 22nd acm sigkdd international conference on knowledge discovery and data mining (pp. 785-794).&lt;/p&gt;
+&lt;p&gt;[5] Stock, J. H., &amp;amp; Watson, M. W. (2002). Forecasting using principal components from a large number of predictors. Journal of the American statistical association, 97(460), 1167-1179.&lt;/p&gt;
+&lt;p&gt;[6] Forni, M., Hallin, M., Lippi, M., &amp;amp; Reichlin, L. (2000). The generalized dynamic-factor model: identification and estimation. The Review of Economics and Statistics, 82(4), 540-554.&lt;/p&gt;
+&lt;p&gt;[7] Bai, J., &amp;amp; Ng, S. (2002). Determining the number of factors in approximate factor models. Econometrica, 70(1), 191-221.&lt;/p&gt;
+&lt;p&gt;[8] Diebold, F. X., &amp;amp; Mariano, R. S. (1995). Comparing predictive accuracy. Journal of Business &amp;amp; Economic Statistics, 13(3), 253-263.&lt;/p&gt;
+&lt;p&gt;[9] Hansen, P. R., Lunde, A., &amp;amp; Nason, J. M. (2011). The model confidence set. Econometrica, 79(2), 453-497.&lt;/p&gt;
+&lt;p&gt;[10] Makridakis, S., Spiliotis, E., &amp;amp; Assimakopoulos, V. (2020). The M4 Competition: 100,000 time series and 61 forecasting methods. International Journal of Forecasting, 36(1), 54-74.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Author Introduction&lt;/strong&gt;: This research provides in-depth analysis of global economic forecasting using multi-model fusion methods, offering new perspectives and methods for economic forecasting theory and practice.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Fund Project&lt;/strong&gt;: This research was supported by the National Natural Science Foundation of China (Project Number: XXXX).&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
