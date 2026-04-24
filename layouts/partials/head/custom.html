@@ -1,6 +1,5 @@
-{{ with .Params.faq_schema }}
-{{ if . }}
-{{ if eq $.Title "企业AI治理新范式：统一调度平台的价值与实践" }}
+{{ if .Params.faq_schema }}
+{{ if eq .Title "企业AI治理新范式：统一调度平台的价值与实践" }}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,7 +58,7 @@
       "name": "哪些企业最适合使用AI治理与调度平台？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "四类企业最适合：中大型企业（多条业务线在用AI，希望统一入口和调度能力）、软件公司/ISV（频繁为不同客户交付定制化AI能力）、AI能力开放平台提供方（需要对外提供统一、稳定、可计费的AI API）、规划AI中台/数据中台的企业（需要在数据中台之上搭建可持续演进的'智能层'）。"
+        "text": "四类企业最适合：中大型企业（多条业务线在用AI，希望统一入口和调度能力）、软件公司/ISV（频繁为不同客户交付定制化AI能力）、AI能力开放平台提供方（需要对外提供统一、稳定、可计费的AI API）、规划AI中台/数据中台的企业（需要在数据中台之上搭建可持续演进的'智能层'。"
       }
     },
     {
@@ -91,7 +90,7 @@
 </script>
 {{ end }}
 
-{{ if eq $.Title "基于多模型融合的全球经济预测研究" }}
+{{ if eq .Title "基于多模型融合的全球经济预测研究" }}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -180,6 +179,5 @@
   ]
 }
 </script>
-{{ end }}
 {{ end }}
 {{ end }}
