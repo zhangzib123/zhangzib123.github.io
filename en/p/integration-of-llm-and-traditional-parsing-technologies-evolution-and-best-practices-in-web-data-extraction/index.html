@@ -14,6 +14,9 @@
 <meta name="twitter:title" content="Integration of LLM and Traditional Parsing Technologies: Evolution and Best Practices in Web Data Extraction">
 <meta name="twitter:description" content="Based on our company’s years of industry experience and technical implementation practices in public opinion monitoring and web data mining & analysis, this article explores the progression and paradigm shift of web parsing technologies from rule-driven to semantic understanding. It analyzes the revolutionary value and inherent limitations of LLMs for data extraction, and proposes a hybrid architecture solution.">
 
+
+
+
     </head>
     <body class="
     article-page
@@ -416,34 +419,34 @@
 <h2 id="1-traditional-parsing-technologies-the-era-of-rules-and-statistics">1. Traditional Parsing Technologies: The Era of Rules and Statistics
 </h2><h3 id="11-evolution-of-core-methods">1.1 Evolution of Core Methods
 </h3><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th><strong>Period</strong></th>
-          <th><strong>Representative Technologies</strong></th>
-          <th><strong>Working Principle</strong></th>
-          <th><strong>Typical Tools</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Rule-based</td>
-          <td>Regular Expressions / XPath / CSS Selector</td>
-          <td>Manually written pattern matching rules</td>
-          <td><code>BeautifulSoup</code>, <code>Scrapy</code></td>
-      </tr>
-      <tr>
-          <td>Statistical</td>
-          <td>CRF / HMM Sequence Labeling</td>
-          <td>Learn entity recognition probability models from labeled data</td>
-          <td><code>Stanford NER</code>, <code>CRF++</code></td>
-      </tr>
-      <tr>
-          <td>Visual Parsing</td>
-          <td>OCR + Text Position Recognition via Page Rendering</td>
-          <td>Render page screenshots and recognize text positions</td>
-          <td><code>Selenium</code> + <code>Tesseract</code></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th><strong>Period</strong></th>
+					<th><strong>Representative Technologies</strong></th>
+					<th><strong>Working Principle</strong></th>
+					<th><strong>Typical Tools</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Rule-based</td>
+					<td>Regular Expressions / XPath / CSS Selector</td>
+					<td>Manually written pattern matching rules</td>
+					<td><code>BeautifulSoup</code>, <code>Scrapy</code></td>
+			</tr>
+			<tr>
+					<td>Statistical</td>
+					<td>CRF / HMM Sequence Labeling</td>
+					<td>Learn entity recognition probability models from labeled data</td>
+					<td><code>Stanford NER</code>, <code>CRF++</code></td>
+			</tr>
+			<tr>
+					<td>Visual Parsing</td>
+					<td>OCR + Text Position Recognition via Page Rendering</td>
+					<td>Render page screenshots and recognize text positions</td>
+					<td><code>Selenium</code> + <code>Tesseract</code></td>
+			</tr>
+	</tbody>
 </table></div>
 <h3 id="12-drawbacks-of-traditional-parsing">1.2 Drawbacks of Traditional Parsing
 </h3><div class="highlight"><div class="chroma">
@@ -520,35 +523,35 @@
 </ul>
 <h3 id="22-four-accuracy-issues-of-llm">2.2 Four Accuracy Issues of LLM
 </h3><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th><strong>Problem Type</strong></th>
-          <th><strong>Example</strong></th>
-          <th><strong>Root Cause</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Probabilistic bias</td>
-          <td>Phone <code>138-0013-8000</code> → <code>13800138000</code></td>
-          <td>Seeks semantic plausibility over exact matching</td>
-      </tr>
-      <tr>
-          <td>Context truncation</td>
-          <td>Loss of information at the end of long pages</td>
-          <td>Window size limits (e.g., DeepSeek 64K)</td>
-      </tr>
-      <tr>
-          <td>Fails under adversarial interference</td>
-          <td>Unable to recognize phone numbers in images</td>
-          <td>Limitations of text-only models</td>
-      </tr>
-      <tr>
-          <td>Slower processing</td>
-          <td>Slower extraction of specific content</td>
-          <td>Network and model performance limitations</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th><strong>Problem Type</strong></th>
+					<th><strong>Example</strong></th>
+					<th><strong>Root Cause</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Probabilistic bias</td>
+					<td>Phone <code>138-0013-8000</code> → <code>13800138000</code></td>
+					<td>Seeks semantic plausibility over exact matching</td>
+			</tr>
+			<tr>
+					<td>Context truncation</td>
+					<td>Loss of information at the end of long pages</td>
+					<td>Window size limits (e.g., DeepSeek 64K)</td>
+			</tr>
+			<tr>
+					<td>Fails under adversarial interference</td>
+					<td>Unable to recognize phone numbers in images</td>
+					<td>Limitations of text-only models</td>
+			</tr>
+			<tr>
+					<td>Slower processing</td>
+					<td>Slower extraction of specific content</td>
+					<td>Network and model performance limitations</td>
+			</tr>
+	</tbody>
 </table></div>
 <hr>
 <h2 id="3-hybrid-parsing-architecture-balancing-accuracy-and-generalization">3. Hybrid Parsing Architecture: Balancing Accuracy and Generalization
@@ -637,77 +640,77 @@
 </div>
 </div><h3 id="33-performance-comparison-policy-and-regulation-information-parsing-scenario">3.3 Performance Comparison (Policy and Regulation Information Parsing Scenario)
 </h3><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th><strong>Solution</strong></th>
-          <th>Policy-Specific Attribute Accuracy</th>
-          <th>Main Text Accuracy</th>
-          <th>Cost/1K Pages</th>
-          <th>Layout Adaptability</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Pure Traditional Rules</td>
-          <td>68%</td>
-          <td>95%</td>
-          <td>$0.01</td>
-          <td>❌</td>
-      </tr>
-      <tr>
-          <td>Pure LLM (DeepSeek)</td>
-          <td>96%</td>
-          <td>83%</td>
-          <td>$0.15</td>
-          <td>✅</td>
-      </tr>
-      <tr>
-          <td><strong>Hybrid Architecture</strong></td>
-          <td><strong>98%</strong></td>
-          <td><strong>97%</strong></td>
-          <td><strong>$0.08</strong></td>
-          <td>✅</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th><strong>Solution</strong></th>
+					<th>Policy-Specific Attribute Accuracy</th>
+					<th>Main Text Accuracy</th>
+					<th>Cost/1K Pages</th>
+					<th>Layout Adaptability</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Pure Traditional Rules</td>
+					<td>68%</td>
+					<td>95%</td>
+					<td>$0.01</td>
+					<td>❌</td>
+			</tr>
+			<tr>
+					<td>Pure LLM (DeepSeek)</td>
+					<td>96%</td>
+					<td>83%</td>
+					<td>$0.15</td>
+					<td>✅</td>
+			</tr>
+			<tr>
+					<td><strong>Hybrid Architecture</strong></td>
+					<td><strong>98%</strong></td>
+					<td><strong>97%</strong></td>
+					<td><strong>$0.08</strong></td>
+					<td>✅</td>
+			</tr>
+	</tbody>
 </table></div>
 <hr>
 <h2 id="4-practical-case-general-web-information-collection-system">4. Practical Case: General Web Information Collection System
 </h2><h3 id="41-technology-stack-components">4.1 Technology Stack Components
 </h3><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th><strong>Component</strong></th>
-          <th><strong>Recommended Tool</strong></th>
-          <th><strong>Function</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Crawler Framework</td>
-          <td>Crawl-for-AI / selenium</td>
-          <td>Webpage fetching</td>
-      </tr>
-      <tr>
-          <td>Dynamic Rendering</td>
-          <td>chrome-driver</td>
-          <td>Handle JS-loaded content</td>
-      </tr>
-      <tr>
-          <td>LLM Parsing</td>
-          <td>DeepSeek-V3 + glm:GLM-4-Flash</td>
-          <td>Summary generation &amp; attribute extraction</td>
-      </tr>
-      <tr>
-          <td>Rule Engine</td>
-          <td>Custom Python validation library</td>
-          <td>Key field format validation</td>
-      </tr>
-      <tr>
-          <td>Proxy Service</td>
-          <td>Bright Data</td>
-          <td>IP rotation to avoid bans</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th><strong>Component</strong></th>
+					<th><strong>Recommended Tool</strong></th>
+					<th><strong>Function</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Crawler Framework</td>
+					<td>Crawl-for-AI / selenium</td>
+					<td>Webpage fetching</td>
+			</tr>
+			<tr>
+					<td>Dynamic Rendering</td>
+					<td>chrome-driver</td>
+					<td>Handle JS-loaded content</td>
+			</tr>
+			<tr>
+					<td>LLM Parsing</td>
+					<td>DeepSeek-V3 + glm:GLM-4-Flash</td>
+					<td>Summary generation &amp; attribute extraction</td>
+			</tr>
+			<tr>
+					<td>Rule Engine</td>
+					<td>Custom Python validation library</td>
+					<td>Key field format validation</td>
+			</tr>
+			<tr>
+					<td>Proxy Service</td>
+					<td>Bright Data</td>
+					<td>IP rotation to avoid bans</td>
+			</tr>
+	</tbody>
 </table></div>
 <h3 id="42-workflow">4.2 Workflow
 </h3><div class="highlight"><div class="chroma">
@@ -746,35 +749,35 @@
 <h2 id="5-conclusion-technical-selection-guide">5. Conclusion: Technical Selection Guide
 </h2><h3 id="51-recommended-solution-matrix">5.1 Recommended Solution Matrix
 </h3><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th><strong>Scenario</strong></th>
-          <th><strong>Recommended Solution</strong></th>
-          <th><strong>Reason</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Government Gazette/API Data</td>
-          <td>Pure rule parsing (XPath, CSS)</td>
-          <td>Stable structure, near-zero cost</td>
-      </tr>
-      <tr>
-          <td>E-commerce Price Monitoring</td>
-          <td>Rules + LLM Summary</td>
-          <td>High-precision number extraction + activity description understanding</td>
-      </tr>
-      <tr>
-          <td>Business Directory Lead Generation</td>
-          <td>LLM-centric + Rule Validation</td>
-          <td>Adapts to diverse page styles, ensures key field accuracy</td>
-      </tr>
-      <tr>
-          <td>Dynamic Rendering SPA Applications</td>
-          <td>Playwright + LLM Chunk Processing</td>
-          <td>JS execution first, then long page segmented parsing</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th><strong>Scenario</strong></th>
+					<th><strong>Recommended Solution</strong></th>
+					<th><strong>Reason</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Government Gazette/API Data</td>
+					<td>Pure rule parsing (XPath, CSS)</td>
+					<td>Stable structure, near-zero cost</td>
+			</tr>
+			<tr>
+					<td>E-commerce Price Monitoring</td>
+					<td>Rules + LLM Summary</td>
+					<td>High-precision number extraction + activity description understanding</td>
+			</tr>
+			<tr>
+					<td>Business Directory Lead Generation</td>
+					<td>LLM-centric + Rule Validation</td>
+					<td>Adapts to diverse page styles, ensures key field accuracy</td>
+			</tr>
+			<tr>
+					<td>Dynamic Rendering SPA Applications</td>
+					<td>Playwright + LLM Chunk Processing</td>
+					<td>JS execution first, then long page segmented parsing</td>
+			</tr>
+	</tbody>
 </table></div>
 <h3 id="52-future-directions">5.2 Future Directions
 </h3><ol>

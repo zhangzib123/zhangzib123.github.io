@@ -14,6 +14,9 @@
 <meta name="twitter:title" content="Experience Summary on Building Vertical Domain-Specific Large Models">
 <meta name="twitter:description" content="Through pre-training and fine-tuning, our AI team has constructed a large model specialized in state-owned enterprise knowledge. From 2024 to the first half of 2025, we conducted two rounds of vertical domain training. Evaluation metrics have surpassed those of the base model and meet user requirements.">
 
+
+
+
     </head>
     <body class="
     article-page
@@ -381,55 +384,55 @@
 </h2><h3 id="development-achievements">Development Achievements
 </h3><p>Through pre-training and fine-tuning, our AI team has constructed a large model specialized in state-owned enterprise knowledge. From 2024 to the first half of 2025, we conducted two rounds of vertical domain training. Evaluation metrics have surpassed those of the base model and meet user requirements. The overall progress is as follows:</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>Dimension</th>
-          <th>First Round Training</th>
-          <th>Second Round Training</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Base Model</td>
-          <td>Qwen1.5-7B</td>
-          <td>Qwen2.5-72B</td>
-      </tr>
-      <tr>
-          <td>Pre-training Corpus Size</td>
-          <td>~19.5B tokens (gpt tokenizer)</td>
-          <td>~1.7B tokens (qwen2.5 tokenizer)</td>
-      </tr>
-      <tr>
-          <td>Domain Fine-tuning Corpus (Q&amp;A Pairs)</td>
-          <td>23,144</td>
-          <td>397,355</td>
-      </tr>
-      <tr>
-          <td>Covered Domain Tasks</td>
-          <td>Domain Q&amp;A, Classification Tasks</td>
-          <td>Domain Q&amp;A, Report Generation</td>
-      </tr>
-      <tr>
-          <td>Model Context Length</td>
-          <td>2048</td>
-          <td>8192</td>
-      </tr>
-      <tr>
-          <td>Training Method</td>
-          <td>Pre-training + Domain SFT</td>
-          <td>Pre-training + General SFT + Domain SFT</td>
-      </tr>
-      <tr>
-          <td>Core Task Metrics (ROUGE)</td>
-          <td>Domain Q&amp;A: +6% over base model<br>Classification: +50% over base model</td>
-          <td>Domain Q&amp;A: +14% over base model<br>Report Generation: +0.65% over base model</td>
-      </tr>
-      <tr>
-          <td>Existing Issues</td>
-          <td>Responses overly concise, inadequate for complex scenarios.</td>
-          <td>Content repetition, still brief responses, deficiencies in understanding ultra-long contexts.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Dimension</th>
+					<th>First Round Training</th>
+					<th>Second Round Training</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Base Model</td>
+					<td>Qwen1.5-7B</td>
+					<td>Qwen2.5-72B</td>
+			</tr>
+			<tr>
+					<td>Pre-training Corpus Size</td>
+					<td>~19.5B tokens (gpt tokenizer)</td>
+					<td>~1.7B tokens (qwen2.5 tokenizer)</td>
+			</tr>
+			<tr>
+					<td>Domain Fine-tuning Corpus (Q&amp;A Pairs)</td>
+					<td>23,144</td>
+					<td>397,355</td>
+			</tr>
+			<tr>
+					<td>Covered Domain Tasks</td>
+					<td>Domain Q&amp;A, Classification Tasks</td>
+					<td>Domain Q&amp;A, Report Generation</td>
+			</tr>
+			<tr>
+					<td>Model Context Length</td>
+					<td>2048</td>
+					<td>8192</td>
+			</tr>
+			<tr>
+					<td>Training Method</td>
+					<td>Pre-training + Domain SFT</td>
+					<td>Pre-training + General SFT + Domain SFT</td>
+			</tr>
+			<tr>
+					<td>Core Task Metrics (ROUGE)</td>
+					<td>Domain Q&amp;A: +6% over base model<br>Classification: +50% over base model</td>
+					<td>Domain Q&amp;A: +14% over base model<br>Report Generation: +0.65% over base model</td>
+			</tr>
+			<tr>
+					<td>Existing Issues</td>
+					<td>Responses overly concise, inadequate for complex scenarios.</td>
+					<td>Content repetition, still brief responses, deficiencies in understanding ultra-long contexts.</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>Evaluation metrics on state-owned enterprise datasets have surpassed those of the base model, with domain Q&amp;A capabilities outperforming DeepSeek and Doubao models. However, writing task capabilities need enhancement. Key current shortcomings include overly concise generated content and suboptimal long-text and contextual comprehension, which will be the focus of subsequent optimization.</p>
 <h3 id="next-steps">Next Steps

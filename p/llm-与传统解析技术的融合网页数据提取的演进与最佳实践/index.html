@@ -14,6 +14,9 @@
 <meta name="twitter:title" content="LLM 与传统解析技术的融合：网页数据提取的演进与最佳实践">
 <meta name="twitter:description" content="根据我公司多年舆情监测和互联网信息挖掘分析的从业经验和开发实践，本文探讨从**规则驱动**到**语义理解**的网页解析技术演进，分析 LLM（大语言模型）在数据提取中的革命性价值与固有局限，并提出混合架构解决方案。">
 
+
+
+
     </head>
     <body class="
     article-page
@@ -436,34 +439,34 @@
 <h2 id="一传统解析技术规则与统计的时代">一、传统解析技术：规则与统计的时代
 </h2><h3 id="11-核心方法演进">1.1 核心方法演进
 </h3><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th><strong>时期</strong></th>
-          <th><strong>技术代表</strong></th>
-          <th><strong>工作原理</strong></th>
-          <th><strong>典型工具</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>规则方法</td>
-          <td>正则表达式/XPath/CSS选择器</td>
-          <td>人工编写模式匹配规则</td>
-          <td><code>BeautifulSoup</code>, <code>Scrapy</code></td>
-      </tr>
-      <tr>
-          <td>统计方法</td>
-          <td>CRF/HMM 序列标注</td>
-          <td>从标注数据学习实体识别概率模型</td>
-          <td><code>Stanford NER</code>, <code>CRF++</code></td>
-      </tr>
-      <tr>
-          <td>视觉解析</td>
-          <td>OCR+坐标定位</td>
-          <td>渲染页面截图后识别文字位置</td>
-          <td><code>Selenium</code>+<code>Tesseract</code></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th><strong>时期</strong></th>
+					<th><strong>技术代表</strong></th>
+					<th><strong>工作原理</strong></th>
+					<th><strong>典型工具</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>规则方法</td>
+					<td>正则表达式/XPath/CSS选择器</td>
+					<td>人工编写模式匹配规则</td>
+					<td><code>BeautifulSoup</code>, <code>Scrapy</code></td>
+			</tr>
+			<tr>
+					<td>统计方法</td>
+					<td>CRF/HMM 序列标注</td>
+					<td>从标注数据学习实体识别概率模型</td>
+					<td><code>Stanford NER</code>, <code>CRF++</code></td>
+			</tr>
+			<tr>
+					<td>视觉解析</td>
+					<td>OCR+坐标定位</td>
+					<td>渲染页面截图后识别文字位置</td>
+					<td><code>Selenium</code>+<code>Tesseract</code></td>
+			</tr>
+	</tbody>
 </table></div>
 <h3 id="12-传统解析的缺点">1.2 传统解析的缺点
 </h3><div class="highlight"><div class="chroma">
@@ -540,35 +543,35 @@
 </ul>
 <h3 id="22-llm-的四大准确性问题">2.2 LLM 的四大准确性问题
 </h3><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th><strong>问题类型</strong></th>
-          <th><strong>案例</strong></th>
-          <th><strong>根源</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>概率性偏差</td>
-          <td>电话 <code>138-0013-8000</code> → <code>13800138000</code></td>
-          <td>追求语义合理而非精确匹配</td>
-      </tr>
-      <tr>
-          <td>上下文截断</td>
-          <td>长页面尾部信息丢失</td>
-          <td>窗口限制（如 DeepSeek 64K）</td>
-      </tr>
-      <tr>
-          <td>对抗干扰失效</td>
-          <td>图片电话无法识别</td>
-          <td>纯文本模型局限</td>
-      </tr>
-      <tr>
-          <td>处理速度较慢</td>
-          <td>特定内容提取速度较慢</td>
-          <td>网络和模型性能局限</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th><strong>问题类型</strong></th>
+					<th><strong>案例</strong></th>
+					<th><strong>根源</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>概率性偏差</td>
+					<td>电话 <code>138-0013-8000</code> → <code>13800138000</code></td>
+					<td>追求语义合理而非精确匹配</td>
+			</tr>
+			<tr>
+					<td>上下文截断</td>
+					<td>长页面尾部信息丢失</td>
+					<td>窗口限制（如 DeepSeek 64K）</td>
+			</tr>
+			<tr>
+					<td>对抗干扰失效</td>
+					<td>图片电话无法识别</td>
+					<td>纯文本模型局限</td>
+			</tr>
+			<tr>
+					<td>处理速度较慢</td>
+					<td>特定内容提取速度较慢</td>
+					<td>网络和模型性能局限</td>
+			</tr>
+	</tbody>
 </table></div>
 <hr>
 <h2 id="三混合解析架构平衡准确率与泛化性">三、混合解析架构：平衡准确率与泛化性
@@ -657,77 +660,77 @@
 </div>
 </div><h3 id="33-效能对比政策法规资讯解析场景">3.3 效能对比（政策法规资讯解析场景）
 </h3><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th><strong>方案</strong></th>
-          <th>政策特有属性准确率</th>
-          <th>正文准确率</th>
-          <th>成本/千页</th>
-          <th>改版适应力</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>纯传统规则</td>
-          <td>68%</td>
-          <td>95%</td>
-          <td>$0.01</td>
-          <td>❌</td>
-      </tr>
-      <tr>
-          <td>纯 LLM (DeepSeek)</td>
-          <td>96%</td>
-          <td>83%</td>
-          <td>$0.15</td>
-          <td>✅</td>
-      </tr>
-      <tr>
-          <td><strong>混合架构</strong></td>
-          <td><strong>98%</strong></td>
-          <td><strong>97%</strong></td>
-          <td><strong>$0.08</strong></td>
-          <td>✅</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th><strong>方案</strong></th>
+					<th>政策特有属性准确率</th>
+					<th>正文准确率</th>
+					<th>成本/千页</th>
+					<th>改版适应力</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>纯传统规则</td>
+					<td>68%</td>
+					<td>95%</td>
+					<td>$0.01</td>
+					<td>❌</td>
+			</tr>
+			<tr>
+					<td>纯 LLM (DeepSeek)</td>
+					<td>96%</td>
+					<td>83%</td>
+					<td>$0.15</td>
+					<td>✅</td>
+			</tr>
+			<tr>
+					<td><strong>混合架构</strong></td>
+					<td><strong>98%</strong></td>
+					<td><strong>97%</strong></td>
+					<td><strong>$0.08</strong></td>
+					<td>✅</td>
+			</tr>
+	</tbody>
 </table></div>
 <hr>
 <h2 id="四实战案例通用网页信息采集系统">四、实战案例：通用网页信息采集系统
 </h2><h3 id="41-技术栈组成">4.1 技术栈组成
 </h3><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th><strong>组件</strong></th>
-          <th><strong>推荐工具</strong></th>
-          <th><strong>作用</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>爬虫框架</td>
-          <td>Crawl-for-AI / selenium</td>
-          <td>网页抓取</td>
-      </tr>
-      <tr>
-          <td>动态渲染</td>
-          <td>chrome-driver</td>
-          <td>处理 JS 加载内容</td>
-      </tr>
-      <tr>
-          <td>LLM 解析</td>
-          <td>DeepSeek-V3 + glm:GLM-4-Flash</td>
-          <td>摘要生成与属性提取</td>
-      </tr>
-      <tr>
-          <td>规则引擎</td>
-          <td>自定义 Python 校验库</td>
-          <td>关键字段格式验证</td>
-      </tr>
-      <tr>
-          <td>代理服务</td>
-          <td>Bright Data</td>
-          <td>IP 轮换防封禁</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th><strong>组件</strong></th>
+					<th><strong>推荐工具</strong></th>
+					<th><strong>作用</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>爬虫框架</td>
+					<td>Crawl-for-AI / selenium</td>
+					<td>网页抓取</td>
+			</tr>
+			<tr>
+					<td>动态渲染</td>
+					<td>chrome-driver</td>
+					<td>处理 JS 加载内容</td>
+			</tr>
+			<tr>
+					<td>LLM 解析</td>
+					<td>DeepSeek-V3 + glm:GLM-4-Flash</td>
+					<td>摘要生成与属性提取</td>
+			</tr>
+			<tr>
+					<td>规则引擎</td>
+					<td>自定义 Python 校验库</td>
+					<td>关键字段格式验证</td>
+			</tr>
+			<tr>
+					<td>代理服务</td>
+					<td>Bright Data</td>
+					<td>IP 轮换防封禁</td>
+			</tr>
+	</tbody>
 </table></div>
 <h3 id="42-工作流">4.2 工作流
 </h3><p><img src="https://zzsn-doc.obs.cn-north-1.myhuaweicloud.com/typora/image-20250813160910145.png"
@@ -750,35 +753,35 @@
 <h2 id="五结论技术选型指南">五、结论：技术选型指南
 </h2><h3 id="51-推荐方案矩阵">5.1 推荐方案矩阵
 </h3><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th><strong>场景</strong></th>
-          <th><strong>推荐方案</strong></th>
-          <th><strong>原因</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>政府公报/API 数据</td>
-          <td>纯规则解析 (XPath、css)</td>
-          <td>结构稳定，成本近乎为零</td>
-      </tr>
-      <tr>
-          <td>电商价格监控</td>
-          <td>规则+LLM 摘要</td>
-          <td>需高精度数字提取+活动描述理解</td>
-      </tr>
-      <tr>
-          <td>企业黄页获客</td>
-          <td>LLM 为主+规则校验</td>
-          <td>适应多样式页面，保障关键字段准确</td>
-      </tr>
-      <tr>
-          <td>动态渲染SPA 应用</td>
-          <td>Playwright+LLM 分块处理</td>
-          <td>需先执行 JS，长页面分段解析</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th><strong>场景</strong></th>
+					<th><strong>推荐方案</strong></th>
+					<th><strong>原因</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>政府公报/API 数据</td>
+					<td>纯规则解析 (XPath、css)</td>
+					<td>结构稳定，成本近乎为零</td>
+			</tr>
+			<tr>
+					<td>电商价格监控</td>
+					<td>规则+LLM 摘要</td>
+					<td>需高精度数字提取+活动描述理解</td>
+			</tr>
+			<tr>
+					<td>企业黄页获客</td>
+					<td>LLM 为主+规则校验</td>
+					<td>适应多样式页面，保障关键字段准确</td>
+			</tr>
+			<tr>
+					<td>动态渲染SPA 应用</td>
+					<td>Playwright+LLM 分块处理</td>
+					<td>需先执行 JS，长页面分段解析</td>
+			</tr>
+	</tbody>
 </table></div>
 <h3 id="52-未来方向">5.2 未来方向
 </h3><ol>

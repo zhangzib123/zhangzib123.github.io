@@ -14,6 +14,9 @@
 <meta name="twitter:title" content="Project Element Extraction: Traditional Machine Learning vs. Large Model Approaches - An In-depth Comparison">
 <meta name="twitter:description" content="In vast information fields like engineering investment and international trade, **accurately extracting core project elements** (e.g., project name, investment amount, executing agency) is crucial for corporate decision-making. Traditional methods rely on supervised learning, while the advent of large models is revolutionizing this domain. Based on real business scenarios undertaken by our company, data annotation costs, technical implementation paths, and case comparisons, this article provides a deep analysis of the differences and selection strategies between these two technical routes.">
 
+
+
+
     </head>
     <body class="
     article-page
@@ -447,30 +450,30 @@
 <h2 id="ii-traditional-supervised-learning-approach-high-cost-precision-models">II. Traditional Supervised Learning Approach: High-Cost Precision Models
 </h2><h3 id="1-data-annotation-labor-intensive-work-actual-annotation-sample-size">1. Data Annotation: Labor-Intensive Work (Actual Annotation Sample Size)
 </h3><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>Category</th>
-          <th>Annotation Sample Size</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Infrastructure Projects</td>
-          <td>7,013</td>
-      </tr>
-      <tr>
-          <td>Investment Projects</td>
-          <td>7,678</td>
-      </tr>
-      <tr>
-          <td>Trade Supply &amp; Demand</td>
-          <td>9,386</td>
-      </tr>
-      <tr>
-          <td>Investment Promotion</td>
-          <td>6,381</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Category</th>
+					<th>Annotation Sample Size</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Infrastructure Projects</td>
+					<td>7,013</td>
+			</tr>
+			<tr>
+					<td>Investment Projects</td>
+					<td>7,678</td>
+			</tr>
+			<tr>
+					<td>Trade Supply &amp; Demand</td>
+					<td>9,386</td>
+			</tr>
+			<tr>
+					<td>Investment Promotion</td>
+					<td>6,381</td>
+			</tr>
+	</tbody>
 </table></div>
 <p><strong>Annotation Example</strong>:</p>
 <p>BIOE Sequence Labeling: (B-Beginning, I-Inside, E-End)</p>
@@ -522,35 +525,35 @@
 <p>The project is located in northern Sulawesi Island, Indonesia. It plans to install 7 axial-flow generating units, including 4 peak-shaving units and 3 run-of-river units, with a total installed capacity of approximately 315MW. The main structures include a concrete gravity dam, flood discharge structures, water diversion structures, and a powerhouse. Upon completion, the project will provide Sulawesi with stable clean energy, alleviate power shortages, empower the transformation of industrial parks on Sulawesi Island, Indonesia, and simultaneously train a group of hydropower industry workers. It sets a benchmark for high-quality co-construction of the &ldquo;Belt and Road&rdquo; and the &ldquo;Regional Comprehensive Economic Corridor&rdquo; between China and Indonesia, deepening bilateral production capacity cooperation.</p>
 <p>Representatives from PowerChina International Group&rsquo;s Southeast Asia Regional Headquarters, PowerChina Indonesia Representative Office, CGGC Group Indonesia Representative Office, and Guangxi Hydroelectric Investigation &amp; Design Institute Indonesia Representative Office attended the signing ceremony.</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th style="text-align: left"><strong>Element Type</strong></th>
-          <th style="text-align: left"><strong>Traditional Method Result</strong></th>
-          <th style="text-align: left"><strong>Large Model Result</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">Project Name</td>
-          <td style="text-align: left">✅ Sulawesi 315MW Hydropower Project, Indonesia</td>
-          <td style="text-align: left">✅ Sulawesi 315MW Hydropower Project, Indonesia</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Country</td>
-          <td style="text-align: left">✅ Indonesia</td>
-          <td style="text-align: left">✅ Indonesia</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Contractor</td>
-          <td style="text-align: left">❌ Not Extracted</td>
-          <td style="text-align: left">✅ PowerChina International Group + CGGC + Guangxi Design Institute</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Project Capacity</td>
-          <td style="text-align: left">❌ Not Extracted</td>
-          <td style="text-align: left">✅ Plans to install 7 axial-flow generating units, including 4 peak-shaving units and 3 run-of-river units, total installed capacity approx. 315MW</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left"><strong>Element Type</strong></th>
+					<th style="text-align: left"><strong>Traditional Method Result</strong></th>
+					<th style="text-align: left"><strong>Large Model Result</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">Project Name</td>
+					<td style="text-align: left">✅ Sulawesi 315MW Hydropower Project, Indonesia</td>
+					<td style="text-align: left">✅ Sulawesi 315MW Hydropower Project, Indonesia</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Country</td>
+					<td style="text-align: left">✅ Indonesia</td>
+					<td style="text-align: left">✅ Indonesia</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Contractor</td>
+					<td style="text-align: left">❌ Not Extracted</td>
+					<td style="text-align: left">✅ PowerChina International Group + CGGC + Guangxi Design Institute</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Project Capacity</td>
+					<td style="text-align: left">❌ Not Extracted</td>
+					<td style="text-align: left">✅ Plans to install 7 axial-flow generating units, including 4 peak-shaving units and 3 run-of-river units, total installed capacity approx. 315MW</td>
+			</tr>
+	</tbody>
 </table></div>
 <blockquote>
 <p>The large model can deeply understand its internal logic. Through semantic understanding, it extracts implied elements such as &ldquo;Contractor&rdquo; and &ldquo;Project Capacity&rdquo;.</p>
@@ -559,30 +562,30 @@
 </h3><h4 id="csg-international-trade-company-signs-contract-for-main-equipment-procurement-of-converter-station-for-chile-kilo-hvdc-transmission-epc-project">CSG International Trade Company Signs Contract for Main Equipment Procurement of Converter Station for Chile KILO HVDC Transmission EPC Project
 </h4><p>On May 5, Southern Power Grid International Trade (Guangzhou) Co., Ltd. (hereinafter referred to as &ldquo;Trade Company&rdquo;) signed the main equipment procurement contract for the converter station of the Chile KILO High-Voltage Direct Current (HVDC) Transmission EPC Project with XD Power System Co., Ltd. and XD Transformer Co., Ltd. The contract value exceeds CNY 1 billion. Gong Tiansen, Deputy General Manager of CSG International Company, presided over the signing ceremony. The Chile KILO project is the first HVDC transmission project in Chile undertaken by CSG International Company as the consortium leader. The procurement and supply of main equipment for the converter station were undertaken by the Trade Company. As the international trade platform of China Southern Power Grid Company, the Trade Company actively cooperated closely with the Chile KILO Converter Station EPC Project Department, CSG Research Institute, CSG Supply Chain Group, and other units. Based on the contract technical specifications of the Chilean owner, they continuously optimized the equipment procurement plan, shortened response times, and procured 21 converter transformers and a batch of converter valves and valve hall equipment, as well as water cooling systems through the CSG Supply Chain Procurement Platform, completing this major milestone task for the main equipment procurement of the Chile KILO project converter station on schedule. The Trade Company has always adhered to the guidance of &ldquo;accelerating the construction of a new development pattern and striving to promote high-quality development,&rdquo; planning the high-quality development of the trade sector of CSG International Company. By focusing on serving its core responsibilities and main businesses, it strives to provide timely, professional, and efficient one-stop equipment and material procurement and supply services for overseas projects, making due contributions to promoting the &ldquo;going global&rdquo; of advanced Chinese standards, technologies, equipment, and brands.</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th style="text-align: left"><strong>Key Difference</strong></th>
-          <th style="text-align: left">Traditional Method</th>
-          <th style="text-align: left">Large Model</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">Contract Amount</td>
-          <td style="text-align: left">❌ Assigned value to &ldquo;Planned Investment Amount&rdquo; (Contract amount should not be confused with planned investment amount)</td>
-          <td style="text-align: left">✅ Exceeds CNY 1 billion</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Signing Date</td>
-          <td style="text-align: left">❌ Not Identified</td>
-          <td style="text-align: left">✅ May 5, 2023</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Project Type</td>
-          <td style="text-align: left">❌ Not Identified</td>
-          <td style="text-align: left">✅ Equipment Procurement Contract</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left"><strong>Key Difference</strong></th>
+					<th style="text-align: left">Traditional Method</th>
+					<th style="text-align: left">Large Model</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">Contract Amount</td>
+					<td style="text-align: left">❌ Assigned value to &ldquo;Planned Investment Amount&rdquo; (Contract amount should not be confused with planned investment amount)</td>
+					<td style="text-align: left">✅ Exceeds CNY 1 billion</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Signing Date</td>
+					<td style="text-align: left">❌ Not Identified</td>
+					<td style="text-align: left">✅ May 5, 2023</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Project Type</td>
+					<td style="text-align: left">❌ Not Identified</td>
+					<td style="text-align: left">✅ Equipment Procurement Contract</td>
+			</tr>
+	</tbody>
 </table></div>
 <blockquote>
 <p>The large model achieves higher accuracy and recall rates in extraction. It can more accurately identify and extract key information such as contract amount, signing date, and project type.
@@ -616,45 +619,45 @@ It is incorrect for the traditional method to assign this amount to &ldquo;Plann
 </blockquote>
 <h2 id="v-methodology-comparison-panorama">V. Methodology Comparison Panorama
 </h2><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th style="text-align: left"><strong>Dimension</strong></th>
-          <th style="text-align: left"><strong>Traditional Supervised Learning</strong></th>
-          <th style="text-align: left"><strong>Large Model Approach</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">Data Dependency</td>
-          <td style="text-align: left">Strongly dependent on thousands of annotated samples</td>
-          <td style="text-align: left">Zero-shot/Few-shot startup</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Deployment Cost</td>
-          <td style="text-align: left">Annotation + Training + Tuning ≥ 3 weeks</td>
-          <td style="text-align: left">API call, immediate effect</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Element Extensibility</td>
-          <td style="text-align: left">Adding new elements requires re-annotation &amp; training</td>
-          <td style="text-align: left">Modify Prompt to extend</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Fine-Grained Parsing</td>
-          <td style="text-align: left">✅ Precise entity boundaries</td>
-          <td style="text-align: left">⚠️ Occasional over-generation</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Implicit Information Mining</td>
-          <td style="text-align: left">❌ Limited</td>
-          <td style="text-align: left">✅ Deep association of background/significance</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Industry Migration Cost</td>
-          <td style="text-align: left">High (Requires new annotation)</td>
-          <td style="text-align: left">Low (Generic knowledge transfer)</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left"><strong>Dimension</strong></th>
+					<th style="text-align: left"><strong>Traditional Supervised Learning</strong></th>
+					<th style="text-align: left"><strong>Large Model Approach</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">Data Dependency</td>
+					<td style="text-align: left">Strongly dependent on thousands of annotated samples</td>
+					<td style="text-align: left">Zero-shot/Few-shot startup</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Deployment Cost</td>
+					<td style="text-align: left">Annotation + Training + Tuning ≥ 3 weeks</td>
+					<td style="text-align: left">API call, immediate effect</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Element Extensibility</td>
+					<td style="text-align: left">Adding new elements requires re-annotation &amp; training</td>
+					<td style="text-align: left">Modify Prompt to extend</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Fine-Grained Parsing</td>
+					<td style="text-align: left">✅ Precise entity boundaries</td>
+					<td style="text-align: left">⚠️ Occasional over-generation</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Implicit Information Mining</td>
+					<td style="text-align: left">❌ Limited</td>
+					<td style="text-align: left">✅ Deep association of background/significance</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Industry Migration Cost</td>
+					<td style="text-align: left">High (Requires new annotation)</td>
+					<td style="text-align: left">Low (Generic knowledge transfer)</td>
+			</tr>
+	</tbody>
 </table></div>
 <hr>
 <h2 id="vi-how-to-choose-the-technical-route">VI. How to Choose the Technical Route?
