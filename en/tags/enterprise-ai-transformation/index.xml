@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Enterprise AI Transformation on ZibiaoZhang&#39;s Blog</title>
+        <link>https://zhangzib123.github.io/en/tags/enterprise-ai-transformation/</link>
+        <description>Recent content in Enterprise AI Transformation on ZibiaoZhang&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Fri, 31 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://zhangzib123.github.io/en/tags/enterprise-ai-transformation/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>From &#39;AI Gym&#39; to &#39;Intelligent Cockpit&#39;: Solving the Governance Puzzle of Enterprise AI Transformation</title>
+        <link>https://zhangzib123.github.io/en/p/from-ai-gym-to-intelligent-cockpit-solving-the-governance-puzzle-of-enterprise-ai-transformation/</link>
+        <pubDate>Fri, 31 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhangzib123.github.io/en/p/from-ai-gym-to-intelligent-cockpit-solving-the-governance-puzzle-of-enterprise-ai-transformation/</guid>
+        <description>&lt;h2 id=&#34;introduction-why-ai-transformation-is-like-fitness&#34;&gt;Introduction: Why AI Transformation Is Like Fitness
+&lt;/h2&gt;&lt;p&gt;AI today is like a gym membership—everyone gets one, then posts about it.&lt;/p&gt;
+&lt;p&gt;Setting up AI labs, purchasing the most advanced models, announcing partnerships with tech giants&amp;hellip; These actions sound futuristic. But as Alexander Sukharevsky, head of McKinsey Quantum Black, put it bluntly: Getting the membership is just the beginning. The real challenge is whether you&amp;rsquo;re willing to &amp;ldquo;sweat&amp;rdquo; on the treadmill every day.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Getting a membership ≠ Working out. Technology procurement ≠ Value unlock.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;AI transformation is never just a technology problem—it&amp;rsquo;s a profound organizational reshaping. It&amp;rsquo;s not a multiple-choice question; it&amp;rsquo;s a &amp;ldquo;complete recipe&amp;rdquo; that must be answered correctly in every part.&lt;/p&gt;
+&lt;p&gt;Sukharevsky has a more vivid metaphor for Agents: Think of an Agent as your &amp;ldquo;junior colleague&amp;rdquo;—extremely hardworking, super-fast learning, 24/7 availability. But remember, &lt;strong&gt;you&amp;rsquo;re the boss, and you&amp;rsquo;re responsible when things go wrong&lt;/strong&gt;. This isn&amp;rsquo;t shifting blame—it&amp;rsquo;s clarifying boundaries: Agents do the work; humans judge, correct, and take responsibility.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;i-the-six-element-framework-for-value-unlock-a-systematic-project&#34;&gt;I. The &amp;ldquo;Six-Element Framework&amp;rdquo; for Value Unlock: A Systematic Project
+&lt;/h2&gt;&lt;p&gt;Sukharevsky&amp;rsquo;s research yields a brutal conclusion: The success rate of AI transformation is extremely low because it&amp;rsquo;s a systematic project. All six elements must be in place:&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Element&lt;/th&gt;
+					&lt;th&gt;Core Meaning&lt;/th&gt;
+					&lt;th&gt;Common Pitfall&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Business Domain Reinvention&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Focus on ≤2 core domains, completely reinvent business processes&lt;/td&gt;
+					&lt;td&gt;Trying to cover everything, layering AI onto existing processes&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Data Products&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Build reusable data assets&lt;/td&gt;
+					&lt;td&gt;Waiting for perfect data or cobbling together temporary datasets&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Architecture Reorganization&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Let data flow freely, break down department walls&lt;/td&gt;
+					&lt;td&gt;Treating it as purely technical, ignoring political dimensions&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Governance &amp;amp; Operations&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Establish new rules for Agents, traditional governance fails&lt;/td&gt;
+					&lt;td&gt;Managing Agents the same way as people&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Economic Model&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Calculate the full cost: technology + talent + change management&lt;/td&gt;
+					&lt;td&gt;Counting only technology investment, ignoring hidden costs&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Integration &amp;amp; Implementation&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;Make all six elements work together&lt;/td&gt;
+					&lt;td&gt;Optimizing isolated points, lacking global perspective&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Sukharevsky has a line worth putting on every CEO&amp;rsquo;s office wall: &lt;strong&gt;If you set the wrong goal, it will execute at extreme speed in the wrong direction.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In the Agent era, this risk is amplified tenfold. Agents execute faster, make decisions more automatically, and have broader impact—once they go wrong, the damage is exponential.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ii-from-theory-to-practice-when-six-elements-meet-compliance-deep-water&#34;&gt;II. From Theory to Practice: When &amp;ldquo;Six Elements&amp;rdquo; Meet &amp;ldquo;Compliance Deep Water&amp;rdquo;
+&lt;/h2&gt;&lt;p&gt;In 2026, China&amp;rsquo;s Cyberspace Administration, National Development and Reform Commission, and Ministry of Industry and Information Technology jointly issued the &amp;ldquo;Implementation Opinion on Standardized Application and Innovative Development of Intelligent Agents,&amp;rdquo; elevating &amp;ldquo;safe, reliable, and trustworthy&amp;rdquo; to unprecedented strategic importance.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What does the Implementation Opinion require?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Safety baseline&lt;/strong&gt;: Data security compliance, sensitive data masking&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reliable operation&lt;/strong&gt;: Agent behavior traceable and auditable&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Trustworthy governance&lt;/strong&gt;: Clear human-agent collaboration responsibility boundaries&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Without these, it&amp;rsquo;s like a self-driving car without brakes—no matter how fast it goes, you wouldn&amp;rsquo;t dare ride it.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Governance isn&amp;rsquo;t a shackle—it&amp;rsquo;s an accelerator.&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;iii-four-dilemmas-of-enterprise-ai-transformation&#34;&gt;III. &amp;ldquo;Four Dilemmas&amp;rdquo; of Enterprise AI Transformation
+&lt;/h2&gt;&lt;h3 id=&#34;dilemma-1-coordination-becomes-silos&#34;&gt;Dilemma 1: Coordination Becomes Silos
+&lt;/h3&gt;&lt;p&gt;Three Agents work separately, ignoring each other, creating new &amp;ldquo;AI silos.&amp;rdquo; Cross-domain business fragmentation means AI decisions only achieve local optimization.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;This is politics, not technology.&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;dilemma-2-governance-is-a-black-box&#34;&gt;Dilemma 2: Governance Is a Black Box
+&lt;/h3&gt;&lt;p&gt;AI decision processes are like black boxes—when something goes wrong, who&amp;rsquo;s responsible? Traditional governance models fail in the Agent era.&lt;/p&gt;
+&lt;h3 id=&#34;dilemma-3-degradation-upon-launch&#34;&gt;Dilemma 3: Degradation Upon Launch
+&lt;/h3&gt;&lt;p&gt;Agents are smartest on launch day. Three months later? Business rules changed, models didn&amp;rsquo;t. Without feedback loops, Agents can&amp;rsquo;t evolve.&lt;/p&gt;
+&lt;h3 id=&#34;dilemma-4-unclear-costs&#34;&gt;Dilemma 4: Unclear Costs
+&lt;/h3&gt;&lt;p&gt;Every new scenario is developed from scratch, reinventing wheels. Without a platform foundation, marginal costs don&amp;rsquo;t come down, ROI can&amp;rsquo;t be calculated.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;iv-breaking-through-building-an-enterprise-ai-intelligent-cockpit&#34;&gt;IV. Breaking Through: Building an Enterprise AI &amp;ldquo;Intelligent Cockpit&amp;rdquo;
+&lt;/h2&gt;&lt;p&gt;Zhengzhou Shuneng Software Company&amp;rsquo;s solution provides a key to solving this puzzle.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Core positioning: Not a toolbox for CTOs, but a cockpit for CEOs.&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Steering Wheel&lt;/strong&gt;: LEGO-style orchestration—AI shifts from &amp;ldquo;lone wolf&amp;rdquo; to &amp;ldquo;coordinated army&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Brakes &amp;amp; Black Box&lt;/strong&gt;: RBAC permission guardrails + full-link traceability&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dashboard&lt;/strong&gt;: Feedback loop—AI capability &amp;ldquo;gets smarter the more you use it&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;v-ceo-action-list-from-cognition-to-implementation&#34;&gt;V. CEO Action List: From Cognition to Implementation
+&lt;/h2&gt;&lt;p&gt;Five questions every CEO should ask:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Have you personally used AI tools? Do you know what they can and can&amp;rsquo;t do?&lt;/li&gt;
+&lt;li&gt;How many core domains are you focused on? The answer should be no more than two.&lt;/li&gt;
+&lt;li&gt;Have you built a full cost model? Technology + talent + change management costs all calculated?&lt;/li&gt;
+&lt;li&gt;Is governance framework in place from day one? Do Agents have brakes and black boxes?&lt;/li&gt;
+&lt;li&gt;Do you have a platform foundation? Or is every scenario developed from zero?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Success rate below 3%—what&amp;rsquo;s missing isn&amp;rsquo;t technology, it&amp;rsquo;s systems. Six elements in place, focus on one or two domains, ROI can reach 1:3. Steering wheel, brakes, black box, dashboard—the cockpit four-piece set can break through.&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;Based on McKinsey Quantum Black leader Alexander Sukharevsky interview and Zhengzhou Shuneng solution.&lt;/em&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

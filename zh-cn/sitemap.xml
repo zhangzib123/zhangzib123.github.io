@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://zhangzib123.github.io/</loc>
-    <lastmod>2026-06-09T11:10:00+08:00</lastmod>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -15,20 +15,20 @@
                 href="https://zhangzib123.github.io/en/"
                 />
   </url><url>
-    <loc>https://zhangzib123.github.io/tags/ai%E8%90%BD%E5%9C%B0/</loc>
-    <lastmod>2026-06-09T11:10:00+08:00</lastmod>
+    <loc>https://zhangzib123.github.io/tags/agent%E5%90%88%E8%A7%84/</loc>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://zhangzib123.github.io/categories/ai%E8%90%BD%E5%9C%B0%E5%AE%9E%E8%B7%B5/</loc>
-    <lastmod>2026-06-09T11:10:00+08:00</lastmod>
-  </url><url>
-    <loc>https://zhangzib123.github.io/categories/ai%E6%88%98%E7%95%A5%E8%A7%84%E5%88%92/</loc>
-    <lastmod>2026-06-09T11:10:00+08:00</lastmod>
+    <loc>https://zhangzib123.github.io/categories/agent%E6%B2%BB%E7%90%86/</loc>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zhangzib123.github.io/tags/ai%E6%B2%BB%E7%90%86/</loc>
-    <lastmod>2026-06-09T11:10:00+08:00</lastmod>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/categories/ai%E8%BD%AC%E5%9E%8B/</loc>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zhangzib123.github.io/categories/</loc>
-    <lastmod>2026-06-09T11:10:00+08:00</lastmod>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -41,7 +41,7 @@
                 />
   </url><url>
     <loc>https://zhangzib123.github.io/post/</loc>
-    <lastmod>2026-06-09T11:10:00+08:00</lastmod>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -54,7 +54,7 @@
                 />
   </url><url>
     <loc>https://zhangzib123.github.io/tags/</loc>
-    <lastmod>2026-06-09T11:10:00+08:00</lastmod>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -65,6 +65,43 @@
                 hreflang="en"
                 href="https://zhangzib123.github.io/en/tags/"
                 />
+  </url><url>
+    <loc>https://zhangzib123.github.io/p/%E4%BB%8Eai%E5%81%A5%E8%BA%AB%E6%88%BF%E5%88%B0%E6%99%BA%E8%83%BD%E9%A9%BE%E9%A9%B6%E8%88%B1%E7%A0%B4%E8%A7%A3%E4%BC%81%E4%B8%9A%E7%BA%A7ai%E8%BD%AC%E5%9E%8B%E7%9A%84%E6%B2%BB%E7%90%86%E9%9A%BE%E9%A2%98/</loc>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhangzib123.github.io/p/%E4%BB%8Eai%E5%81%A5%E8%BA%AB%E6%88%BF%E5%88%B0%E6%99%BA%E8%83%BD%E9%A9%BE%E9%A9%B6%E8%88%B1%E7%A0%B4%E8%A7%A3%E4%BC%81%E4%B8%9A%E7%BA%A7ai%E8%BD%AC%E5%9E%8B%E7%9A%84%E6%B2%BB%E7%90%86%E9%9A%BE%E9%A2%98/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhangzib123.github.io/en/p/from-ai-gym-to-intelligent-cockpit-solving-the-governance-puzzle-of-enterprise-ai-transformation/"
+                />
+  </url><url>
+    <loc>https://zhangzib123.github.io/tags/%E5%85%AD%E8%A6%81%E7%B4%A0%E6%A1%86%E6%9E%B6/</loc>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/tags/%E4%BC%81%E4%B8%9Aai%E8%BD%AC%E5%9E%8B/</loc>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/categories/%E4%BC%81%E4%B8%9A%E6%B2%BB%E7%90%86/</loc>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/tags/%E9%83%91%E5%B7%9E%E6%95%B0%E8%83%BD/</loc>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/tags/%E6%99%BA%E8%83%BD%E9%A9%BE%E9%A9%B6%E8%88%B1/</loc>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/tags/ai%E8%90%BD%E5%9C%B0/</loc>
+    <lastmod>2026-06-09T11:10:00+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/categories/ai%E8%90%BD%E5%9C%B0%E5%AE%9E%E8%B7%B5/</loc>
+    <lastmod>2026-06-09T11:10:00+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/categories/ai%E6%88%98%E7%95%A5%E8%A7%84%E5%88%92/</loc>
+    <lastmod>2026-06-09T11:10:00+08:00</lastmod>
   </url><url>
     <loc>https://zhangzib123.github.io/tags/%E4%BB%B7%E5%80%BC%E5%88%9B%E9%80%A0/</loc>
     <lastmod>2026-06-09T11:10:00+08:00</lastmod>

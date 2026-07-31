@@ -2,20 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://zhangzib123.github.io/en/tags/agent-compliance/</loc>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/categories/agent-governance/</loc>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://zhangzib123.github.io/en/tags/ai-governance/</loc>
-    <lastmod>2026-06-09T17:56:00+08:00</lastmod>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://zhangzib123.github.io/en/categories/ai-implementation/</loc>
-    <lastmod>2026-06-09T17:56:00+08:00</lastmod>
-  </url><url>
-    <loc>https://zhangzib123.github.io/en/tags/ai-implementation/</loc>
-    <lastmod>2026-06-09T17:56:00+08:00</lastmod>
-  </url><url>
-    <loc>https://zhangzib123.github.io/en/categories/ai-strategy/</loc>
-    <lastmod>2026-06-09T17:56:00+08:00</lastmod>
+    <loc>https://zhangzib123.github.io/en/categories/ai-transformation/</loc>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zhangzib123.github.io/en/categories/</loc>
-    <lastmod>2026-06-09T17:56:00+08:00</lastmod>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -26,6 +26,82 @@
                 hreflang="en"
                 href="https://zhangzib123.github.io/en/categories/"
                 />
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/enterprise-ai-transformation/</loc>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/categories/enterprise-governance/</loc>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/p/from-ai-gym-to-intelligent-cockpit-solving-the-governance-puzzle-of-enterprise-ai-transformation/</loc>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhangzib123.github.io/p/%E4%BB%8Eai%E5%81%A5%E8%BA%AB%E6%88%BF%E5%88%B0%E6%99%BA%E8%83%BD%E9%A9%BE%E9%A9%B6%E8%88%B1%E7%A0%B4%E8%A7%A3%E4%BC%81%E4%B8%9A%E7%BA%A7ai%E8%BD%AC%E5%9E%8B%E7%9A%84%E6%B2%BB%E7%90%86%E9%9A%BE%E9%A2%98/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhangzib123.github.io/en/p/from-ai-gym-to-intelligent-cockpit-solving-the-governance-puzzle-of-enterprise-ai-transformation/"
+                />
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/intelligent-cockpit/</loc>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/post/</loc>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhangzib123.github.io/post/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhangzib123.github.io/en/post/"
+                />
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/six-element-framework/</loc>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/</loc>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhangzib123.github.io/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhangzib123.github.io/en/tags/"
+                />
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/zhengzhou-shuneng/</loc>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/</loc>
+    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhangzib123.github.io/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhangzib123.github.io/en/"
+                />
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/categories/ai-implementation/</loc>
+    <lastmod>2026-06-09T17:56:00+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/ai-implementation/</loc>
+    <lastmod>2026-06-09T17:56:00+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/categories/ai-strategy/</loc>
+    <lastmod>2026-06-09T17:56:00+08:00</lastmod>
   </url><url>
     <loc>https://zhangzib123.github.io/en/categories/digital-transformation/</loc>
     <lastmod>2026-06-09T17:56:00+08:00</lastmod>
@@ -49,47 +125,8 @@
     <loc>https://zhangzib123.github.io/en/tags/long-term-planning/</loc>
     <lastmod>2026-06-09T17:56:00+08:00</lastmod>
   </url><url>
-    <loc>https://zhangzib123.github.io/en/post/</loc>
-    <lastmod>2026-06-09T17:56:00+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://zhangzib123.github.io/post/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://zhangzib123.github.io/en/post/"
-                />
-  </url><url>
-    <loc>https://zhangzib123.github.io/en/tags/</loc>
-    <lastmod>2026-06-09T17:56:00+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://zhangzib123.github.io/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://zhangzib123.github.io/en/tags/"
-                />
-  </url><url>
     <loc>https://zhangzib123.github.io/en/tags/value-creation/</loc>
     <lastmod>2026-06-09T17:56:00+08:00</lastmod>
-  </url><url>
-    <loc>https://zhangzib123.github.io/en/</loc>
-    <lastmod>2026-06-09T17:56:00+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://zhangzib123.github.io/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://zhangzib123.github.io/en/"
-                />
   </url><url>
     <loc>https://zhangzib123.github.io/en/categories/artificial-intelligence/</loc>
     <lastmod>2026-04-24T11:50:00+08:00</lastmod>
