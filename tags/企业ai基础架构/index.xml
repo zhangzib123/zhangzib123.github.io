@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>企业AI基础架构 on 张子彪的博客</title>
+        <link>https://zhangzib123.github.io/tags/%E4%BC%81%E4%B8%9Aai%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84/</link>
+        <description>Recent content in 企业AI基础架构 on 张子彪的博客</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Tue, 15 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://zhangzib123.github.io/tags/%E4%BC%81%E4%B8%9Aai%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>智治中枢：面向企事业单位的AI智能体服务及管控平台</title>
+        <link>https://zhangzib123.github.io/p/%E6%99%BA%E6%B2%BB%E4%B8%AD%E6%9E%A2%E9%9D%A2%E5%90%91%E4%BC%81%E4%BA%8B%E4%B8%9A%E5%8D%95%E4%BD%8D%E7%9A%84ai%E6%99%BA%E8%83%BD%E4%BD%93%E6%9C%8D%E5%8A%A1%E5%8F%8A%E7%AE%A1%E6%8E%A7%E5%B9%B3%E5%8F%B0/</link>
+        <pubDate>Tue, 15 Sep 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhangzib123.github.io/p/%E6%99%BA%E6%B2%BB%E4%B8%AD%E6%9E%A2%E9%9D%A2%E5%90%91%E4%BC%81%E4%BA%8B%E4%B8%9A%E5%8D%95%E4%BD%8D%E7%9A%84ai%E6%99%BA%E8%83%BD%E4%BD%93%E6%9C%8D%E5%8A%A1%E5%8F%8A%E7%AE%A1%E6%8E%A7%E5%B9%B3%E5%8F%B0/</guid>
+        <description>&lt;h2 id=&#34;智治中枢面向企事业单位的-ai-智能体服务及管控平台&#34;&gt;智治中枢：面向企事业单位的 AI 智能体服务及管控平台
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;—— 郑州数能软件科技有限公司赋能企业 AI 生态建设的核心基础架构&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;智治中枢的定位，不是又一个对话助手，而是面向企事业单位的 &lt;strong&gt;「AI 智能体服务及管控平台」&lt;/strong&gt;：为企业 AI 生态提供可落地的核心基础架构。工作台与控制台面向企业全员，业务人员做事、管理人员管控，用的是同一套入口。&lt;/p&gt;
+&lt;p&gt;作为企业 AI 能力的 &lt;strong&gt;编排与管控中枢&lt;/strong&gt;，它把多个智能体、业务规则与人工审批编排进同一工作流，并以「可编排、可治理、可审计」为硬约束——凡有 AI 参与的经营动作，都必须合规、可控、可追溯。由此，AI 才能真正嵌入经营、管理、生产等核心环节，逐步覆盖全业务场景，并支撑企业整体 AI 能力持续进化。&lt;/p&gt;
+&lt;p&gt;郑州数能软件科技有限公司（以下简称&amp;quot;数能软件&amp;quot;）推出的 &lt;strong&gt;智治中枢（Agent Governance Hub）&lt;/strong&gt;，即按这一目标建设。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;一智能体进企业后真正卡住的是什么&#34;&gt;一、智能体进企业后，真正卡住的是什么
+&lt;/h2&gt;&lt;p&gt;很多企业已经&amp;quot;上了 AI&amp;quot;：有的团队用现成助手写邮件，有的用编排工具搭了几个流程，有的把模型接到了报价或客服系统。表面热闹，内部却常常是这样：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;找不到&lt;/strong&gt;：谁也不清楚全公司到底有多少智能体、各自负责什么、现在能不能用&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;管不住&lt;/strong&gt;：助手可以直接给结论，甚至推动业务动作，缺少岗位审批和数据质量门禁&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;看不清&lt;/strong&gt;：一次协同跑了哪些步骤、依据哪条制度、谁批准的，事后无法复盘&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;沉不下来&lt;/strong&gt;：Prompt、SOP、校核口径写在各项目里，下一个客户或下一条产线还得重做&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;行业绑死&lt;/strong&gt;：为某一家工厂定制的 Agent，很难迁到另一家企业或另一个行业&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这些问题的根因不是&amp;quot;模型不够强&amp;quot;，而是企业还在用 &lt;strong&gt;聊天产品的方式&lt;/strong&gt; 使用智能体，而不是用 &lt;strong&gt;业务服务的方式&lt;/strong&gt; 经营智能体。&lt;/p&gt;
+&lt;p&gt;聊天窗口解决的是&amp;quot;问得动&amp;quot;；业务服务要解决的是&amp;quot;申请得到、执行得完、责任留得住、结果写得回&amp;quot;。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;二数能软件的方案把智能体做成企业服务&#34;&gt;二、数能软件的方案：把智能体做成企业服务
+&lt;/h2&gt;&lt;p&gt;智治中枢的产品定位很明确：面向企事业单位的 &lt;strong&gt;AI 智能体服务及管控平台&lt;/strong&gt;，也是企业 AI 能力的编排与管控中枢。它不是某个行业的专用套件，工作台与控制台面向企业全员。&lt;/p&gt;
+&lt;p&gt;对业务人员，它是工作台：用一句话发起任务，或从场景目录点选一项服务，跟踪执行，处理待办审批。&lt;/p&gt;
+&lt;p&gt;对建设人员，它是装配台：在 Studio 搭建智能体，登记或迁入能力，把多个智能体、业务规则与人工审批编进同一工作流。&lt;/p&gt;
+&lt;p&gt;对管理者，它是控制台：看已纳管 Agent、运行中任务、风险与人工介入、审计记录；必要时把企业切到只读分析或紧急停止。&lt;/p&gt;
+&lt;p&gt;一句话：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;可编排、可治理、可审计：AI 参与的经营动作必须合规、可控、可追溯。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;graph TB
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    U[业务人员 / 管理员] --&amp;gt; H[智治中枢&amp;lt;br/&amp;gt;Agent Governance Hub]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    H --&amp;gt; W[业务工作台&amp;lt;br/&amp;gt;任务 · 审批 · 场景目录]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    H --&amp;gt; C[AI 控制台&amp;lt;br/&amp;gt;总览 · 观测 · 价值度量]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    H --&amp;gt; B[Agent / 场景建设&amp;lt;br/&amp;gt;搭建 · 登记 · 编队]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    H --&amp;gt; RK[运行内核&amp;lt;br/&amp;gt;Workflow / Tool / Teams / Checkpoint]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    H --&amp;gt; ST[智能体搭建台&amp;lt;br/&amp;gt;搭建与发布]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    H --&amp;gt; AC[AICoreDirector&amp;lt;br/&amp;gt;模型调用与密钥]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    H --&amp;gt; G[治理护栏&amp;lt;br/&amp;gt;A19 仲裁 · A20 数据质量 · 审批 · 审计]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    RK --&amp;gt; SYS[企业系统&amp;lt;br/&amp;gt;ERP / CRM / 知识库]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    G --&amp;gt; SYS
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;平台刻意把三件事拆开：&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;层级&lt;/th&gt;
+					&lt;th&gt;产品&lt;/th&gt;
+					&lt;th&gt;负责什么&lt;/th&gt;
+					&lt;th&gt;不负责什么&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;治理与闭环&lt;/td&gt;
+					&lt;td&gt;智治中枢&lt;/td&gt;
+					&lt;td&gt;意图、目录、编队、门禁、审批、审计、写授权&lt;/td&gt;
+					&lt;td&gt;不把落单权交给模型&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;智能运行&lt;/td&gt;
+					&lt;td&gt;运行内核&lt;/td&gt;
+					&lt;td&gt;Workflow、工具调用、检索、记忆、评测&lt;/td&gt;
+					&lt;td&gt;不拥有批准权&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;模型能力&lt;/td&gt;
+					&lt;td&gt;AICoreDirector&lt;/td&gt;
+					&lt;td&gt;多模型接入与调用&lt;/td&gt;
+					&lt;td&gt;不直接写业务系统&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Studio 则是能力生产线：搭建完成后点发布，可回调中枢自动登记；也可以从 Dify 等工具迁入定义，改由本平台托管运行。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;三产品怎么用控制台工作台建设台&#34;&gt;三、产品怎么用：控制台、工作台、建设台
+&lt;/h2&gt;&lt;p&gt;界面按企业真实分工分层，而不是把所有能力堆在一个&amp;quot;AI 聊天页&amp;quot;。&lt;/p&gt;
+&lt;h3 id=&#34;31-ai-控制台先看见再治理&#34;&gt;3.1 AI 控制台：先看见，再治理
+&lt;/h3&gt;&lt;p&gt;总览、运行观测、价值度量。已纳管 Agent、运行中任务、风险/人工介入、审计记录，数字都来自平台实际记录，不用虚构经营数据。&lt;/p&gt;
+&lt;p&gt;控制台支持企业全局模式：正常运行、只读分析、紧急停止；也可以按企业隔离启停业务 Agent、场景和周期任务。平台治理节点 A19、A20 不可停用——这是设计，不是疏忽。&lt;/p&gt;
+&lt;p&gt;价值度量当前展示可被证明的治理运营指标：受控任务数、数据质量门禁拦截数、审批通过率、Skill 覆盖率、SLA 按时完成率、场景使用分布。节省金额、产能提升这类业务 ROI，必须在接入真实业务基线后再算，平台不会在缺少证据时编造收益。&lt;/p&gt;
+&lt;h3 id=&#34;32-业务工作台做事跟进查资源&#34;&gt;3.2 业务工作台：做事、跟进、查资源
+&lt;/h3&gt;&lt;p&gt;顺序按业务习惯排列：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;我的任务&lt;/strong&gt;：左侧临时任务（含一句话发起），右侧周期计划&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;待我处理&lt;/strong&gt;：审批与人工检查点&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;执行追踪&lt;/strong&gt;：流程图 + 日志 + 节点详情&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;业务场景目录&lt;/strong&gt;：已发布服务，供业务发起&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;智能体资产&lt;/strong&gt;：只读能力一览，不是建设台&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;一句话任务会先做意图识别，再匹配已发布的服务目录。命中则按该场景的编队、SLA、审批人履行；未命中记为例外申请，仍可动态编排，但 &lt;strong&gt;不会根据一句话自动长出一条新目录&lt;/strong&gt;。要固化成正式服务，必须到建设台发布场景。&lt;/p&gt;
+&lt;h3 id=&#34;33-agent--场景建设从能力到服务&#34;&gt;3.3 Agent / 场景建设：从能力到服务
+&lt;/h3&gt;&lt;p&gt;建设路径是固定的三步：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Agent 搭建台&lt;/strong&gt;：嵌入 Studio，把智能体画出来、跑起来&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Agent 注册 / 迁入&lt;/strong&gt;：本平台直接搭建、Studio 发布同步，或从 Dify/其他工具迁入&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;组装场景&lt;/strong&gt;：拖拽编队、连线、发布；系统自动追加 A19 / A20&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;开启桥接后，Studio 里点「发布」会回调中枢自动登记或更新；修改后再发布，按同一来源更新台账，不另建一条。撤下发布则标记停用，历史 Trace 保留。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;四治理底座企业能把智能体用进关键业务的前提&#34;&gt;四、治理底座：企业能把智能体用进关键业务的前提
+&lt;/h2&gt;&lt;p&gt;智治中枢把成熟的企业操作模型用在智能体协同上：服务目录、申请单与执行单、知识、审批与 SLA、受控集成、运营分析。运行内核负责建议、检索和受控工具；&lt;strong&gt;批准和落单始终在中枢&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;41-场景即服务目录&#34;&gt;4.1 场景即服务目录
+&lt;/h3&gt;&lt;p&gt;已发布的业务场景就是 Catalog Item：名称、匹配词、变量、产出类型、SLA、审批人、履行编队，在组装时写死。发起时只填这一次的实例数据（客户、物料、吨数等），不能临时改规格。&lt;/p&gt;
+&lt;p&gt;这避免了两种常见失败：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;每次口头描述都变成一次不可重复的&amp;quot;现场编排&amp;quot;&lt;/li&gt;
+&lt;li&gt;业务人员在发起时随意改审批人和编队，治理名存实亡&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;42-数据质量与协同仲裁&#34;&gt;4.2 数据质量与协同仲裁
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A20 数据质量&lt;/strong&gt;：正常、警告、降级、暂停。降级状态禁止推动业务落单，无论人是否想&amp;quot;先出单再说&amp;quot;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A19 协同仲裁&lt;/strong&gt;：默认优先级为「安全 &amp;gt; 合规/信用 &amp;gt; 质量 &amp;gt; 交期 &amp;gt; 毛利/成本 &amp;gt; 能耗」。多 Agent 结论冲突时，按企业价值观裁决，而不是按谁先返回、谁模型更大。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;43-人在回路而不是人在旁边看&#34;&gt;4.3 人在回路，而不是人在旁边看
+&lt;/h3&gt;&lt;p&gt;报价、合同、质量放行、停产停机等，只能由授权人员确认。发起任务时还可以在某个业务 Agent 之前设置执行中检查点：前序完成即暂停，授权人员看过上下文后再放行或终止。&lt;/p&gt;
+&lt;p&gt;放行意见进入后续上下文；人工节点、处理人、时间、意见和恢复后的 Trace 全部留痕。SLA 超时会标记待处理并写审计，&lt;strong&gt;绝不自动批准&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;写回企业系统必须带审批签发的 &lt;code&gt;writeToken&lt;/code&gt;。连接器默认只读；集成目录登记类型、方向和策略，不保存明文密码。&lt;/p&gt;
+&lt;h3 id=&#34;44-托管与外联管得了运行才管得了治理深度&#34;&gt;4.4 托管与外联：管得了运行，才管得了治理深度
+&lt;/h3&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;类型&lt;/th&gt;
+					&lt;th&gt;谁在跑&lt;/th&gt;
+					&lt;th&gt;平台能管什么&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;托管型&lt;/td&gt;
+					&lt;td&gt;本平台运行内核&lt;/td&gt;
+					&lt;td&gt;编队、节点 Trace、知识/Skill、检查点、评测灰度、启停&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;外联型&lt;/td&gt;
+					&lt;td&gt;远端 HTTP / MCP&lt;/td&gt;
+					&lt;td&gt;调用登记、边界摘要、结果门禁、审批、SLA&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;知识与 Skill 只注入托管型。外联型不接收平台侧提示词，避免&amp;quot;以为管住了、其实在对方系统里自行其是&amp;quot;。混编场景里，托管节点走 Workflow，外联节点走边界调用，全部结果仍经 A20 / A19 / 人工审批后才可能写回。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;五能力如何沉淀知识skill受控演进&#34;&gt;五、能力如何沉淀：知识、Skill、受控演进
+&lt;/h2&gt;&lt;p&gt;如果每个项目结束，Prompt 和口径又回到个人笔记本里，平台就只是更快的一次性交付工具。智治中枢把可复用单位做成三类资产。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;知识库。&lt;/strong&gt; 企业规章、SOP、合规条文按租户隔离导入；运行时按「租户 → 作用域 → 任务语义」检索，Trace 保留引用。知识首先写入中枢本地库，Studio 同步失败只告警、不阻断发布。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;运行时 Skill。&lt;/strong&gt; 适合做成 Skill 的是核验清单、口径、SOP、输出结构；禁止做成 Skill 的是 A19/A20、审批、租户隔离、密钥和业务写入。Skill 按「场景 × 智能体」匹配，发布须过评测，默认灰度后再全量，可回滚。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;受控自演进。&lt;/strong&gt; 不允许 Agent 自行改规矩。闭环为：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;反馈 / 驳回 → Fact → 待评审 → 批准 → Evaluator 评测 → 升版 → 灰度 → 二次评测后全量
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;绕过审批、修改治理节点、自动落单等指令会被评测拒绝。错误或过期的长期记忆可以撤回，并同步删除向量侧数据。&lt;/p&gt;
+&lt;p&gt;长期记忆只在任务经人工批准后压缩写入，并带来源任务编号。后续任务必须标注来源并重新核验，不能把记忆当成当前业务事实。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;六行业怎么复用一套平台多套行业参数&#34;&gt;六、行业怎么复用：一套平台，多套行业参数
+&lt;/h2&gt;&lt;p&gt;智治中枢内置制造业演示编队与十个场景，用来证明&amp;quot;智能体可以进入真实业务闭环&amp;quot;，而不是把产品做成钢铁专用系统。&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;场景&lt;/th&gt;
+					&lt;th&gt;名称&lt;/th&gt;
+					&lt;th&gt;默认审批角色&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;S1&lt;/td&gt;
+					&lt;td&gt;智能产线调度&lt;/td&gt;
+					&lt;td&gt;生产主管&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;S2&lt;/td&gt;
+					&lt;td&gt;动态供应链优化&lt;/td&gt;
+					&lt;td&gt;采购主管&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;S3&lt;/td&gt;
+					&lt;td&gt;智能质量协同管控&lt;/td&gt;
+					&lt;td&gt;质量主管&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;S4&lt;/td&gt;
+					&lt;td&gt;智能设备维护&lt;/td&gt;
+					&lt;td&gt;维修主管&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;S5&lt;/td&gt;
+					&lt;td&gt;能源优化管理&lt;/td&gt;
+					&lt;td&gt;能源负责人&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;S6&lt;/td&gt;
+					&lt;td&gt;智能安全管理&lt;/td&gt;
+					&lt;td&gt;EHS 负责人&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;S7&lt;/td&gt;
+					&lt;td&gt;报价与合规校核&lt;/td&gt;
+					&lt;td&gt;销售主管&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;S8&lt;/td&gt;
+					&lt;td&gt;合同签约与信用风控&lt;/td&gt;
+					&lt;td&gt;法务/经管主管&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;S9&lt;/td&gt;
+					&lt;td&gt;经营洞察与制度协同&lt;/td&gt;
+					&lt;td&gt;只读，不落单&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;S10&lt;/td&gt;
+					&lt;td&gt;售后投诉与履约闭环&lt;/td&gt;
+					&lt;td&gt;售后主管&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;新企业的落地顺序通常是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;建立隔离的企业空间，配置行业与角色&lt;/li&gt;
+&lt;li&gt;登记连接器（先只读、先白名单）&lt;/li&gt;
+&lt;li&gt;搭建或迁入本企业智能体&lt;/li&gt;
+&lt;li&gt;按本企业审批岗位发布场景&lt;/li&gt;
+&lt;li&gt;从只读分析跑通，再打开受控写回&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;汽车、电子、化工、装备与钢铁的差异，主要在数据对象、审批矩阵和连接器，而不在&amp;quot;再做一套智能体操作系统&amp;quot;。对软件公司 / ISV，这意味着：共性治理底座可以复用，行业差异用参数、编队和插件消化。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;七适合什么样的组织&#34;&gt;七、适合什么样的组织
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;已经有若干智能体，但尚未形成企业级入口的中大型企业。&lt;/strong&gt;&lt;br&gt;
+需要统一任务、审批、审计和启停，而不是再给每个部门一个聊天窗口。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;要把 AI 用进报价、质量、合同、停机等高责任动作的制造与装备企业。&lt;/strong&gt;&lt;br&gt;
+必须有数据门禁、岗位审批和写授权，不能让模型直接改业务系统。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;需要为不同行业客户重复交付智能体方案的软件公司 / ISV。&lt;/strong&gt;&lt;br&gt;
+需要把搭建、托管、迁入、场景发布做成产品能力，而不是每个项目从零写编排脚本。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;已经建设数据中台，下一步要补&amp;quot;智能层&amp;quot;的组织。&lt;/strong&gt;&lt;br&gt;
+需要的是可申请的服务目录和可审计的执行，而不是又一套模型试用环境。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;八结语&#34;&gt;八、结语
+&lt;/h2&gt;&lt;p&gt;大模型降低了&amp;quot;生成建议&amp;quot;的成本，但没有降低&amp;quot;对业务负责&amp;quot;的成本。企业缺的往往不是更多助手，而是一个能把助手变成服务的操作系统：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;业务从目录申请，而不是从空白对话框碰运气&lt;/li&gt;
+&lt;li&gt;多智能体按编队协同，而不是单点聊天&lt;/li&gt;
+&lt;li&gt;风险动作必须经过质量门禁、价值仲裁和岗位审批&lt;/li&gt;
+&lt;li&gt;每次执行可追踪、可复盘、可改进，且改进本身也要过评测&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这就是数能软件 &lt;strong&gt;智治中枢&lt;/strong&gt; 要交付的能力。运行内核让智能体跑得起来，搭建台让能力造得出来，模型网关让推理接得进去；真正决定企业敢不敢把智能体用进关键业务的，是中枢这一层治理。&lt;/p&gt;
+&lt;p&gt;智能体进入企业的标志，不是又多了一个对话框，而是第一次有人能清楚回答：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这是哪一项服务、谁有权发起、依据什么执行、谁批准写回、下一次怎样比这一次更好。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;作者：&lt;/strong&gt; 郑州数能软件科技有限公司&lt;br&gt;
+&lt;strong&gt;产品：&lt;/strong&gt; 智治中枢（Agent Governance Hub）&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

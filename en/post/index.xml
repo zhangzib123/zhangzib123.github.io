@@ -6,7 +6,286 @@
         <description>Recent content in Posts on ZibiaoZhang&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Fri, 31 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://zhangzib123.github.io/en/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 15 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://zhangzib123.github.io/en/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Agent Governance Hub: An AI Agent Service and Control Platform for Enterprises</title>
+        <link>https://zhangzib123.github.io/en/p/agent-governance-hub-an-ai-agent-service-and-control-platform-for-enterprises/</link>
+        <pubDate>Tue, 15 Sep 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhangzib123.github.io/en/p/agent-governance-hub-an-ai-agent-service-and-control-platform-for-enterprises/</guid>
+        <description>&lt;h2 id=&#34;agent-governance-hub-an-ai-agent-service-and-control-platform-for-enterprises-and-public-institutions&#34;&gt;Agent Governance Hub: An AI Agent Service and Control Platform for Enterprises and Public Institutions
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;— Zhengzhou Shuneng Software&amp;rsquo;s core infrastructure for building an enterprise AI ecosystem&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Agent Governance Hub is not another chatbot. It is an &lt;strong&gt;AI agent service and control platform&lt;/strong&gt; for enterprises and public institutions: the core infrastructure on which an organization can build its AI ecosystem. Both the workbench and the console are for the whole workforce—people who do the work and people who control it share the same entry.&lt;/p&gt;
+&lt;p&gt;As the &lt;strong&gt;orchestration and control hub&lt;/strong&gt; for enterprise AI capabilities, it brings multiple agents, business rules and human approvals into one workflow. The hard constraints are that every flow must be &lt;strong&gt;orchestratable, governable and auditable&lt;/strong&gt;—so any operating action involving AI stays compliant, controllable and traceable. That is what lets AI embed into operations, management and production, expand across business scenarios, and keep the organization&amp;rsquo;s overall AI capability evolving.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Agent Governance Hub&lt;/strong&gt;, from Zhengzhou Shuneng Software Technology Co., Ltd. (&amp;ldquo;Shuneng&amp;rdquo;), is built to that brief.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;i-what-actually-blocks-agents-inside-the-enterprise&#34;&gt;I. What Actually Blocks Agents Inside the Enterprise
+&lt;/h2&gt;&lt;p&gt;Many organizations already &amp;ldquo;have AI&amp;rdquo;: writing assistants here, a few orchestrated flows there, a model wired into quoting or support. The internal reality is often:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Invisible&lt;/strong&gt;: nobody knows how many agents exist, what they own, or whether they are even on&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Uncontrolled&lt;/strong&gt;: assistants can push business actions without role-based approval or data-quality gates&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Untraceable&lt;/strong&gt;: after a run, it is hard to see which steps fired, which policy was used, and who approved&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Non-reusable&lt;/strong&gt;: prompts and SOPs live in project repos; the next plant or customer starts from zero&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Industry-locked&lt;/strong&gt;: an agent built for one factory is hard to move to another enterprise or sector&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The root cause is not a weak model. It is that enterprises still consume agents as &lt;strong&gt;chat products&lt;/strong&gt;, not as &lt;strong&gt;business services&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;A chat box answers &amp;ldquo;can I ask&amp;rdquo;. A business service must answer &amp;ldquo;can I request it, finish it, assign responsibility, and write the result back&amp;rdquo;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ii-shunengs-approach-agents-as-enterprise-services&#34;&gt;II. Shuneng&amp;rsquo;s Approach: Agents as Enterprise Services
+&lt;/h2&gt;&lt;p&gt;Agent Governance Hub is an &lt;strong&gt;AI agent service and control platform&lt;/strong&gt; for enterprises and public institutions, and the orchestration-and-control hub for enterprise AI capabilities. The workbench and console are for the whole workforce.&lt;/p&gt;
+&lt;p&gt;For business users it is a workbench: start a task in one sentence or from a catalog, track execution, handle approvals.&lt;br&gt;
+For builders it is an assembly line: create agents in Studio, register or import them, and compose multiple agents, business rules and human approvals into one workflow.&lt;br&gt;
+For operators it is a console: managed agents, live runs, human interventions, audit records; optionally switch the enterprise to analysis-only or emergency stop.&lt;/p&gt;
+&lt;p&gt;In one line:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Orchestratable, governable, auditable: every AI-involved operating action must stay compliant, controllable and traceable.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;graph TB
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    U[Business Users / Admins] --&amp;gt; H[Agent Governance Hub]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    H --&amp;gt; W[Business Workbench&amp;lt;br/&amp;gt;Tasks · Approvals · Catalog]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    H --&amp;gt; C[AI Console&amp;lt;br/&amp;gt;Overview · Observation · Value Metrics]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    H --&amp;gt; B[Agent / Scenario Build&amp;lt;br/&amp;gt;Author · Register · Formation]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    H --&amp;gt; RK[Runtime Kernel&amp;lt;br/&amp;gt;Workflow / Tool / Teams / Checkpoint]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    H --&amp;gt; ST[Agent Studio&amp;lt;br/&amp;gt;Build and Publish]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    H --&amp;gt; AC[AICoreDirector&amp;lt;br/&amp;gt;Model Access and Keys]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    H --&amp;gt; G[Governance Guardrails&amp;lt;br/&amp;gt;A19 Arbitration · A20 Data Quality · Approval · Audit]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    RK --&amp;gt; SYS[Enterprise Systems&amp;lt;br/&amp;gt;ERP / CRM / Knowledge Base]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    G --&amp;gt; SYS
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;The stack is deliberately split:&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Layer&lt;/th&gt;
+					&lt;th&gt;Product&lt;/th&gt;
+					&lt;th&gt;Owns&lt;/th&gt;
+					&lt;th&gt;Does Not Own&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Governance &amp;amp; Loop&lt;/td&gt;
+					&lt;td&gt;Agent Governance Hub&lt;/td&gt;
+					&lt;td&gt;Intent, catalog, formation, gates, approval, audit, write tokens&lt;/td&gt;
+					&lt;td&gt;Never hands commit rights to the model&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Intelligent Runtime&lt;/td&gt;
+					&lt;td&gt;Runtime Kernel&lt;/td&gt;
+					&lt;td&gt;Workflow, tools, retrieval, memory, evaluation&lt;/td&gt;
+					&lt;td&gt;Never owns approval&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Model Capability&lt;/td&gt;
+					&lt;td&gt;AICoreDirector&lt;/td&gt;
+					&lt;td&gt;Multi-model access and invocation&lt;/td&gt;
+					&lt;td&gt;Never writes business systems directly&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Studio is the capability production line: after building, clicking publish can webhook the hub for auto-registration; definitions can also be imported from Dify and other tools, then hosted by the platform.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;iii-how-the-product-is-organized-console-workbench-build&#34;&gt;III. How the Product Is Organized: Console, Workbench, Build
+&lt;/h2&gt;&lt;p&gt;The interface is layered by real enterprise roles—not a single &amp;ldquo;AI chat page&amp;rdquo; with everything dumped together.&lt;/p&gt;
+&lt;h3 id=&#34;31-ai-console-see-first-then-govern&#34;&gt;3.1 AI Console: See First, Then Govern
+&lt;/h3&gt;&lt;p&gt;Overview, runtime observation, and value metrics. Managed agents, running tasks, risk/human intervention, audit records—all numbers come from actual platform records, not fabricated business data.&lt;/p&gt;
+&lt;p&gt;The console supports enterprise-wide modes: normal, analysis-only, and emergency stop. It can also start/stop business agents, scenarios, and scheduled tasks per enterprise tenant. Governance nodes A19 and A20 cannot be disabled—this is by design, not oversight.&lt;/p&gt;
+&lt;p&gt;Value metrics currently display provable governance operations indicators: governed task count, data-quality gate blocks, approval pass rate, Skill coverage, SLA on-time completion rate, and scenario usage distribution. Business ROI figures like cost savings and capacity gains must be calculated after connecting real business baselines—the platform will not invent returns without evidence.&lt;/p&gt;
+&lt;h3 id=&#34;32-business-workbench-do-follow-look-up&#34;&gt;3.2 Business Workbench: Do, Follow, Look Up
+&lt;/h3&gt;&lt;p&gt;Ordered by business habit:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;My Tasks&lt;/strong&gt;: left pane for ad-hoc tasks (including free-text initiation), right pane for scheduled plans&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pending for Me&lt;/strong&gt;: approvals and human checkpoints&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Execution Trace&lt;/strong&gt;: flow diagram + logs + node details&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Business Scenario Catalog&lt;/strong&gt;: published services for business users to initiate&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Agent Assets&lt;/strong&gt;: read-only capability overview, not a build surface&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;A free-text task first goes through intent recognition, then matches against the published service catalog. A hit uses that scenario&amp;rsquo;s formation, SLA, and approver. A miss is logged as an ad-hoc request and may still be orchestrated dynamically, but &lt;strong&gt;the platform will not auto-create a new catalog item from a single sentence&lt;/strong&gt;. To formalize a service, you must publish a scenario in the build surface.&lt;/p&gt;
+&lt;h3 id=&#34;33-agent--scenario-build-from-capability-to-service&#34;&gt;3.3 Agent / Scenario Build: From Capability to Service
+&lt;/h3&gt;&lt;p&gt;The build path has three fixed steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Agent Studio&lt;/strong&gt;: embed Studio, draw and run the agent&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Agent Registration / Import&lt;/strong&gt;: build directly on the platform, sync from Studio publish, or import from Dify/other tools&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Assemble Scenario&lt;/strong&gt;: drag-and-drop formation, connect, publish; system auto-appends A19 / A20&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;With bridging enabled, clicking &amp;ldquo;Publish&amp;rdquo; in Studio webhooks the hub for auto-registration or update. Re-publishing after changes updates the ledger by the same source—no duplicate entry. Unpublishing marks the agent inactive while preserving historical traces.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;iv-the-governance-base-the-prerequisite-for-using-agents-in-critical-business&#34;&gt;IV. The Governance Base: The Prerequisite for Using Agents in Critical Business
+&lt;/h2&gt;&lt;p&gt;Agent Governance Hub applies a mature enterprise operating model to multi-agent collaboration: service catalog, request and execution orders, knowledge, approval and SLA, controlled integration, operational analytics. The runtime kernel handles suggestions, retrieval, and controlled tools; &lt;strong&gt;approval and commit always stay in the hub&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;41-scenarios-as-service-catalog&#34;&gt;4.1 Scenarios as Service Catalog
+&lt;/h3&gt;&lt;p&gt;Published business scenarios are Catalog Items: name, matching keywords, variables, output type, SLA, approver, fulfillment formation—all frozen at publish time. Launch only fills in this instance&amp;rsquo;s data (customer, material, tonnage, etc.)—specs cannot be changed on the fly.&lt;/p&gt;
+&lt;p&gt;This prevents two common failures:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Every verbal description becoming an unreproducible &amp;ldquo;ad-hoc orchestration&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Business users changing approvers and formations at launch time, making governance nominal&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;42-data-quality-and-collaboration-arbitration&#34;&gt;4.2 Data Quality and Collaboration Arbitration
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A20 Data Quality&lt;/strong&gt;: normal, warning, degraded, paused. Degraded state blocks business commits—regardless of whether someone wants to &amp;ldquo;just push it through&amp;rdquo;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A19 Collaboration Arbitration&lt;/strong&gt;: default priority is &amp;ldquo;safety &amp;gt; compliance/credit &amp;gt; quality &amp;gt; delivery &amp;gt; margin/cost &amp;gt; energy&amp;rdquo;. When multiple agents&amp;rsquo; conclusions conflict, arbitration follows enterprise values, not whoever returns first or has the bigger model.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;43-human-in-the-loop-not-human-watching-from-the-side&#34;&gt;4.3 Human in the Loop, Not Human Watching from the Side
+&lt;/h3&gt;&lt;p&gt;Quotes, contracts, quality release, shutdowns—these can only be confirmed by authorized personnel. You can also set in-run checkpoints before a specific business agent: when the preceding step completes, execution pauses; authorized personnel review the context, then release or terminate.&lt;/p&gt;
+&lt;p&gt;Release opinions feed into subsequent context. Human nodes, handlers, timestamps, opinions, and post-resume traces are all recorded. SLA expiry marks the task pending and writes an audit—&lt;strong&gt;never auto-approves&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Writing back to enterprise systems requires a &lt;code&gt;writeToken&lt;/code&gt; signed by the approval. Connectors default to read-only; the integration registry records type, direction, and policy—no plaintext passwords stored.&lt;/p&gt;
+&lt;h3 id=&#34;44-managed-vs-external-control-runtime-to-control-governance-depth&#34;&gt;4.4 Managed vs. External: Control Runtime to Control Governance Depth
+&lt;/h3&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Type&lt;/th&gt;
+					&lt;th&gt;Where It Runs&lt;/th&gt;
+					&lt;th&gt;What the Platform Controls&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Managed&lt;/td&gt;
+					&lt;td&gt;Platform runtime kernel&lt;/td&gt;
+					&lt;td&gt;Formation, node traces, knowledge/Skill, checkpoints, evaluation canary, start/stop&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;External&lt;/td&gt;
+					&lt;td&gt;Remote HTTP / MCP&lt;/td&gt;
+					&lt;td&gt;Call registration, boundary summary, result gates, approval, SLA&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Knowledge and Skills are only injected into managed agents. External agents do not receive platform-side prompts—avoiding the illusion of control while the remote system does as it pleases. In mixed scenarios, managed nodes follow the workflow, external nodes follow boundary calls, and all results still pass through A20 / A19 / human approval before any write-back.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;v-how-capability-accumulates-knowledge-skills-controlled-evolution&#34;&gt;V. How Capability Accumulates: Knowledge, Skills, Controlled Evolution
+&lt;/h2&gt;&lt;p&gt;If every project ends with prompts and definitions back in personal notebooks, the platform is just a faster one-time delivery tool. Agent Governance Hub makes reusable units into three asset types.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Knowledge Base.&lt;/strong&gt; Enterprise regulations, SOPs, and compliance clauses are imported with tenant isolation; at runtime, retrieval follows &amp;ldquo;tenant → scope → task semantics&amp;rdquo; with citations preserved in traces. Knowledge is first written to the hub&amp;rsquo;s local store; Studio sync failure only warns, does not block publishing.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Runtime Skills.&lt;/strong&gt; Suitable for Skills: verification checklists, definitions, SOPs, output schemas. Prohibited as Skills: A19/A20, approvals, tenant isolation, keys, and business writes. Skills match by &amp;ldquo;scenario × agent&amp;rdquo;, require evaluation before publish, default to canary before full rollout, and are rollback-able.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Controlled Self-Evolution.&lt;/strong&gt; Agents cannot rewrite the rules themselves. The closed loop is:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Feedback / Rejection → Fact → Review → Approve → Evaluator → Version → Canary → Promote after second eval
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Instructions to bypass approval, modify governance nodes, or auto-commit are rejected by the evaluation. Erroneous or outdated long-term memory can be revoked, with vector-side data synchronously deleted.&lt;/p&gt;
+&lt;p&gt;Long-term memory is only written after human approval, with source task ID attached. Subsequent tasks must cite the source and re-verify—memory is not treated as current business fact.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;vi-one-platform-many-industry-packs&#34;&gt;VI. One Platform, Many Industry Packs
+&lt;/h2&gt;&lt;p&gt;Agent Governance Hub ships with manufacturing demo formations and ten scenarios to prove that &amp;ldquo;agents can enter a real business loop&amp;rdquo;—not to make the product a steel-only system.&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Scenario&lt;/th&gt;
+					&lt;th&gt;Name&lt;/th&gt;
+					&lt;th&gt;Default Approval Role&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;S1&lt;/td&gt;
+					&lt;td&gt;Smart Production Scheduling&lt;/td&gt;
+					&lt;td&gt;Production Supervisor&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;S2&lt;/td&gt;
+					&lt;td&gt;Dynamic Supply Chain Optimization&lt;/td&gt;
+					&lt;td&gt;Procurement Supervisor&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;S3&lt;/td&gt;
+					&lt;td&gt;Intelligent Quality Coordination&lt;/td&gt;
+					&lt;td&gt;Quality Supervisor&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;S4&lt;/td&gt;
+					&lt;td&gt;Smart Equipment Maintenance&lt;/td&gt;
+					&lt;td&gt;Maintenance Supervisor&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;S5&lt;/td&gt;
+					&lt;td&gt;Energy Optimization Management&lt;/td&gt;
+					&lt;td&gt;Energy Manager&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;S6&lt;/td&gt;
+					&lt;td&gt;Smart Safety Management&lt;/td&gt;
+					&lt;td&gt;EHS Manager&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;S7&lt;/td&gt;
+					&lt;td&gt;Quoting and Compliance Verification&lt;/td&gt;
+					&lt;td&gt;Sales Supervisor&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;S8&lt;/td&gt;
+					&lt;td&gt;Contract Signing and Credit Risk&lt;/td&gt;
+					&lt;td&gt;Legal/Operations Supervisor&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;S9&lt;/td&gt;
+					&lt;td&gt;Business Insights and Policy Coordination&lt;/td&gt;
+					&lt;td&gt;Read-only, no commits&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;S10&lt;/td&gt;
+					&lt;td&gt;After-Sales Complaints and Fulfillment&lt;/td&gt;
+					&lt;td&gt;After-Sales Supervisor&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;A new enterprise&amp;rsquo;s typical rollout sequence:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Create an isolated enterprise space, configure industry and roles&lt;/li&gt;
+&lt;li&gt;Register connectors (read-only first, whitelist first)&lt;/li&gt;
+&lt;li&gt;Build or import the enterprise&amp;rsquo;s agents&lt;/li&gt;
+&lt;li&gt;Publish scenarios with local approval roles&lt;/li&gt;
+&lt;li&gt;Run analysis-only first, then enable controlled write-back&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Differences between automotive, electronics, chemicals, equipment, and steel are mainly in data objects, approval matrices, and connectors—not in &amp;ldquo;building another agent operating system.&amp;rdquo; For software companies / ISVs, this means: the common governance base is reusable; industry differences are absorbed by parameters, formations, and plugins.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;vii-who-benefits&#34;&gt;VII. Who Benefits
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Mid-to-large enterprises with scattered agents but no enterprise-level entry point.&lt;/strong&gt;&lt;br&gt;
+Need unified tasks, approvals, audits, and start/stop—not another chat window per department.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Manufacturing and equipment enterprises putting AI into high-responsibility actions.&lt;/strong&gt;&lt;br&gt;
+Must have data gates, role-based approvals, and write authorization—models cannot directly modify business systems.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Software companies / ISVs delivering agent solutions across industries.&lt;/strong&gt;&lt;br&gt;
+Need to productize building, hosting, importing, and scenario publishing rather than writing orchestration scripts from zero each project.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Organizations with a data platform that need to add an &amp;ldquo;intelligence layer&amp;rdquo;.&lt;/strong&gt;&lt;br&gt;
+Need a requestable service catalog and auditable execution, not another model trial environment.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;viii-closing&#34;&gt;VIII. Closing
+&lt;/h2&gt;&lt;p&gt;Large models made suggestions cheap. They did not make accountability cheap. What enterprises need is not more chat boxes, but an operating system that turns assistants into services:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Business requests come from a catalog, not a blank dialog&lt;/li&gt;
+&lt;li&gt;Multiple agents collaborate in formations, not single-point chat&lt;/li&gt;
+&lt;li&gt;Risk actions must pass quality gates, value arbitration, and role-based approval&lt;/li&gt;
+&lt;li&gt;Every execution is traceable, reviewable, and improvable—and the improvement itself goes through evaluation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;That is what Shuneng&amp;rsquo;s &lt;strong&gt;Agent Governance Hub&lt;/strong&gt; is built to deliver. The runtime kernel makes agents runnable; the studio makes them producible; the model gateway makes inference pluggable. What determines whether an enterprise dares to use agents on critical work is the governance layer in the middle.&lt;/p&gt;
+&lt;p&gt;The sign that agents have entered the business is not another dialog. It is the first time someone can answer, clearly:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Which service is this, who may start it, what it executed against, who approved the write-back, and how the next run will be better than this one.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Author:&lt;/strong&gt; Zhengzhou Shuneng Software Technology Co., Ltd.&lt;br&gt;
+&lt;strong&gt;Product:&lt;/strong&gt; Agent Governance Hub&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>From &#39;AI Gym&#39; to &#39;Intelligent Cockpit&#39;: Solving the Governance Puzzle of Enterprise AI Transformation</title>
         <link>https://zhangzib123.github.io/en/p/from-ai-gym-to-intelligent-cockpit-solving-the-governance-puzzle-of-enterprise-ai-transformation/</link>
         <pubDate>Fri, 31 Jul 2026 00:00:00 +0000</pubDate>
