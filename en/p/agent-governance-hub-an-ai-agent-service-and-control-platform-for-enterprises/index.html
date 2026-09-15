@@ -21,6 +21,9 @@
     flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' }
   });
 </script>
+<style>
+.mermaid { text-align: center; margin: 1em 0; }
+</style>
 
 
 
@@ -441,35 +444,19 @@ For operators it is a console: managed agents, live runs, human interventions, a
 <blockquote>
 <p>Orchestratable, governable, auditable: every AI-involved operating action must stay compliant, controllable and traceable.</p>
 </blockquote>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">graph TB
-</span></span><span class="line"><span class="cl">    U[Business Users / Admins] --&gt; H[Agent Governance Hub]
-</span></span><span class="line"><span class="cl">    H --&gt; W[Business Workbench&lt;br/&gt;Tasks · Approvals · Catalog]
-</span></span><span class="line"><span class="cl">    H --&gt; C[AI Console&lt;br/&gt;Overview · Observation · Value Metrics]
-</span></span><span class="line"><span class="cl">    H --&gt; B[Agent / Scenario Build&lt;br/&gt;Author · Register · Formation]
-</span></span><span class="line"><span class="cl">    H --&gt; RK[Runtime Kernel&lt;br/&gt;Workflow / Tool / Teams / Checkpoint]
-</span></span><span class="line"><span class="cl">    H --&gt; ST[Agent Studio&lt;br/&gt;Build and Publish]
-</span></span><span class="line"><span class="cl">    H --&gt; AC[AICoreDirector&lt;br/&gt;Model Access and Keys]
-</span></span><span class="line"><span class="cl">    H --&gt; G[Governance Guardrails&lt;br/&gt;A19 Arbitration · A20 Data Quality · Approval · Audit]
-</span></span><span class="line"><span class="cl">    RK --&gt; SYS[Enterprise Systems&lt;br/&gt;ERP / CRM / Knowledge Base]
-</span></span><span class="line"><span class="cl">    G --&gt; SYS
-</span></span></code></pre></td></tr></table>
+<div class="mermaid">graph TB
+    U[Business Users / Admins] --> H[Agent Governance Hub]
+    H --> W[Business Workbench<br/>Tasks · Approvals · Catalog]
+    H --> C[AI Console<br/>Overview · Observation · Value Metrics]
+    H --> B[Agent / Scenario Build<br/>Author · Register · Formation]
+    H --> RK[Runtime Kernel<br/>Workflow / Tool / Teams / Checkpoint]
+    H --> ST[Agent Studio<br/>Build and Publish]
+    H --> AC[AICoreDirector<br/>Model Access and Keys]
+    H --> G[Governance Guardrails<br/>A19 Arbitration · A20 Data Quality · Approval · Audit]
+    RK --> SYS[Enterprise Systems<br/>ERP / CRM / Knowledge Base]
+    G --> SYS
 </div>
-</div><p>The stack is deliberately split:</p>
+<p>The stack is deliberately split:</p>
 <div class="table-wrapper"><table>
 	<thead>
 			<tr>

@@ -21,6 +21,9 @@
     flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' }
   });
 </script>
+<style>
+.mermaid { text-align: center; margin: 1em 0; }
+</style>
 
 
 
@@ -399,7 +402,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 10 分钟
+                    阅读时长: 9 分钟
                 </time>
             </div>
         
@@ -461,35 +464,19 @@
 <blockquote>
 <p>可编排、可治理、可审计：AI 参与的经营动作必须合规、可控、可追溯。</p>
 </blockquote>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">graph TB
-</span></span><span class="line"><span class="cl">    U[业务人员 / 管理员] --&gt; H[智治中枢&lt;br/&gt;Agent Governance Hub]
-</span></span><span class="line"><span class="cl">    H --&gt; W[业务工作台&lt;br/&gt;任务 · 审批 · 场景目录]
-</span></span><span class="line"><span class="cl">    H --&gt; C[AI 控制台&lt;br/&gt;总览 · 观测 · 价值度量]
-</span></span><span class="line"><span class="cl">    H --&gt; B[Agent / 场景建设&lt;br/&gt;搭建 · 登记 · 编队]
-</span></span><span class="line"><span class="cl">    H --&gt; RK[运行内核&lt;br/&gt;Workflow / Tool / Teams / Checkpoint]
-</span></span><span class="line"><span class="cl">    H --&gt; ST[智能体搭建台&lt;br/&gt;搭建与发布]
-</span></span><span class="line"><span class="cl">    H --&gt; AC[AICoreDirector&lt;br/&gt;模型调用与密钥]
-</span></span><span class="line"><span class="cl">    H --&gt; G[治理护栏&lt;br/&gt;A19 仲裁 · A20 数据质量 · 审批 · 审计]
-</span></span><span class="line"><span class="cl">    RK --&gt; SYS[企业系统&lt;br/&gt;ERP / CRM / 知识库]
-</span></span><span class="line"><span class="cl">    G --&gt; SYS
-</span></span></code></pre></td></tr></table>
+<div class="mermaid">graph TB
+    U[业务人员 / 管理员] --> H[智治中枢<br/>Agent Governance Hub]
+    H --> W[业务工作台<br/>任务 · 审批 · 场景目录]
+    H --> C[AI 控制台<br/>总览 · 观测 · 价值度量]
+    H --> B[Agent / 场景建设<br/>搭建 · 登记 · 编队]
+    H --> RK[运行内核<br/>Workflow / Tool / Teams / Checkpoint]
+    H --> ST[智能体搭建台<br/>搭建与发布]
+    H --> AC[AICoreDirector<br/>模型调用与密钥]
+    H --> G[治理护栏<br/>A19 仲裁 · A20 数据质量 · 审批 · 审计]
+    RK --> SYS[企业系统<br/>ERP / CRM / 知识库]
+    G --> SYS
 </div>
-</div><p>平台刻意把三件事拆开：</p>
+<p>平台刻意把三件事拆开：</p>
 <div class="table-wrapper"><table>
 	<thead>
 			<tr>

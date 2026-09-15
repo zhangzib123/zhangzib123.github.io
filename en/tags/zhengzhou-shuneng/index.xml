@@ -40,35 +40,19 @@ For operators it is a console: managed agents, live runs, human interventions, a
 &lt;blockquote&gt;
 &lt;p&gt;Orchestratable, governable, auditable: every AI-involved operating action must stay compliant, controllable and traceable.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;graph TB
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    U[Business Users / Admins] --&amp;gt; H[Agent Governance Hub]
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    H --&amp;gt; W[Business Workbench&amp;lt;br/&amp;gt;Tasks · Approvals · Catalog]
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    H --&amp;gt; C[AI Console&amp;lt;br/&amp;gt;Overview · Observation · Value Metrics]
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    H --&amp;gt; B[Agent / Scenario Build&amp;lt;br/&amp;gt;Author · Register · Formation]
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    H --&amp;gt; RK[Runtime Kernel&amp;lt;br/&amp;gt;Workflow / Tool / Teams / Checkpoint]
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    H --&amp;gt; ST[Agent Studio&amp;lt;br/&amp;gt;Build and Publish]
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    H --&amp;gt; AC[AICoreDirector&amp;lt;br/&amp;gt;Model Access and Keys]
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    H --&amp;gt; G[Governance Guardrails&amp;lt;br/&amp;gt;A19 Arbitration · A20 Data Quality · Approval · Audit]
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    RK --&amp;gt; SYS[Enterprise Systems&amp;lt;br/&amp;gt;ERP / CRM / Knowledge Base]
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    G --&amp;gt; SYS
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;div class=&#34;mermaid&#34;&gt;graph TB
+    U[Business Users / Admins] --&gt; H[Agent Governance Hub]
+    H --&gt; W[Business Workbench&lt;br/&gt;Tasks · Approvals · Catalog]
+    H --&gt; C[AI Console&lt;br/&gt;Overview · Observation · Value Metrics]
+    H --&gt; B[Agent / Scenario Build&lt;br/&gt;Author · Register · Formation]
+    H --&gt; RK[Runtime Kernel&lt;br/&gt;Workflow / Tool / Teams / Checkpoint]
+    H --&gt; ST[Agent Studio&lt;br/&gt;Build and Publish]
+    H --&gt; AC[AICoreDirector&lt;br/&gt;Model Access and Keys]
+    H --&gt; G[Governance Guardrails&lt;br/&gt;A19 Arbitration · A20 Data Quality · Approval · Audit]
+    RK --&gt; SYS[Enterprise Systems&lt;br/&gt;ERP / CRM / Knowledge Base]
+    G --&gt; SYS
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;The stack is deliberately split:&lt;/p&gt;
+&lt;p&gt;The stack is deliberately split:&lt;/p&gt;
 &lt;table&gt;
 	&lt;thead&gt;
 			&lt;tr&gt;

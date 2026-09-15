@@ -312,33 +312,18 @@
 	&lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h3 id=&#34;42-workflow&#34;&gt;4.2 Workflow
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sequenceDiagram
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    General Collection System-&amp;gt;&amp;gt;+chrome: Render dynamic page
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    chrome--&amp;gt;&amp;gt;-General Collection System: Return complete HTML
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    General Collection System-&amp;gt;&amp;gt;+Redis: Read website section structure configuration
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    Redis--&amp;gt;&amp;gt;-General Collection System: Return section configuration and parse key content
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    General Collection System-&amp;gt;&amp;gt;+DeepSeek: Send prompt and content to be parsed
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    DeepSeek--&amp;gt;&amp;gt;-Validator: Return JSON data
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    Validator-&amp;gt;&amp;gt;+Regex: Validate results
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    Regex--&amp;gt;&amp;gt;-Output: Correct invalid formats
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    Output-&amp;gt;&amp;gt;ES: Store structured data
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/h3&gt;&lt;div class=&#34;mermaid&#34;&gt;sequenceDiagram
+    General Collection System-&gt;&gt;+chrome: Render dynamic page
+    chrome--&gt;&gt;-General Collection System: Return complete HTML
+    General Collection System-&gt;&gt;+Redis: Read website section structure configuration
+    Redis--&gt;&gt;-General Collection System: Return section configuration and parse key content
+    General Collection System-&gt;&gt;+DeepSeek: Send prompt and content to be parsed
+    DeepSeek--&gt;&gt;-Validator: Return JSON data
+    Validator-&gt;&gt;+Regex: Validate results
+    Regex--&gt;&gt;-Output: Correct invalid formats
+    Output-&gt;&gt;ES: Store structured data
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;43-benefit-analysis&#34;&gt;4.3 Benefit Analysis
+&lt;h3 id=&#34;43-benefit-analysis&#34;&gt;4.3 Benefit Analysis
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Collection efficiency and accuracy&lt;/strong&gt;: Simple configuration for specific sites without worrying about follow-up processes; automated collection → business logic execution&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Semantic understanding and processing&lt;/strong&gt;: LLM generates summaries and extracts specific content attributes&lt;/li&gt;
