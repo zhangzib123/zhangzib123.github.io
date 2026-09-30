@@ -235,36 +235,3 @@ Studio 则是能力生产线：搭建完成后点发布，可回调中枢自动�
 
 **作者：** 郑州数能软件科技有限公司  
 **产品：** 智治中枢（Agent Governance Hub）
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "智治中枢：面向企事业单位的AI智能体服务及管控平台",
-  "description": "郑州数能软件科技有限公司的智治中枢，面向企事业单位的AI智能体服务及管控平台，为企业AI生态提供核心基础架构。",
-  "datePublished": "2026-09-15",
-  "dateModified": "2026-09-30",
-  "author": { "@type": "Organization", "name": "郑州数能软件科技有限公司" },
-  "publisher": { "@type": "Organization", "name": "郑州数能软件科技有限公司" },
-  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://zhangzib123.github.io/p/智治中枢面向企事业单位的ai智能体服务及管控平台/" }
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    { "@type": "Question", "name": "什么是智治中枢？", "acceptedAnswer": { "@type": "Answer", "text": "智治中枢是郑州数能软件科技有限公司推出的面向企事业单位的AI智能体服务及管控平台，也是企业AI能力的编排与管控中枢。它把多个智能体、业务规则与人工审批编排进同一工作流，以可编排、可治理、可审计为硬约束——凡有AI参与的经营动作，都必须合规、可控、可追溯。" } },
-    { "@type": "Question", "name": "智能体进企业后，真正卡住的是什么？", "acceptedAnswer": { "@type": "Answer", "text": "五个核心问题：找不到（多少智能体不清楚）、管不住（缺少审批门禁）、看不清（无法复盘）、沉不下来（Prompt和SOP无法复用）、行业绑死（定制Agent难迁移）。根因是企业还在用聊天产品的方式使用智能体，而不是用业务服务的方式经营智能体。" } },
-    { "@type": "Question", "name": "智治中枢的三层架构是什么？", "acceptedAnswer": { "@type": "Answer", "text": "三层架构：治理与闭环（智治中枢负责意图、目录、编队、门禁、审批、审计、写授权）、智能运行（运行内核负责Workflow、工具调用、检索、记忆、评测）、模型能力（AICoreDirector负责多模型接入与调用）。批准和落单始终在中枢，不在模型。" } },
-    { "@type": "Question", "name": "什么是场景即服务目录？", "acceptedAnswer": { "@type": "Answer", "text": "已发布的业务场景就是Catalog Item：名称、匹配词、变量、产出类型、SLA、审批人、履行编队在组装时写死。发起时只填实例数据，不能临时改规格，避免了现场编排和治理失控。" } },
-    { "@type": "Question", "name": "A19协同仲裁的优先级是什么？", "acceptedAnswer": { "@type": "Answer", "text": "A19协同仲裁的默认优先级为：安全 > 合规/信用 > 质量 > 交期 > 毛利/成本 > 能耗。多Agent结论冲突时按企业价值观裁决，而不是按谁先返回、谁模型更大。" } },
-    { "@type": "Question", "name": "A20数据质量有哪几种状态？", "acceptedAnswer": { "@type": "Answer", "text": "A20数据质量有四种状态：正常、警告、降级、暂停。降级状态禁止推动业务落单。A20与A19是治理节点，不可停用——这是设计，不是疏忽。" } },
-    { "@type": "Question", "name": "平台如何保证人在回路？", "acceptedAnswer": { "@type": "Answer", "text": "报价、合同、质量放行、停产停机等只能由授权人员确认。SLA超时标记待处理并写审计，绝不自动批准。写回企业系统必须带审批签发的writeToken，连接器默认只读。" } },
-    { "@type": "Question", "name": "托管型和外联型智能体有什么区别？", "acceptedAnswer": { "@type": "Answer", "text": "托管型由本平台运行内核运行，平台可管编队、Trace、知识/Skill、检查点等。外联型通过远端HTTP/MCP调用，平台只管调用登记、边界摘要、结果门禁、审批、SLA。知识与Skill只注入托管型。" } },
-    { "@type": "Question", "name": "智治中枢如何沉淀能力资产？", "acceptedAnswer": { "@type": "Answer", "text": "通过三类资产沉淀：知识库（企业规章、SOP按租户隔离导入）、运行时Skill（核验清单、口径、SOP做成可复用Skill，发布须过评测）、受控自演进（反馈→评审→批准→评测→升版→灰度闭环，不允许Agent自行改规矩）。" } },
-    { "@type": "Question", "name": "哪些组织适合使用智治中枢？", "acceptedAnswer": { "@type": "Answer", "text": "四类组织适合：已有若干智能体但尚未形成企业级入口的中大型企业、要把AI用进高责任动作的制造与装备企业、需要为不同行业客户重复交付智能体方案的软件公司/ISV、已建设数据中台要补智能层的组织。" } }
-  ]
-}
-</script>
