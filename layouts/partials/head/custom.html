@@ -201,7 +201,7 @@
 <!-- Debug: faq_schema not found -->
 {{ end }}
 
-{{ if eq .File.Path "post/agent-governance-hub/index.md" }}
+{{ if and .File (eq .File.Path "post/agent-governance-hub/index.md") }}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
