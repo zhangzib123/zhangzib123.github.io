@@ -10,223 +10,92 @@
 <style>
 .mermaid { text-align: center; margin: 1em 0; }
 </style>
-<!-- Debug: Checking faq_schema -->
-{{ if .Params.faq_schema }}
-<!-- Debug: faq_schema is true -->
-<!-- Debug: Title = {{ .Title }} -->
-{{ if eq .Title "企业AI治理新范式：统一调度平台的价值与实践" }}
-<!-- Debug: Matched AI governance article -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "什么是AI治理与调度平台？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "AI治理与调度平台可以理解为企业的'AI能力总线与中枢'，它统一管理多家LLM、私有大模型、传统ML服务和自研业务插件。对上暴露统一的API入口，对下统一承载各种AI服务，中间负责智能调度（路由+负载均衡+熔断降级）、监控与成本治理。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "为什么企业需要AI治理与调度平台？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "企业在使用大模型时面临四大痛点：模型碎片化（多套接入方式、多处配置）、成本不可控（不知道谁用了多少、花在了哪些模型上）、缺乏智能调度（简单任务用最贵模型）、智能化能力无法沉淀（每个项目都重写一遍）。平台解决了这些问题，让AI使用从'分散调用'变成'统一管理'。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "AI治理与调度平台如何降低企业AI成本？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "平台通过精准统计（对每次调用的Token与成本做精细记录）、成本偏好参数、业务等级参数、智能调度（高价值业务用更好的模型，低价值任务调度到低成本模型）、数据驱动决策（哪些模型'贵但不值'、哪些'便宜好用'有数据支撑）等方式降低成本。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "平台如何实现智能调度？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "平台的智能调度基于多维因素自动路由：业务声明（业务等级、成本偏好、能力标签）、模型状态（健康状态监控）、负载监控（并发与QPS压力）、历史表现（错误率与延迟）、成本约束，自动完成'选模型、分流量、做降级'的调度决策。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "什么是Prompt模板中心？有什么价值？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Prompt模板中心是平台将关键Prompt从业务代码中抽离，集中管理的功能，支持分类组织、版本管理、在线编辑、热更新和绑定调度。价值在于：新项目从'成熟模板+小改动'开始，模板优化后所有使用它的插件和业务一起受益，Prompt变成可见、可管、可迭代的'文本代码资产'。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "平台如何帮助沉淀智能资产？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "平台通过三种机制沉淀智能资产：插件生态（自研AI能力以插件方式接入，做到'可插拔、可复用、可统一调度'）、服务注册（传统ML/外部AI服务通过注册机制纳管）、Prompt模板中心（沉淀高质量Prompt模板）。每个项目在解决业务问题的同时，也在给平台贡献新插件、新Prompt模板、新的组合与实践经验。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "哪些企业最适合使用AI治理与调度平台？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "四类企业最适合：中大型企业（多条业务线在用AI，希望统一入口和调度能力）、软件公司/ISV（频繁为不同客户交付定制化AI能力）、AI能力开放平台提供方（需要对外提供统一、稳定、可计费的AI API）、规划AI中台/数据中台的企业（需要在数据中台之上搭建可持续演进的'智能层'。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "平台如何提高AI服务的可用性？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "平台通过熔断降级（单一模型故障自动切换到备用模型）、健康检查（实时监控模型健康状态）、负载均衡（根据并发与QPS压力自动分配流量）、智能路由（结合历史错误率与延迟表现动态调整）、统一监控（平台统一采集QPS、延迟、错误率等数据）等机制提高可用性。单点故障不再'牵一发动全身'，用户体验更稳定。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "平台的插件机制有什么优势？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "插件机制的核心优势：一次开发，多处复用（减少重复造轮子）、独立演进（插件可以独立换模型、改Prompt、调参数，调用方无感知）、统一调度（对上暴露统一接口，可以被多个系统共享调用）、行业能力包（配合Prompt模板中心，可以形成'行业能力包'快速复制）。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "平台与传统'每个系统自己接模型'模式有何不同？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "传统模式：每个系统自己管Key、自己写错误处理、自己做限流和重试，切换模型需要'全公司协同+改代码'，成本不可控，能力无法沉淀。平台模式：统一API入口，业务只对接平台，调整只需'调一处平台配置'，精准统计成本，智能资产持续沉淀与演进。从'项目导向'到'资产导向'，让每个项目都为企业AI资产池添砖加瓦。"
-      }
-    }
-  ]
-}
-</script>
-{{ end }}
 
-{{ if eq .Title "基于多模型融合的全球经济预测研究" }}
-<!-- Debug: Matched economic forecast article -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "什么是多模型融合的经济预测方法？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "多模型融合经济预测方法是将 LSTM（长短期记忆网络）、XGBoost（极端梯度提升）和 DFM（动态因子模型）三种不同的预测模型结合起来，通过简单平均、加权平均或动态权重等融合策略，提高预测精度的方法。这种方法充分利用了不同模型的优势，互补了各自的局限性。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "为什么需要多模型融合而不是使用单一模型？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "单一模型各有局限：LSTM训练时间长，参数调优复杂；XGBoost容易过拟合，对时间序列特性考虑不足；DFM假设因子关系为线性。多模型融合可以互补优势，提高预测的鲁棒性和准确性。实验结果表明，相比单一模型，多模型融合能够显著提高预测精度。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "多模型融合能提高多少预测精度？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "实验结果显示，多模型融合方法在不同预测时间跨度上都取得了良好的效果：1季度预测RMSE = 0.0156，2季度预测RMSE = 0.0189，3季度预测RMSE = 0.0223，4季度预测RMSE = 0.0267。预测精度随预测时间跨度的增加而下降，但多模型融合始终保持较好的稳定性。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "这项研究对经济政策制定有什么价值？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "这项研究为政策制定者提供了更准确的经济预测工具、因子分析帮助识别影响经济的主要因素（如工业产值贡献度35.2%、消费指数贡献度28.7%）、动态调整策略可以根据预测精度变化调整模型权重，以及可量化、可解释的决策支持。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "如何构建多模型融合的预测框架？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "构建多模型融合预测框架包括以下步骤：1. 数据预处理（缺失值处理、异常值检测、数据标准化）；2. 模型训练（分别训练LSTM、XGBoost和DFM模型）；3. 预测生成（使用训练好的模型进行预测）；4. 结果融合（采用简单平均、加权平均或动态权重等策略融合预测结果）。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "这项研究使用了哪些数据？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "本研究使用的数据集包括：多个国家的季度GDP数据、宏观经济指标（工业产值、消费指数、就业数据等）、时间跨度为1992年至2024年（约32年）、数据频率包括季度和月度数据、数据划分为训练集（1992-2020，约80%）和测试集（2020-2024，约20%）。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "LSTM、XGBoost 和 DFM 各有什么优势？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "LSTM能够有效学习长期时间依赖关系，捕捉复杂的非线性模式，天然适合时间序列数据。XGBoost能够处理多种类型的特征，通过集成提高预测精度，提供特征重要性排序。DFM具有坚实的计量经济学理论基础，能够识别影响经济的主要因子，处理数据缺失问题。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "如何评估预测模型的性能？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "本研究使用RMSE（均方根误差）衡量预测值与真实值之间的差异，数值越小预测精度越高；因子贡献度分析识别影响经济的主要因素；时序交叉验证确保模型评估的可靠性；预测稳定性分析预测精度随时间的变化趋势。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "这项研究有哪些局限性？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "本研究存在以下局限：数据限制，受数据可得性限制，样本期间相对较短（1992-2024）；模型选择，仅选择了三种代表性模型，未涵盖所有先进方法（如Transformer、图神经网络）；外生冲击，未充分考虑重大外生冲击（如金融危机、疫情）对预测的影响。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "未来研究方向有哪些？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "未来研究可以从以下方面展开：模型扩展，引入Transformer、图神经网络等更先进的预测模型；数据融合，整合文本数据、卫星数据等非传统数据源；实时预测，开发实时预测系统提高预测的时效性；不确定性量化，更好地量化预测的不确定性；政策模拟，结合政策模拟分析为政策制定提供更全面的支持。"
-      }
-    }
-  ]
-}
-</script>
-{{ end }}
-{{ else }}
-<!-- Debug: faq_schema not found -->
-{{ end }}
+{{- /* ============================================ */ -}}
+{{- /* 通用 Schema.org JSON-LD 生成模板                    */ -}}
+{{- /* 只需在 index.md front matter 中填写字段，模板自动生成 */ -}}
+{{- /* 不再需要为新文章手动添加 if 判断块                    */ -}}
+{{- /* ============================================ */ -}}
 
-{{ if and .File (eq .File.Path "post/agent-governance-hub/index.md") }}
+{{- /* ---------- Article 类型（所有文章自动生成） ---------- */ -}}
+{{- if .IsPage -}}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "\u667a\u6cbb\u4e2d\u67a2\uff1a\u9762\u5411\u4f01\u4e1a\u4e8b\u4e1a\u5355\u4f4d\u7684AI\u667a\u80fd\u4f53\u670d\u52a1\u53ca\u7ba1\u63a7\u5e73\u53f0",
-  "description": "\u90d1\u5dde\u6570\u80fd\u8f6f\u4ef6\u79d1\u6280\u6709\u9650\u516c\u53f8\u7684\u667a\u6cbb\u4e2d\u67a2\uff0c\u9762\u5411\u4f01\u4e1a\u4e8b\u4e1a\u5355\u4f4d\u7684AI\u667a\u80fd\u4f53\u670d\u52a1\u53ca\u7ba1\u63a7\u5e73\u53f0\uff0c\u4e3a\u4f01\u4e1aAI\u751f\u6001\u63d0\u4f9b\u6838\u5fc3\u57fa\u7840\u67b6\u6784\u3002",
-  "datePublished": "2026-09-15",
-  "dateModified": "2026-09-15",
-  "author": { "@type": "Person", "name": "\u5f20\u5b50\u5f6a", "url": "https://zhangzib123.github.io/\u535a\u4e3b/" },
-  "publisher": { "@type": "Organization", "name": "\u90d1\u5dde\u6570\u80fd\u8f6f\u4ef6\u79d1\u6280\u6709\u9650\u516c\u53f8" },
-  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://zhangzib123.github.io/p/\u667a\u6cbb\u4e2d\u67a2\u9762\u5411\u4f01\u4e1a\u4e8b\u4e1a\u5355\u4f4d\u7684ai\u667a\u80fd\u4f53\u670d\u52a1\u53ca\u7ba1\u63a7\u5e73\u53f0/" }
+  "headline": {{ .Title | safeJS }},
+  "description": {{ .Description | default .Summary | safeJS }},
+  "inLanguage": "{{ .Language.Lang }}",
+  "datePublished": "{{ .PublishDate.Format "2006-01-02" }}",
+  "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
+  "author": {
+    "@type": "Person",
+    {{- with .Param "schema.author_name" }}
+    "name": {{ . | safeJS }},
+    {{- else }}
+    "name": {{ .Site.Author.name | default .Site.Params.author | default "张子彪" | safeJS }},
+    {{- end }}
+    {{- with .Param "schema.author_url" }}
+    "url": "{{ . }}"
+    {{- else }}
+    "url": "{{ .Site.BaseURL }}about/"
+    {{- end }}
+  },
+  {{- with .Param "schema.image" }}
+  "image": "{{ . }}",
+  {{- else if .Params.cover }}
+  "image": "{{ .Params.cover | absURL }}",
+  {{- end }}
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ .Param "schema.publisher_name" | default "张子彪" | safeJS }}
+    {{- with .Param "schema.publisher_logo" }}
+    ,
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ . | absURL }}"
+    }
+    {{- else if .Site.Params.logo }}
+    ,
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ .Site.Params.logo | absURL }}"
+    }
+    {{- end }}
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ .Permalink }}"
+  },
+  {{- /* speakable：指定可被语音助手朗读的内容区域 */ -}}
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [".article-content"]
+  }
 }
 </script>
+{{- end -}}
+
+{{- /* ---------- FAQPage 类型（front matter 有 faq_schema 时自动生成） ---------- */ -}}
+{{- with .Param "faq_schema" -}}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  "inLanguage": "{{ $.Language.Lang }}",
   "mainEntity": [
-    { "@type": "Question", "name": "\u4ec0\u4e48\u662f\u667a\u6cbb\u4e2d\u67a2\uff1f", "acceptedAnswer": { "@type": "Answer", "text": "\u667a\u6cbb\u4e2d\u67a2\u662f\u90d1\u5dde\u6570\u80fd\u8f6f\u4ef6\u79d1\u6280\u6709\u9650\u516c\u53f8\u63a8\u51fa\u7684\u9762\u5411\u4f01\u4e1a\u4e8b\u4e1a\u5355\u4f4d\u7684AI\u667a\u80fd\u4f53\u670d\u52a1\u53ca\u7ba1\u63a7\u5e73\u53f0\uff0c\u4e5f\u662f\u4f01\u4e1aAI\u80fd\u529b\u7684\u7f16\u6392\u4e0e\u7ba1\u63a7\u4e2d\u67a2\u3002\u5b83\u628a\u591a\u4e2a\u667a\u80fd\u4f53\u3001\u4e1a\u52a1\u89c4\u5219\u4e0e\u4eba\u5de5\u5ba1\u6279\u7f16\u6392\u8fdb\u540c\u4e00\u5de5\u4f5c\u6d41\uff0c\u4ee5\u53ef\u7f16\u6392\u3001\u53ef\u6cbb\u7406\u3001\u53ef\u5ba1\u8ba1\u4e3a\u786c\u7ea6\u675f\u2014\u2014\u51e1\u6709AI\u53c2\u4e0e\u7684\u7ecf\u8425\u52a8\u4f5c\uff0c\u90fd\u5fc5\u987b\u5408\u89c4\u3001\u53ef\u63a7\u3001\u53ef\u8ffd\u6eaf\u3002" } },
-    { "@type": "Question", "name": "\u667a\u80fd\u4f53\u8fdb\u4f01\u4e1a\u540e\uff0c\u771f\u6b63\u5361\u4f4f\u7684\u662f\u4ec0\u4e48\uff1f", "acceptedAnswer": { "@type": "Answer", "text": "\u4e94\u4e2a\u6838\u5fc3\u95ee\u9898\uff1a\u627e\u4e0d\u5230\u3001\u7ba1\u4e0d\u4f4f\u3001\u770b\u4e0d\u6e05\u3001\u6c89\u4e0d\u4e0b\u6765\u3001\u884c\u4e1a\u7ed1\u6b7b\u3002\u6839\u56e0\u662f\u4f01\u4e1a\u8fd8\u5728\u7528\u804a\u5929\u4ea7\u54c1\u7684\u65b9\u5f0f\u4f7f\u7528\u667a\u80fd\u4f53\uff0c\u800c\u4e0d\u662f\u7528\u4e1a\u52a1\u670d\u52a1\u7684\u65b9\u5f0f\u7ecf\u8425\u667a\u80fd\u4f53\u3002" } },
-    { "@type": "Question", "name": "\u667a\u6cbb\u4e2d\u67a2\u7684\u4e09\u5c42\u67b6\u6784\u662f\u4ec0\u4e48\uff1f", "acceptedAnswer": { "@type": "Answer", "text": "\u4e09\u5c42\u67b6\u6784\uff1a\u6cbb\u7406\u4e0e\u95ed\u73af\uff08\u667a\u6cbb\u4e2d\u67a2\uff09\u3001\u667a\u80fd\u8fd0\u884c\uff08\u8fd0\u884c\u5185\u6838\uff09\u3001\u6a21\u578b\u80fd\u529b\uff08AICoreDirector\uff09\u3002\u6279\u51c6\u548c\u843d\u5355\u59cb\u7ec8\u5728\u4e2d\u67a2\uff0c\u4e0d\u5728\u6a21\u578b\u3002" } },
-    { "@type": "Question", "name": "A19\u534f\u540c\u4ef2\u88c1\u7684\u4f18\u5148\u7ea7\u662f\u4ec0\u4e48\uff1f", "acceptedAnswer": { "@type": "Answer", "text": "\u5b89\u5168 > \u5408\u89c4/\u4fe1\u7528 > \u8d28\u91cf > \u4ea4\u671f > \u6bdb\u5229/\u6210\u672c > \u80fd\u8017\u3002\u591aAgent\u51b2\u7a81\u65f6\u6309\u4f01\u4e1a\u4ef7\u503c\u89c2\u88c1\u51b3\u3002" } },
-    { "@type": "Question", "name": "\u5e73\u53f0\u5982\u4f55\u4fdd\u8bc1\u4eba\u5728\u56de\u8def\uff1f", "acceptedAnswer": { "@type": "Answer", "text": "\u62a5\u4ef7\u3001\u5408\u540c\u3001\u8d28\u91cf\u653e\u884c\u3001\u505c\u4ea7\u505c\u673a\u7b49\u53ea\u80fd\u7531\u6388\u6743\u4eba\u5458\u786e\u8ba4\u3002SLA\u8d85\u65f6\u6807\u8bb0\u5f85\u5904\u7406\u5e76\u5199\u5ba1\u8ba1\uff0c\u7edd\u4e0d\u81ea\u52a8\u6279\u51c6\u3002\u5199\u56de\u4f01\u4e1a\u7cfb\u7edf\u5fc5\u987b\u5e26\u5ba1\u6279\u7b7e\u53d1\u7684writeToken\u3002" } },
-    { "@type": "Question", "name": "\u54ea\u4e9b\u7ec4\u7ec7\u9002\u5408\u4f7f\u7528\u667a\u6cbb\u4e2d\u67a2\uff1f", "acceptedAnswer": { "@type": "Answer", "text": "\u56db\u7c7b\u7ec4\u7ec7\uff1a\u4e2d\u5927\u578b\u4f01\u4e1a\u3001\u5236\u9020\u4e0e\u88c5\u5907\u4f01\u4e1a\u3001\u8f6f\u4ef6\u516c\u53f8/ISV\u3001\u5df2\u5efa\u6570\u636e\u4e2d\u53f0\u8981\u8865\u667a\u80fd\u5c42\u7684\u7ec4\u7ec7\u3002" } }
+    {{- range $i, $qa := . -}}
+    {{- if $i }},{{ end -}}
+    {
+      "@type": "Question",
+      "name": {{ $qa.question | safeJS }},
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": {{ $qa.answer | safeJS }}
+      }
+    }
+    {{- end -}}
   ]
 }
 </script>
-{{ end }}
+{{- end -}}
