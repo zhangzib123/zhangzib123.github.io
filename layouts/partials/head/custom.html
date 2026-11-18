@@ -1,4 +1,4 @@
-<!-- Ahrefs Analytics -->
+﻿<!-- Ahrefs Analytics -->
 <script src="https://analytics.ahrefs.com/analytics.js" data-key="HaqaJ8FaWrAr/ybqoY2yQA" async></script>
 
 <!-- Mermaid.js for diagram rendering -->
@@ -26,17 +26,17 @@
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": {{ .Title | safeJS }},
-  "description": {{ .Description | default .Summary | safeJS }},
+  "headline": {{ .Title | jsonify }},
+  "description": {{ .Description | default .Summary | jsonify }},
   "inLanguage": "{{ .Language.Lang }}",
   "datePublished": "{{ .PublishDate.Format "2006-01-02" }}",
   "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
   "author": {
     "@type": "Person",
     {{- with .Param "schema.author_name" }}
-    "name": {{ . | safeJS }},
+    "name": {{ . | jsonify }},
     {{- else }}
-    "name": {{ .Site.Author.name | default .Site.Params.author | default "张子彪" | safeJS }},
+    "name": {{ .Site.Params.author | default "张子彪" | jsonify }},
     {{- end }}
     {{- with .Param "schema.author_url" }}
     "url": "{{ . }}"
@@ -46,25 +46,25 @@
   },
   {{- with .Param "schema.image" }}
   "image": "{{ . }}",
-  {{- else if .Params.cover }}
+  {{- else }}{{- if .Params.cover }}
   "image": "{{ .Params.cover | absURL }}",
-  {{- end }}
+  {{- end }}{{- end }}
   "publisher": {
     "@type": "Organization",
-    "name": {{ .Param "schema.publisher_name" | default "张子彪" | safeJS }}
+    "name": {{ .Param "schema.publisher_name" | default "张子彪" | jsonify }}
     {{- with .Param "schema.publisher_logo" }}
     ,
     "logo": {
       "@type": "ImageObject",
       "url": "{{ . | absURL }}"
     }
-    {{- else if .Site.Params.logo }}
+    {{- else }}{{- if .Site.Params.logo }}
     ,
     "logo": {
       "@type": "ImageObject",
       "url": "{{ .Site.Params.logo | absURL }}"
     }
-    {{- end }}
+    {{- end }}{{- end }}
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
@@ -91,10 +91,10 @@
     {{- if $i }},{{ end -}}
     {
       "@type": "Question",
-      "name": {{ $qa.question | safeJS }},
+      "name": {{ $qa.question | jsonify }},
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": {{ $qa.answer | safeJS }}
+        "text": {{ $qa.answer | jsonify }}
       }
     }
     {{- end -}}
