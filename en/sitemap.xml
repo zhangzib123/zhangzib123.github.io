@@ -2,6 +2,123 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://zhangzib123.github.io/en/tags/agent-governance/</loc>
+    <lastmod>2026-11-25T11:10:00+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/categories/ai-agents/</loc>
+    <lastmod>2026-11-25T11:10:00+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/ai-visibility-diagnostics/</loc>
+    <lastmod>2026-11-25T11:10:00+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/categories/artificial-intelligence/</loc>
+    <lastmod>2026-11-25T11:10:00+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/brand-visibility/</loc>
+    <lastmod>2026-11-25T11:10:00+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/categories/</loc>
+    <lastmod>2026-11-25T11:10:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhangzib123.github.io/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhangzib123.github.io/en/categories/"
+                />
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/citation-attribution/</loc>
+    <lastmod>2026-11-25T11:10:00+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/content-compliance/</loc>
+    <lastmod>2026-11-25T11:10:00+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/p/design-and-implementation-of-a-self-planning-geo-generative-engine-optimization-service-agent/</loc>
+    <lastmod>2026-11-25T11:10:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhangzib123.github.io/p/%E5%9F%BA%E4%BA%8E%E8%87%AA%E4%B8%BB%E8%A7%84%E5%88%92%E7%9A%84-geo%E7%94%9F%E6%88%90%E5%BC%8F%E5%BC%95%E6%93%8E%E4%BC%98%E5%8C%96%E6%9C%8D%E5%8A%A1%E6%99%BA%E8%83%BD%E4%BD%93%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhangzib123.github.io/en/p/design-and-implementation-of-a-self-planning-geo-generative-engine-optimization-service-agent/"
+                />
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/enterprise-knowledge-base/</loc>
+    <lastmod>2026-11-25T11:10:00+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/generative-engine-optimization/</loc>
+    <lastmod>2026-11-25T11:10:00+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/geo/</loc>
+    <lastmod>2026-11-25T11:10:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhangzib123.github.io/tags/geo/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhangzib123.github.io/en/tags/geo/"
+                />
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/categories/geo--digital-marketing/</loc>
+    <lastmod>2026-11-25T11:10:00+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/human-in-the-loop/</loc>
+    <lastmod>2026-11-25T11:10:00+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/post/</loc>
+    <lastmod>2026-11-25T11:10:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhangzib123.github.io/post/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhangzib123.github.io/en/post/"
+                />
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/self-planning-agent/</loc>
+    <lastmod>2026-11-25T11:10:00+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/tags/</loc>
+    <lastmod>2026-11-25T11:10:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhangzib123.github.io/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhangzib123.github.io/en/tags/"
+                />
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/categories/technical-practice--cases/</loc>
+    <lastmod>2026-11-25T11:10:00+08:00</lastmod>
+  </url><url>
+    <loc>https://zhangzib123.github.io/en/</loc>
+    <lastmod>2026-11-25T11:10:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhangzib123.github.io/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhangzib123.github.io/en/"
+                />
+  </url><url>
     <loc>https://zhangzib123.github.io/en/p/agent-governance-hub-an-ai-agent-service-and-control-platform-for-enterprises/</loc>
     <lastmod>2026-09-15T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -21,22 +138,6 @@
     <loc>https://zhangzib123.github.io/en/categories/ai-control-and-governance/</loc>
     <lastmod>2026-09-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://zhangzib123.github.io/en/categories/artificial-intelligence/</loc>
-    <lastmod>2026-09-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zhangzib123.github.io/en/categories/</loc>
-    <lastmod>2026-09-15T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://zhangzib123.github.io/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://zhangzib123.github.io/en/categories/"
-                />
-  </url><url>
     <loc>https://zhangzib123.github.io/en/tags/enterprise-ai-infrastructure/</loc>
     <lastmod>2026-09-15T00:00:00+00:00</lastmod>
   </url><url>
@@ -52,47 +153,8 @@
     <loc>https://zhangzib123.github.io/en/tags/orchestration-and-control-hub/</loc>
     <lastmod>2026-09-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://zhangzib123.github.io/en/post/</loc>
-    <lastmod>2026-09-15T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://zhangzib123.github.io/post/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://zhangzib123.github.io/en/post/"
-                />
-  </url><url>
-    <loc>https://zhangzib123.github.io/en/tags/</loc>
-    <lastmod>2026-09-15T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://zhangzib123.github.io/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://zhangzib123.github.io/en/tags/"
-                />
-  </url><url>
     <loc>https://zhangzib123.github.io/en/tags/zhengzhou-shuneng/</loc>
     <lastmod>2026-09-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zhangzib123.github.io/en/</loc>
-    <lastmod>2026-09-15T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://zhangzib123.github.io/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://zhangzib123.github.io/en/"
-                />
   </url><url>
     <loc>https://zhangzib123.github.io/en/tags/agent-compliance/</loc>
     <lastmod>2026-07-31T00:00:00+00:00</lastmod>
@@ -206,9 +268,6 @@
     <lastmod>2026-04-24T11:50:00+08:00</lastmod>
   </url><url>
     <loc>https://zhangzib123.github.io/en/tags/multi-model-fusion/</loc>
-    <lastmod>2026-04-24T11:50:00+08:00</lastmod>
-  </url><url>
-    <loc>https://zhangzib123.github.io/en/categories/technical-practice--cases/</loc>
     <lastmod>2026-04-24T11:50:00+08:00</lastmod>
   </url><url>
     <loc>https://zhangzib123.github.io/en/tags/time-series-analysis/</loc>

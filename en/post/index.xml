@@ -6,7 +6,112 @@
         <description>Recent content in Posts on ZibiaoZhang&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Tue, 15 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://zhangzib123.github.io/en/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 25 Nov 2026 11:10:00 +0800</lastBuildDate><atom:link href="https://zhangzib123.github.io/en/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Design and Implementation of a Self-Planning GEO (Generative Engine Optimization) Service Agent</title>
+        <link>https://zhangzib123.github.io/en/p/design-and-implementation-of-a-self-planning-geo-generative-engine-optimization-service-agent/</link>
+        <pubDate>Wed, 25 Nov 2026 11:10:00 +0800</pubDate>
+        
+        <guid>https://zhangzib123.github.io/en/p/design-and-implementation-of-a-self-planning-geo-generative-engine-optimization-service-agent/</guid>
+        <description>&lt;h1 id=&#34;design-and-implementation-of-a-self-planning-geo-generative-engine-optimization-service-agent&#34;&gt;Design and Implementation of a Self-Planning GEO (Generative Engine Optimization) Service Agent
+&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;— The core infrastructure with which Zhengzhou Shuneng Software empowers enterprise brand building&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;abstract&#34;&gt;Abstract
+&lt;/h2&gt;&lt;p&gt;Through the actual development, project practice, and continuous use of its GEO services, Zhengzhou Shuneng Software has completed and now runs a service agent dedicated to enterprise brand building. Autonomous planning runs through the entire solution: around a defined brand growth objective, the agent senses the brand&amp;rsquo;s presence in generative engines through real questions, determines the current goal and a concrete implementation checklist from diagnostic results and fixed business rules, and then supports content generation, compliance review, and human-reviewed publishing on top of the enterprise knowledge base. After publishing, real links enter the content assets, and continuous monitoring and citation attribution verify the effects of actions, with new data feeding the next round of planning. Measurement evidence, planning rules, enterprise facts, and human accountability are brought into a single pipeline, enabling GEO services to keep executing, verifying, and adjusting — forming the agent-based infrastructure for enterprise brand building.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Keywords:&lt;/strong&gt; Generative Engine Optimization (GEO); self-planning agent; content compliance; brand communication; human-AI collaboration; brand visibility&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;introduction-geo-needs-a-complete-navigation-system&#34;&gt;Introduction: GEO Needs a Complete Navigation System
+&lt;/h2&gt;&lt;p&gt;Users are now asking generative engines — Doubao, DeepSeek, Wenxin Yiyan (ERNIE Bot), Tongyi Qianwen (Qwen), Kimi, Tencent Yuanbao — their questions directly. Brands need to know whether these models mention them unprompted, where they appear in the answers, and whether the answers cite the brand&amp;rsquo;s own pages. Fixed rankings in traditional search can no longer capture these changes.&lt;/p&gt;
+&lt;p&gt;Simply producing more content cannot answer these questions. An enterprise also needs to know: which platform performs weakest, which query patterns have gaps, and whether the current priority should be building brand awareness, improving sentiment, winning citations, or increasing visibility in category-related queries.&lt;/p&gt;
+&lt;p&gt;The Shuneng GEO workbench chains these tasks into a repeatable business pipeline: measure first, then plan; produce content grounded in the enterprise knowledge base; register real links after publishing; and finally re-test with the same set of questions. The diagnostic data serves as the dashboard, the planning rules choose the route, and content production is only one step of execution.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;i-autonomous-execution-pipeline-design&#34;&gt;I. Autonomous Execution Pipeline Design
+&lt;/h2&gt;&lt;p&gt;The Shuneng GEO service agent is the autonomous execution component of the Shuneng GEO workbench; it operates around a defined brand growth objective. The objective specifies the GEO metrics to improve, the target platforms, the core intents, and the deadline; the enterprise knowledge base supplies the facts, and monitoring projects provide a set of questions for continuous re-testing. On this basis, the agent completes perception, planning, action, and feedback.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhangzib123.github.io/images/geo-agent-method.svg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Autonomous execution pipeline&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;The service agent consists of four core modules — goals, perception, planning, and action: finalized requirements define the goals; diagnostics, probes, and snapshots handle perception; planning selects the current target metrics and a concrete implementation checklist; and action completes writing, human review, and publishing, then triggers the next round of diagnostics.&lt;/p&gt;
+&lt;p&gt;The complete pipeline has seven steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Finalize the brand objective — metrics, platforms, core intents, and deadline;&lt;/li&gt;
+&lt;li&gt;Build the enterprise knowledge base, set up continuous monitoring projects, and define the question set;&lt;/li&gt;
+&lt;li&gt;Run the visibility diagnosis, perceiving the external environment through probes and snapshots;&lt;/li&gt;
+&lt;li&gt;Generate target metrics and a concrete implementation checklist from the report;&lt;/li&gt;
+&lt;li&gt;Automatically generate articles and complete compliance checks;&lt;/li&gt;
+&lt;li&gt;Wait for human review; once approved, publish according to the checklist and register the real links;&lt;/li&gt;
+&lt;li&gt;When the scheduled monitoring time arrives, re-test automatically, then return to diagnosis and planning.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The first three steps answer &amp;ldquo;what is the goal, and what does the environment look like&amp;rdquo;; the fourth decides &amp;ldquo;what to do this round&amp;rdquo;; the fifth and sixth carry out the action; and the seventh feeds the results of the action back into perception. Every round retains a clear state; when conditions are not met, the process stops at the corresponding gate, and resumes once they are satisfied.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ii-perception-building-the-geo-dashboard-with-real-questions&#34;&gt;II. Perception: Building the GEO Dashboard with Real Questions
+&lt;/h2&gt;&lt;p&gt;Perception is where the service agent starts running.&lt;/p&gt;
+&lt;p&gt;In &amp;ldquo;AI visibility diagnosis,&amp;rdquo; the user selects the brand, competitors, questions, and target engines. The system sends real questions to the configured generative engines and retains every question-and-answer record. The diagnostic report then computes brand mention rate, top-3 share, awareness, negative share, and citation status.&lt;/p&gt;
+&lt;p&gt;These Q&amp;amp;A records act as the agent&amp;rsquo;s probes. Each probe corresponds to one specific question, one engine, and one real answer — every figure in the report can be traced back, item by item, to the raw evidence. Generative engines naturally vary in their answers, so metrics are never judged on a single response: at the report level, figures are aggregated from the valid answers to multiple questions on the same engine; at the effect level, judgment is based on the trend of the fixed question set across re-test cycles. When valid answers are insufficient, the system marks the item as untested; it never fills the gap with simulated results.&lt;/p&gt;
+&lt;p&gt;At the end of the diagnosis, the system also examines the source links in the answers and matches them against the official website, articles, videos, and channel links registered in the workbench. Matching first attempts an exact full-URL match to a specific content asset; because engines routinely truncate or rewrite links, the official domain serves as a fallback to confirm the source as an enterprise-owned asset. For engines that return no source links, citation metrics are excluded from statistics, and only mentions and positions are measured.&lt;/p&gt;
+&lt;p&gt;The website radar, the enterprise knowledge base, and the monitoring projects supply three more kinds of information to perception: whether the official website clearly states the enterprise&amp;rsquo;s identity, which facts are available for writing, and which fixed questions future re-tests should continue to use.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;iii-planning-rules-decide-the-goals--the-model-does-not-rewrite-them-for-the-enterprise&#34;&gt;III. Planning: Rules Decide the Goals — the Model Does Not Rewrite Them for the Enterprise
+&lt;/h2&gt;&lt;p&gt;Once the diagnostic report is complete, &amp;ldquo;Strategy &amp;amp; Planning&amp;rdquo; reads the latest results and generates a five-level strategy ladder:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Awareness;&lt;/li&gt;
+&lt;li&gt;Sentiment index;&lt;/li&gt;
+&lt;li&gt;Citation share;&lt;/li&gt;
+&lt;li&gt;AI visibility;&lt;/li&gt;
+&lt;li&gt;TOP visibility.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The system checks in this fixed order and opens only the lowest level that has not yet met its bar. Here, awareness refers to whether the model has formed a stable, consistent, and correct recognition of the brand — distinct from brand awareness in the consumer-survey sense. When a brand has not yet formed stable awareness, it first establishes a unified definition; when there is clearly negative information, it adds verifiable cases; when models do not cite the brand&amp;rsquo;s own pages, it first builds citable content; when the brand is absent from category-related queries, it then improves visibility; and when the brand appears but ranks low, it finally works on top-3 placement.&lt;/p&gt;
+&lt;p&gt;Within the target metric, the system further selects the platforms and specific query patterns to improve, forming an implementation checklist that specifies content direction, target channels, execution volume, and re-test timing — and proceeds to article generation accordingly. The choice of target channels likewise comes from diagnostic evidence: the system prioritizes publishing domains that have already appeared as citations in this question set&amp;rsquo;s answers — including domains where competitor content is cited — rather than rotating a fixed media list.&lt;/p&gt;
+&lt;p&gt;The autonomous plan comes from diagnostic data and fixed business rules; it does not depend on the session model deciding on the spot — what the industry calls a deterministic workflow, in which process routing and state transitions are executed by fixed rules while the model only organizes text in the subsequent writing stage. The model cannot modify the pass thresholds, and it cannot present a direction without evidence as already accomplished.&lt;/p&gt;
+&lt;p&gt;Goal determination, content generation, and effect evaluation are handled by different stages, preventing a single model from simultaneously setting the goals, producing the content, and grading its own results.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;iv-action-knowledge-base-drafts-compliance-and-publishing-are-gatekept-by-humans&#34;&gt;IV. Action: Knowledge Base Drafts; Compliance and Publishing Are Gatekept by Humans
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Knowledge-base drafting&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The enterprise knowledge base is the factual boundary of writing. The workbench maintains enterprise profiles, products, cases, FAQs, and layered vocabularies. Confirmed content becomes available for semantic retrieval and provides the basis for articles, video scripts, and content rewrites.&lt;/p&gt;
+&lt;p&gt;The agent calls the article-writing capability according to the implementation checklist and reads facts from the knowledge base fixed for the current round. Directions already occupied in the same knowledge base are skipped, and batch tasks cap how much is processed at once. Model numbers, prices, qualifications, and customer names the enterprise has not provided will never be filled in by the model on its own.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Machine compliance review&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;After an article is generated, the agent immediately runs rule checks and model-assisted review to identify exaggerated claims, absolute statements, or insufficient factual support. Articles that pass compliance move on to human review; blocked articles stay in a pending state until operations staff revise them and the checks are re-run.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Human approval and publishing&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Once human review is passed, the agent matches the permitted media resources according to the implementation checklist, submits publishing tasks, and tracks their status. Real links returned by the platforms are registered automatically; channels that require manual publishing — such as the official website — pause and wait, and the process continues after the link is filled in.&lt;/p&gt;
+&lt;p&gt;Throughout the action stage, machines execute and humans release. Human review is a formal gate in the pipeline: articles that are unreviewed or rejected are never published; once approved, the agent goes on to complete publishing and link registration.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;v-feedback-real-links-connect-content-to-outcomes&#34;&gt;V. Feedback: Real Links Connect Content to Outcomes
+&lt;/h2&gt;&lt;p&gt;An article being written and published only means the action is complete. Whether it produces GEO effects depends on whether generative engines subsequently mention the brand or cite the relevant pages.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Content assets and citation attribution&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The workbench registers the official website, published articles, videos, and channel links uniformly as content assets. Only real, accessible URLs enter citation attribution; drafts without public links are never counted as owned citations.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Continuous monitoring and strategy refresh&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Continuous monitoring preserves the brand&amp;rsquo;s questions, competitors, and engines, and re-tests on a daily, weekly, biweekly, or monthly cycle. Subsequent rounds keep using the established question set, avoiding misjudging effects by changing the questions each time; the set is curated during question design so that semantically duplicate queries are removed and each question maps to an independent information gap. Because published content takes weeks to be crawled, indexed, and retrieved by engines, effectiveness is judged primarily on monthly trends, not on daily fluctuations.&lt;/p&gt;
+&lt;p&gt;When a new report comes out, the system recalculates mentions, rankings, sentiment, and citations, and refreshes the strategy readings. The team can see whether a lower-level goal has slipped back below the bar, whether the current query pattern has improved, and whether newly published content has entered model citations.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The bar for effect attribution&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The feedback results can directly answer:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Why was this piece written? Because the diagnosis found a clear gap;&lt;/li&gt;
+&lt;li&gt;Why this platform and this query pattern? Because the rules ranked it as the current target;&lt;/li&gt;
+&lt;li&gt;Why could the body be written this way? Because the knowledge base supplied the facts;&lt;/li&gt;
+&lt;li&gt;Why is the action considered effective? Because the fixed question set showed changes in mentions, rankings, or owned citations in the next round of real answers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Attribution must still account for confounding factors: engine model updates, retrieval-corpus changes, and competitor moves all create fluctuations unrelated to the content, so a single period&amp;rsquo;s rise or fall cannot be taken directly as a content effect. The system&amp;rsquo;s approach is to keep the question set unchanged, rely on aggregated readings across multiple questions, mark insufficient samples as untested, and place effect judgment on trends across re-test cycles rather than the ups and downs of any single answer.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;vi-governance-boundaries-in-autonomous-execution&#34;&gt;VI. Governance Boundaries in Autonomous Execution
+&lt;/h2&gt;&lt;p&gt;An enterprise-grade service agent still needs human stages to carry governance responsibility. Without stable fact sources, clear rules, traceable evidence, and human release, autonomous continuous operation would rapidly amplify errors.&lt;/p&gt;
+&lt;p&gt;The system constrains autonomous execution through three boundaries:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Measurement cannot be modified by the writing model.&lt;/strong&gt; Raw data comes entirely from real questions and answers; labels such as sentiment and awareness are assigned by a measurement model, independent of the writing model, under fixed criteria — and when the measurement model is not configured or its call fails, the item is recorded as untested, with unknown results never reported as neutral mentions.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Planning cannot be freely decided by the model.&lt;/strong&gt; The current goal is produced by the fixed ladder and the pass rules.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Public publishing retains human accountability.&lt;/strong&gt; The agent drafts automatically and completes compliance checks; publishing proceeds only after human review is passed.&lt;/p&gt;
+&lt;p&gt;For every round, the agent saves the goals, snapshots, implementation checklists, articles, published assets, and execution status. After planning completes, it moves into writing automatically; after human review is passed, it continues with publishing; after real links are registered and the monitoring time arrives, it first saves the next diagnosis task, then closes the round and triggers the re-test.&lt;/p&gt;
+&lt;p&gt;When the objective is missing, the knowledge base is missing, compliance blocks an article, the budget is insufficient, or channels are unavailable, the system enters the corresponding pending state. Once the issue is resolved, the process continues from where it stopped — it never repeats completed actions.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;conclusion-let-autonomous-execution-keep-clear-boundaries-of-accountability&#34;&gt;Conclusion: Let Autonomous Execution Keep Clear Boundaries of Accountability
+&lt;/h2&gt;&lt;p&gt;The GEO service agent gives every step an explicit reason, verifiable evidence, and an execution boundary, keeping content production anchored to brand objectives.&lt;/p&gt;
+&lt;p&gt;The Shuneng GEO service agent brings real diagnosis, rule-based planning, knowledge-base writing, compliance and human review, media publishing, content assets, citation attribution, and continuous monitoring into one autonomous pipeline. It works like a &amp;ldquo;GEO service colleague&amp;rdquo; — one who has a dashboard, navigation rules, enterprise knowledge, and a clear sense of when a human must confirm.&lt;/p&gt;
+&lt;p&gt;Enterprise-grade agents need to connect facts, rules, actions, and feedback into a reliable closed loop, and to embed responsibility boundaries into the process. The system takes on the repetitive work governed by clear rules; people spend their energy on the stages that call for judgment and accountability.&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Agent Governance Hub: An AI Agent Service and Control Platform for Enterprises</title>
         <link>https://zhangzib123.github.io/en/p/agent-governance-hub-an-ai-agent-service-and-control-platform-for-enterprises/</link>
         <pubDate>Tue, 15 Sep 2026 00:00:00 +0000</pubDate>

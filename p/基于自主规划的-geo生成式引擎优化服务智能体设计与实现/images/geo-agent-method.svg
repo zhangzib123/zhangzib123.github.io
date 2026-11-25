@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" width="1200" height="760" role="img" aria-labelledby="title desc">
+  <title id="title">自主执行流程图</title>
+  <desc id="desc">感知与规划同一行左右并排，行动在规划下方，下期监测在感知下方。</desc>
+  <rect width="1200" height="760" fill="#ffffff"/>
+  <text x="28" y="44" fill="#1a1a1a" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="32" font-weight="700">自主执行流程图</text>
+
+  <!-- 目标 -->
+  <rect x="28" y="72" width="1144" height="118" rx="14" fill="none" stroke="#d5dbe3" stroke-width="1.6" stroke-dasharray="7 6"/>
+  <rect x="46" y="60" width="52" height="24" fill="#ffffff"/>
+  <text x="48" y="78" fill="#3c7ad6" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="16" font-weight="700">目标</text>
+  <circle cx="110" cy="138" r="32" fill="#1a73e8"/>
+  <rect x="98" y="124" width="24" height="30" rx="3" fill="#ffffff"/>
+  <rect x="102" y="130" width="16" height="3" rx="1.5" fill="#1a73e8"/>
+  <rect x="102" y="137" width="16" height="3" rx="1.5" fill="#1a73e8"/>
+  <rect x="102" y="144" width="11" height="3" rx="1.5" fill="#1a73e8"/>
+  <text x="168" y="144" fill="#243044" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="15" font-weight="700">需求分析定稿</text>
+  <text x="360" y="144" fill="#243044" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="16" font-weight="700">GEO 指标</text>
+  <text x="520" y="144" fill="#243044" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="16" font-weight="700">目标平台</text>
+  <text x="700" y="144" fill="#243044" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="16" font-weight="700">核心意图</text>
+  <text x="880" y="144" fill="#243044" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="16" font-weight="700">完成期限</text>
+
+  <!-- 感知 -->
+  <rect x="28" y="230" width="540" height="230" rx="14" fill="none" stroke="#d5dbe3" stroke-width="1.6" stroke-dasharray="7 6"/>
+  <rect x="46" y="218" width="52" height="24" fill="#ffffff"/>
+  <text x="48" y="236" fill="#8a63e8" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="16" font-weight="700">感知</text>
+  <rect x="52" y="292" width="140" height="86" rx="10" fill="#ffffff" stroke="#e4e9f0"/>
+  <text x="122" y="330" text-anchor="middle" fill="#243044" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="14" font-weight="700">诊断</text>
+  <text x="122" y="352" text-anchor="middle" fill="#8aa0b8" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="12">人工 / 监测</text>
+  <rect x="230" y="292" width="140" height="86" rx="10" fill="#ffffff" stroke="#e4e9f0"/>
+  <text x="300" y="340" text-anchor="middle" fill="#243044" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="14" font-weight="700">探针</text>
+  <rect x="408" y="292" width="140" height="86" rx="10" fill="#ffffff" stroke="#e4e9f0"/>
+  <text x="478" y="340" text-anchor="middle" fill="#243044" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="14" font-weight="700">快照</text>
+  <line x1="192" y1="335" x2="230" y2="335" stroke="#243044" stroke-width="1.4"/>
+  <polygon points="230,335 222,331 222,339" fill="#243044"/>
+  <line x1="370" y1="335" x2="408" y2="335" stroke="#243044" stroke-width="1.4"/>
+  <polygon points="408,335 400,331 400,339" fill="#243044"/>
+
+  <!-- 规划 -->
+  <rect x="620" y="230" width="552" height="230" rx="14" fill="none" stroke="#d5dbe3" stroke-width="1.6" stroke-dasharray="7 6"/>
+  <rect x="638" y="218" width="52" height="24" fill="#ffffff"/>
+  <text x="640" y="236" fill="#3c7ad6" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="16" font-weight="700">规划</text>
+  <rect x="648" y="268" width="150" height="52" rx="10" fill="#f3fbf6" stroke="#b7e4c7"/>
+  <text x="723" y="290" text-anchor="middle" fill="#1f7a45" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="14" font-weight="700">勾选档都过</text>
+  <text x="723" y="308" text-anchor="middle" fill="#3d9a62" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="12">本期停止</text>
+  <rect x="648" y="344" width="150" height="88" rx="10" fill="#ffffff" stroke="#e4e9f0"/>
+  <text x="723" y="374" text-anchor="middle" fill="#243044" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="15" font-weight="700">本期档位</text>
+  <text x="723" y="396" text-anchor="middle" fill="#5c6b7e" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="12">最低不及格档</text>
+  <text x="723" y="416" text-anchor="middle" fill="#5c6b7e" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="12">天数 · 篇数 · 媒体</text>
+  <line x1="723" y1="320" x2="723" y2="340" stroke="#1f7a45" stroke-width="1.4"/>
+  <polygon points="723,320 718,330 728,330" fill="#1f7a45"/>
+  <line x1="798" y1="388" x2="848" y2="388" stroke="#243044" stroke-width="1.4"/>
+  <polygon points="848,388 840,384 840,392" fill="#243044"/>
+  <circle cx="888" cy="388" r="28" fill="#eef4ff" stroke="#c5d7f5"/>
+  <path d="M874 376 H902 L894 390 H882 Z" fill="#1a73e8"/>
+  <rect x="884" y="390" width="8" height="10" rx="1" fill="#1a73e8"/>
+  <text x="932" y="382" fill="#243044" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="14" font-weight="700">具体实施清单</text>
+  <text x="932" y="404" fill="#8aa0b8" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="12">天数 · 篇数 · 媒体</text>
+
+  <!-- 感知 → 规划 -->
+  <line x1="568" y1="345" x2="612" y2="345" stroke="#243044" stroke-width="1.5"/>
+  <polygon points="620,345 610,340 610,350" fill="#243044"/>
+
+  <!-- 目标 → 感知 -->
+  <line x1="298" y1="190" x2="298" y2="222" stroke="#243044" stroke-width="1.5"/>
+  <polygon points="298,230 293,220 303,220" fill="#243044"/>
+
+  <!-- 下轮诊断和规划：感知下方，虚线圆 -->
+  <circle cx="298" cy="620" r="108" fill="none" stroke="#d5dbe3" stroke-width="1.6" stroke-dasharray="7 6"/>
+  <text x="298" y="620" text-anchor="middle" dominant-baseline="central" fill="#0f8f8c" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="16" font-weight="700">触发下轮诊断</text>
+  <line x1="298" y1="460" x2="298" y2="504" stroke="#14b8b4" stroke-width="1.5"/>
+  <polygon points="298,460 293,470 303,470" fill="#14b8b4"/>
+
+  <!-- 行动：规划下方 -->
+  <rect x="620" y="500" width="552" height="200" rx="14" fill="none" stroke="#d5dbe3" stroke-width="1.6" stroke-dasharray="7 6"/>
+  <rect x="638" y="488" width="52" height="24" fill="#ffffff"/>
+  <text x="640" y="506" fill="#14b8b4" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="16" font-weight="700">行动</text>
+  <rect x="644" y="556" width="150" height="86" rx="10" fill="#ffffff" stroke="#e4e9f0"/>
+  <text x="719" y="590" text-anchor="middle" fill="#243044" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="14" font-weight="700">自动生成文章</text>
+  <text x="719" y="612" text-anchor="middle" fill="#8aa0b8" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="12">按清单篇数</text>
+  <line x1="794" y1="599" x2="834" y2="599" stroke="#243044" stroke-width="1.4"/>
+  <polygon points="834,599 826,595 826,603" fill="#243044"/>
+  <rect x="834" y="556" width="120" height="86" rx="10" fill="#fff7ed" stroke="#f0d2b0"/>
+  <text x="894" y="594" text-anchor="middle" fill="#243044" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="15" font-weight="700">人审</text>
+  <text x="894" y="616" text-anchor="middle" fill="#8aa0b8" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="12">未过不往下</text>
+  <line x1="954" y1="599" x2="994" y2="599" stroke="#243044" stroke-width="1.4"/>
+  <polygon points="994,599 986,595 986,603" fill="#243044"/>
+  <rect x="994" y="556" width="150" height="86" rx="10" fill="#ffffff" stroke="#e4e9f0"/>
+  <text x="1069" y="590" text-anchor="middle" fill="#243044" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="15" font-weight="700">文章发稿</text>
+  <text x="1069" y="612" text-anchor="middle" fill="#8aa0b8" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif" font-size="12">人审通过后</text>
+
+  <!-- 规划 → 行动 -->
+  <line x1="896" y1="460" x2="896" y2="492" stroke="#243044" stroke-width="1.5"/>
+  <polygon points="896,500 891,490 901,490" fill="#243044"/>
+
+  <!-- 行动 → 下轮诊断和规划 -->
+  <path d="M620 620 H414" fill="none" stroke="#243044" stroke-width="1.5"/>
+  <polygon points="406,620 416,615 416,625" fill="#243044"/>
+</svg>

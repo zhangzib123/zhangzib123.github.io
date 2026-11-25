@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="A systematic retrospective of a GEO service agent system already running in production. Oriented by brand growth objectives, it closes the loop across goals, perception, planning, and action: real questions build a traceable visibility dashboard; fixed rules and a five-level strategy ladder generate implementation checklists; the enterprise knowledge base bounds content generation; compliance checks and human review gate publishing — drawing clear governance boundaries for autonomous LLM execution.">
+<title>Design and Implementation of a Self-Planning GEO (Generative Engine Optimization) Service Agent</title>
+
+<link rel='canonical' href='https://zhangzib123.github.io/en/p/design-and-implementation-of-a-self-planning-geo-generative-engine-optimization-service-agent/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Design and Implementation of a Self-Planning GEO (Generative Engine Optimization) Service Agent">
+<meta property='og:description' content="A systematic retrospective of a GEO service agent system already running in production. Oriented by brand growth objectives, it closes the loop across goals, perception, planning, and action: real questions build a traceable visibility dashboard; fixed rules and a five-level strategy ladder generate implementation checklists; the enterprise knowledge base bounds content generation; compliance checks and human review gate publishing — drawing clear governance boundaries for autonomous LLM execution.">
+<meta property='og:url' content='https://zhangzib123.github.io/en/p/design-and-implementation-of-a-self-planning-geo-generative-engine-optimization-service-agent/'>
+<meta property='og:site_name' content='ZibiaoZhang&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='GEO' /><meta property='article:tag' content='Generative Engine Optimization' /><meta property='article:tag' content='AI Visibility Diagnostics' /><meta property='article:tag' content='Self-Planning Agent' /><meta property='article:tag' content='Brand Visibility' /><meta property='article:tag' content='Citation Attribution' /><meta property='article:tag' content='Enterprise Knowledge Base' /><meta property='article:tag' content='Content Compliance' /><meta property='article:tag' content='Human-in-the-Loop' /><meta property='article:tag' content='Agent Governance' /><meta property='article:published_time' content='2026-11-25T11:10:00&#43;08:00'/><meta property='article:modified_time' content='2026-11-25T11:10:00&#43;08:00'/>
+<meta name="twitter:title" content="Design and Implementation of a Self-Planning GEO (Generative Engine Optimization) Service Agent">
+<meta name="twitter:description" content="A systematic retrospective of a GEO service agent system already running in production. Oriented by brand growth objectives, it closes the loop across goals, perception, planning, and action: real questions build a traceable visibility dashboard; fixed rules and a five-level strategy ladder generate implementation checklists; the enterprise knowledge base bounds content generation; compliance checks and human review gate publishing — drawing clear governance boundaries for autonomous LLM execution.">
+<script src="https://analytics.ahrefs.com/analytics.js" data-key="HaqaJ8FaWrAr/ybqoY2yQA" async></script>
+
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'default',
+    flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' }
+  });
+</script>
+<style>
+.mermaid { text-align: center; margin: 1em 0; }
+</style><script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "\"Design and Implementation of a Self-Planning GEO (Generative Engine Optimization) Service Agent\"",
+  "description": "\"A systematic retrospective of a GEO service agent system already running in production. Oriented by brand growth objectives, it closes the loop across goals, perception, planning, and action: real questions build a traceable visibility dashboard; fixed rules and a five-level strategy ladder generate implementation checklists; the enterprise knowledge base bounds content generation; compliance checks and human review gate publishing — drawing clear governance boundaries for autonomous LLM execution.\"",
+  "inLanguage": "en",
+  "datePublished": "2026-11-25",
+  "dateModified": "2026-11-25",
+  "author": {
+    "@type": "Person",
+    "name": "\"张子彪\"",
+    "url": "https:\/\/zhangzib123.github.io\/about/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "\"张子彪\""
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:\/\/zhangzib123.github.io\/en\/p\/design-and-implementation-of-a-self-planning-geo-generative-engine-optimization-service-agent\/"
+  },"speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [".article-content"]
+  }
+}
+</script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/en/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_1e95fa25e38c37e7.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/en">ZibiaoZhang&#39;s Blog</a></h1>
+            <h2 class="site-description">Welcome to my blog</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://zhangzib123.github.io/'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/en/profile/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>Profile</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://zhangzib123.github.io/" >中文</option>
+                                
+                                    <option value="https://zhangzib123.github.io/en/" selected>English</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#abstract">Abstract</a></li>
+    <li><a href="#introduction-geo-needs-a-complete-navigation-system">Introduction: GEO Needs a Complete Navigation System</a></li>
+    <li><a href="#i-autonomous-execution-pipeline-design">I. Autonomous Execution Pipeline Design</a></li>
+    <li><a href="#ii-perception-building-the-geo-dashboard-with-real-questions">II. Perception: Building the GEO Dashboard with Real Questions</a></li>
+    <li><a href="#iii-planning-rules-decide-the-goals--the-model-does-not-rewrite-them-for-the-enterprise">III. Planning: Rules Decide the Goals — the Model Does Not Rewrite Them for the Enterprise</a></li>
+    <li><a href="#iv-action-knowledge-base-drafts-compliance-and-publishing-are-gatekept-by-humans">IV. Action: Knowledge Base Drafts; Compliance and Publishing Are Gatekept by Humans</a></li>
+    <li><a href="#v-feedback-real-links-connect-content-to-outcomes">V. Feedback: Real Links Connect Content to Outcomes</a></li>
+    <li><a href="#vi-governance-boundaries-in-autonomous-execution">VI. Governance Boundaries in Autonomous Execution</a></li>
+    <li><a href="#conclusion-let-autonomous-execution-keep-clear-boundaries-of-accountability">Conclusion: Let Autonomous Execution Keep Clear Boundaries of Accountability</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/en/categories/artificial-intelligence/" >
+                Artificial Intelligence
+            </a>
+        
+            <a href="/en/categories/ai-agents/" >
+                AI Agents
+            </a>
+        
+            <a href="/en/categories/geo--digital-marketing/" >
+                GEO &amp; Digital Marketing
+            </a>
+        
+            <a href="/en/categories/technical-practice--cases/" >
+                Technical Practice &amp; Cases
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/en/p/design-and-implementation-of-a-self-planning-geo-generative-engine-optimization-service-agent/">Design and Implementation of a Self-Planning GEO (Generative Engine Optimization) Service Agent</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            A systematic retrospective of a GEO service agent system already running in production. Oriented by brand growth objectives, it closes the loop across goals, perception, planning, and action: real questions build a traceable visibility dashboard; fixed rules and a five-level strategy ladder generate implementation checklists; the enterprise knowledge base bounds content generation; compliance checks and human review gate publishing — drawing clear governance boundaries for autonomous LLM execution.
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Nov 25, 2026</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    11 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="https://zhangzib123.github.io/p/%E5%9F%BA%E4%BA%8E%E8%87%AA%E4%B8%BB%E8%A7%84%E5%88%92%E7%9A%84-geo%E7%94%9F%E6%88%90%E5%BC%8F%E5%BC%95%E6%93%8E%E4%BC%98%E5%8C%96%E6%9C%8D%E5%8A%A1%E6%99%BA%E8%83%BD%E4%BD%93%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" class="link">中文</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="design-and-implementation-of-a-self-planning-geo-generative-engine-optimization-service-agent">Design and Implementation of a Self-Planning GEO (Generative Engine Optimization) Service Agent
+</h1><p><strong>— The core infrastructure with which Zhengzhou Shuneng Software empowers enterprise brand building</strong></p>
+<h2 id="abstract">Abstract
+</h2><p>Through the actual development, project practice, and continuous use of its GEO services, Zhengzhou Shuneng Software has completed and now runs a service agent dedicated to enterprise brand building. Autonomous planning runs through the entire solution: around a defined brand growth objective, the agent senses the brand&rsquo;s presence in generative engines through real questions, determines the current goal and a concrete implementation checklist from diagnostic results and fixed business rules, and then supports content generation, compliance review, and human-reviewed publishing on top of the enterprise knowledge base. After publishing, real links enter the content assets, and continuous monitoring and citation attribution verify the effects of actions, with new data feeding the next round of planning. Measurement evidence, planning rules, enterprise facts, and human accountability are brought into a single pipeline, enabling GEO services to keep executing, verifying, and adjusting — forming the agent-based infrastructure for enterprise brand building.</p>
+<p><strong>Keywords:</strong> Generative Engine Optimization (GEO); self-planning agent; content compliance; brand communication; human-AI collaboration; brand visibility</p>
+<hr>
+<h2 id="introduction-geo-needs-a-complete-navigation-system">Introduction: GEO Needs a Complete Navigation System
+</h2><p>Users are now asking generative engines — Doubao, DeepSeek, Wenxin Yiyan (ERNIE Bot), Tongyi Qianwen (Qwen), Kimi, Tencent Yuanbao — their questions directly. Brands need to know whether these models mention them unprompted, where they appear in the answers, and whether the answers cite the brand&rsquo;s own pages. Fixed rankings in traditional search can no longer capture these changes.</p>
+<p>Simply producing more content cannot answer these questions. An enterprise also needs to know: which platform performs weakest, which query patterns have gaps, and whether the current priority should be building brand awareness, improving sentiment, winning citations, or increasing visibility in category-related queries.</p>
+<p>The Shuneng GEO workbench chains these tasks into a repeatable business pipeline: measure first, then plan; produce content grounded in the enterprise knowledge base; register real links after publishing; and finally re-test with the same set of questions. The diagnostic data serves as the dashboard, the planning rules choose the route, and content production is only one step of execution.</p>
+<hr>
+<h2 id="i-autonomous-execution-pipeline-design">I. Autonomous Execution Pipeline Design
+</h2><p>The Shuneng GEO service agent is the autonomous execution component of the Shuneng GEO workbench; it operates around a defined brand growth objective. The objective specifies the GEO metrics to improve, the target platforms, the core intents, and the deadline; the enterprise knowledge base supplies the facts, and monitoring projects provide a set of questions for continuous re-testing. On this basis, the agent completes perception, planning, action, and feedback.</p>
+<p><img src="/images/geo-agent-method.svg"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Autonomous execution pipeline"
+	
+	
+></p>
+<p>The service agent consists of four core modules — goals, perception, planning, and action: finalized requirements define the goals; diagnostics, probes, and snapshots handle perception; planning selects the current target metrics and a concrete implementation checklist; and action completes writing, human review, and publishing, then triggers the next round of diagnostics.</p>
+<p>The complete pipeline has seven steps:</p>
+<ol>
+<li>Finalize the brand objective — metrics, platforms, core intents, and deadline;</li>
+<li>Build the enterprise knowledge base, set up continuous monitoring projects, and define the question set;</li>
+<li>Run the visibility diagnosis, perceiving the external environment through probes and snapshots;</li>
+<li>Generate target metrics and a concrete implementation checklist from the report;</li>
+<li>Automatically generate articles and complete compliance checks;</li>
+<li>Wait for human review; once approved, publish according to the checklist and register the real links;</li>
+<li>When the scheduled monitoring time arrives, re-test automatically, then return to diagnosis and planning.</li>
+</ol>
+<p>The first three steps answer &ldquo;what is the goal, and what does the environment look like&rdquo;; the fourth decides &ldquo;what to do this round&rdquo;; the fifth and sixth carry out the action; and the seventh feeds the results of the action back into perception. Every round retains a clear state; when conditions are not met, the process stops at the corresponding gate, and resumes once they are satisfied.</p>
+<hr>
+<h2 id="ii-perception-building-the-geo-dashboard-with-real-questions">II. Perception: Building the GEO Dashboard with Real Questions
+</h2><p>Perception is where the service agent starts running.</p>
+<p>In &ldquo;AI visibility diagnosis,&rdquo; the user selects the brand, competitors, questions, and target engines. The system sends real questions to the configured generative engines and retains every question-and-answer record. The diagnostic report then computes brand mention rate, top-3 share, awareness, negative share, and citation status.</p>
+<p>These Q&amp;A records act as the agent&rsquo;s probes. Each probe corresponds to one specific question, one engine, and one real answer — every figure in the report can be traced back, item by item, to the raw evidence. Generative engines naturally vary in their answers, so metrics are never judged on a single response: at the report level, figures are aggregated from the valid answers to multiple questions on the same engine; at the effect level, judgment is based on the trend of the fixed question set across re-test cycles. When valid answers are insufficient, the system marks the item as untested; it never fills the gap with simulated results.</p>
+<p>At the end of the diagnosis, the system also examines the source links in the answers and matches them against the official website, articles, videos, and channel links registered in the workbench. Matching first attempts an exact full-URL match to a specific content asset; because engines routinely truncate or rewrite links, the official domain serves as a fallback to confirm the source as an enterprise-owned asset. For engines that return no source links, citation metrics are excluded from statistics, and only mentions and positions are measured.</p>
+<p>The website radar, the enterprise knowledge base, and the monitoring projects supply three more kinds of information to perception: whether the official website clearly states the enterprise&rsquo;s identity, which facts are available for writing, and which fixed questions future re-tests should continue to use.</p>
+<hr>
+<h2 id="iii-planning-rules-decide-the-goals--the-model-does-not-rewrite-them-for-the-enterprise">III. Planning: Rules Decide the Goals — the Model Does Not Rewrite Them for the Enterprise
+</h2><p>Once the diagnostic report is complete, &ldquo;Strategy &amp; Planning&rdquo; reads the latest results and generates a five-level strategy ladder:</p>
+<ol>
+<li>Awareness;</li>
+<li>Sentiment index;</li>
+<li>Citation share;</li>
+<li>AI visibility;</li>
+<li>TOP visibility.</li>
+</ol>
+<p>The system checks in this fixed order and opens only the lowest level that has not yet met its bar. Here, awareness refers to whether the model has formed a stable, consistent, and correct recognition of the brand — distinct from brand awareness in the consumer-survey sense. When a brand has not yet formed stable awareness, it first establishes a unified definition; when there is clearly negative information, it adds verifiable cases; when models do not cite the brand&rsquo;s own pages, it first builds citable content; when the brand is absent from category-related queries, it then improves visibility; and when the brand appears but ranks low, it finally works on top-3 placement.</p>
+<p>Within the target metric, the system further selects the platforms and specific query patterns to improve, forming an implementation checklist that specifies content direction, target channels, execution volume, and re-test timing — and proceeds to article generation accordingly. The choice of target channels likewise comes from diagnostic evidence: the system prioritizes publishing domains that have already appeared as citations in this question set&rsquo;s answers — including domains where competitor content is cited — rather than rotating a fixed media list.</p>
+<p>The autonomous plan comes from diagnostic data and fixed business rules; it does not depend on the session model deciding on the spot — what the industry calls a deterministic workflow, in which process routing and state transitions are executed by fixed rules while the model only organizes text in the subsequent writing stage. The model cannot modify the pass thresholds, and it cannot present a direction without evidence as already accomplished.</p>
+<p>Goal determination, content generation, and effect evaluation are handled by different stages, preventing a single model from simultaneously setting the goals, producing the content, and grading its own results.</p>
+<hr>
+<h2 id="iv-action-knowledge-base-drafts-compliance-and-publishing-are-gatekept-by-humans">IV. Action: Knowledge Base Drafts; Compliance and Publishing Are Gatekept by Humans
+</h2><p><strong>Knowledge-base drafting</strong></p>
+<p>The enterprise knowledge base is the factual boundary of writing. The workbench maintains enterprise profiles, products, cases, FAQs, and layered vocabularies. Confirmed content becomes available for semantic retrieval and provides the basis for articles, video scripts, and content rewrites.</p>
+<p>The agent calls the article-writing capability according to the implementation checklist and reads facts from the knowledge base fixed for the current round. Directions already occupied in the same knowledge base are skipped, and batch tasks cap how much is processed at once. Model numbers, prices, qualifications, and customer names the enterprise has not provided will never be filled in by the model on its own.</p>
+<p><strong>Machine compliance review</strong></p>
+<p>After an article is generated, the agent immediately runs rule checks and model-assisted review to identify exaggerated claims, absolute statements, or insufficient factual support. Articles that pass compliance move on to human review; blocked articles stay in a pending state until operations staff revise them and the checks are re-run.</p>
+<p><strong>Human approval and publishing</strong></p>
+<p>Once human review is passed, the agent matches the permitted media resources according to the implementation checklist, submits publishing tasks, and tracks their status. Real links returned by the platforms are registered automatically; channels that require manual publishing — such as the official website — pause and wait, and the process continues after the link is filled in.</p>
+<p>Throughout the action stage, machines execute and humans release. Human review is a formal gate in the pipeline: articles that are unreviewed or rejected are never published; once approved, the agent goes on to complete publishing and link registration.</p>
+<hr>
+<h2 id="v-feedback-real-links-connect-content-to-outcomes">V. Feedback: Real Links Connect Content to Outcomes
+</h2><p>An article being written and published only means the action is complete. Whether it produces GEO effects depends on whether generative engines subsequently mention the brand or cite the relevant pages.</p>
+<p><strong>Content assets and citation attribution</strong></p>
+<p>The workbench registers the official website, published articles, videos, and channel links uniformly as content assets. Only real, accessible URLs enter citation attribution; drafts without public links are never counted as owned citations.</p>
+<p><strong>Continuous monitoring and strategy refresh</strong></p>
+<p>Continuous monitoring preserves the brand&rsquo;s questions, competitors, and engines, and re-tests on a daily, weekly, biweekly, or monthly cycle. Subsequent rounds keep using the established question set, avoiding misjudging effects by changing the questions each time; the set is curated during question design so that semantically duplicate queries are removed and each question maps to an independent information gap. Because published content takes weeks to be crawled, indexed, and retrieved by engines, effectiveness is judged primarily on monthly trends, not on daily fluctuations.</p>
+<p>When a new report comes out, the system recalculates mentions, rankings, sentiment, and citations, and refreshes the strategy readings. The team can see whether a lower-level goal has slipped back below the bar, whether the current query pattern has improved, and whether newly published content has entered model citations.</p>
+<p><strong>The bar for effect attribution</strong></p>
+<p>The feedback results can directly answer:</p>
+<ul>
+<li>Why was this piece written? Because the diagnosis found a clear gap;</li>
+<li>Why this platform and this query pattern? Because the rules ranked it as the current target;</li>
+<li>Why could the body be written this way? Because the knowledge base supplied the facts;</li>
+<li>Why is the action considered effective? Because the fixed question set showed changes in mentions, rankings, or owned citations in the next round of real answers.</li>
+</ul>
+<p>Attribution must still account for confounding factors: engine model updates, retrieval-corpus changes, and competitor moves all create fluctuations unrelated to the content, so a single period&rsquo;s rise or fall cannot be taken directly as a content effect. The system&rsquo;s approach is to keep the question set unchanged, rely on aggregated readings across multiple questions, mark insufficient samples as untested, and place effect judgment on trends across re-test cycles rather than the ups and downs of any single answer.</p>
+<hr>
+<h2 id="vi-governance-boundaries-in-autonomous-execution">VI. Governance Boundaries in Autonomous Execution
+</h2><p>An enterprise-grade service agent still needs human stages to carry governance responsibility. Without stable fact sources, clear rules, traceable evidence, and human release, autonomous continuous operation would rapidly amplify errors.</p>
+<p>The system constrains autonomous execution through three boundaries:</p>
+<p><strong>Measurement cannot be modified by the writing model.</strong> Raw data comes entirely from real questions and answers; labels such as sentiment and awareness are assigned by a measurement model, independent of the writing model, under fixed criteria — and when the measurement model is not configured or its call fails, the item is recorded as untested, with unknown results never reported as neutral mentions.</p>
+<p><strong>Planning cannot be freely decided by the model.</strong> The current goal is produced by the fixed ladder and the pass rules.</p>
+<p><strong>Public publishing retains human accountability.</strong> The agent drafts automatically and completes compliance checks; publishing proceeds only after human review is passed.</p>
+<p>For every round, the agent saves the goals, snapshots, implementation checklists, articles, published assets, and execution status. After planning completes, it moves into writing automatically; after human review is passed, it continues with publishing; after real links are registered and the monitoring time arrives, it first saves the next diagnosis task, then closes the round and triggers the re-test.</p>
+<p>When the objective is missing, the knowledge base is missing, compliance blocks an article, the budget is insufficient, or channels are unavailable, the system enters the corresponding pending state. Once the issue is resolved, the process continues from where it stopped — it never repeats completed actions.</p>
+<hr>
+<h2 id="conclusion-let-autonomous-execution-keep-clear-boundaries-of-accountability">Conclusion: Let Autonomous Execution Keep Clear Boundaries of Accountability
+</h2><p>The GEO service agent gives every step an explicit reason, verifiable evidence, and an execution boundary, keeping content production anchored to brand objectives.</p>
+<p>The Shuneng GEO service agent brings real diagnosis, rule-based planning, knowledge-base writing, compliance and human review, media publishing, content assets, citation attribution, and continuous monitoring into one autonomous pipeline. It works like a &ldquo;GEO service colleague&rdquo; — one who has a dashboard, navigation rules, enterprise knowledge, and a clear sense of when a human must confirm.</p>
+<p>Enterprise-grade agents need to connect facts, rules, actions, and feedback into a reliable closed loop, and to embed responsibility boundaries into the process. The system takes on the repetitive work governed by clear rules; people spend their energy on the stages that call for judgment and accountability.</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/en/tags/geo/">GEO</a>
+        
+            <a href="/en/tags/generative-engine-optimization/">Generative Engine Optimization</a>
+        
+            <a href="/en/tags/ai-visibility-diagnostics/">AI Visibility Diagnostics</a>
+        
+            <a href="/en/tags/self-planning-agent/">Self-Planning Agent</a>
+        
+            <a href="/en/tags/brand-visibility/">Brand Visibility</a>
+        
+            <a href="/en/tags/citation-attribution/">Citation Attribution</a>
+        
+            <a href="/en/tags/enterprise-knowledge-base/">Enterprise Knowledge Base</a>
+        
+            <a href="/en/tags/content-compliance/">Content Compliance</a>
+        
+            <a href="/en/tags/human-in-the-loop/">Human-in-the-Loop</a>
+        
+            <a href="/en/tags/agent-governance/">Agent Governance</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+    
+    
+    
+    <section class="comments">
+        <h3></h3>
+        <script 
+            src="https://utteranc.es/client.js"
+            repo="zhangzib123/comment"
+            issue-term="pathname"
+            theme="github-light"
+            label=""
+            crossorigin="anonymous"
+            async>
+        </script>
+        <noscript></noscript>
+    </section>
+    
+
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/en/p/global-economic-forecasting-research-based-on-multi-model-fusion/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Global Economic Forecasting Research Based on Multi-Model Fusion</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/en/p/agent-governance-hub-an-ai-agent-service-and-control-platform-for-enterprises/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Agent Governance Hub: An AI Agent Service and Control Platform for Enterprises</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2026 ZibiaoZhang&#39;s Blog
+    </section>
+
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
