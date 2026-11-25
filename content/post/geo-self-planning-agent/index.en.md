@@ -1,8 +1,8 @@
-﻿+++
++++
 date = '2026-11-25T11:10:00+08:00'
 draft = false
 title = 'Design and Implementation of a Self-Planning GEO (Generative Engine Optimization) Service Agent'
-description = "A systematic retrospective of a GEO service agent system already running in production. Oriented by brand growth objectives, it closes the loop across goals, perception, planning, and action: real questions build a traceable visibility dashboard; fixed rules and a five-level strategy ladder generate implementation checklists; the enterprise knowledge base bounds content generation; compliance checks and human review gate publishing — drawing clear governance boundaries for autonomous LLM execution."
+description = "Through the actual development, project practice, and continuous use of its GEO services, Zhengzhou Shuneng Software has completed and now runs a service agent dedicated to enterprise brand building. Autonomous planning runs through the entire solution: around a defined brand growth objective, the agent senses the brand's presence in generative engines through real questions, determines the current goal and a concrete implementation checklist from diagnostic results and fixed business rules, and then supports content generation, compliance review, and human-reviewed publishing on top of the enterprise knowledge base. After publishing, real links enter the content assets, and continuous monitoring and citation attribution verify the effects of actions, with new data feeding the next round of planning. Measurement evidence, planning rules, enterprise facts, and human accountability are brought into a single pipeline, enabling GEO services to keep executing, verifying, and adjusting — forming the agent-based infrastructure for enterprise brand building."
 categories = [
     "Artificial Intelligence",
     "AI Agents",
@@ -26,12 +26,6 @@ tags = [
 # Design and Implementation of a Self-Planning GEO (Generative Engine Optimization) Service Agent
 
 **— The core infrastructure with which Zhengzhou Shuneng Software empowers enterprise brand building**
-
-## Abstract
-
-Through the actual development, project practice, and continuous use of its GEO services, Zhengzhou Shuneng Software has completed and now runs a service agent dedicated to enterprise brand building. Autonomous planning runs through the entire solution: around a defined brand growth objective, the agent senses the brand's presence in generative engines through real questions, determines the current goal and a concrete implementation checklist from diagnostic results and fixed business rules, and then supports content generation, compliance review, and human-reviewed publishing on top of the enterprise knowledge base. After publishing, real links enter the content assets, and continuous monitoring and citation attribution verify the effects of actions, with new data feeding the next round of planning. Measurement evidence, planning rules, enterprise facts, and human accountability are brought into a single pipeline, enabling GEO services to keep executing, verifying, and adjusting — forming the agent-based infrastructure for enterprise brand building.
-
-**Keywords:** Generative Engine Optimization (GEO); self-planning agent; content compliance; brand communication; human-AI collaboration; brand visibility
 
 ---
 
